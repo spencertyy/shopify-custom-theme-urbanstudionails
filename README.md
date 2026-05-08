@@ -69,8 +69,8 @@ UrbanStudio-theme2026/
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/spencertyy/shopify-custom-theme-urbanstuionails-.git
-cd shopify-custom-theme-urbanstuionails-
+git clone https://github.com/spencertyy/shopify-custom-theme-urbanstudionails.git
+cd shopify-custom-theme-urbanstudionails
 
 # 2. Copy example config
 cp config/settings_data.example.json config/settings_data.json
