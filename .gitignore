@@ -13,3 +13,4 @@ config/settings_data.json
 # Private notes — store credentials, commands, internal docs
 PRIVATE_NOTES.md
 OPTIMIZATION_STATUS.md
+CLAUDE.md

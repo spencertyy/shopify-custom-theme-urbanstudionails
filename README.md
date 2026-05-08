@@ -2,7 +2,7 @@
 
 A fully custom Shopify storefront for **UrbanStudio Nails**, a handcrafted press-on nail brand. Built on Dawn v15.0.0 with extensive customization across sections, snippets, and theme architecture.
 
-**Live store:** [urbanstudionails.myshopify.com](https://urbanstudionails.myshopify.com)
+**Live store:** [urbanstudionails.com](https://urbanstudionails.com)
 
 ---
 
@@ -69,8 +69,8 @@ UrbanStudio-theme2026/
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/YOUR_USERNAME/UrbanStudio-theme2026.git
-cd UrbanStudio-theme2026
+git clone https://github.com/spencertyy/shopify-custom-theme-urbanstuionails-.git
+cd shopify-custom-theme-urbanstuionails-
 
 # 2. Copy example config
 cp config/settings_data.example.json config/settings_data.json
