@@ -488,20 +488,6 @@
               {%- when 'variant_picker' -%}
                 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
               {%- when 'buy_buttons' -%}
-                <div class="gift-wrap-option">
-                  <label class="gift-wrap-option__label">
-                    <input
-                      type="checkbox"
-                      name="properties[🎁 Gift Wrap]"
-                      value="Yes — Premium packaging"
-                      form="{{ product_form_id }}"
-                      class="gift-wrap-option__checkbox"
-                    >
-                    <span class="gift-wrap-option__text">
-                      🎁 Gift wrap — premium packaging <span class="gift-wrap-option__note">(free)</span>
-                    </span>
-                  </label>
-                </div>
                 {%- render 'buy-buttons',
                   block: block,
                   product: product,
