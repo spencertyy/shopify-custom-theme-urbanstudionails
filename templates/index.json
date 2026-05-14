@@ -181,12 +181,12 @@
     "featured_collection_iGaMMY": {
       "type": "featured-collection",
       "settings": {
-        "title": "<strong>Pink Perfection</strong>",
+        "title": "<strong>Clean Girl</strong>",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "frontpage",
+        "collection": "clean-girl",
         "products_to_show": 8,
         "columns_desktop": 4,
         "full_width": false,
