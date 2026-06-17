@@ -95,6 +95,16 @@ Custom work built on top of Dawn (image priority, `srcset`, and async CSS loadin
 
 ---
 
+## Built but not yet live
+
+Complete code in the repo, **not currently active** on the live store:
+
+- **SVG nail-shape swatches** — `snippets/product-variant-picker.liquid` renders hand-drawn SVG silhouettes (almond, coffin, stiletto, …) as a custom variant picker, with a text fallback and accessible hidden-radio markup. *Won't ship as-is:* products are sold by size, not a selectable shape, so the render condition never triggers.
+- **Lookbook collection page** — `templates/collection.lookbook.json` + `sections/lookbook-grid.liquid`: a price-free visual mosaic of designs with a lightbox add-to-cart. *Ready to activate* by assigning the template to a collection — may go live later.
+- **Gift landing page** — `templates/page.gift.json` + `sections/gift-landing.liquid`: a gift destination featuring the gift-card product, top gift sets, a gift-wrap add-on, and an e-card. *Ready to activate* by assigning the template to a page — may go live later. (Distinct from the live Gift Card *product*, which this page would feature.)
+
+---
+
 ## Branch Structure
 
 | Branch | Purpose |
