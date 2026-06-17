@@ -45,6 +45,14 @@
     white-space: nowrap;
   }
   .sticky-atc__btn:hover { opacity: .88; }
+  /* 加购栏出现时（仅移动端）把第三方悬浮入口顶到栏上方，避免遮挡 */
+  @media screen and (max-width: 989px) {
+    body.sticky-atc-visible #ShopifyChat,
+    body.sticky-atc-visible .loloyal-launcher-wrapper {
+      bottom: 90px !important;
+      transition: bottom 0.28s cubic-bezier(.4,0,.2,1);
+    }
+  }
   @media screen and (min-width: 990px) { .sticky-atc { display: none; } }
 </style>
 
@@ -82,6 +90,7 @@
       var show = !e.isIntersecting;
       bar.classList.toggle('is-visible', show);
       bar.setAttribute('aria-hidden', !show);
+      document.body.classList.toggle('sticky-atc-visible', show);
     });
   }, { rootMargin: '0px 0px -80px 0px' });
   observer.observe(mainBtn);

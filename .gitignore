@@ -10,7 +10,10 @@
 # Use config/settings_data.example.json as reference instead
 config/settings_data.json
 
-# Private notes — store credentials, commands, internal docs
-PRIVATE_NOTES.md
-OPTIMIZATION_STATUS.md
-CLAUDE.md
+# Private notes / internal docs — ignore ALL markdown except README.md
+*.md
+!README.md
+
+# Private exports & tooling artifacts
+*.docx
+.playwright-mcp/

@@ -1,1 +1,144 @@
-{"sections":{"main":{"type":"main-page","disabled":true,"settings":{"padding_top":28,"padding_bottom":28}},"rich_text_RmNxge":{"type":"rich-text","blocks":{"heading_dg8HJP":{"type":"heading","settings":{"heading":"@UrbanStudio.Nails","heading_size":"h1"}},"text_KzehaY":{"type":"text","settings":{"text":"<p><em>UrbanStudio Nails was created for the modern woman—busy, ambitious, stylish, and always on the move.<\/em><\/p><p><em>We believe beauty should fit your life, not slow it down. Traditional salon visits are expensive and time-consuming, while cheap mass-produced press-ons never look or feel like the real thing.<\/em><\/p><p><em>So we set out to create a better option.<\/em><\/p><p><em>Inspired by the energy of urban life and the elegance of minimal, modern aesthetics, UrbanStudio Nails transforms hand-crafted press-ons into wearable art.<\/em><\/p><p><em>Each set is shaped, designed, and finished by hand—giving you the look of a fresh salon manicure in minutes, with the quality and individuality you deserve.<br\/>We design for women who express themselves through style.Women who love effortless beauty.<\/em><\/p><p><em>Women who know that confidence starts with the small details.<br\/>Our promise is simple:<\/em><em><strong>premium handmade nails that elevate your everyday life—anytime, anywhere.<\/strong><\/em><em><br\/>Whether you’re heading to work, a date night, a weekend getaway, or simply want to feel a little more “you,” UrbanStudio Nails is here to help you look polished, empowered, and uniquely beautiful.<\/em><\/p><p><em>This is more than press-on nails.<\/em><\/p><p><em><strong>This is your story, your style, your confidence—crafted by hand.<\/strong><\/em><\/p>"}}},"block_order":["heading_dg8HJP","text_KzehaY"],"settings":{"desktop_content_position":"center","content_alignment":"center","color_scheme":"","full_width":true,"padding_top":40,"padding_bottom":52}},"multirow_9Ahxxk":{"type":"multirow","blocks":{"row_gittWh":{"type":"row","settings":{"image":"shopify:\/\/shop_images\/dfb1d7fefc64bf9fbaedba7a7d71a5f2_2f1f7f78-c6cb-4e0b-99c3-7577d856b8df.jpg","caption":"","heading":"<strong>Why Handmade Matters<\/strong>","text":"<h4><strong> Handmade Craftsmanship, Elevated✨<\/strong><\/h4><p>Each UrbanStudio Nails set is individually crafted by hand—never mass-produced.<\/p><p>Our artists shape, paint, and finish every detail with precision, ensuring the quality, durability, and beauty that machine-made press-ons can’t achieve.<\/p><p>From soft pearls to holographic finishes, every element is selected with care and attached by hand, giving you a salon-perfect look with true artisanal value.<\/p><p>UrbanStudio Nails isn’t just nail art.<\/p><p>It’s craftsmanship you can feel the moment you wear it.<\/p>","button_label":"","button_link":""}},"row_pFhMgG":{"type":"row","settings":{"image":"shopify:\/\/shop_images\/e0ebcfd471dfd8a68c983f98b5795137.jpg","caption":"","heading":"<strong>Designed for Your Lifestyle<\/strong>","text":"<h4><strong>Beauty That Fits Your Life✨ <\/strong><\/h4><p>We design nails for real life—fast mornings, busy schedules, special nights out, and everything in between.<\/p><p>Our press-ons apply in minutes and stay flawless for days, giving you salon-quality beauty without the cost or time commitment.<\/p><p>Whether you love bold glam, clean minimalism, or soft feminine styles, each collection lets you express your personal style effortlessly.<\/p><p>UrbanStudio Nails exists to make beauty easy, flexible, and uniquely yours.<\/p>","button_label":"","button_link":""}},"row_6EJyf3":{"type":"row","settings":{"image":"shopify:\/\/shop_images\/6e43225a4e9d5cd2bfbb3f834242b389_7b9de1ac-db4d-469c-adcf-9e7fef464c96.jpg","caption":"","heading":"<strong>Our Quality Promise<\/strong>","text":"<h4><strong>Our Commitment to Quality✨ <\/strong><\/h4><p>We use premium materials—professional-grade gel, long-lasting top coats, strong adhesive tabs, and cruelty-free embellishments—to ensure every set meets our quality standards.<\/p><p>Every piece is inspected before shipping to guarantee smooth edges, secure decorations, and a flawless finish.<\/p><p>We stand behind our work.<\/p><p>If your nails arrive with any issue, our team will make it right—because you deserve beauty without compromise.<\/p>","button_label":"","button_link":""}}},"block_order":["row_gittWh","row_pFhMgG","row_6EJyf3"],"settings":{"image_height":"medium","desktop_image_width":"medium","heading_size":"h1","text_style":"body","button_style":"secondary","desktop_content_position":"middle","desktop_content_alignment":"left","image_layout":"alternate-left","section_color_scheme":"","row_color_scheme":"","mobile_content_alignment":"left","padding_top":36,"padding_bottom":36}},"1723228228adee05cd":{"type":"apps","blocks":{"instafeed_app_block_dXeWUd":{"type":"shopify:\/\/apps\/instafeed\/blocks\/app-block\/c447db20-095d-4a10-9725-b5977662c9d5","settings":{"title":"","title_color":"","title_size_v2":0,"alignment":"center","instafeed_margin_top":0,"instafeed_margin_bottom":0,"instafeed_margin_sides":0,"show_instagram_link":false,"link_alignment":"left","link_color":"#000000","background_color":"","feed_id":"","html_area":""}}},"block_order":["instafeed_app_block_dXeWUd"],"settings":{"include_margins":true}}},"order":["main","rich_text_RmNxge","multirow_9Ahxxk","1723228228adee05cd"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "rich_text_RmNxge": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_dg8HJP": {
+          "type": "heading",
+          "settings": {
+            "heading": "@UrbanStudio.Nails",
+            "heading_size": "h1"
+          }
+        },
+        "text_KzehaY": {
+          "type": "text",
+          "settings": {
+            "text": "<p><em>UrbanStudio Nails was created for the modern woman—busy, ambitious, stylish, and always on the move.</em></p><p><em>We believe beauty should fit your life, not slow it down. Traditional salon visits are expensive and time-consuming, while cheap mass-produced press-ons never look or feel like the real thing.</em></p><p><em>So we set out to create a better option.</em></p><p><em>Inspired by the energy of urban life and the elegance of minimal, modern aesthetics, UrbanStudio Nails transforms hand-crafted press-ons into wearable art.</em></p><p><em>Each set is shaped, designed, and finished by hand—giving you the look of a fresh salon manicure in minutes, with the quality and individuality you deserve.<br/>We design for women who express themselves through style.Women who love effortless beauty.</em></p><p><em>Women who know that confidence starts with the small details.<br/>Our promise is simple:</em><em><strong>premium handmade nails that elevate your everyday life—anytime, anywhere.</strong></em><em><br/>Whether you’re heading to work, a date night, a weekend getaway, or simply want to feel a little more “you,” UrbanStudio Nails is here to help you look polished, empowered, and uniquely beautiful.</em></p><p><em>This is more than press-on nails.</em></p><p><em><strong>This is your story, your style, your confidence—crafted by hand.</strong></em></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_dg8HJP",
+        "text_KzehaY"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "multirow_9Ahxxk": {
+      "type": "multirow",
+      "blocks": {
+        "row_gittWh": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/dfb1d7fefc64bf9fbaedba7a7d71a5f2_2f1f7f78-c6cb-4e0b-99c3-7577d856b8df.jpg",
+            "caption": "",
+            "heading": "<strong>Why Handmade Matters</strong>",
+            "text": "<h4><strong> Handmade Craftsmanship, Elevated✨</strong></h4><p>Each UrbanStudio Nails set is individually crafted by hand—never mass-produced.</p><p>Our artists shape, paint, and finish every detail with precision, ensuring the quality, durability, and beauty that machine-made press-ons can’t achieve.</p><p>From soft pearls to holographic finishes, every element is selected with care and attached by hand, giving you a salon-perfect look with true artisanal value.</p><p>UrbanStudio Nails isn’t just nail art.</p><p>It’s craftsmanship you can feel the moment you wear it.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_pFhMgG": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/e0ebcfd471dfd8a68c983f98b5795137.jpg",
+            "caption": "",
+            "heading": "<strong>Designed for Your Lifestyle</strong>",
+            "text": "<h4><strong>Beauty That Fits Your Life✨ </strong></h4><p>We design nails for real life—fast mornings, busy schedules, special nights out, and everything in between.</p><p>Our press-ons apply in minutes and stay flawless for days, giving you salon-quality beauty without the cost or time commitment.</p><p>Whether you love bold glam, clean minimalism, or soft feminine styles, each collection lets you express your personal style effortlessly.</p><p>UrbanStudio Nails exists to make beauty easy, flexible, and uniquely yours.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_6EJyf3": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/6e43225a4e9d5cd2bfbb3f834242b389_7b9de1ac-db4d-469c-adcf-9e7fef464c96.jpg",
+            "caption": "",
+            "heading": "<strong>Our Quality Promise</strong>",
+            "text": "<h4><strong>Our Commitment to Quality✨ </strong></h4><p>We use premium materials—professional-grade gel, long-lasting top coats, strong adhesive tabs, and cruelty-free embellishments—to ensure every set meets our quality standards.</p><p>Every piece is inspected before shipping to guarantee smooth edges, secure decorations, and a flawless finish.</p><p>We stand behind our work.</p><p>If your nails arrive with any issue, our team will make it right—because you deserve beauty without compromise.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_gittWh",
+        "row_pFhMgG",
+        "row_6EJyf3"
+      ],
+      "settings": {
+        "image_height": "medium",
+        "desktop_image_width": "medium",
+        "heading_size": "h1",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "image_layout": "alternate-left",
+        "section_color_scheme": "",
+        "row_color_scheme": "",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "1723228228adee05cd": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_dXeWUd": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 55,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": false,
+            "link_alignment": "left",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_dXeWUd"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_RmNxge",
+    "multirow_9Ahxxk",
+    "1723228228adee05cd"
+  ]
+}

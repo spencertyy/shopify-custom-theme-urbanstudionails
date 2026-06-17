@@ -86,12 +86,12 @@ shopify theme dev --store YOUR_STORE.myshopify.com
 
 ## Optimization Work
 
-Performance and conversion improvements implemented:
+Custom work built on top of Dawn (image priority, `srcset`, and async CSS loading are Dawn defaults, not claimed here):
 
-- **LCP:** First slideshow image uses `fetchpriority="high"` + `loading="eager"`; subsequent slides lazy-loaded with full `srcset` (375–3840px)
-- **Conversion:** Cart drawer, quick-add on all collection cards, sticky mobile ATC
-- **SEO:** Schema.org Product JSON-LD with offers + aggregateRating on all product pages
-- **Code health:** Removed orphaned EComposer sections and assets; eliminated duplicate template files
+- **Custom UI:** A hand-coded sticky mobile add-to-cart bar (`IntersectionObserver`) that also lifts the Loloyal and Shopify Inbox app launchers out of its way on mobile; custom homepage sections (a featured-product spotlight and a promo marquee)
+- **SEO:** A custom Schema.org Product JSON-LD snippet richer than Dawn's default — adds `aggregateRating` (guarded to emit only with real reviews), per-variant offers, and `priceValidUntil`
+- **Conversion (config):** Enabled Dawn's cart drawer and quick-add; added a gift-wrap line-item property
+- **Code health:** Removed orphaned EComposer sections and duplicate template files
 
 ---
 
