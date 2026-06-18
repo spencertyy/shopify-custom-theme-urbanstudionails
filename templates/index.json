@@ -46,25 +46,6 @@
             "text_alignment_mobile": "center"
           }
         },
-        "slide_XgTE6F": {
-          "type": "slide",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/Black_White_and_Pink_Aesthetic_Playful_Black_Friday_Sale_Instagram_Post.png",
-            "heading": "",
-            "heading_size": "hxxl",
-            "subheading": "",
-            "button_label": "BLACK FRIDAY SHOP",
-            "link": "shopify://collections/all-products",
-            "button_style_secondary": true,
-            "box_align": "bottom-center",
-            "show_text_box": false,
-            "text_alignment": "center",
-            "image_overlay_opacity": 0,
-            "color_scheme": "scheme-4",
-            "text_alignment_mobile": "center"
-          }
-        },
         "slide_RyjADK": {
           "type": "slide",
           "settings": {
@@ -82,32 +63,11 @@
             "color_scheme": "scheme-3",
             "text_alignment_mobile": "center"
           }
-        },
-        "slide_DqTYxp": {
-          "type": "slide",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/IMG_7836.jpg",
-            "heading": "",
-            "heading_size": "h1",
-            "subheading": "<em>Shop Now for the Best Selection of Christmas-themed Products.</em>",
-            "button_label": "SHOP NOW!",
-            "link": "shopify://collections/christmas",
-            "button_style_secondary": false,
-            "box_align": "middle-center",
-            "show_text_box": true,
-            "text_alignment": "center",
-            "image_overlay_opacity": 0,
-            "color_scheme": "scheme-b9c66f51-810b-4af2-921f-078d264a5997",
-            "text_alignment_mobile": "center"
-          }
         }
       },
       "block_order": [
         "slide_qFwTrq",
-        "slide_XgTE6F",
-        "slide_RyjADK",
-        "slide_DqTYxp"
+        "slide_RyjADK"
       ],
       "settings": {
         "layout": "full_bleed",

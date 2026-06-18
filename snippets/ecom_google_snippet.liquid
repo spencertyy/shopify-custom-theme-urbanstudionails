@@ -38,7 +38,14 @@
   }
 </script>
 {%- endif -%}
-{%- if request.page_type == 'product' -%}
+{%- comment -%}
+  EComposer's Product JSON-LD disabled to avoid a DUPLICATE Product schema.
+  Product structured data is handled by snippets/product-jsonld.liquid (richer:
+  Judge.me aggregateRating + rating guard + per-variant offers). EComposer's
+  version has no Judge.me support, so it can't emit our star ratings.
+  To re-enable, change `false` back to `request.page_type == 'product'`.
+{%- endcomment -%}
+{%- if false -%}
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
