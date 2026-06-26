@@ -4,6 +4,16 @@ A fully custom Shopify storefront for **UrbanStudio Nails**, a handcrafted press
 
 **Live store:** [urbanstudionails.com](https://urbanstudionails.com)
 
+![UrbanStudio Nails homepage](urbanstudionails-image.png)
+
+*Homepage — animated SVG wordmark, hero slideshow, and shop CTA.*
+
+### Store Analytics
+
+![Shopify admin analytics dashboard](Analytics-UrbanStudio.png)
+
+*Shopify admin analytics, last 2 years (Jan 2024 – Jun 2026): returning-customer rate, average order value, sessions by device type, and sessions by social referrer.*
+
 ---
 
 ## Custom Features Built
