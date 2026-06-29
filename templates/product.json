@@ -199,6 +199,76 @@
         "padding_bottom": 40
       }
     },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q_lasts": {
+          "type": "question",
+          "settings": {
+            "question": "How long do the press-on nails last?",
+            "answer": "<p>With nail glue, our press-ons last 10–14 days. With the included adhesive tabs, they last 3–5 days — perfect for a quick change of look.</p>"
+          }
+        },
+        "q_apply": {
+          "type": "question",
+          "settings": {
+            "question": "How do I apply press-on nails?",
+            "answer": "<p>Prep your natural nails, pick the sizes that fit best, then press on. The whole process takes under 5 minutes, and full steps are included in every set.</p>"
+          }
+        },
+        "q_reuse": {
+          "type": "question",
+          "settings": {
+            "question": "Are the nails reusable?",
+            "answer": "<p>Yes. Gently remove them, clean off any residue, and store them in the box. Each set can be worn multiple times when applied with adhesive tabs.</p>"
+          }
+        },
+        "q_included": {
+          "type": "question",
+          "settings": {
+            "question": "What is included in each set?",
+            "answer": "<p>Every set includes 10 handmade press-on nails, a nail file, adhesive nail tabs, nail glue, a wooden cuticle pusher, and alcohol wipes.</p>"
+          }
+        },
+        "q_sizing": {
+          "type": "question",
+          "settings": {
+            "question": "What if the size does not fit?",
+            "answer": "<p>Please review our Size Guide before ordering. If a size does not fit, we offer exchanges — customers are responsible for the return and reshipment shipping.</p>"
+          }
+        },
+        "q_remove": {
+          "type": "question",
+          "settings": {
+            "question": "How do I remove them safely?",
+            "answer": "<p>Soak your nails in warm soapy water for a few minutes to loosen the adhesive, then gently lift each nail from the side. Never force them off.</p>"
+          }
+        },
+        "q_handmade": {
+          "type": "question",
+          "settings": {
+            "question": "Are these nails handmade?",
+            "answer": "<p>Yes — every set is 100% handcrafted. Small variations between pieces are normal and part of the handmade charm.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q_lasts",
+        "q_apply",
+        "q_reuse",
+        "q_included",
+        "q_sizing",
+        "q_remove",
+        "q_handmade"
+      ],
+      "settings": {
+        "heading": "Frequently Asked Questions",
+        "heading_size": "h1",
+        "color_scheme": "scheme-1",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
     "related-products": {
       "type": "related-products",
       "settings": {
@@ -243,6 +313,7 @@
     "collapsible_content_eHiwXa",
     "collage_kkFATU",
     "how_it_works",
+    "faq",
     "related-products",
     "172347440411fd5bac"
   ]

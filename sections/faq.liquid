@@ -1,0 +1,222 @@
+{%- comment -%}
+  FAQ section — renders a visible accordion (native <details>, no JS) and
+  outputs matching FAQPage JSON-LD so Google / AI can read the Q&A.
+  Content is editable per-block in the theme editor.
+{%- endcomment -%}
+
+{%- liquid
+  assign faq_blocks = section.blocks
+-%}
+
+{% style %}
+  .faq-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  .faq-{{ section.id }} .faq__list {
+    max-width: 76rem;
+    margin: 0 auto;
+  }
+  .faq-{{ section.id }} .faq__heading {
+    text-align: center;
+    margin: 0 0 3rem;
+  }
+  .faq-{{ section.id }} .faq__item {
+    border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.12);
+  }
+  .faq-{{ section.id }} .faq__item summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.6rem;
+    padding: 1.8rem 0;
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .faq-{{ section.id }} .faq__item summary::-webkit-details-marker { display: none; }
+  .faq-{{ section.id }} .faq__icon {
+    flex-shrink: 0;
+    width: 1.4rem;
+    height: 1.4rem;
+    transition: transform 0.2s ease;
+  }
+  .faq-{{ section.id }} .faq__item[open] .faq__icon { transform: rotate(45deg); }
+  .faq-{{ section.id }} .faq__answer { padding: 0 0 1.8rem; }
+  .faq-{{ section.id }} .faq__answer > :first-child { margin-top: 0; }
+  .faq-{{ section.id }} .faq__answer > :last-child { margin-bottom: 0; }
+{% endstyle %}
+
+<div class="faq-{{ section.id }} section{% if section.settings.color_scheme != blank %} color-{{ section.settings.color_scheme }} gradient{% endif %} isolate">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="faq__heading {{ section.settings.heading_size }}">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+    <div class="faq__list">
+      {%- for block in faq_blocks -%}
+        <details class="faq__item" {{ block.shopify_attributes }}>
+          <summary>
+            <span>{{ block.settings.question | escape }}</span>
+            <svg class="faq__icon" viewBox="0 0 14 14" fill="none" aria-hidden="true" focusable="false">
+              <path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </summary>
+          <div class="faq__answer rte">{{ block.settings.answer }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{%- if faq_blocks.size > 0 -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for block in faq_blocks -%}
+    {
+      "@type": "Question",
+      "name": {{ block.settings.question | json }},
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": {{ block.settings.answer | strip_html | strip_newlines | json }}
+      }
+    }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+}
+</script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "FAQ",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Question goes here?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Answer goes here.</p>"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 25,
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        {
+          "type": "question",
+          "settings": {
+            "question": "How long do the press-on nails last?",
+            "answer": "<p>With nail glue, our press-ons last 10–14 days. With the included adhesive tabs, they last 3–5 days — perfect for a quick change of look.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "How do I apply press-on nails?",
+            "answer": "<p>Prep your natural nails, pick the sizes that fit best, then press on. The whole process takes under 5 minutes, and full steps are included in every set.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Are the nails reusable?",
+            "answer": "<p>Yes. Gently remove them, clean off any residue, and store them in the box. Each set can be worn multiple times when applied with adhesive tabs.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "What is included in each set?",
+            "answer": "<p>Every set includes 10 handmade press-on nails, a nail file, adhesive nail tabs, nail glue, a wooden cuticle pusher, and alcohol wipes.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "What if the size does not fit?",
+            "answer": "<p>Please review our Size Guide before ordering. If a size does not fit, we offer exchanges — customers are responsible for the return and reshipment shipping.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "How do I remove them safely?",
+            "answer": "<p>Soak your nails in warm soapy water for a few minutes to loosen the adhesive, then gently lift each nail from the side. Never force them off.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Are these nails handmade?",
+            "answer": "<p>Yes — every set is 100% handcrafted. Small variations between pieces are normal and part of the handmade charm.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
