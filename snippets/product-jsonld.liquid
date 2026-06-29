@@ -2,6 +2,8 @@
   assign current_variant = product.selected_or_first_available_variant
   assign rating_value = product.metafields.reviews.rating.value.rating | default: ''
   assign rating_count = product.metafields.reviews.rating_count | default: 0
+  assign barcode = current_variant.barcode | strip
+  assign barcode_size = barcode | size
 -%}
 <script type="application/ld+json">
 {
@@ -11,6 +13,19 @@
   "url": {{ request.origin | append: product.url | json }},
   "description": {{ product.description | strip_html | truncatewords: 200 | json }},
   "sku": {{ current_variant.sku | json }},
+  {%- if barcode != blank -%}
+    {%- if barcode_size == 8 -%}
+  "gtin8": {{ barcode | json }},
+    {%- elsif barcode_size == 12 -%}
+  "gtin12": {{ barcode | json }},
+    {%- elsif barcode_size == 13 -%}
+  "gtin13": {{ barcode | json }},
+    {%- elsif barcode_size == 14 -%}
+  "gtin14": {{ barcode | json }},
+    {%- else -%}
+  "gtin": {{ barcode | json }},
+    {%- endif -%}
+  {%- endif -%}
   "brand": {
     "@type": "Brand",
     "name": {{ shop.name | json }}
