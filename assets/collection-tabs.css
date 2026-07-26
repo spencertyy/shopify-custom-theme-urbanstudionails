@@ -11,6 +11,19 @@
   margin-bottom: 2.4rem;
 }
 
+/* Heading and tabs line up with the site header, not the narrower page grid,
+   so they sit above the edge-to-edge product row. */
+.collection-tabs__header.page-width {
+  max-width: 100%;
+}
+
+@media screen and (min-width: 750px) {
+  .collection-tabs__header.page-width {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
 .collection-tabs__heading {
   margin: 0;
 }

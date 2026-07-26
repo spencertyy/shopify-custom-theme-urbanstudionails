@@ -25,12 +25,12 @@
    menu and cart icons bunched in the middle on wide screens. */
 .header.page-width {
   max-width: 100%;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
 }
 
-@media screen and (min-width: 990px) {
-  .header.page-width {
+/* base.css sets 5rem via .header:not(.drawer-menu).page-width — matching that
+   selector is what it takes to win. */
+@media screen and (min-width: 750px) {
+  .header:not(.drawer-menu).page-width {
     padding-left: 2rem;
     padding-right: 2rem;
   }
