@@ -259,7 +259,7 @@
         "tile_custom": {
           "type": "tile",
           "settings": {
-            "image": "shopify://shop_images/IMG_6175_98f44886-ab4f-46cd-b163-863b4871cc35.jpg",
+            "image": "shopify://shop_images/6e43225a4e9d5cd2bfbb3f834242b389_7b9de1ac-db4d-469c-adcf-9e7fef464c96.jpg",
             "heading": "<em>Custom</em> Couture",
             "text": "Your design, made one set at a time.",
             "link_label": "EXPLORE",
@@ -280,6 +280,7 @@
     },
     "product_spotlight_crystal": {
       "type": "product-spotlight",
+      "disabled": true,
       "custom_css": [],
       "settings": {
         "product": "stardust-fantasy-press-on-nails",
