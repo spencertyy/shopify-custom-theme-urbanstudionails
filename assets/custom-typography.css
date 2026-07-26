@@ -36,6 +36,16 @@
   }
 }
 
+/* Homepage collection headings line up with the header and the full-bleed rows
+   below them, instead of sitting inside the narrower page grid. */
+@media screen and (min-width: 750px) {
+  .template-index .collection__title.page-width {
+    max-width: 100%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
 /* ---- Full-width product sliders really reach the edges ----
    Dawn reserves a 1.5rem gutter before the first card in full-width sliders.
    component-slider.css is loaded per-section (inside <body>), so it outranks
