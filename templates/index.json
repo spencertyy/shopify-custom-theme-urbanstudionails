@@ -9,22 +9,6 @@
  */
 {
   "sections": {
-    "brand_hero": {
-      "type": "brand-hero",
-      "disabled": true,
-      "settings": {
-        "bg_color": "#f5b1d5",
-        "text_color": "#0e0e0e",
-        "body_text": "Salon-quality press-on nails, handcrafted in minutes. Reusable, flawless, and made for the woman who never slows down — wear them to work, to dinner, to anywhere.",
-        "cta_label": "SHOP ALL",
-        "cta_url": "",
-        "show_wordmark": true,
-        "wordmark_position": "full",
-        "wordmark_width": 650,
-        "padding_top": 52,
-        "padding_bottom": 24
-      }
-    },
     "slideshow_LQBTNn": {
       "type": "slideshow",
       "blocks": {
@@ -45,30 +29,10 @@
             "color_scheme": "scheme-3",
             "text_alignment_mobile": "center"
           }
-        },
-        "slide_RyjADK": {
-          "type": "slide",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/e0ebcfd471dfd8a68c983f98b5795137.jpg",
-            "heading": "",
-            "heading_size": "h1",
-            "subheading": "",
-            "button_label": "NEW ARRIVAL",
-            "link": "shopify://collections/new-arrival",
-            "button_style_secondary": true,
-            "box_align": "bottom-center",
-            "show_text_box": false,
-            "text_alignment": "center",
-            "image_overlay_opacity": 0,
-            "color_scheme": "scheme-3",
-            "text_alignment_mobile": "center"
-          }
         }
       },
       "block_order": [
-        "slide_qFwTrq",
-        "slide_RyjADK"
+        "slide_qFwTrq"
       ],
       "settings": {
         "layout": "full_bleed",
@@ -150,14 +114,6 @@
             "heading_size": "h2"
           }
         },
-        "text_PdyQYd": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "Give customers details about the banner image(s) or content on the template.",
-            "text_style": "body"
-          }
-        },
         "buttons_Ny4Chb": {
           "type": "buttons",
           "settings": {
@@ -172,7 +128,6 @@
       },
       "block_order": [
         "heading_RNYwzV",
-        "text_PdyQYd",
         "buttons_Ny4Chb"
       ],
       "name": "t:sections.image-banner.presets.name",
@@ -278,21 +233,6 @@
         "padding_bottom": 0
       }
     },
-    "product_spotlight_crystal": {
-      "type": "product-spotlight",
-      "disabled": true,
-      "custom_css": [],
-      "settings": {
-        "product": "stardust-fantasy-press-on-nails",
-        "lifestyle_image": "shopify://shop_images/6e43225a4e9d5cd2bfbb3f834242b389.jpg",
-        "placeholder_title": "CRYSTAL QUEEN PRESS-ON NAILS",
-        "cta_label": "SHOP NOW",
-        "cta_url": "",
-        "card_bg_color": "#c9c5c0",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "instagram_instafeed": {
       "type": "apps",
       "blocks": {
@@ -337,14 +277,12 @@
     }
   },
   "order": [
-    "brand_hero",
     "slideshow_LQBTNn",
     "rich_text_LgFHkD",
     "featured_collection_yWJRKA",
     "image_banner_HwgpbG",
     "collection_tabs_aesthetic",
     "split_banner_specials",
-    "product_spotlight_crystal",
     "instagram_instafeed",
     "marquee_shopnow"
   ]
