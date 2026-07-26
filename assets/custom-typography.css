@@ -1,10 +1,23 @@
 /* ---- Unified typography: uppercase nav + section headings (bars excluded) ---- */
 
-/* Header navigation links */
+/* Header navigation links: small tracked caps, single line (competitor-style) */
 .header__menu-item,
 .header__menu-item span {
   text-transform: uppercase;
   letter-spacing: 0.08em;
+}
+.header__inline-menu .header__menu-item {
+  font-size: 1.2rem;
+  white-space: nowrap;
+}
+.header__inline-menu .list-menu--inline {
+  flex-wrap: nowrap;
+}
+
+/* Keep the centered wordmark compact so the menu fits on one row */
+.header--middle-center .header__heading-logo {
+  max-width: 170px;
+  height: auto;
 }
 
 /* Homepage section headings (product card titles are h3 and stay untouched) */
