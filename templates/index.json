@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "brand_hero": {
@@ -240,19 +249,21 @@
         "tile_mystery": {
           "type": "tile",
           "settings": {
+            "image": "shopify://shop_images/GreenBeigePinkIllustratedMysteryBoxInstagramPost.png",
             "heading": "<em>Mystery</em> Box",
             "text": "A little surprise, chosen by hand.",
             "link_label": "EXPLORE",
-            "link": "/collections/mystery-box-%E2%9C%A8"
+            "link": "shopify://products/nail-mystery-box-✨"
           }
         },
         "tile_custom": {
           "type": "tile",
           "settings": {
+            "image": "shopify://shop_images/IMG_6175_98f44886-ab4f-46cd-b163-863b4871cc35.jpg",
             "heading": "<em>Custom</em> Couture",
             "text": "Your design, made one set at a time.",
             "link_label": "EXPLORE",
-            "link": "/collections/custom-couture"
+            "link": "shopify://products/custom-couture-nails"
           }
         }
       },
@@ -279,53 +290,6 @@
         "card_bg_color": "#c9c5c0",
         "padding_top": 36,
         "padding_bottom": 36
-      }
-    },
-    "image_with_text_aWecCw": {
-      "type": "image-with-text",
-      "blocks": {
-        "heading_exM97V": {
-          "type": "heading",
-          "settings": {
-            "heading": "<strong>Mystery Box ✨</strong>",
-            "heading_size": "h1"
-          }
-        },
-        "text_JXGMfj": {
-          "type": "text",
-          "settings": {
-            "text": "<p>3 or 5 surprise nail sets curated for your aesthetic.</p><p>No duplicates. Huge savings. Limited quantities 💌</p>",
-            "text_style": "body"
-          }
-        },
-        "button_BJcNEx": {
-          "type": "button",
-          "settings": {
-            "button_label": "Reveal Your Box ✨",
-            "button_link": "shopify://products/nail-mystery-box-✨",
-            "button_style_secondary": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_exM97V",
-        "text_JXGMfj",
-        "button_BJcNEx"
-      ],
-      "settings": {
-        "image": "shopify://shop_images/GreenBeigePinkIllustratedMysteryBoxInstagramPost.png",
-        "height": "adapt",
-        "desktop_image_width": "medium",
-        "layout": "image_first",
-        "desktop_content_position": "top",
-        "desktop_content_alignment": "left",
-        "content_layout": "no-overlap",
-        "section_color_scheme": "",
-        "color_scheme": "",
-        "image_behavior": "none",
-        "mobile_content_alignment": "left",
-        "padding_top": 24,
-        "padding_bottom": 0
       }
     },
     "instagram_instafeed": {
@@ -380,7 +344,6 @@
     "collection_tabs_aesthetic",
     "split_banner_specials",
     "product_spotlight_crystal",
-    "image_with_text_aWecCw",
     "instagram_instafeed",
     "marquee_shopnow"
   ]
