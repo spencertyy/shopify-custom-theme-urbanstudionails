@@ -66,9 +66,11 @@
   background: rgba(0, 0, 0, 0.28);
 }
 
+/* The inner wrapper deliberately stays unpositioned: the photo above is
+   absolutely positioned against .collection-hero, and giving the inner a
+   position would make it the containing block instead, shrinking the photo by
+   this padding. The text layer is lifted on its own instead. */
 .template-collection .collection-hero--with-image .collection-hero__inner {
-  position: relative;
-  z-index: 1;
   display: block;
   width: 100%;
   max-width: 100%;
@@ -77,6 +79,8 @@
 }
 
 .template-collection .collection-hero--with-image .collection-hero__text-wrapper {
+  position: relative;
+  z-index: 1;
   flex-basis: auto;
   max-width: 70rem;
   margin: 0 auto;
