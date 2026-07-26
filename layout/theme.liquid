@@ -370,5 +370,9 @@
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
+    {%- if request.page_type == 'product' -%}
+      {% render 'klaviyo-back-in-stock' %}
+    {%- endif -%}
+
   </body>
 </html>

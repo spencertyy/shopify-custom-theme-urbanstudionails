@@ -1,0 +1,40 @@
+{% comment %}
+  Klaviyo Back in Stock: auto-inserts a "notify me" button on product pages
+  when the selected variant is sold out. Subscribers trigger the
+  "Subscribed to Back in Stock" metric in Klaviyo (build the flow there).
+  Rendered from theme.liquid on product templates only.
+{% endcomment %}
+<script src="https://a.klaviyo.com/media/js/onsite/onsite.js"></script>
+<script>
+  var klaviyo = klaviyo || [];
+  klaviyo.init({
+    account: 'XbmzGT',
+    platform: 'shopify'
+  });
+  klaviyo.enable('backinstock', {
+    trigger: {
+      product_page_text: 'NOTIFY ME WHEN IT\'S BACK',
+      product_page_class: 'button',
+      product_page_text_align: 'center',
+      product_page_margin: '10px 0',
+      replace_anchor: false
+    },
+    modal: {
+      headline: '{product_name}',
+      body_content: 'Hand-painted in small batches — drop your email and we\'ll tell you the moment it returns.',
+      email_field_label: 'Email',
+      button_label: 'NOTIFY ME',
+      subscription_success_label: "You're on the list — we'll email you when it's back ♡",
+      newsletter_subscribe_label: 'Also send me news and offers',
+      background_color: '#ffffff',
+      text_color: '#121212',
+      button_text_color: '#ffffff',
+      button_background_color: '#121212',
+      close_button_color: '#999999',
+      error_background_color: '#fcd6d7',
+      error_text_color: '#c72e2f',
+      success_background_color: '#f7dbe7',
+      success_text_color: '#121212'
+    }
+  });
+</script>
