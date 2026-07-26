@@ -54,6 +54,7 @@
   position: absolute;
   inset: 0;
   height: auto;
+  margin: 0; /* Dawn adds margin-left: 3rem for the side-by-side layout */
   border: none;
   border-radius: 0;
   box-shadow: none;
