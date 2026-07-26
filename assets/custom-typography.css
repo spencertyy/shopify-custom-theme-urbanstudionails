@@ -228,7 +228,7 @@
   margin-top: calc(-1 * var(--header-height, 48px));
 }
 
-/* ---- Type hierarchy: buttons and prices borrow the heading face ----
+/* ---- Type hierarchy: buttons borrow the heading face ----
    theme.liquid loads exactly five font files: the body face in regular, bold
    and both italics, plus the heading face. A rule like `font-weight: 500` has
    no file behind it, so the browser quietly renders the regular weight instead
@@ -238,10 +238,17 @@
    This assumes the font picker is set to a lighter weight for the body face
    than for the heading face — the site previously ran both at 300, which is
    why headings, prices and buttons all carried identical visual weight. The
-   rules stay correct whatever weights are chosen later. */
+   rules stay correct whatever weights are chosen later.
+
+   Prices are deliberately left out. They ran at the heading weight briefly and
+   read as oversized, even though the digits never changed height: figures are
+   set to the cap height, which is fixed by the typeface and does not move with
+   weight, so the extra stroke width was the whole of the effect. At 13px a
+   price is the smallest text on the card and does not need to compete with the
+   product title. Left alone, it inherits the body weight — still a step up
+   from the 300 the site used to run everywhere. */
 .button,
-.shopify-challenge__button,
-.price .price-item {
+.shopify-challenge__button {
   font-family: var(--font-heading-family);
   font-weight: var(--font-heading-weight);
 }
