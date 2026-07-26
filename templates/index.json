@@ -234,6 +234,39 @@
         "padding_bottom": 0
       }
     },
+    "split_banner_specials": {
+      "type": "split-banner",
+      "blocks": {
+        "tile_mystery": {
+          "type": "tile",
+          "settings": {
+            "heading": "<em>Mystery</em> Box",
+            "text": "A little surprise, chosen by hand.",
+            "link_label": "EXPLORE",
+            "link": "/collections/mystery-box-%E2%9C%A8"
+          }
+        },
+        "tile_custom": {
+          "type": "tile",
+          "settings": {
+            "heading": "<em>Custom</em> Couture",
+            "text": "Your design, made one set at a time.",
+            "link_label": "EXPLORE",
+            "link": "/collections/custom-couture"
+          }
+        }
+      },
+      "block_order": [
+        "tile_mystery",
+        "tile_custom"
+      ],
+      "settings": {
+        "height": "medium",
+        "overlay_opacity": 20,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "product_spotlight_crystal": {
       "type": "product-spotlight",
       "custom_css": [],
@@ -345,6 +378,7 @@
     "featured_collection_yWJRKA",
     "image_banner_HwgpbG",
     "collection_tabs_aesthetic",
+    "split_banner_specials",
     "product_spotlight_crystal",
     "image_with_text_aWecCw",
     "instagram_instafeed",

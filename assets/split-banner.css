@@ -1,0 +1,157 @@
+.split-banner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+@media screen and (min-width: 750px) {
+  .split-banner {
+    grid-template-columns: repeat(var(--split-banner-tiles, 2), 1fr);
+  }
+}
+
+.split-banner__tile {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+
+.split-banner__media {
+  display: block;
+  height: 100%;
+}
+
+.split-banner__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.split-banner__image--placeholder {
+  background: rgba(var(--color-foreground), 0.06);
+  fill: rgba(var(--color-foreground), 0.25);
+}
+
+.split-banner__tile:hover .split-banner__image {
+  transform: scale(1.04);
+}
+
+.split-banner__scrim {
+  position: absolute;
+  inset: 0;
+  background: rgb(0, 0, 0);
+  opacity: var(--split-banner-overlay, 0.2);
+  pointer-events: none;
+}
+
+.split-banner__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  padding: 2.4rem;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45), 0 2px 16px rgba(0, 0, 0, 0.35);
+}
+
+.split-banner__heading {
+  display: block;
+  font-family: var(--font-heading-family);
+  font-size: calc(var(--font-heading-scale) * 2.4rem);
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+.split-banner__heading em,
+.split-banner__heading i {
+  font-style: italic;
+}
+
+.split-banner__text {
+  display: block;
+  max-width: 34rem;
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
+/* Underlined link that draws back toward the centre on hover — same behaviour
+   as the image banner's EXPLORE link, so the two read as one system. */
+.split-banner__cta {
+  position: relative;
+  display: inline-block;
+  margin-top: 0.8rem;
+  padding-bottom: 0.9rem;
+  font-size: 1.2rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.split-banner__cta::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: translateX(-50%);
+  transition: width var(--duration-default) ease;
+}
+
+.split-banner__tile:hover .split-banner__cta::after,
+.split-banner__tile:focus-visible .split-banner__cta::after {
+  width: 45%;
+}
+
+/* Tile heights: portrait on mobile, fixed heights once side by side */
+.split-banner--small .split-banner__tile {
+  height: 42rem;
+}
+
+.split-banner--medium .split-banner__tile {
+  height: 52rem;
+}
+
+.split-banner--large .split-banner__tile {
+  height: 64rem;
+}
+
+@media screen and (min-width: 750px) {
+  .split-banner--small .split-banner__tile {
+    height: 46rem;
+  }
+
+  .split-banner--medium .split-banner__tile {
+    height: 58rem;
+  }
+
+  .split-banner--large .split-banner__tile {
+    height: 72rem;
+  }
+
+  .split-banner__heading {
+    font-size: calc(var(--font-heading-scale) * 3rem);
+  }
+
+  .split-banner__text {
+    font-size: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .split-banner__image,
+  .split-banner__cta::after {
+    transition: none;
+  }
+
+  .split-banner__tile:hover .split-banner__image {
+    transform: none;
+  }
+}

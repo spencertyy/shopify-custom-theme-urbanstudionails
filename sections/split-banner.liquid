@@ -1,0 +1,170 @@
+{{ 'split-banner.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div
+  class="split-banner split-banner--{{ section.settings.height }} section-{{ section.id }}-padding"
+  style="--split-banner-tiles: {{ section.blocks.size }}; --split-banner-overlay: {{ section.settings.overlay_opacity | divided_by: 100.0 }};"
+>
+  {%- for block in section.blocks -%}
+    {%- liquid
+      assign label = block.settings.link_label
+      assign heading_plain = block.settings.heading | strip_html | strip
+    -%}
+    <a
+      class="split-banner__tile"
+      {% if block.settings.link != blank %}
+        href="{{ block.settings.link }}"
+      {% else %}
+        href="#"
+        aria-disabled="true"
+      {% endif %}
+      {% if heading_plain != blank %}
+        aria-label="{{ heading_plain }}{% if label != blank %} — {{ label }}{% endif %}"
+      {% endif %}
+      {{ block.shopify_attributes }}
+    >
+      <span class="split-banner__media">
+        {%- if block.settings.image != blank -%}
+          {{
+            block.settings.image
+            | image_url: width: 1600
+            | image_tag:
+              loading: 'lazy',
+              class: 'split-banner__image',
+              widths: '375, 550, 750, 1100, 1500, 1600',
+              sizes: '(min-width: 750px) calc(100vw / var(--split-banner-tiles)), 100vw'
+          }}
+        {%- else -%}
+          {{ 'collection-1' | placeholder_svg_tag: 'split-banner__image split-banner__image--placeholder' }}
+        {%- endif -%}
+      </span>
+
+      <span class="split-banner__scrim"></span>
+
+      <span class="split-banner__content">
+        {%- if block.settings.heading != blank -%}
+          <span class="split-banner__heading">{{ block.settings.heading }}</span>
+        {%- endif -%}
+        {%- if block.settings.text != blank -%}
+          <span class="split-banner__text">{{ block.settings.text | escape }}</span>
+        {%- endif -%}
+        {%- if label != blank -%}
+          <span class="split-banner__cta">{{ label | escape }}</span>
+        {%- endif -%}
+      </span>
+    </a>
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "Split banner",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "select",
+      "id": "height",
+      "label": "Tile height",
+      "default": "medium",
+      "options": [
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "%",
+      "label": "Image darkening",
+      "info": "Higher values make the text easier to read on busy photos.",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Tile",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.image-banner.settings.image.label"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "t:sections.all.heading.label",
+          "info": "Italicise part of the heading for a two-tone look.",
+          "default": "Mystery Box"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Subheading",
+          "default": "A little surprise, chosen by hand."
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link label",
+          "default": "EXPLORE"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:sections.all.image_banner.settings.button_link_1.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Split banner",
+      "blocks": [{ "type": "tile" }, { "type": "tile" }]
+    }
+  ]
+}
+{% endschema %}
