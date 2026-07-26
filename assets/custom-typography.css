@@ -33,15 +33,21 @@
 }
 
 /* ---- Transparent header overlaying the hero, homepage only ----
-   position:absolute without top/left keeps the header at its normal spot
-   (below the announcement bars) while letting the hero slide up beneath it.
-   Once Dawn's sticky header engages on scroll-up, its own solid style wins. */
+   The header stays in normal flow (so the announcement bars above it are never
+   covered); instead the first content section is pulled up underneath it by the
+   header's own height. Both backgrounds are cleared — .section-header carries a
+   hard-coded pink in header.liquid, so this needs higher specificity to win.
+   When Dawn's sticky header engages on scroll-up, the pink comes back so the
+   nav stays readable over page content. */
 .template-index .section-header:not(.shopify-section-header-sticky) {
-  position: absolute;
-  width: 100%;
+  position: relative;
   z-index: 4;
+  background: transparent !important;
 }
 .template-index .section-header:not(.shopify-section-header-sticky) .header-wrapper {
   background: transparent;
   border-bottom: none;
+}
+.template-index #MainContent > .shopify-section:first-child {
+  margin-top: calc(-1 * var(--header-height, 48px));
 }
