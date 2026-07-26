@@ -9,17 +9,3 @@
   letter-spacing: 1px !important;
   color: rgb(18, 18, 18) !important;
 }
-
-/* Decoration: manicure emoji on the left, slow-twinkling sparkle on the right */
-.fsb_msg_inner::before {
-  content: '💅 ';
-}
-.fsb_msg_inner::after {
-  content: ' ✨';
-  display: inline-block;
-  animation: fsb-twinkle 2.4s ease-in-out infinite;
-}
-@keyframes fsb-twinkle {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%      { opacity: 0.3; transform: scale(0.8); }
-}
