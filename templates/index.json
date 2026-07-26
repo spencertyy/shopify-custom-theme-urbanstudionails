@@ -119,9 +119,9 @@
         "show_description": false,
         "description_style": "body",
         "collection": "new-arrival",
-        "products_to_show": 8,
+        "products_to_show": 10,
         "columns_desktop": 4,
-        "full_width": false,
+        "full_width": true,
         "show_view_all": false,
         "view_all_style": "solid",
         "enable_desktop_slider": true,
@@ -149,7 +149,7 @@
         "collection": "clean-girl",
         "products_to_show": 8,
         "columns_desktop": 4,
-        "full_width": false,
+        "full_width": true,
         "show_view_all": false,
         "view_all_style": "solid",
         "enable_desktop_slider": true,
@@ -264,9 +264,9 @@
         "background_color": "#0e0e0e",
         "text_color": "#ffffff",
         "font_size": 34,
-        "padding_vertical": 18,
-        "item_gap": 64,
-        "speed": 18
+        "padding_vertical": 20,
+        "item_gap": 16,
+        "speed": 22
       }
     }
   },
