@@ -227,3 +227,44 @@
 .template-index #MainContent > .shopify-section:first-child {
   margin-top: calc(-1 * var(--header-height, 48px));
 }
+
+/* ---- Type hierarchy: buttons and prices borrow the heading face ----
+   theme.liquid loads exactly five font files: the body face in regular, bold
+   and both italics, plus the heading face. A rule like `font-weight: 500` has
+   no file behind it, so the browser quietly renders the regular weight instead
+   and the hierarchy never appears. Pointing an element at the heading face is
+   the one way to step it up without paying for a sixth download.
+
+   This assumes the font picker is set to a lighter weight for the body face
+   than for the heading face — the site previously ran both at 300, which is
+   why headings, prices and buttons all carried identical visual weight. The
+   rules stay correct whatever weights are chosen later. */
+.button,
+.shopify-challenge__button,
+.price .price-item {
+  font-family: var(--font-heading-family);
+  font-weight: var(--font-heading-weight);
+}
+
+/* Dawn tracks the whole body at 0.06rem. That was doing real damage on a serif
+   at 15px; on a geometric sans the letterforms are open enough that the extra
+   tracking only reads as loose. The uppercase rules further up set their own
+   tracking and are unaffected, as are buttons and prices, which take theirs
+   from the component stylesheets. */
+body {
+  letter-spacing: 0;
+}
+
+/* ---- Shopify Inbox chat button ----
+   The widget is a custom element with an open shadow root. Its internals are
+   deliberately left alone — Shopify renames those classes without notice — but
+   the host is an ordinary fixed-position element in this document, so scaling
+   it shrinks the whole button safely. Origin is pinned to the bottom-right so
+   it keeps its 16px offset from both edges as it shrinks.
+
+   Colour (black -> white) and icon-only mode are set in the Inbox app itself,
+   not here. */
+inbox-online-store-chat#ShopifyChat {
+  transform: scale(0.82);
+  transform-origin: bottom right;
+}
