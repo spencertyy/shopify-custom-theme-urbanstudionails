@@ -68,8 +68,8 @@
    Desktop only: on mobile this banner puts its text below the image, where the
    copy still needs its normal dark colour. */
 .template-index .banner:not(.slideshow) .banner__heading {
-  font-size: calc(var(--font-heading-scale) * 1.6rem);
-  letter-spacing: 0.12em;
+  font-size: calc(var(--font-heading-scale) * 1.4rem);
+  letter-spacing: 0.14em;
 }
 
 @media screen and (min-width: 750px) {
@@ -80,7 +80,7 @@
   }
 
   .template-index .banner:not(.slideshow) .banner__heading {
-    font-size: calc(var(--font-heading-scale) * 1.9rem);
+    font-size: calc(var(--font-heading-scale) * 1.6rem);
   }
 
   .template-index .banner:not(.slideshow) .banner__heading,
@@ -89,10 +89,46 @@
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 2px 14px rgba(0, 0, 0, 0.4);
   }
 
-  .template-index .banner:not(.slideshow) .button--secondary {
+  /* Button becomes a plain text link with a rule underneath. Dawn draws the
+     button's border with ::before and ::after, so ::before is dropped and
+     ::after is repurposed as that rule — it shrinks toward the centre on hover. */
+  .template-index .banner:not(.slideshow) .button {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    min-width: 0;
+    min-height: 0;
+    padding: 0 0 0.9rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.18em;
     color: rgb(255, 255, 255);
-    border-color: rgba(255, 255, 255, 0.85);
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+
+  .template-index .banner:not(.slideshow) .button::before {
+    display: none;
+  }
+
+  .template-index .banner:not(.slideshow) .button::after {
+    content: '';
+    position: absolute;
+    top: auto;
+    right: auto;
+    bottom: 0;
+    left: 50%;
+    width: 100%;
+    height: 1px;
+    transform: translateX(-50%);
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    background: currentColor;
+    transition: width var(--duration-default) ease;
+  }
+
+  .template-index .banner:not(.slideshow) .button:hover::after,
+  .template-index .banner:not(.slideshow) .button:focus-visible::after {
+    width: 45%;
   }
 }
 
