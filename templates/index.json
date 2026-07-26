@@ -48,6 +48,7 @@
         },
         "slide_RyjADK": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/e0ebcfd471dfd8a68c983f98b5795137.jpg",
             "heading": "",
@@ -101,6 +102,7 @@
         "heading_4iKBEW",
         "text_JcwMbK"
       ],
+      "disabled": true,
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
@@ -113,16 +115,16 @@
     "featured_collection_yWJRKA": {
       "type": "featured-collection",
       "settings": {
-        "title": "<strong>New Arrival</strong>",
+        "title": "<strong>BEST SELLERS</strong>",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "new-arrival",
+        "collection": "best-sellers",
         "products_to_show": 10,
         "columns_desktop": 4,
         "full_width": true,
-        "show_view_all": false,
+        "show_view_all": true,
         "view_all_style": "solid",
         "enable_desktop_slider": true,
         "color_scheme": "",
@@ -135,7 +137,57 @@
         "columns_mobile": "2",
         "swipe_on_mobile": true,
         "padding_top": 40,
-        "padding_bottom": 0
+        "padding_bottom": 24
+      }
+    },
+    "image_banner_HwgpbG": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_RNYwzV": {
+          "type": "heading",
+          "settings": {
+            "heading": "New arrival",
+            "heading_size": "h2"
+          }
+        },
+        "text_PdyQYd": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_style": "body"
+          }
+        },
+        "buttons_Ny4Chb": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "EXPLORE",
+            "button_link_1": "shopify://collections/new-arrival",
+            "button_style_secondary_1": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_RNYwzV",
+        "text_PdyQYd",
+        "buttons_Ny4Chb"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/e0ebcfd471dfd8a68c983f98b5795137_68dce79d-493b-4316-9862-dc94dbcba346.png",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "desktop_content_position": "top-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "color_scheme": "",
+        "image_behavior": "zoom-in",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
       }
     },
     "featured_collection_iGaMMY": {
@@ -275,6 +327,7 @@
     "slideshow_LQBTNn",
     "rich_text_LgFHkD",
     "featured_collection_yWJRKA",
+    "image_banner_HwgpbG",
     "featured_collection_iGaMMY",
     "product_spotlight_crystal",
     "image_with_text_aWecCw",
