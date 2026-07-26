@@ -50,7 +50,7 @@
         "gift_nav_enable": false,
         "gift_nav_label": "",
         "gift_nav_url": "",
-        "logo_position": "top-center",
+        "logo_position": "middle-center",
         "menu": "main-menu",
         "menu_type_desktop": "dropdown",
         "sticky_header_type": "on-scroll-up",

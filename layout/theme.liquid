@@ -265,6 +265,7 @@
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'custom-cursor.css' | asset_url | stylesheet_tag }}
     {{ 'custom-hextom-bar.css' | asset_url | stylesheet_tag }}
+    {{ 'custom-typography.css' | asset_url | stylesheet_tag }}
 
     {%- unless settings.type_body_font.system? -%}
       {% comment %}theme-check-disable AssetPreload{% endcomment %}
@@ -299,7 +300,7 @@
     </script>
   </head>
 
-  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+  <body class="gradient template-{{ request.page_type }}{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>

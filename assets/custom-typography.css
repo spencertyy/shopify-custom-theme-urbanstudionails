@@ -1,0 +1,34 @@
+/* ---- Unified typography: uppercase nav + section headings (bars excluded) ---- */
+
+/* Header navigation links */
+.header__menu-item,
+.header__menu-item span {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Homepage section headings (product card titles are h3 and stay untouched) */
+.template-index #MainContent h2 {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Footer block headings, site-wide */
+.footer-block__heading {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ---- Transparent header overlaying the hero, homepage only ----
+   position:absolute without top/left keeps the header at its normal spot
+   (below the announcement bars) while letting the hero slide up beneath it.
+   Once Dawn's sticky header engages on scroll-up, its own solid style wins. */
+.template-index .section-header:not(.shopify-section-header-sticky) {
+  position: absolute;
+  width: 100%;
+  z-index: 4;
+}
+.template-index .section-header:not(.shopify-section-header-sticky) .header-wrapper {
+  background: transparent;
+  border-bottom: none;
+}
