@@ -1,0 +1,94 @@
+.collection-tabs {
+  display: block;
+}
+
+.collection-tabs__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.2rem 3rem;
+  margin-bottom: 2.4rem;
+}
+
+.collection-tabs__heading {
+  margin: 0;
+}
+
+/* Tab strip: scrolls sideways on narrow screens instead of wrapping */
+.collection-tabs__nav {
+  display: flex;
+  gap: 2.4rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.collection-tabs__nav::-webkit-scrollbar {
+  display: none;
+}
+
+.collection-tabs__tab {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0.4rem 0;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: var(--font-body-family);
+  font-weight: var(--font-body-weight);
+  font-size: 1.3rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.6);
+  border-bottom: 1px solid transparent;
+  transition: color var(--duration-short) ease, border-color var(--duration-short) ease;
+}
+
+.collection-tabs__tab:hover {
+  color: rgb(var(--color-foreground));
+}
+
+.collection-tabs__tab[aria-selected='true'] {
+  color: rgb(var(--color-foreground));
+  border-bottom-color: rgb(var(--color-foreground));
+}
+
+.collection-tabs__tab:focus-visible {
+  outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
+  outline-offset: 0.3rem;
+}
+
+.collection-tabs__panel[hidden] {
+  display: none;
+}
+
+/* Optional per-tab corner label. Dawn's own sale badge sits bottom-left,
+   so this takes the free top-left corner. */
+.collection-tabs__flag {
+  position: absolute;
+  z-index: 2;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.4rem 1rem;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(var(--color-background));
+  background: rgb(var(--color-foreground));
+}
+
+.collection-tabs .grid__item {
+  position: relative;
+}
+
+@media screen and (max-width: 749px) {
+  .collection-tabs__header {
+    margin-bottom: 1.6rem;
+  }
+
+  .collection-tabs__nav {
+    gap: 1.8rem;
+    width: 100%;
+  }
+}
