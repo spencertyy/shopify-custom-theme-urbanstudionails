@@ -37,27 +37,24 @@
 }
 
 /* ---- Full-width product sliders really reach the edges ----
-   Dawn reserves a 1.5rem gutter before the first card in full-width sliders. */
+   Dawn reserves a 1.5rem gutter before the first card in full-width sliders.
+   component-slider.css is loaded per-section (inside <body>), so it outranks
+   this file on a specificity tie — the element prefix breaks the tie. */
 @media screen and (min-width: 990px) {
-  .slider-component-full-width .slider--desktop {
+  slider-component.slider-component-full-width .slider--desktop {
     scroll-padding-left: 0;
   }
 
-  .slider-component-full-width .slider--desktop .slider__slide:first-child {
+  slider-component.slider-component-full-width .slider--desktop .slider__slide:first-child {
     margin-left: 0;
     scroll-margin-left: 0;
   }
 }
 
 /* ---- Image banner without its text box ----
-   Text sits straight on the photo, so it goes white with a soft shadow and
-   drops a size. The section's own overlay setting supplies the contrast. */
-.banner--desktop-transparent .banner__heading,
-.banner--desktop-transparent .banner__text {
-  color: rgb(255, 255, 255);
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
-}
-
+   Smaller heading everywhere; white text only on desktop, where the copy sits
+   over the photo. On mobile this banner drops its text below the image, so it
+   has to keep the normal dark colour. */
 .banner--desktop-transparent .banner__heading {
   font-size: calc(var(--font-heading-scale) * 1.6rem);
   letter-spacing: 0.12em;
@@ -66,6 +63,12 @@
 @media screen and (min-width: 750px) {
   .banner--desktop-transparent .banner__heading {
     font-size: calc(var(--font-heading-scale) * 1.9rem);
+  }
+
+  .banner--desktop-transparent .banner__heading,
+  .banner--desktop-transparent .banner__text {
+    color: rgb(255, 255, 255);
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
   }
 }
 
