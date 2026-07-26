@@ -1,0 +1,25 @@
+/* Hextom Free Shipping Bar: match Dawn's announcement bar typography.
+   Measured from live .announcement-bar__message (h5): 13px / 300 / 1px / rgb(18,18,18).
+   The app sets font styles inline, so !important is required to win. */
+#fsb_bar,
+#fsb_bar * {
+  font-family: var(--font-body-family) !important;
+  font-weight: var(--font-body-weight) !important;
+  font-size: 13px !important;
+  letter-spacing: 1px !important;
+  color: rgb(18, 18, 18) !important;
+}
+
+/* Decoration: manicure emoji on the left, slow-twinkling sparkle on the right */
+.fsb_msg_inner::before {
+  content: '💅 ';
+}
+.fsb_msg_inner::after {
+  content: ' ✨';
+  display: inline-block;
+  animation: fsb-twinkle 2.4s ease-in-out infinite;
+}
+@keyframes fsb-twinkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.3; transform: scale(0.8); }
+}
