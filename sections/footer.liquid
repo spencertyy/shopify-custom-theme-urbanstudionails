@@ -505,10 +505,13 @@
     </div>
     <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
       <div class="footer__copyright caption">
+        {%- comment -%}
+          Brand name first, then the year, with no comma between — the year is
+          still generated from the current date, so it rolls over on its own.
+        {%- endcomment -%}
         <small class="copyright__content"
-          >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
+          >&copy; {{ shop.name | link_to: routes.root_url }} {{ 'now' | date: '%Y' -}}
         </small>
-        <small class="copyright__content">{{ powered_by_link }}</small>
         {%- comment -%}
           shop.policies only ever yields the policy pages configured in the
           Shopify admin, under titles Shopify fixes ("Refund policy", "Terms of
