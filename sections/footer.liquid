@@ -42,16 +42,28 @@
       padding-left: 4rem;
       padding-right: 4rem;
     }
-    /* Two tracks, not three: the menus take exactly the width their links need
-       and stay left, the newsletter takes the remainder and is pushed right.
-       The empty space collects in the middle rather than being distributed
-       evenly, which is what pulls the two menu columns together. */
+    /* Three tracks: the menu sizes to its links on the left, the newsletter
+       sizes to itself on the right, and the brand block takes whatever is left
+       in the middle — so the wordmark stays centred in the row no matter how
+       wide the screen gets. */
     .section-{{ section.id }}-padding .footer__content-top {
       display: grid;
-      grid-template-columns: auto 1fr;
+      grid-template-columns: auto 1fr auto;
       align-items: start;
       gap: 0 4rem;
       padding-bottom: 4rem;
+    }
+    /* grid-row is stated as well as grid-column: this block comes after the
+       newsletter in the markup, and grid's default sparse placement never goes
+       back to fill an earlier row, so column 2 alone would drop it to row 2. */
+    .section-{{ section.id }}-padding .footer__brand-block-{{ section.id }} {
+      grid-column: 2 / 3;
+      grid-row: 1;
+      justify-self: center;
+      /* The row is align-items: start, which lines the three columns up by
+         their top edges. A wordmark has no baseline to share with a heading, so
+         it reads better centred against the taller columns either side. */
+      align-self: center;
     }
     .section-{{ section.id }}-padding .footer__blocks-wrapper {
       grid-column: 1 / 2;
@@ -73,9 +85,9 @@
       padding-left: 0;
     }
     .section-{{ section.id }}-padding .footer-block--newsletter {
-      /* Second track now, not third — and pushed to its far edge so the block
-         finishes at the same inset the menus start from. */
-      grid-column: 2 / 3;
+      /* Third track, pushed to its far edge so the block finishes at the same
+         inset the menu column starts from. */
+      grid-column: 3 / 4;
       justify-self: end;
       margin-top: 0;
       align-items: flex-start;
@@ -205,38 +217,118 @@
   .section-{{ section.id }}-padding .footer__copyright .policies li::before {
     display: none;
   }
-  /* The bottom row is two equal flex columns, so the copyright and its links
-     were being asked to fit in half the width while the country and language
-     selectors kept the other half for two short controls. Weight the split
-     toward the side that carries the text. */
-  .section-{{ section.id }}-padding .footer__content-bottom-wrapper .footer__localization {
-    flex: 1 1 auto;
+  /* Payment icons stay first in the markup but read last: the copyright row is
+     the one people scan for policy links, so it comes directly under the
+     content above it and the icons close the footer. Reordering in CSS rather
+     than moving the markup keeps the source order Dawn expects. */
+  .section-{{ section.id }}-padding .footer__content-bottom {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 4.8rem;
   }
-  .section-{{ section.id }}-padding .footer__content-bottom-wrapper .footer__column--info {
-    flex: 2 1 auto;
+  .section-{{ section.id }}-padding .footer__content-bottom > .footer__content-bottom-wrapper:first-of-type {
+    order: 2;
+    margin-top: 2.4rem;
+  }
+  .section-{{ section.id }}-padding .footer__content-bottom > .footer__content-bottom-wrapper:last-of-type {
+    order: 1;
+  }
+
+  /* Copyright and links on the left, currency on the right, one line. */
+  .section-{{ section.id }}-padding .footer__content-bottom > .footer__content-bottom-wrapper:last-of-type {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.2rem 3rem;
+  }
+  /* .footer__column carries width: 100%, which flex: 0 0 auto cannot override —
+     a stated width wins over an auto basis. Without clearing it the block fills
+     the row and pushes itself onto a second line. */
+  .section-{{ section.id }}-padding .footer__content-bottom-wrapper .footer__localization {
+    display: flex;
+    flex: 0 0 auto;
+    width: auto;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 1.2rem;
+    margin: 0;
+    padding: 0;
+  }
+  /* "Country/region" is a block-level heading by default, which would push the
+     selector onto a second line inside a row that is meant to be one line. */
+  .section-{{ section.id }}-padding .footer__localization .caption-large {
+    margin: 0;
+    font-size: 1.3rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .section-{{ section.id }}-padding .footer__localization localization-form {
+    margin: 0;
+  }
+  .section-{{ section.id }}-padding .footer__localization localization-form > div {
+    display: flex;
+    align-items: baseline;
+    gap: 0 1.2rem;
+  }
+
+  /* The footer menu inherits the main nav, whose items are laid out inline for
+     the header. In a footer column they need to stack. */
+  .section-{{ section.id }}-padding .footer-block__details-content > li {
+    display: block;
+  }
+
+  /* This column is flex-direction: column, where align-items — not
+     justify-content — is the horizontal axis. Dawn sets align-items: flex-end,
+     which is what holds the icons to the right; setting justify-content here
+     only moves them vertically and appears to do nothing. */
+  .section-{{ section.id }}-padding .footer__column--info {
+    align-items: flex-start;
+  }
+  .section-{{ section.id }}-padding .footer__payment {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0;
+  }
+  .section-{{ section.id }}-padding .footer__payment .list-payment {
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* The wordmark used to span the full page width on a row of its own. As the
+     middle column of the top row it is capped and centred instead — the SVG
+     scales to whatever width it is given, so the cap is all it takes. */
+  .footer__brand-block-{{ section.id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
   }
 
   .footer__brand-wordmark-{{ section.id }} {
-    padding: 2rem 0 0;
-    margin-top: 2rem;
+    width: 100%;
+    max-width: 30rem;
+    padding: 0;
+    margin: 0;
     overflow: hidden;
   }
 
   .footer__brand-wordmark-{{ section.id }} svg {
     display: block;
     width: 100%;
-    height: clamp(5rem, 12vw, 14rem);
+    height: auto;
     color: rgb(var(--color-foreground));
   }
 
   .footer__social-below-wordmark-{{ section.id }} {
-    padding: 1.5rem 0 3rem;
+    padding: 0.8rem 0 0;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 1.5rem 2.5rem;
+    gap: 1rem 2rem;
   }
 
   .footer__social-below-wordmark-{{ section.id }} .footer__follow-on-shop,
@@ -460,28 +552,39 @@
           {%- endif -%}
 
         </div>
+
+        {%- comment -%}
+          Brand block: the wordmark with the social icons directly beneath it,
+          sitting between the menu column and the newsletter.
+        {%- endcomment -%}
+        <div class="footer__brand-block-{{ section.id }}">
+          <div class="footer__brand-wordmark-{{ section.id }}" aria-label="{{ shop.name }}">
+            <svg viewBox="0 0 1200 150" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <text x="600" y="130" text-anchor="middle" font-size="170" fill="currentColor"
+                textLength="1180" lengthAdjust="spacingAndGlyphs"
+                style="font-weight:900;letter-spacing:-2px;font-family:inherit">{{ shop.name }}</text>
+            </svg>
+          </div>
+          <div class="footer__social-below-wordmark-{{ section.id }}">
+            {%- if shop.features.follow_on_shop? and section.settings.enable_follow_on_shop -%}
+              <div class="footer__follow-on-shop">
+                {{ shop | login_button: action: 'follow' }}
+              </div>
+            {%- endif -%}
+            {%- if section.settings.show_social and has_social_icons -%}
+              {%- render 'social-icons', class: 'footer__list-social' -%}
+            {%- endif -%}
+          </div>
+        </div>
       </div>
     {%- endunless -%}
   {%- endif -%}
 
-  <div class="footer__brand-wordmark-{{ section.id }} page-width" aria-label="{{ shop.name }}">
-    <svg viewBox="0 0 1200 150" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-      <text x="600" y="130" text-anchor="middle" font-size="170" fill="currentColor"
-        textLength="1180" lengthAdjust="spacingAndGlyphs"
-        style="font-weight:900;letter-spacing:-2px;font-family:inherit">{{ shop.name }}</text>
-    </svg>
-  </div>
-
-  <div class="footer__social-below-wordmark-{{ section.id }} page-width">
-    {%- if shop.features.follow_on_shop? and section.settings.enable_follow_on_shop -%}
-      <div class="footer__follow-on-shop">
-        {{ shop | login_button: action: 'follow' }}
-      </div>
-    {%- endif -%}
-    {%- if section.settings.show_social and has_social_icons -%}
-      {%- render 'social-icons', class: 'footer__list-social' -%}
-    {%- endif -%}
-  </div>
+  {%- comment -%}
+    The wordmark and social icons used to sit here, on two rows of their own
+    between the menus and the bottom bar. They now render inside
+    .footer__content-top as its middle column.
+  {%- endcomment -%}
 
   <div
     class="footer__content-bottom{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -489,32 +592,13 @@
       data-cascade
     {% endif %}
   >
+    {%- comment -%}
+      The country and language selectors used to sit here, above the copyright.
+      They now render inside the copyright row further down so the year, the
+      policy links and the currency read as one line. This wrapper is left
+      carrying only the payment icons, and CSS reorders it below that row.
+    {%- endcomment -%}
     <div class="footer__content-bottom-wrapper page-width">
-      <div class="footer__column footer__localization isolate">
-        {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
-          <localization-form>
-            {%- form 'localization', id: 'FooterCountryForm', class: 'localization-form' -%}
-              <div>
-                <h2 class="caption-large text-body" id="FooterCountryLabel">{{ 'localization.country_label' | t }}</h2>
-                {%- render 'country-localization', localPosition: 'FooterCountry' -%}
-              </div>
-            {%- endform -%}
-          </localization-form>
-        {%- endif -%}
-
-        {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
-          <localization-form>
-            {%- form 'localization', id: 'FooterLanguageForm', class: 'localization-form' -%}
-              <div>
-                <h2 class="caption-large text-body" id="FooterLanguageLabel">
-                  {{ 'localization.language_label' | t }}
-                </h2>
-                {%- render 'language-localization', localPosition: 'FooterLanguage' -%}
-              </div>
-            {%- endform -%}
-          </localization-form>
-        {%- endif -%}
-      </div>
       <div class="footer__column footer__column--info">
         {%- if section.settings.payment_enable -%}
           <div class="footer__payment">
@@ -566,6 +650,35 @@
               {%- endif -%}
             {%- endfor -%}
           </ul>
+        {%- endif -%}
+      </div>
+      {%- comment -%}
+        Moved up from the wrapper above so the currency sits at the end of the
+        copyright line rather than on a row of its own.
+      {%- endcomment -%}
+      <div class="footer__column footer__localization isolate">
+        {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+          <localization-form>
+            {%- form 'localization', id: 'FooterCountryForm', class: 'localization-form' -%}
+              <div>
+                <h2 class="caption-large text-body" id="FooterCountryLabel">{{ 'localization.country_label' | t }}</h2>
+                {%- render 'country-localization', localPosition: 'FooterCountry' -%}
+              </div>
+            {%- endform -%}
+          </localization-form>
+        {%- endif -%}
+
+        {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+          <localization-form>
+            {%- form 'localization', id: 'FooterLanguageForm', class: 'localization-form' -%}
+              <div>
+                <h2 class="caption-large text-body" id="FooterLanguageLabel">
+                  {{ 'localization.language_label' | t }}
+                </h2>
+                {%- render 'language-localization', localPosition: 'FooterLanguage' -%}
+              </div>
+            {%- endform -%}
+          </localization-form>
         {%- endif -%}
       </div>
     </div>
