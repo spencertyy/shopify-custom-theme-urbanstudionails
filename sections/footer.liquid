@@ -70,28 +70,18 @@
     font-weight: 700;
   }
 
-  /* The shared .footer-block__heading is styled as a short tracked-caps label
-     ("QUICK LINKS"). The newsletter heading is a sentence, so it opts out of
-     the caps treatment here rather than in the shared rule, which the link
-     lists still rely on. */
-  .section-{{ section.id }}-padding .footer-block__newsletter .footer-block__heading {
-    font-size: 1.8rem;
-    line-height: 1.35;
-    letter-spacing: 0;
-    text-transform: none;
-    font-weight: var(--font-heading-weight);
-  }
-
-  /* Sits between the heading and the input. Kept a shade lighter than the
-     heading so the eye still lands on the heading first. */
+  /* The heading is back to the shared tracked-caps label the other footer
+     columns use ("PRODUCT", "POLICY") — it names the block rather than
+     selling it, and the sentence below carries the message. That inversion,
+     small label over larger line, is what makes this read as restrained. */
   .section-{{ section.id }}-padding .footer-block__newsletter-text {
-    margin: 0.8rem 0 1.6rem;
+    margin: 1.2rem 0 2rem;
   }
   .section-{{ section.id }}-padding .footer-block__newsletter-text p {
     margin: 0;
-    font-size: 1.4rem;
-    line-height: 1.55;
-    color: rgba(var(--color-foreground), 0.75);
+    font-size: 1.7rem;
+    line-height: 1.45;
+    color: rgba(var(--color-foreground), 0.9);
   }
 
   .section-{{ section.id }}-padding .footer__newsletter .field {
