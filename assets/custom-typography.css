@@ -194,12 +194,73 @@
   .template-index .banner:not(.slideshow) .button:focus-visible::after {
     width: 45%;
   }
+
+  /* The hero slideshow is excluded from the rules above because they also drop
+     the type to 1.2rem, and the hero button is meant to stay at its own size.
+     So it borrows only the treatment: frame off, rule underneath.
+
+     The frame it is losing is not a border — Dawn paints it as a 1.3px spread
+     box-shadow on ::after, which is the same element the rule below needs, so
+     ::after is redefined outright rather than patched.
+
+     Side padding goes to zero so the rule ends where the word ends; keeping
+     Dawn's 3rem would leave it hanging out past both sides of the text. */
+  .template-index .slideshow .button {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    min-width: 0;
+    min-height: 0;
+    padding: 0 0 0.9rem;
+    color: rgb(255, 255, 255);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+  }
+
+  .template-index .slideshow .button::before {
+    display: none;
+  }
+
+  .template-index .slideshow .button::after {
+    content: '';
+    position: absolute;
+    top: auto;
+    right: auto;
+    bottom: 0;
+    left: 50%;
+    width: 100%;
+    height: 1px;
+    transform: translateX(-50%);
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    background: currentColor;
+    transition: width var(--duration-default) ease;
+  }
+
+  .template-index .slideshow .button:hover::after,
+  .template-index .slideshow .button:focus-visible::after {
+    width: 45%;
+  }
 }
 
 /* Homepage section headings (product card titles are h3 and stay untouched) */
 .template-index #MainContent h2 {
   text-transform: uppercase;
   letter-spacing: 0.08em;
+}
+
+/* The two full-width section headings ran at 24px/500 while everything near
+   them sat at 16–20px, so they read as a different, heavier system rather than
+   as labels for the rows below. Dropped to 20px at body weight: still the
+   largest type in their row, no longer competing with the products.
+
+   Targeted by their own classes rather than through `#MainContent h2`, because
+   that carries an id and would outweigh — and undo — the banner heading rules
+   further down this file. */
+.template-index #MainContent .title.h2,
+.template-index #MainContent .collection-tabs__heading {
+  font-size: 2rem;
+  font-weight: var(--font-body-weight);
 }
 
 /* Footer block headings, site-wide */
