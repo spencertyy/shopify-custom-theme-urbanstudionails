@@ -46,8 +46,10 @@
     align-items: center;
     gap: 1.6rem;
     padding: 1.8rem 0;
-    font-size: 1.6rem;
-    font-weight: 600;
+    font-size: 1.7rem;
+    /* Jost ships 400 / 500 / 700 only — a 600 here resolves upward to 700 and
+       reads as heavy as a heading. Body weight keeps the questions calm. */
+    font-weight: var(--font-body-weight);
     line-height: 1.4;
   }
   .faq-{{ section.id }} .faq__item summary::-webkit-details-marker { display: none; }
@@ -62,12 +64,20 @@
   .faq-{{ section.id }} .faq__answer > :first-child { margin-top: 0; }
   .faq-{{ section.id }} .faq__answer > :last-child { margin-bottom: 0; }
   .faq-{{ section.id }} .faq__category {
-    margin: 4.8rem 0 0;
-    padding-bottom: 1.2rem;
-    font-size: 1.3rem;
-    letter-spacing: 0.16rem;
-    text-transform: uppercase;
+    margin: 5.6rem 0 0;
+    padding-bottom: 1.6rem;
+    font-size: 2.6rem;
+    font-weight: var(--font-body-weight-bold);
+    letter-spacing: -0.04rem;
+    line-height: 1.2;
+    text-transform: none;
     border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.35);
+  }
+  @media screen and (min-width: 750px) {
+    .faq-{{ section.id }} .faq__category {
+      margin-top: 7.2rem;
+      font-size: 3.4rem;
+    }
   }
   .faq-{{ section.id }} .faq__category:first-child { margin-top: 0; }
   .faq-{{ section.id }} .faq__footer {
