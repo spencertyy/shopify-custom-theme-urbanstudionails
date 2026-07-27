@@ -97,9 +97,27 @@
   .section-{{ section.id }}-padding .footer__newsletter .field {
     border-radius: 0;
     border: none;
-    border-bottom: 1.5px solid rgba(var(--color-foreground), 0.8);
+    /* Width stays fixed at 2px in both states and only the colour changes, so
+       focusing the input cannot nudge the layout by half a pixel. */
+    border-bottom: 2px solid rgba(var(--color-foreground), 0.45);
     background: transparent;
     box-shadow: none;
+  }
+  /* Dawn draws the input's box with a spread box-shadow on ::after, not with
+     border — so clearing border/box-shadow on .field above leaves the frame
+     untouched. These two kill it and leave only the rule underneath. */
+  .section-{{ section.id }}-padding .footer__newsletter .field::before,
+  .section-{{ section.id }}-padding .footer__newsletter .field::after {
+    box-shadow: none;
+    border: none;
+  }
+  /* Removing the frame also removed the focus ring, so the remaining rule
+     carries it: the underline goes from muted to full strength on focus.
+     Done with border-colour rather than box-shadow because Dawn already
+     drives box-shadow on .field and its pseudo-elements from several rules
+     and a transition, and this needs to be the one thing deciding it. */
+  .section-{{ section.id }}-padding .footer__newsletter .field:focus-within {
+    border-bottom-color: rgba(var(--color-foreground), 1);
   }
   .section-{{ section.id }}-padding .footer__newsletter .field__input {
     background: transparent;
@@ -110,13 +128,17 @@
   .section-{{ section.id }}-padding .footer__newsletter .field__label {
     padding-left: 0;
   }
-  .section-{{ section.id }}-padding .newsletter-form__button svg { display: none; }
-  .section-{{ section.id }}-padding .newsletter-form__button::after {
-    content: 'OK';
-    font-size: 1.4rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
+  /* Dawn's own arrow, back in place of the "OK" label. */
+  .section-{{ section.id }}-padding .newsletter-form__button {
     color: rgb(var(--color-foreground));
+    transition: transform var(--duration-short) ease;
+  }
+  .section-{{ section.id }}-padding .newsletter-form__button svg {
+    width: 2rem;
+    height: 2rem;
+  }
+  .section-{{ section.id }}-padding .newsletter-form__button:hover svg {
+    transform: translateX(0.3rem);
   }
 
   /* Pink footer background */
