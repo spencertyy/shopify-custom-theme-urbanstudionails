@@ -46,6 +46,7 @@
         "enable_language_selector": true,
         "payment_enable": true,
         "show_policy": true,
+        "bottom_menu": "footer-bottom",
         "margin_top": 32,
         "padding_top": 32,
         "padding_bottom": 0
