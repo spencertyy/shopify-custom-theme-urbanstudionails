@@ -308,13 +308,14 @@
 
   .footer__brand-wordmark-{{ section.id }} {
     width: 100%;
-    max-width: 30rem;
+    max-width: {{ section.settings.brand_logo_width | default: 30 }}rem;
     padding: 0;
     margin: 0;
     overflow: hidden;
   }
 
-  .footer__brand-wordmark-{{ section.id }} svg {
+  .footer__brand-wordmark-{{ section.id }} svg,
+  .footer__brand-wordmark-{{ section.id }} .footer__brand-logo-img {
     display: block;
     width: 100%;
     height: auto;
@@ -558,12 +559,28 @@
           sitting between the menu column and the newsletter.
         {%- endcomment -%}
         <div class="footer__brand-block-{{ section.id }}">
+          {%- comment -%}
+            An uploaded logo wins over the text rendering. A logo set in a
+            licensed typeface can be used here as an image without needing the
+            web licence embedding the font itself would require, and it keeps
+            the exact spacing and any tagline that a web font could not
+            reproduce. The SVG stays as the fallback so the footer is never
+            left without a brand mark.
+          {%- endcomment -%}
           <div class="footer__brand-wordmark-{{ section.id }}" aria-label="{{ shop.name }}">
-            <svg viewBox="0 0 1200 150" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-              <text x="600" y="130" text-anchor="middle" font-size="170" fill="currentColor"
-                textLength="1180" lengthAdjust="spacingAndGlyphs"
-                style="font-weight:900;letter-spacing:-2px;font-family:inherit">{{ shop.name }}</text>
-            </svg>
+            {%- if section.settings.brand_logo != blank -%}
+              {{
+                section.settings.brand_logo
+                | image_url: width: 1200
+                | image_tag: loading: 'lazy', alt: shop.name, class: 'footer__brand-logo-img'
+              }}
+            {%- else -%}
+              <svg viewBox="0 0 1200 150" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                <text x="600" y="130" text-anchor="middle" font-size="170" fill="currentColor"
+                  textLength="1180" lengthAdjust="spacingAndGlyphs"
+                  style="font-weight:900;letter-spacing:-2px;font-family:inherit">{{ shop.name }}</text>
+              </svg>
+            {%- endif -%}
           </div>
           <div class="footer__social-below-wordmark-{{ section.id }}">
             {%- if shop.features.follow_on_shop? and section.settings.enable_follow_on_shop -%}
@@ -804,6 +821,22 @@
       "id": "footer_bg_color",
       "label": "Footer background color",
       "default": "#f5b1d5"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_logo",
+      "label": "Footer logo image",
+      "info": "Shown in the middle of the footer. Upload a transparent PNG or an SVG. Leave empty to render the shop name as text instead."
+    },
+    {
+      "type": "range",
+      "id": "brand_logo_width",
+      "min": 12,
+      "max": 60,
+      "step": 2,
+      "unit": "rem",
+      "label": "Footer logo width",
+      "default": 30
     },
     {
       "type": "header",
