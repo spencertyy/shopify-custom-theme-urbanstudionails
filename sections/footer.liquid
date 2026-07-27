@@ -274,7 +274,6 @@
      selector onto a second line inside a row that is meant to be one line. */
   .section-{{ section.id }}-padding .footer__localization .caption-large {
     margin: 0;
-    font-size: 1.3rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
@@ -316,6 +315,11 @@
      the header. In a footer column they need to stack. */
   .section-{{ section.id }}-padding .footer-block__details-content > li {
     display: block;
+  }
+  /* Stated here rather than inherited from Dawn so the menu links have a size
+     of their own to adjust, alongside every other size in this file. */
+  .section-{{ section.id }}-padding .footer-block__details-content a {
+    font-size: 1.4rem;
   }
 
   /* This column is flex-direction: column, where align-items — not
