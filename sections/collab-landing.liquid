@@ -1,0 +1,284 @@
+{%- comment -%}
+  Creator collab landing page.
+
+  This section is the pitch, not the form. The actual application lives in
+  Shopify Collabs; everything here exists to get a creator to press one button.
+
+  Blocks:
+    perk     — one "what you get" card (gifted set, commission, early access)
+    criteria — one line of "who we're looking for"
+{%- endcomment -%}
+
+{{ 'section-collab.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign perks = section.blocks | where: 'type', 'perk'
+  assign criteria = section.blocks | where: 'type', 'criteria'
+-%}
+
+<div class="collab color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="page-width">
+
+    <div class="collab__hero">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="collab__eyebrow">{{ section.settings.eyebrow | escape }}</span>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h1 class="collab__title {{ section.settings.heading_size }}">{{ section.settings.heading }}</h1>
+      {%- endif -%}
+
+      {%- if section.settings.subheading != blank -%}
+        <div class="collab__sub rte">{{ section.settings.subheading }}</div>
+      {%- endif -%}
+
+      <div class="collab__cta">
+        {%- comment -%}
+          TODO(spencer): decide what this button does before the Collabs link exists.
+
+          section.settings.apply_url  — the Shopify Collabs application link. Blank right now.
+          section.settings.apply_label — the button text, e.g. "Apply to collab".
+          section.settings.fallback_email — hello@urbanstudionails.com
+
+          Three ways to handle a blank apply_url, each with a real cost:
+
+            a) Render nothing. The page is honest but has no exit — a creator who
+               scrolled the whole thing has nowhere to go, and won't come back.
+
+            b) Render a disabled-looking button with "Applications opening soon".
+               Keeps the layout intact and sets an expectation, but a dead button
+               is the most common reason people assume a site is broken.
+
+            c) Fall back to a mailto: link. Every visitor stays convertible even
+               before Collabs is wired up, and an emailed application is still an
+               application. The cost is that you sort those by hand.
+
+          Whichever you pick, the markup for the normal case is:
+
+            <a href="{{ section.settings.apply_url }}" class="button">
+              {{ section.settings.apply_label | escape }}
+            </a>
+
+          Write the if/else here.
+        {%- endcomment -%}
+
+      </div>
+
+      {%- if section.settings.cta_note != blank -%}
+        <p class="collab__cta-note">{{ section.settings.cta_note | escape }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- if perks.size > 0 -%}
+      <div class="collab__perks">
+        {%- for block in perks -%}
+          <div class="collab__perk" {{ block.shopify_attributes }}>
+            <div class="collab__perk-icon">
+              {%- case block.settings.icon -%}
+                {%- when 'gift' -%}
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 20h32v20a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V20z"/><path d="M6 14h36v6H6zM24 14v28"/><path d="M24 14s-2-8-7-8a4 4 0 0 0 0 8h7zM24 14s2-8 7-8a4 4 0 0 1 0 8h-7z"/></svg>
+                {%- when 'commission' -%}
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="24" cy="24" r="17"/><path d="M24 13v22M29 18.5c0-2.2-2.2-3.5-5-3.5s-5 1.4-5 3.5 2.2 3 5 3.5 5 1.3 5 3.5-2.2 3.5-5 3.5-5-1.3-5-3.5"/></svg>
+                {%- when 'early' -%}
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M24 6l5.3 11.4 12.2 1.6-9 8.5 2.3 12.5L24 34l-10.8 6 2.3-12.5-9-8.5 12.2-1.6z"/></svg>
+                {%- else -%}
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="24" cy="24" r="17"/><path d="M17 24l5 5 10-11"/></svg>
+              {%- endcase -%}
+            </div>
+            {%- if block.settings.title != blank -%}
+              <h3 class="collab__perk-title">{{ block.settings.title | escape }}</h3>
+            {%- endif -%}
+            {%- if block.settings.text != blank -%}
+              <p class="collab__perk-text">{{ block.settings.text | escape }}</p>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if criteria.size > 0 -%}
+      <div class="collab__criteria">
+        {%- if section.settings.criteria_heading != blank -%}
+          <h2 class="collab__criteria-heading">{{ section.settings.criteria_heading | escape }}</h2>
+        {%- endif -%}
+        <ul class="collab__criteria-list">
+          {%- for block in criteria -%}
+            <li {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collab landing",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Creator programme"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Make something with us"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "options": [
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h0"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>We send handmade press-on sets to creators who love them, and pay commission on every set they help sell. No follower minimum — just a real account and hands you're happy to film.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Apply button"
+    },
+    {
+      "type": "text",
+      "id": "apply_label",
+      "label": "Button text",
+      "default": "Apply to collab"
+    },
+    {
+      "type": "url",
+      "id": "apply_url",
+      "label": "Shopify Collabs application link",
+      "info": "Paste the public application link from Shopify Collabs. Leave blank to use the fallback set in the section code."
+    },
+    {
+      "type": "text",
+      "id": "fallback_email",
+      "label": "Fallback email",
+      "default": "hello@urbanstudionails.com",
+      "info": "Used only if the application link above is blank."
+    },
+    {
+      "type": "text",
+      "id": "cta_note",
+      "label": "Note under the button",
+      "default": "Takes about two minutes. We read every application ourselves."
+    },
+    {
+      "type": "header",
+      "content": "Who we're looking for"
+    },
+    {
+      "type": "text",
+      "id": "criteria_heading",
+      "label": "Heading",
+      "default": "Who we're looking for"
+    },
+    {
+      "type": "header",
+      "content": "Section"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "options": [
+        { "value": "scheme-1", "label": "t:sections.all.colors.scheme_1_label" },
+        { "value": "scheme-2", "label": "t:sections.all.colors.scheme_2_label" },
+        { "value": "scheme-3", "label": "t:sections.all.colors.scheme_3_label" },
+        { "value": "scheme-4", "label": "t:sections.all.colors.scheme_4_label" },
+        { "value": "scheme-5", "label": "t:sections.all.colors.scheme_5_label" }
+      ],
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0, "max": 120, "step": 4, "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0, "max": 120, "step": 4, "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 56
+    }
+  ],
+  "blocks": [
+    {
+      "type": "perk",
+      "name": "Perk",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "gift", "label": "Gift" },
+            { "value": "commission", "label": "Commission" },
+            { "value": "early", "label": "Early access" },
+            { "value": "check", "label": "Check" }
+          ],
+          "default": "gift"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Perk title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Short description of this perk."
+        }
+      ]
+    },
+    {
+      "type": "criteria",
+      "name": "Criteria line",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "One thing we look for."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Collab landing"
+    }
+  ]
+}
+{% endschema %}
