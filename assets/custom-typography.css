@@ -195,51 +195,67 @@
     width: 45%;
   }
 
-  /* The hero slideshow is excluded from the rules above because they also drop
-     the type to 1.2rem, and the hero button is meant to stay at its own size.
-     So it borrows only the treatment: frame off, rule underneath.
+}
 
-     The frame it is losing is not a border — Dawn paints it as a 1.3px spread
-     box-shadow on ::after, which is the same element the rule below needs, so
-     ::after is redefined outright rather than patched.
+/* The hero slideshow is excluded from the rules above because they also drop
+   the type to 1.2rem, and the hero button is meant to stay at its own size.
+   So it borrows only the treatment: frame off, rule underneath.
 
-     Side padding goes to zero so the rule ends where the word ends; keeping
-     Dawn's 3rem would leave it hanging out past both sides of the text. */
+   The frame it is losing is not a border — Dawn paints it as a 1.3px spread
+   box-shadow on ::after, which is the same element the rule below needs, so
+   ::after is redefined outright rather than patched.
+
+   Side padding goes to zero so the rule ends where the word ends; keeping
+   Dawn's 3rem would leave it hanging out past both sides of the text.
+
+   Unlike the banner rules above this is not confined to the 750px breakpoint —
+   the hero button should read the same on a phone. That costs the height
+   Dawn's padding was providing, which is put back below. */
+.template-index .slideshow .button {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  min-width: 0;
+  min-height: 0;
+  padding: 0 0 0.9rem;
+  color: rgb(255, 255, 255);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+}
+
+.template-index .slideshow .button::before {
+  display: none;
+}
+
+.template-index .slideshow .button::after {
+  content: '';
+  position: absolute;
+  top: auto;
+  right: auto;
+  bottom: 0;
+  left: 50%;
+  width: 100%;
+  height: 1px;
+  transform: translateX(-50%);
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  background: currentColor;
+  transition: width var(--duration-default) ease;
+}
+
+.template-index .slideshow .button:hover::after,
+.template-index .slideshow .button:focus-visible::after {
+  width: 45%;
+}
+
+/* Stripped of Dawn's padding the button is about 31px tall, under the 44px a
+   finger needs. Height is added above the text only: the underline is anchored
+   to the bottom edge, so padding-top grows the tap target without moving the
+   rule away from the word. Desktop keeps its tighter spacing — a cursor does
+   not need the margin. */
+@media screen and (max-width: 749px) {
   .template-index .slideshow .button {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    min-width: 0;
-    min-height: 0;
-    padding: 0 0 0.9rem;
-    color: rgb(255, 255, 255);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
-  }
-
-  .template-index .slideshow .button::before {
-    display: none;
-  }
-
-  .template-index .slideshow .button::after {
-    content: '';
-    position: absolute;
-    top: auto;
-    right: auto;
-    bottom: 0;
-    left: 50%;
-    width: 100%;
-    height: 1px;
-    transform: translateX(-50%);
-    border-radius: 0;
-    border: none;
-    box-shadow: none;
-    background: currentColor;
-    transition: width var(--duration-default) ease;
-  }
-
-  .template-index .slideshow .button:hover::after,
-  .template-index .slideshow .button:focus-visible::after {
-    width: 45%;
+    padding-top: 1.7rem;
   }
 }
 
