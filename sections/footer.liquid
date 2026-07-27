@@ -54,7 +54,9 @@
     }
     .section-{{ section.id }}-padding .footer-block__newsletter {
       text-align: left;
-      max-width: 28rem;
+      /* was 28rem — a one-line heading fitted, but the subtext under it wrapped
+         into a narrow four-line column. */
+      max-width: 34rem;
     }
     .section-{{ section.id }}-padding .newsletter-form__field-wrapper {
       max-width: 100%;
@@ -66,6 +68,30 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
     font-weight: 700;
+  }
+
+  /* The shared .footer-block__heading is styled as a short tracked-caps label
+     ("QUICK LINKS"). The newsletter heading is a sentence, so it opts out of
+     the caps treatment here rather than in the shared rule, which the link
+     lists still rely on. */
+  .section-{{ section.id }}-padding .footer-block__newsletter .footer-block__heading {
+    font-size: 1.8rem;
+    line-height: 1.35;
+    letter-spacing: 0;
+    text-transform: none;
+    font-weight: var(--font-heading-weight);
+  }
+
+  /* Sits between the heading and the input. Kept a shade lighter than the
+     heading so the eye still lands on the heading first. */
+  .section-{{ section.id }}-padding .footer-block__newsletter-text {
+    margin: 0.8rem 0 1.6rem;
+  }
+  .section-{{ section.id }}-padding .footer-block__newsletter-text p {
+    margin: 0;
+    font-size: 1.4rem;
+    line-height: 1.55;
+    color: rgba(var(--color-foreground), 0.75);
   }
 
   .section-{{ section.id }}-padding .footer__newsletter .field {
@@ -279,6 +305,9 @@
             <div class="footer-block__newsletter">
               {%- if section.settings.newsletter_heading != blank -%}
                 <h2 class="footer-block__heading inline-richtext">{{ section.settings.newsletter_heading }}</h2>
+              {%- endif -%}
+              {%- if section.settings.newsletter_subtext != blank -%}
+                <div class="footer-block__newsletter-text rte">{{ section.settings.newsletter_subtext }}</div>
               {%- endif -%}
               {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
                 <input type="hidden" name="contact[tags]" value="newsletter">
@@ -571,6 +600,12 @@
       "id": "newsletter_heading",
       "default": "t:sections.footer.settings.newsletter_heading.default",
       "label": "t:sections.footer.settings.newsletter_heading.label"
+    },
+    {
+      "type": "richtext",
+      "id": "newsletter_subtext",
+      "label": "Newsletter text",
+      "info": "One line under the heading saying what subscribers actually get. Leave blank to hide."
     },
     {
       "type": "header",
