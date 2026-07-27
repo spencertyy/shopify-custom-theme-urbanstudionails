@@ -77,11 +77,14 @@
   .section-{{ section.id }}-padding .footer-block__newsletter-text {
     margin: 1.2rem 0 2rem;
   }
+  /* Matches the footer link columns exactly — 1.4rem, same line height, same
+     opacity. The sentence sits level with the menu items beside it instead of
+     reading as a different size of type in the same row. */
   .section-{{ section.id }}-padding .footer-block__newsletter-text p {
     margin: 0;
-    font-size: 1.7rem;
-    line-height: 1.45;
-    color: rgba(var(--color-foreground), 0.9);
+    font-size: 1.4rem;
+    line-height: 1.8;
+    color: rgba(var(--color-foreground), 0.75);
   }
 
   .section-{{ section.id }}-padding .footer__newsletter .field {
