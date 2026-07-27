@@ -268,6 +268,19 @@
 .template-index .section-header:not(.shopify-section-header-sticky) .header__menu-item svg {
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.45));
 }
+/* Dropdown panels open on their own light background with dark text, and they
+   correct the white automatically because it comes from --color-foreground,
+   which their colour scheme redefines. The shadow above is a plain property
+   with no such mechanism, so it inherits into the panel and puts a dark halo
+   behind dark text. Switch it off where the photograph is no longer behind. */
+.template-index .section-header:not(.shopify-section-header-sticky) .header__submenu .header__menu-item,
+.template-index .section-header:not(.shopify-section-header-sticky) .mega-menu__content .header__menu-item {
+  text-shadow: none;
+}
+.template-index .section-header:not(.shopify-section-header-sticky) .header__submenu svg,
+.template-index .section-header:not(.shopify-section-header-sticky) .mega-menu__content svg {
+  filter: none;
+}
 
 /* ---- Type hierarchy: buttons borrow the heading face ----
    theme.liquid loads exactly five font files: the body face in regular, bold
