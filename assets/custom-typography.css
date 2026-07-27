@@ -359,6 +359,41 @@
   filter: none;
 }
 
+/* ---- Mega menu ----
+   Dawn lays the panel out on six equal tracks, so three columns of links take
+   the left half of the row and the rest sits empty, while longer entries like
+   "Christmas Collections" wrap inside a 150px track. Flex gives each column the
+   width its own links need and holds however many columns the menu grows to.
+
+   Selectors are doubled up (.mega-menu .mega-menu__list) on purpose:
+   component-mega-menu.css is linked from inside header.liquid, so it loads
+   after this file and would win at equal specificity.
+
+   Matching the footer, the panel runs to the viewport edges rather than being
+   capped at --page-width and centred. */
+.mega-menu .mega-menu__list.page-width {
+  max-width: 100%;
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+.mega-menu .mega-menu__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1.8rem 8rem;
+}
+/* Dawn sets word-wrap: break-word on the links, which lets a column's
+   min-content width collapse to a single character — flex then shrank every
+   column to roughly 116px and wrapped every link. Pin each column to the width
+   its longest link actually needs and stop it being compressed. */
+.mega-menu .mega-menu__list > li {
+  flex: 0 0 auto;
+  min-width: max-content;
+}
+.mega-menu .mega-menu__link {
+  white-space: nowrap;
+}
+
 /* ---- Type hierarchy: buttons borrow the heading face ----
    theme.liquid loads exactly five font files: the body face in regular, bold
    and both italics, plus the heading face. A rule like `font-weight: 500` has
