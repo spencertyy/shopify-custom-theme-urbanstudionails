@@ -2,6 +2,19 @@
   FAQ section — renders a visible accordion (native <details>, no JS) and
   outputs matching FAQPage JSON-LD so Google / AI can read the Q&A.
   Content is editable per-block in the theme editor.
+
+  Two block types:
+    question — one Q&A pair; included in the JSON-LD
+    category — a section divider heading; visual only, skipped in the JSON-LD
+
+  Keep every Q&A on this one section: Google expects a single FAQPage entity
+  per page, so splitting across several sections would emit competing blocks
+  of structured data.
+
+  The JSON-LD is opt-out per section (enable_schema). Turn it OFF anywhere the
+  page already has a primary entity of its own — product pages emit Product
+  schema, and a second FAQPage there both competes with it and repeats the same
+  Q&A across every product URL.
 {%- endcomment -%}
 
 {%- liquid
@@ -14,7 +27,8 @@
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
   .faq-{{ section.id }} .faq__list {
-    max-width: 76rem;
+    /* matches Dawn's .page-width--narrow so the list lines up with the page H1 */
+    max-width: 72.6rem;
     margin: 0 auto;
   }
   .faq-{{ section.id }} .faq__heading {
@@ -47,6 +61,19 @@
   .faq-{{ section.id }} .faq__answer { padding: 0 0 1.8rem; }
   .faq-{{ section.id }} .faq__answer > :first-child { margin-top: 0; }
   .faq-{{ section.id }} .faq__answer > :last-child { margin-bottom: 0; }
+  .faq-{{ section.id }} .faq__category {
+    margin: 4.8rem 0 0;
+    padding-bottom: 1.2rem;
+    font-size: 1.3rem;
+    letter-spacing: 0.16rem;
+    text-transform: uppercase;
+    border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.35);
+  }
+  .faq-{{ section.id }} .faq__category:first-child { margin-top: 0; }
+  .faq-{{ section.id }} .faq__footer {
+    margin: 2.4rem 0 0;
+    font-size: 1.4rem;
+  }
 {% endstyle %}
 
 <div class="faq-{{ section.id }} section{% if section.settings.color_scheme != blank %} color-{{ section.settings.color_scheme }} gradient{% endif %} isolate">
@@ -56,33 +83,50 @@
     {%- endif -%}
     <div class="faq__list">
       {%- for block in faq_blocks -%}
-        <details class="faq__item" {{ block.shopify_attributes }}>
-          <summary>
-            <span>{{ block.settings.question | escape }}</span>
-            <svg class="faq__icon" viewBox="0 0 14 14" fill="none" aria-hidden="true" focusable="false">
-              <path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-            </svg>
-          </summary>
-          <div class="faq__answer rte">{{ block.settings.answer }}</div>
-        </details>
+        {%- if block.type == 'category' -%}
+          <h3 class="faq__category" {{ block.shopify_attributes }}>{{ block.settings.title | escape }}</h3>
+        {%- else -%}
+          <details class="faq__item" {{ block.shopify_attributes }}>
+            <summary>
+              <span>{{ block.settings.question | escape }}</span>
+              <svg class="faq__icon" viewBox="0 0 14 14" fill="none" aria-hidden="true" focusable="false">
+                <path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </summary>
+            <div class="faq__answer rte">{{ block.settings.answer }}</div>
+          </details>
+        {%- endif -%}
       {%- endfor -%}
+      {%- if section.settings.footer_link_label != blank and section.settings.footer_link_url != blank -%}
+        <p class="faq__footer">
+          <a href="{{ section.settings.footer_link_url }}" class="link">
+            {{- section.settings.footer_link_label | escape -}}
+          </a>
+        </p>
+      {%- endif -%}
     </div>
   </div>
 </div>
 
-{%- if faq_blocks.size > 0 -%}
+{%- liquid
+  assign question_blocks = faq_blocks | where: 'type', 'question'
+-%}
+{%- if section.settings.enable_schema and question_blocks.size > 0 -%}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {%- for block in faq_blocks -%}
+    {%- for block in question_blocks -%}
+    {%- liquid
+      assign answer_text = block.settings.answer | replace: '</p>', '</p> ' | replace: '</li>', '</li> ' | replace: '<br>', ' ' | replace: '<br/>', ' ' | replace: '<br />', ' ' | strip_html | strip_newlines | strip
+    -%}
     {
       "@type": "Question",
       "name": {{ block.settings.question | json }},
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": {{ block.settings.answer | strip_html | strip_newlines | json }}
+        "text": {{ answer_text | json }}
       }
     }{%- unless forloop.last -%},{%- endunless -%}
     {%- endfor -%}
@@ -121,6 +165,32 @@
       "default": "scheme-1"
     },
     {
+      "type": "header",
+      "content": "Link to the full FAQ"
+    },
+    {
+      "type": "text",
+      "id": "footer_link_label",
+      "label": "Link text",
+      "info": "Shown below the last question. Leave blank to hide."
+    },
+    {
+      "type": "url",
+      "id": "footer_link_url",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Search engines"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_schema",
+      "label": "Output FAQ structured data",
+      "default": true,
+      "info": "Leave on for the dedicated FAQ page. Turn off on product pages — they already output Product structured data, and repeating the same FAQPage on every product URL adds no benefit."
+    },
+    {
       "type": "range",
       "id": "padding_top",
       "min": 0,
@@ -143,6 +213,22 @@
   ],
   "blocks": [
     {
+      "type": "category",
+      "name": "Category heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Category"
+        },
+        {
+          "type": "paragraph",
+          "content": "A visual divider only. Category headings are not included in the page's FAQ structured data."
+        }
+      ]
+    },
+    {
       "type": "question",
       "name": "Question",
       "settings": [
@@ -161,7 +247,7 @@
       ]
     }
   ],
-  "max_blocks": 25,
+  "max_blocks": 50,
   "presets": [
     {
       "name": "FAQ",
@@ -169,8 +255,8 @@
         {
           "type": "question",
           "settings": {
-            "question": "How long do the press-on nails last?",
-            "answer": "<p>With nail glue, our press-ons last 10–14 days. With the included adhesive tabs, they last 3–5 days — perfect for a quick change of look.</p>"
+            "question": "How long will they last?",
+            "answer": "<p>With sticky tabs, expect up to 5 days. With glue, 1–2 weeks, and often longer with careful wear. Hot showers, gym sessions and washing up without gloves are all quietly working against you.</p>"
           }
         },
         {
@@ -197,8 +283,8 @@
         {
           "type": "question",
           "settings": {
-            "question": "What if the size does not fit?",
-            "answer": "<p>Please review our Size Guide before ordering. If a size does not fit, we offer exchanges — customers are responsible for the return and reshipment shipping.</p>"
+            "question": "What if the size is wrong when it arrives?",
+            "answer": "<p>Because every set is handmade and worn directly on the body, we're not able to accept returns or exchanges for sizing — the same rule that applies to most personal care and beauty products. Every product page has a Size Chart, and if you're unsure, message us before you order. We genuinely don't mind.</p>"
           }
         },
         {

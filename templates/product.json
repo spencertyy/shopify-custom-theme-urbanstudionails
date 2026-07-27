@@ -103,7 +103,7 @@
           "settings": {
             "heading": " DETAILS",
             "icon": "clipboard",
-            "row_content": "<h3><strong>📦What’s Included:</strong></h3><p>• 10 Handmade Press-On Nails</p><p>• Nail File</p><p>• Adhesive Nail Tabs</p><p>• Nail Glue</p><p>• Wooden Cuticle Pusher</p><p>• Alcohol Wipes</p><p></p><h3><strong>⏱ Wear Time</strong></h3><ul><li>10–14 days with glue<br/></li><li>3–5 days with adhesive tabs</li></ul><h3></h3><h3><strong>💡 Handmade Guarantee</strong></h3><p>All of our press-on nails are 100% handcrafted.</p><p>Minor variations between pieces are normal — this is part of the handmade charm.<br/></p><h3><strong>🔁 Size & Exchange</strong></h3><p>If the size does not fit, you may request an exchange.</p><p>➡️ Please note: customers are responsible for return and reshipment shipping fees.</p><h3><br/><strong>🛠 Quality Issues</strong></h3><p>If you receive a defective or damaged product, please contact us <strong>within 3 days </strong>of delivery.</p><p>We will assist you with a replacement.</p><h3><strong>🚫 Return Policy</strong></h3><p>Because each set is handmade to order, we cannot accept returns without a valid reason.</p><p>Thank you for your understanding and support of small handmade studios.</p><h3><strong>🚚 Shipping</strong></h3><p>Fast US shipping with tracking.</p>",
+            "row_content": "<h3><strong>📦 What’s Included</strong></h3><p>• 10 handmade press-on nails</p><p>• Nail glue</p><p>• Adhesive nail tabs</p><p>• Nail file</p><p>• Wooden cuticle pusher</p><p>• Alcohol wipes</p><p>Everything you need is in the box — no follow-up order, no trip to the shop.</p><h3><strong>⏱ Wear Time</strong></h3><p>• <strong>With glue</strong> — 1–2 weeks, and often longer with careful wear</p><p>• <strong>With adhesive tabs</strong> — up to 5 days, and the set stays reusable</p><p>Hot showers, gym sessions and washing up without gloves are all quietly working against you.</p>",
             "page": ""
           }
         },
@@ -112,7 +112,7 @@
           "settings": {
             "heading": "SIZING",
             "icon": "ruler",
-            "row_content": "<p>Finding your correct size ensures the most natural fit and long-lasting wear.</p><p><strong>Before placing your order:</strong></p><p>Please make sure to review our Size Guide. If you’re unsure, measure the widest part of each nail bed and compare it to our chart.</p><p><strong>Exchanges:</strong></p><p>Exchanges for a different size are available, but customers are responsible for shipping costs.</p>",
+            "row_content": "<p>Finding your correct size ensures the most natural fit and long-lasting wear.</p><p><strong>Before placing your order</strong></p><p>Please review our Size Guide. Measure the widest point of each natural nail bed and match it to the closest width on the chart. If a nail falls between two sizes, size up — a slightly wide nail can be filed down, a narrow one can’t be stretched.</p><p><strong>Please choose carefully</strong></p><p>Because our nails are handmade and worn directly on the body, we’re not able to accept returns or exchanges for sizing — the same rule that applies to most beauty and personal care products.</p><p>Which is exactly why we’d rather you spent two minutes measuring now. Still unsure? Message us before you order — we genuinely don’t mind.</p>",
             "page": "size"
           }
         }
@@ -202,69 +202,80 @@
     "faq": {
       "type": "faq",
       "blocks": {
-        "q_lasts": {
-          "type": "question",
-          "settings": {
-            "question": "How long do the press-on nails last?",
-            "answer": "<p>With nail glue, our press-ons last 10–14 days. With the included adhesive tabs, they last 3–5 days — perfect for a quick change of look.</p>"
-          }
-        },
         "q_apply": {
           "type": "question",
           "settings": {
-            "question": "How do I apply press-on nails?",
-            "answer": "<p>Prep your natural nails, pick the sizes that fit best, then press on. The whole process takes under 5 minutes, and full steps are included in every set.</p>"
+            "question": "How do I apply them?",
+            "answer": "<p><strong>1. Prep properly.</strong> Push back your cuticles with the stick, lightly buff the surface with the file, and wipe each nail with the alcohol pad. This step is boring and it is also the whole ballgame — 90% of “they fell off in two days” traces straight back to skipping it.</p><p><strong>2. Size them out first.</strong> Lay all ten nails against your fingers and match each one before any adhesive comes out. Once glue is involved, there’s no rearranging.</p><p><strong>3. Apply.</strong> Tabs for a gentler, reusable wear; glue for the long haul. Press from the cuticle down and hold firmly for 30 seconds.</p><p><strong>4. Give it an hour</strong> before water.</p>"
           }
         },
         "q_reuse": {
           "type": "question",
           "settings": {
-            "question": "Are the nails reusable?",
-            "answer": "<p>Yes. Gently remove them, clean off any residue, and store them in the box. Each set can be worn multiple times when applied with adhesive tabs.</p>"
+            "question": "Are they reusable?",
+            "answer": "<p>Yes — and we’d love you to. Applied with tabs and removed patiently, a set can be worn again and again. Glue gives you a longer wear but is harder on the nail coming off, so if reuse matters most to you, tabs are your friend.</p>"
           }
         },
-        "q_included": {
+        "q_damage": {
           "type": "question",
           "settings": {
-            "question": "What is included in each set?",
-            "answer": "<p>Every set includes 10 handmade press-on nails, a nail file, adhesive nail tabs, nail glue, a wooden cuticle pusher, and alcohol wipes.</p>"
-          }
-        },
-        "q_sizing": {
-          "type": "question",
-          "settings": {
-            "question": "What if the size does not fit?",
-            "answer": "<p>Please review our Size Guide before ordering. If a size does not fit, we offer exchanges — customers are responsible for the return and reshipment shipping.</p>"
+            "question": "Will they damage my natural nails?",
+            "answer": "<p>Not when they’re removed the right way. No drilling, no acetone soak, no filing down your natural nail. The damage people blame on press-ons almost always comes from impatience at removal — so please don’t pry.</p>"
           }
         },
         "q_remove": {
           "type": "question",
           "settings": {
-            "question": "How do I remove them safely?",
-            "answer": "<p>Soak your nails in warm soapy water for a few minutes to loosen the adhesive, then gently lift each nail from the side. Never force them off.</p>"
+            "question": "How do I take them off without wrecking my nails?",
+            "answer": "<p>Soak your fingertips in warm soapy water with a few drops of oil for 10–15 minutes, then ease each nail up gently from the side with the cuticle stick. If it resists, it isn’t ready — soak longer. Never pull. The nail will come off either way; the only question is whether it takes a layer of you with it.</p>"
+          }
+        },
+        "q_popped": {
+          "type": "question",
+          "settings": {
+            "question": "One popped off. Is the set ruined?",
+            "answer": "<p>Not at all. Clean off the old adhesive, re-prep the nail, and re-apply — you’ve got spare tabs in the kit. This is the quiet advantage of press-ons over acrylics: a bad day is a five-minute fix, not a salon appointment.</p>"
           }
         },
         "q_handmade": {
           "type": "question",
           "settings": {
-            "question": "Are these nails handmade?",
-            "answer": "<p>Yes — every set is 100% handcrafted. Small variations between pieces are normal and part of the handmade charm.</p>"
+            "question": "My set has slight variations from the photo. Is it faulty?",
+            "answer": "<p>Almost certainly not. Hand-painted work carries small differences in tone, placement and finish from set to set — that’s the signature of something made by a person rather than a machine. Genuine defects (lifting embellishments, cracks, rough edges) are a different matter, and we’ll always make those right.</p>"
+          }
+        },
+        "q_wrong": {
+          "type": "question",
+          "settings": {
+            "question": "Something’s not right with my order. What can you do?",
+            "answer": "<p>Tell us and we’ll take care of it. If your set arrives damaged, faulty, or simply isn’t what you ordered, email <strong>hello@urbanstudionails.com within 7 days of delivery</strong> with your order number and a couple of clear photos. We’ll make it right — a replacement, a partial refund, or a full refund, whichever genuinely fits the situation.</p><p>And in most cases you won’t need to post anything back to us. Good photos are enough.</p><p>The one thing we’re not able to do is take a set back because it wasn’t quite what you’d pictured — a size that doesn’t fit, or a shade that looked different on your screen. Nails are worn directly on the body, so like most beauty and personal care products, they can’t be resold once they’ve left us.</p>"
+          }
+        },
+        "q_shipping": {
+          "type": "question",
+          "settings": {
+            "question": "When will my order ship?",
+            "answer": "<p>Every set on our site is in stock and ready to ship. Most orders leave us within 24 hours, Monday to Friday. During launches, holidays or exceptionally busy weeks, please allow up to 3–5 business days. Either way, you’ll get a tracking number the moment yours is on its way.</p><p>The one exception is Custom Couture — those are made from scratch to your design, so allow 5–20 business days before dispatch.</p>"
           }
         }
       },
       "block_order": [
-        "q_lasts",
         "q_apply",
         "q_reuse",
-        "q_included",
-        "q_sizing",
+        "q_damage",
         "q_remove",
-        "q_handmade"
+        "q_popped",
+        "q_handmade",
+        "q_wrong",
+        "q_shipping"
       ],
       "settings": {
         "heading": "Frequently Asked Questions",
         "heading_size": "h1",
         "color_scheme": "scheme-1",
+        "footer_link_label": "See all questions →",
+        "footer_link_url": "/pages/faq",
+        "enable_schema": false,
         "padding_top": 40,
         "padding_bottom": 40
       }

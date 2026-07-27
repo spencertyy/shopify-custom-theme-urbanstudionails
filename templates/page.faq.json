@@ -1,0 +1,319 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 40,
+        "padding_bottom": 0
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "category_1": {
+          "type": "category",
+          "settings": {
+            "title": "The essentials"
+          }
+        },
+        "question_1": {
+          "type": "question",
+          "settings": {
+            "question": "What makes UrbanStudio different from the press-ons I've seen everywhere else?",
+            "answer": "<p>Two words: made by hand. Every set is shaped, painted, and finished by our artists — never stamped out by a machine in a batch of ten thousand. That means the curve sits closer to your natural nail, the top coat has real depth, and no two sets are ever quite identical. It's the difference between a print and an original.</p>"
+          }
+        },
+        "question_2": {
+          "type": "question",
+          "settings": {
+            "question": "Will people know they're press-ons?",
+            "answer": "<p>Only if you tell them. Between the hand-finished shape, the professional-grade gel, and four sizes to choose from, the goal is a manicure that reads as <em>fresh from the salon</em> — not <em>bought online</em>. What you do with that information is entirely your business.</p>"
+          }
+        },
+        "question_3": {
+          "type": "question",
+          "settings": {
+            "question": "What's in the box?",
+            "answer": "<p>Your set of 10 nails, plus a complete application kit — nail glue, sticky tabs, an alcohol wipe, a nail file and a cuticle stick. Everything you need is included, so there's no follow-up order and no trip to the shop. Just open and apply.</p>"
+          }
+        },
+        "question_4": {
+          "type": "question",
+          "settings": {
+            "question": "Glue or sticky tabs — which should I use?",
+            "answer": "<p>Both are in the box, so you get to decide by occasion.</p><p><strong>Sticky tabs</strong> — gentler, removable in seconds, and the set stays reusable. Best for a weekend, an event, or trying a look you're not sure about.</p><p><strong>Glue</strong> — a much longer, more secure hold. Best for a holiday, a wedding, or any week you don't want to think about your nails.</p>"
+          }
+        },
+        "question_5": {
+          "type": "question",
+          "settings": {
+            "question": "Are they reusable?",
+            "answer": "<p>Yes — and we'd love you to. Applied with tabs and removed patiently, a set can be worn again and again. Glue gives you a longer wear but is harder on the nail coming off, so if reuse matters most to you, tabs are your friend.</p>"
+          }
+        },
+        "question_6": {
+          "type": "question",
+          "settings": {
+            "question": "Will they damage my natural nails?",
+            "answer": "<p>Not when they're removed the right way. No drilling, no acetone soak, no filing down your natural nail. The damage people blame on press-ons almost always comes from impatience at removal — so please don't pry. We'll walk you through it below.</p>"
+          }
+        },
+        "question_7": {
+          "type": "question",
+          "settings": {
+            "question": "How long does application actually take?",
+            "answer": "<p>About ten minutes, start to finish. Roughly the time it takes to reply to the messages you've been ignoring.</p>"
+          }
+        },
+        "category_2": {
+          "type": "category",
+          "settings": {
+            "title": "Fit & sizing"
+          }
+        },
+        "question_8": {
+          "type": "question",
+          "settings": {
+            "question": "How do I find my size?",
+            "answer": "<p>We offer four sizes — XS, S, M and L. Every product page has a 📏 Size Chart with the exact measurements: check yours against the widest point of each natural nail bed and match to the closest width.</p><p>If a nail falls between two sizes, size <strong>up</strong> — a slightly wide nail can be filed down, a narrow one can't be stretched.</p>"
+          }
+        },
+        "question_9": {
+          "type": "question",
+          "settings": {
+            "question": "I genuinely have no idea. Just tell me what to order.",
+            "answer": "<p><strong>Size S.</strong> It's what most of our customers wear, and if you're deciding at 1am and don't want to think about it, that's the one.</p>"
+          }
+        },
+        "question_10": {
+          "type": "question",
+          "settings": {
+            "question": "What if the size is wrong when it arrives?",
+            "answer": "<p>Because every set is handmade and worn directly on the body, we're not able to accept returns or exchanges for sizing — the same rule that applies to most personal care and beauty products. Which is exactly why we'd rather you spent two minutes measuring now than felt disappointed later.</p><p>Still unsure? Message us before you order. We genuinely don't mind.</p>"
+          }
+        },
+        "question_11": {
+          "type": "question",
+          "settings": {
+            "question": "What shapes and lengths do you offer?",
+            "answer": "<p>Almond, square, coffin and stiletto, in short, medium, long and extra long — though not every design comes in every combination. Available options are listed on each product page.</p>"
+          }
+        },
+        "question_12": {
+          "type": "question",
+          "settings": {
+            "question": "Can I get a set made just for me?",
+            "answer": "<p>Yes — that's what Custom Couture is for. Here's how it works:</p><ol><li><strong>Send us your idea.</strong> DM the design to us @UrbanStudio.Nails, or email hello@urbanstudionails.com. A screenshot, a Pinterest save, a sketch on a napkin — whatever you've got.</li><li><strong>We'll quote you.</strong> Every custom set is priced on its own design, depending on the shape, length and detail involved.</li><li><strong>Check out.</strong> Custom Couture is listed at $1 per unit, so you simply add the number of units that matches your quote. If we've quoted you $48, you add 48. That's the whole trick.</li></ol><p><strong>How long it takes:</strong> custom sets are made from scratch to your design and your measurements, so allow 5–20 business days before dispatch, depending on how intricate the design is and how many orders are in the studio that week.</p><p><strong>Got a date in mind?</strong> If it's for a wedding, a birthday, a graduation or a holiday, message us early and we'll reserve a slot for you.</p>"
+          }
+        },
+        "category_3": {
+          "type": "category",
+          "settings": {
+            "title": "Wear & care"
+          }
+        },
+        "question_13": {
+          "type": "question",
+          "settings": {
+            "question": "How long will they last?",
+            "answer": "<p>With sticky tabs, expect up to <strong>5 days</strong>. With glue, <strong>1–2 weeks</strong>, and often longer with careful wear.</p><p>Your mileage will vary — hot showers, gym sessions, and washing up without gloves are all quietly working against you.</p>"
+          }
+        },
+        "question_14": {
+          "type": "question",
+          "settings": {
+            "question": "How do I apply them?",
+            "answer": "<ol><li><strong>Prep properly.</strong> Push back your cuticles with the stick, lightly buff the surface with the file, and wipe each nail with the alcohol pad. This step is boring and it is also the whole ballgame — 90% of \"they fell off in two days\" traces straight back to skipping it.</li><li><strong>Size them out first.</strong> Lay all ten nails against your fingers and match each one before any adhesive comes out. Once glue is involved, there's no rearranging.</li><li><strong>Apply.</strong> Tabs for a gentler, reusable wear; glue for the long haul. Press from the cuticle down and hold firmly for 30 seconds.</li><li><strong>Give it an hour</strong> before water.</li></ol>"
+          }
+        },
+        "question_15": {
+          "type": "question",
+          "settings": {
+            "question": "How do I take them off without wrecking my nails?",
+            "answer": "<p>Soak your fingertips in warm soapy water with a few drops of oil for 10–15 minutes, then ease each nail up gently from the side with the cuticle stick. If it resists, it isn't ready — soak longer.</p><p>Never pull. The nail will come off either way; the only question is whether it takes a layer of you with it.</p>"
+          }
+        },
+        "question_16": {
+          "type": "question",
+          "settings": {
+            "question": "One popped off. Is the set ruined?",
+            "answer": "<p>Not at all. Clean off the old adhesive, re-prep the nail, and re-apply — you've got spare tabs in the kit. This is the quiet advantage of press-ons over acrylics: a bad day is a five-minute fix, not a salon appointment.</p>"
+          }
+        },
+        "category_4": {
+          "type": "category",
+          "settings": {
+            "title": "Orders & shipping"
+          }
+        },
+        "question_17": {
+          "type": "question",
+          "settings": {
+            "question": "When will my order ship?",
+            "answer": "<p>Every set on our site is <strong>in stock and ready to ship</strong>. Most orders leave us within 24 hours, Monday to Friday. During launches, holidays or exceptionally busy weeks, please allow up to 3–5 business days. Either way, you'll get a tracking number the moment yours is on its way.</p><p>The one exception is Custom Couture — those are made from scratch to your design, so allow 5–20 business days before dispatch.</p>"
+          }
+        },
+        "question_18": {
+          "type": "question",
+          "settings": {
+            "question": "How long does delivery take?",
+            "answer": "<p><strong>Within the U.S.</strong> — we ship every order on one standard service for a flat $7.99, and it usually lands 3–6 business days after dispatch.</p><p><strong>International</strong> — you'll be able to choose from several carriers and service levels at checkout, from standard to express, each with a live delivery estimate shown before you pay. Times vary a lot by destination, so pick whichever balance of speed and cost suits you. If you're working to a deadline, an express service is well worth it.</p><p>Full details are in our <a href=\"/policies/shipping-policy\">Shipping Policy</a>.</p>"
+          }
+        },
+        "question_19": {
+          "type": "question",
+          "settings": {
+            "question": "Which countries do you ship to?",
+            "answer": "<p>We currently ship to 29 countries and regions:</p><p><strong>North America</strong> — United States, Canada</p><p><strong>Europe</strong> — United Kingdom, Ireland, France, Germany, Italy, Spain, Portugal, Netherlands, Belgium, Austria, Switzerland, Denmark, Sweden, Norway, Finland, Poland, Czechia</p><p><strong>Asia & Middle East</strong> — Japan, South Korea, China, Hong Kong SAR, Singapore, Malaysia, United Arab Emirates, Israel</p><p><strong>Oceania</strong> — Australia, New Zealand</p><p>Don't see yours? Message us — we're expanding, and it helps to know where you are.</p>"
+          }
+        },
+        "question_20": {
+          "type": "question",
+          "settings": {
+            "question": "Do you offer free shipping?",
+            "answer": "<p>Yes. U.S. shipping is a flat <strong>$7.99</strong>, and <strong>free on orders over $75</strong>. International rates are calculated live at checkout based on weight, destination and the service you choose.</p>"
+          }
+        },
+        "question_21": {
+          "type": "question",
+          "settings": {
+            "question": "Will I be charged customs or import duties?",
+            "answer": "<p>Possibly, depending on where you are. Customs duties and import taxes are set by your own country, not by us, and are the customer's responsibility.</p><p>Some of our DHL services let you prepay duties at checkout, so there's nothing to settle on delivery — worth choosing if you'd rather not deal with it.</p>"
+          }
+        },
+        "question_22": {
+          "type": "question",
+          "settings": {
+            "question": "I typed the wrong address. Help.",
+            "answer": "<p>Email us right away at hello@urbanstudionails.com with your order number. Since most orders go out within 24 hours, speed matters here — if it's still with us, we'll fix it. Once it's with the carrier, it's out of our hands.</p>"
+          }
+        },
+        "category_5": {
+          "type": "category",
+          "settings": {
+            "title": "Returns"
+          }
+        },
+        "question_23": {
+          "type": "question",
+          "settings": {
+            "question": "Something's not right with my order. What can you do?",
+            "answer": "<p>Tell us and we'll take care of it. If your set arrives damaged, faulty, or simply isn't what you ordered, email hello@urbanstudionails.com within <strong>7 days</strong> of delivery with your order number and a couple of clear photos. We'll make it right — a replacement, a partial refund, or a full refund, whichever genuinely fits the situation.</p><p>And in most cases <strong>you won't need to post anything back to us</strong>. Good photos are enough. No long forms, no going in circles.</p><p>The one thing we're not able to do is take a set back because it wasn't quite what you'd pictured — a size that doesn't fit, or a shade that looked different on your screen. Nails are worn directly on the body, so like most beauty and personal care products, they can't be resold once they've left us.</p><p>So if you're torn between two sizes, or two designs, <strong>message us before you order.</strong> We'd genuinely rather spend five minutes helping you pick than have you settle for something you don't love. Full details are in our <a href=\"/policies/refund-policy\">Refund Policy</a>.</p>"
+          }
+        },
+        "question_24": {
+          "type": "question",
+          "settings": {
+            "question": "My set has slight variations from the photo. Is it faulty?",
+            "answer": "<p>Almost certainly not. Hand-painted work carries small differences in tone, placement and finish from set to set — that's the signature of something made by a person rather than a machine.</p><p>Genuine defects (lifting embellishments, cracks, rough edges) are a different matter, and we'll always make those right.</p>"
+          }
+        },
+        "category_6": {
+          "type": "category",
+          "settings": {
+            "title": "Everything else"
+          }
+        },
+        "question_25": {
+          "type": "question",
+          "settings": {
+            "question": "What payment methods do you accept?",
+            "answer": "<p>Visa, Mastercard, American Express, Discover and Diners Club, plus Apple Pay, Google Pay, Shop Pay and PayPal.</p><p><strong>Want to split the cost?</strong> Shop Pay Instalments lets you pay in instalments instead of all at once — you'll see the option at checkout.</p><p><strong>Shopping from Europe?</strong> You can pay the way you already do at home. Bancontact, BLIK, MobilePay, Przelewy24, EPS, Multibanco and TWINT are all available at checkout.</p><p>A few additional card types are available in some countries — you'll see everything that's accepted in your own checkout.</p>"
+          }
+        },
+        "question_26": {
+          "type": "question",
+          "settings": {
+            "question": "Can I see prices in my own currency?",
+            "answer": "<p>Yes. Use the country selector at the bottom of any page and prices switch to your local currency — euros, pounds, Canadian dollars, Australian dollars, yen and more — so you can see what a set actually costs you before you commit.</p><p>Depending on the payment method you choose, your card may be charged in USD and converted by your bank at their own rate, which can include a foreign transaction fee. Your bank can tell you what they charge for this.</p>"
+          }
+        },
+        "question_27": {
+          "type": "question",
+          "settings": {
+            "question": "Can I stack discount codes?",
+            "answer": "<p>One code per order. Our <strong>Buy 3 Get 1 Free</strong> and <strong>Buy 5 Get 3 Free</strong> offers apply automatically at checkout — no code needed, and no maths required from you.</p>"
+          }
+        },
+        "question_28": {
+          "type": "question",
+          "settings": {
+            "question": "How do I get a discount code?",
+            "answer": "<p>Sign up to our email list and we'll send you 15% off your first order, plus early access to new drops before they hit the site.</p>"
+          }
+        },
+        "question_29": {
+          "type": "question",
+          "settings": {
+            "question": "Do you restock sold-out designs?",
+            "answer": "<p>Sometimes. Hit <strong>Notify me when it's back</strong> on the product page and you'll be the first to know — no refreshing required.</p>"
+          }
+        },
+        "question_30": {
+          "type": "question",
+          "settings": {
+            "question": "Do you offer wholesale?",
+            "answer": "<p>We do. If you run a salon, boutique or beauty studio and would like to stock UrbanStudio, email us at hello@urbanstudionails.com with your business name, location and roughly what volume you have in mind, and we'll send over our wholesale terms.</p>"
+          }
+        },
+        "question_31": {
+          "type": "question",
+          "settings": {
+            "question": "I'd love to work with you. Where do I start?",
+            "answer": "<p>We'd love that too. Send us a DM @UrbanStudio.Nails and tell us who you are and what you'd make.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "category_1",
+        "question_1",
+        "question_2",
+        "question_3",
+        "question_4",
+        "question_5",
+        "question_6",
+        "question_7",
+        "category_2",
+        "question_8",
+        "question_9",
+        "question_10",
+        "question_11",
+        "question_12",
+        "category_3",
+        "question_13",
+        "question_14",
+        "question_15",
+        "question_16",
+        "category_4",
+        "question_17",
+        "question_18",
+        "question_19",
+        "question_20",
+        "question_21",
+        "question_22",
+        "category_5",
+        "question_23",
+        "question_24",
+        "category_6",
+        "question_25",
+        "question_26",
+        "question_27",
+        "question_28",
+        "question_29",
+        "question_30",
+        "question_31"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "color_scheme": "scheme-1",
+        "padding_top": 12,
+        "padding_bottom": 64
+      }
+    }
+  },
+  "order": [
+    "main",
+    "faq"
+  ]
+}
