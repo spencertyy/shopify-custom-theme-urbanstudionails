@@ -46,6 +46,17 @@
       gap: 0 4rem;
       margin-bottom: 0;
     }
+    /* Dawn's .grid is a flex layout that divides space by giving each
+       .grid__item a percentage width — grid--4-col-desktop sets 25%. Once the
+       wrapper above becomes a real CSS grid, that percentage resolves against
+       the track instead of the row, leaving each column of links at a quarter
+       of its track (~79px) and wrapping "Brand Story" onto two lines. Let the
+       tracks do the sizing. */
+    .section-{{ section.id }}-padding .footer__blocks-wrapper > .grid__item {
+      width: auto;
+      max-width: none;
+      padding-left: 0;
+    }
     .section-{{ section.id }}-padding .footer-block--newsletter {
       grid-column: 3 / 4;
       margin-top: 0;
