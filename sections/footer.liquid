@@ -65,11 +65,17 @@
          it reads better centred against the taller columns either side. */
       align-self: center;
     }
+    /* Menu on the right, newsletter on the left — swapped from the source
+       order, which still runs menu first.
+
+       Flex rather than two auto grid tracks: with the Policy column disabled
+       only one block is left, and a fixed second track kept reserving space to
+       its right, holding the menu 80px short of the edge. */
     .section-{{ section.id }}-padding .footer__blocks-wrapper {
-      grid-column: 1 / 2;
-      display: grid;
-      grid-template-columns: auto auto;
-      justify-content: start;
+      grid-column: 3 / 4;
+      grid-row: 1;
+      display: flex;
+      justify-content: flex-end;
       gap: 0 8rem;
       margin-bottom: 0;
     }
@@ -85,10 +91,10 @@
       padding-left: 0;
     }
     .section-{{ section.id }}-padding .footer-block--newsletter {
-      /* Third track, pushed to its far edge so the block finishes at the same
-         inset the menu column starts from. */
-      grid-column: 3 / 4;
-      justify-self: end;
+      /* First track now, held to the left edge. */
+      grid-column: 1 / 2;
+      grid-row: 1;
+      justify-self: start;
       margin-top: 0;
       align-items: flex-start;
       justify-content: flex-start;
@@ -187,8 +193,9 @@
      takes the same tracked caps as the column headings above it and enough
      size to be read rather than skimmed past. */
   .section-{{ section.id }}-padding .footer__copyright .copyright__content,
-  .section-{{ section.id }}-padding .footer__copyright .policies a {
-    font-size: 1.3rem;
+  .section-{{ section.id }}-padding .footer__copyright .policies a,
+  .section-{{ section.id }}-padding .footer__localization .caption-large {
+    font-size: 1.5rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
@@ -224,11 +231,19 @@
   .section-{{ section.id }}-padding .footer__content-bottom {
     display: flex;
     flex-direction: column;
-    padding-bottom: 4.8rem;
+    /* 1.6rem left the icons overhanging the footer's bottom edge by 4px —
+       the icon row is taller than its text-sized line box. */
+    padding-bottom: 2.8rem;
   }
+  /* A dashed rule sets the payment icons apart from the policy line above.
+     The rule sits on this wrapper's top edge, so margin-top is the distance to
+     the line above it and padding-top the distance down to the icons — the
+     latter stays tight so the rule reads as belonging to the icons. */
   .section-{{ section.id }}-padding .footer__content-bottom > .footer__content-bottom-wrapper:first-of-type {
     order: 2;
     margin-top: 2.4rem;
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(var(--color-foreground), 0.35);
   }
   .section-{{ section.id }}-padding .footer__content-bottom > .footer__content-bottom-wrapper:last-of-type {
     order: 1;
@@ -266,10 +281,35 @@
   .section-{{ section.id }}-padding .footer__localization localization-form {
     margin: 0;
   }
-  .section-{{ section.id }}-padding .footer__localization localization-form > div {
+  /* The label and the selector are wrapped in a plain <div> inside the <form>,
+     not directly under <localization-form> — targeting the custom element's
+     children misses it and leaves the label stacked above the control. */
+  .section-{{ section.id }}-padding .footer__localization .localization-form,
+  .section-{{ section.id }}-padding .footer__localization .localization-form > div {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 0 1.2rem;
+    margin: 0;
+  }
+
+  /* The selector is a white filled box by default. Stripped back to the same
+     treatment as the email field: transparent, no frame, one rule underneath. */
+  .section-{{ section.id }}-padding .footer__localization .localization-form__select,
+  .section-{{ section.id }}-padding .footer__localization .disclosure__button {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(var(--color-foreground), 0.45);
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0.4rem 0;
+    min-height: 0;
+    font-size: 1.4rem;
+    transition: border-bottom-color var(--duration-short) ease;
+  }
+  .section-{{ section.id }}-padding .footer__localization .localization-form__select:hover,
+  .section-{{ section.id }}-padding .footer__localization .disclosure__button:hover,
+  .section-{{ section.id }}-padding .footer__localization .disclosure__button[aria-expanded='true'] {
+    border-bottom-color: rgba(var(--color-foreground), 1);
   }
 
   /* The footer menu inherits the main nav, whose items are laid out inline for
