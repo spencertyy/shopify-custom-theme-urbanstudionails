@@ -170,6 +170,25 @@
     border-top: none;
   }
 
+  /* Dawn styles this row as fine print via .caption. Once it carries the real
+     navigation — sizing, FAQ, contact — it is not fine print any more, so it
+     takes the same tracked caps as the column headings above it and enough
+     size to be read rather than skimmed past. */
+  .section-{{ section.id }}-padding .footer__copyright .copyright__content,
+  .section-{{ section.id }}-padding .footer__copyright .policies a {
+    font-size: 1.3rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .section-{{ section.id }}-padding .footer__copyright .policies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 2.4rem;
+  }
+  .section-{{ section.id }}-padding .footer__copyright .policies li {
+    margin: 0;
+  }
+
   .footer__brand-wordmark-{{ section.id }} {
     padding: 2rem 0 0;
     margin-top: 2rem;
@@ -490,7 +509,22 @@
           >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
         </small>
         <small class="copyright__content">{{ powered_by_link }}</small>
-        {%- if section.settings.show_policy -%}
+        {%- comment -%}
+          shop.policies only ever yields the policy pages configured in the
+          Shopify admin, under titles Shopify fixes ("Refund policy", "Terms of
+          service"). A linklist can hold anything and be worded freely, so it
+          takes precedence when one is chosen; the policy loop stays as the
+          fallback so nothing disappears if the menu is later unset.
+        {%- endcomment -%}
+        {%- if section.settings.bottom_menu != blank -%}
+          <ul class="policies list-unstyled">
+            {%- for link in section.settings.bottom_menu.links -%}
+              <li>
+                <small class="copyright__content"><a href="{{ link.url }}">{{ link.title | escape }}</a></small>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- elsif section.settings.show_policy -%}
           <ul class="policies list-unstyled">
             {%- for policy in shop.policies -%}
               {%- if policy != blank -%}
@@ -715,6 +749,12 @@
       "id": "show_policy",
       "default": true,
       "label": "t:sections.footer.settings.show_policy.label"
+    },
+    {
+      "type": "link_list",
+      "id": "bottom_menu",
+      "label": "Bottom row menu",
+      "info": "Replaces the policy links on the bottom row, so the wording and order are yours. Leave empty to keep Shopify's policy links."
     },
     {
       "type": "header",
