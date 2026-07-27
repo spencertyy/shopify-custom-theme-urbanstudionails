@@ -180,13 +180,40 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
+  /* The copyright is an inline <small> and the link list is a block-level flex
+     that fills the row, so by default they can only stack. Making the wrapper
+     a flex row puts the year and the links on one line, the way the reference
+     footers read. */
+  .section-{{ section.id }}-padding .footer__copyright {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.8rem 2rem;
+  }
   .section-{{ section.id }}-padding .footer__copyright .policies {
     display: flex;
     flex-wrap: wrap;
-    gap: 0 2.4rem;
+    gap: 0.8rem 2rem;
   }
   .section-{{ section.id }}-padding .footer__copyright .policies li {
+    flex: 0 0 auto;
     margin: 0;
+  }
+  /* Dawn separates these links with a "·" drawn as a 20px ::before. It does not
+     show up in textContent, so it reads purely as extra space — the gap looked
+     twice what was set. The reference footers separate on whitespace alone. */
+  .section-{{ section.id }}-padding .footer__copyright .policies li::before {
+    display: none;
+  }
+  /* The bottom row is two equal flex columns, so the copyright and its links
+     were being asked to fit in half the width while the country and language
+     selectors kept the other half for two short controls. Weight the split
+     toward the side that carries the text. */
+  .section-{{ section.id }}-padding .footer__content-bottom-wrapper .footer__localization {
+    flex: 1 1 auto;
+  }
+  .section-{{ section.id }}-padding .footer__content-bottom-wrapper .footer__column--info {
+    flex: 2 1 auto;
   }
 
   .footer__brand-wordmark-{{ section.id }} {
