@@ -32,18 +32,33 @@
   }
 
   @media screen and (min-width: 990px) {
+    /* Dawn caps the footer at --page-width and centres it, which on a wide
+       screen leaves a large empty margin on both sides while the three columns
+       sit marooned in the middle. Run it edge to edge with a fixed inset
+       instead, so the content sits close to the viewport edge at any width. */
+    .section-{{ section.id }}-padding .footer__content-top.page-width,
+    .section-{{ section.id }}-padding .footer__content-bottom-wrapper.page-width {
+      max-width: 100%;
+      padding-left: 4rem;
+      padding-right: 4rem;
+    }
+    /* Two tracks, not three: the menus take exactly the width their links need
+       and stay left, the newsletter takes the remainder and is pushed right.
+       The empty space collects in the middle rather than being distributed
+       evenly, which is what pulls the two menu columns together. */
     .section-{{ section.id }}-padding .footer__content-top {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: auto 1fr;
       align-items: start;
       gap: 0 4rem;
       padding-bottom: 4rem;
     }
     .section-{{ section.id }}-padding .footer__blocks-wrapper {
-      grid-column: 1 / 3;
+      grid-column: 1 / 2;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0 4rem;
+      grid-template-columns: auto auto;
+      justify-content: start;
+      gap: 0 8rem;
       margin-bottom: 0;
     }
     /* Dawn's .grid is a flex layout that divides space by giving each
@@ -58,7 +73,10 @@
       padding-left: 0;
     }
     .section-{{ section.id }}-padding .footer-block--newsletter {
-      grid-column: 3 / 4;
+      /* Second track now, not third — and pushed to its far edge so the block
+         finishes at the same inset the menus start from. */
+      grid-column: 2 / 3;
+      justify-self: end;
       margin-top: 0;
       align-items: flex-start;
       justify-content: flex-start;
