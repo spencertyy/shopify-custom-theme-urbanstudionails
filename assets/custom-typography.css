@@ -228,6 +228,47 @@
   margin-top: calc(-1 * var(--header-height, 48px));
 }
 
+/* Over the hero image the nav needs to be white, but only there. Rather than
+   colouring each link, icon and select in turn, redefine --color-foreground
+   for this subtree: Dawn expresses every one of them as
+   rgba(var(--color-foreground), n), so they all follow, including the hover
+   underline and the cart count.
+
+   Scoped to exactly the same selector as the transparent background above, so
+   the moment the sticky header engages — or on any page that is not the
+   homepage — the pink comes back and so does the dark text. White on that pink
+   would sit at 1.7:1, far below the 4.5:1 needed to stay readable. */
+.template-index .section-header:not(.shopify-section-header-sticky) .header-wrapper {
+  --color-foreground: 255, 255, 255;
+  --color-link: 255, 255, 255;
+}
+/* Dawn holds nav links at 75% so they sit back from the page content. Over a
+   photograph that reads as grey rather than understated, so take them to full
+   strength — this is the one place the nav has to compete with an image. */
+.template-index .section-header:not(.shopify-section-header-sticky) .header__menu-item {
+  color: rgb(var(--color-foreground));
+}
+
+/* White alone is not enough over a photograph. The hero runs pale at the top
+   left, where white text lands around 1.5:1 against it — a light shadow gives
+   every glyph its own edge and carries it across whatever the image does,
+   including a future hero we have not seen.
+
+   Shadow on the type, drop-shadow on the icons: text-shadow does nothing to an
+   SVG, and filter on a shared ancestor would catch the logo too. The logo is
+   an image with its own colour and is deliberately left untouched. */
+.template-index .section-header:not(.shopify-section-header-sticky) .header__menu-item,
+.template-index .section-header:not(.shopify-section-header-sticky) .header__icon,
+.template-index .section-header:not(.shopify-section-header-sticky) localization-form button,
+.template-index .section-header:not(.shopify-section-header-sticky) .header__active-menu-item {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+}
+.template-index .section-header:not(.shopify-section-header-sticky) .header__icon svg,
+.template-index .section-header:not(.shopify-section-header-sticky) localization-form svg,
+.template-index .section-header:not(.shopify-section-header-sticky) .header__menu-item svg {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.45));
+}
+
 /* ---- Type hierarchy: buttons borrow the heading face ----
    theme.liquid loads exactly five font files: the body face in regular, bold
    and both italics, plus the heading face. A rule like `font-weight: 500` has
