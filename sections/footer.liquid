@@ -250,12 +250,26 @@
   }
 
   /* Copyright and links on the left, currency on the right, one line. */
+  /* Centred now that the currency selector has been turned off and the
+     copyright line is the only thing on this row — space-between would just
+     pin it to the left edge. */
   .section-{{ section.id }}-padding .footer__content-bottom > .footer__content-bottom-wrapper:last-of-type {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    justify-content: space-between;
+    justify-content: center;
     gap: 1.2rem 3rem;
+  }
+  .section-{{ section.id }}-padding .footer__copyright {
+    justify-content: center;
+  }
+  /* The wrapper div renders whether or not the selectors inside it do — the
+     Liquid conditions are on its contents, not on the div. Left in place it
+     still contributes a flex gap and pulls the centred copyright off centre. */
+  .section-{{ section.id }}-padding
+    .footer__content-bottom-wrapper
+    .footer__localization:not(:has(localization-form)) {
+    display: none;
   }
   /* .footer__column carries width: 100%, which flex: 0 0 auto cannot override —
      a stated width wins over an auto basis. Without clearing it the block fills

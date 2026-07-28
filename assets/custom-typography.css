@@ -359,6 +359,63 @@
   filter: none;
 }
 
+/* ---- Header while a panel is open ----
+   The white nav exists because the header floats over the hero photograph.
+   The moment a dropdown opens that premise is gone: a panel is covering the
+   image, so the bar needs to become a solid surface and the type dark again —
+   otherwise white text sits on a white panel, which is exactly what made the
+   country selector look like an empty box.
+
+   :has() is what makes this possible in CSS alone — the state lives on a
+   descendant <details>, and this styles the ancestor from it. It covers the
+   mega menu and the country selector in one rule, since Dawn builds both on
+   <details>. */
+.template-index .section-header:not(.shopify-section-header-sticky):has(details[open]),
+.template-index
+  .section-header:not(.shopify-section-header-sticky):has(.disclosure__button[aria-expanded='true']) {
+  background: rgb(var(--color-background)) !important;
+}
+.template-index .section-header:not(.shopify-section-header-sticky):has(details[open]) .header-wrapper,
+.template-index
+  .section-header:not(.shopify-section-header-sticky):has(.disclosure__button[aria-expanded='true'])
+  .header-wrapper {
+  --color-foreground: 18, 18, 18;
+  --color-link: 18, 18, 18;
+  background: rgb(var(--color-background));
+}
+.template-index .section-header:not(.shopify-section-header-sticky):has(details[open]) .header__menu-item,
+.template-index .section-header:not(.shopify-section-header-sticky):has(details[open]) .header__icon,
+.template-index .section-header:not(.shopify-section-header-sticky):has(details[open]) localization-form button,
+.template-index
+  .section-header:not(.shopify-section-header-sticky):has(.disclosure__button[aria-expanded='true'])
+  .header__menu-item,
+.template-index
+  .section-header:not(.shopify-section-header-sticky):has(.disclosure__button[aria-expanded='true'])
+  .header__icon,
+.template-index
+  .section-header:not(.shopify-section-header-sticky):has(.disclosure__button[aria-expanded='true'])
+  localization-form
+  button {
+  color: rgb(var(--color-foreground));
+  text-shadow: none;
+}
+.template-index .section-header:not(.shopify-section-header-sticky):has(details[open]) svg,
+.template-index
+  .section-header:not(.shopify-section-header-sticky):has(.disclosure__button[aria-expanded='true'])
+  svg {
+  filter: none;
+}
+
+/* Same correction applied directly to the dropdown panels, without relying on
+   :has(). Should a browser not support it, the bar stays white-on-photo but
+   the panels themselves remain readable rather than blank. */
+.template-index .section-header:not(.shopify-section-header-sticky) .disclosure__list-wrapper,
+.template-index .section-header:not(.shopify-section-header-sticky) .disclosure__list,
+.template-index .section-header:not(.shopify-section-header-sticky) .mega-menu__content {
+  --color-foreground: 18, 18, 18;
+  --color-link: 18, 18, 18;
+}
+
 /* ---- Mega menu ----
    Dawn lays the panel out on six equal tracks, so three columns of links take
    the left half of the row and the rest sits empty, while longer entries like
