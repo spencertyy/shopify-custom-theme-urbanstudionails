@@ -50,7 +50,9 @@
   overflow: hidden;
 }
 
-.template-collection .collection-hero--with-image .collection-hero__image-container {
+.template-collection
+  .collection-hero--with-image
+  .collection-hero__image-container {
   position: absolute;
   inset: 0;
   height: auto;
@@ -60,8 +62,10 @@
   box-shadow: none;
 }
 
-.template-collection .collection-hero--with-image .collection-hero__image-container::after {
-  content: '';
+.template-collection
+  .collection-hero--with-image
+  .collection-hero__image-container::after {
+  content: "";
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.28);
@@ -79,7 +83,9 @@
   text-align: center;
 }
 
-.template-collection .collection-hero--with-image .collection-hero__text-wrapper {
+.template-collection
+  .collection-hero--with-image
+  .collection-hero__text-wrapper {
   position: relative;
   z-index: 1;
   flex-basis: auto;
@@ -89,9 +95,13 @@
 }
 
 .template-collection .collection-hero--with-image .collection-hero__title,
-.template-collection .collection-hero--with-image .collection-hero__description {
+.template-collection
+  .collection-hero--with-image
+  .collection-hero__description {
   color: rgb(255, 255, 255);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 2px 16px rgba(0, 0, 0, 0.4);
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.5),
+    0 2px 16px rgba(0, 0, 0, 0.4);
 }
 
 @media screen and (min-width: 750px) {
@@ -119,7 +129,9 @@
     scroll-padding-left: 0;
   }
 
-  slider-component.slider-component-full-width .slider--desktop .slider__slide:first-child {
+  slider-component.slider-component-full-width
+    .slider--desktop
+    .slider__slide:first-child {
     margin-left: 0;
     scroll-margin-left: 0;
   }
@@ -150,7 +162,9 @@
   .template-index .banner:not(.slideshow) .banner__heading,
   .template-index .banner:not(.slideshow) .banner__text {
     color: rgb(255, 255, 255);
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 2px 14px rgba(0, 0, 0, 0.4);
+    text-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.5),
+      0 2px 14px rgba(0, 0, 0, 0.4);
   }
 
   /* Button becomes a plain text link with a rule underneath. Dawn draws the
@@ -174,7 +188,7 @@
   }
 
   .template-index .banner:not(.slideshow) .button::after {
-    content: '';
+    content: "";
     position: absolute;
     top: auto;
     right: auto;
@@ -194,7 +208,6 @@
   .template-index .banner:not(.slideshow) .button:focus-visible::after {
     width: 45%;
   }
-
 }
 
 /* The hero slideshow is excluded from the rules above because they also drop
@@ -227,7 +240,7 @@
 }
 
 .template-index .slideshow .button::after {
-  content: '';
+  content: "";
   position: absolute;
   top: auto;
   right: auto;
@@ -297,7 +310,9 @@
   z-index: 4;
   background: transparent !important;
 }
-.template-index .section-header:not(.shopify-section-header-sticky) .header-wrapper {
+.template-index
+  .section-header:not(.shopify-section-header-sticky)
+  .header-wrapper {
   background: transparent;
   border-bottom: none;
 }
@@ -315,14 +330,18 @@
    the moment the sticky header engages — or on any page that is not the
    homepage — the pink comes back and so does the dark text. White on that pink
    would sit at 1.7:1, far below the 4.5:1 needed to stay readable. */
-.template-index .section-header:not(.shopify-section-header-sticky) .header-wrapper {
+.template-index
+  .section-header:not(.shopify-section-header-sticky)
+  .header-wrapper {
   --color-foreground: 255, 255, 255;
   --color-link: 255, 255, 255;
 }
 /* Dawn holds nav links at 75% so they sit back from the page content. Over a
    photograph that reads as grey rather than understated, so take them to full
    strength — this is the one place the nav has to compete with an image. */
-.template-index .section-header:not(.shopify-section-header-sticky) .header__menu-item {
+.template-index
+  .section-header:not(.shopify-section-header-sticky)
+  .header__menu-item {
   color: rgb(var(--color-foreground));
 }
 
@@ -334,15 +353,33 @@
    Shadow on the type, drop-shadow on the icons: text-shadow does nothing to an
    SVG, and filter on a shared ancestor would catch the logo too. The logo is
    an image with its own colour and is deliberately left untouched. */
-.template-index .section-header:not(.shopify-section-header-sticky) .header__menu-item,
-.template-index .section-header:not(.shopify-section-header-sticky) .header__icon,
-.template-index .section-header:not(.shopify-section-header-sticky) localization-form button,
-.template-index .section-header:not(.shopify-section-header-sticky) .header__active-menu-item {
+.template-index
+  .section-header:not(.shopify-section-header-sticky)
+  .header__menu-item,
+.template-index
+  .section-header:not(.shopify-section-header-sticky)
+  .header__icon,
+.template-index
+  .section-header:not(.shopify-section-header-sticky)
+  localization-form
+  button,
+.template-index
+  .section-header:not(.shopify-section-header-sticky)
+  .header__active-menu-item {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
 }
-.template-index .section-header:not(.shopify-section-header-sticky) .header__icon svg,
-.template-index .section-header:not(.shopify-section-header-sticky) localization-form svg,
-.template-index .section-header:not(.shopify-section-header-sticky) .header__menu-item svg {
+.template-index
+  .section-header:not(.shopify-section-header-sticky)
+  .header__icon
+  svg,
+.template-index
+  .section-header:not(.shopify-section-header-sticky)
+  localization-form
+  svg,
+.template-index
+  .section-header:not(.shopify-section-header-sticky)
+  .header__menu-item
+  svg {
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.45));
 }
 /* Dropdown panels open on their own light background with dark text, and they
@@ -350,12 +387,24 @@
    which their colour scheme redefines. The shadow above is a plain property
    with no such mechanism, so it inherits into the panel and puts a dark halo
    behind dark text. Switch it off where the photograph is no longer behind. */
-.template-index .section-header:not(.shopify-section-header-sticky) .header__submenu .header__menu-item,
-.template-index .section-header:not(.shopify-section-header-sticky) .mega-menu__content .header__menu-item {
+.template-index
+  .section-header:not(.shopify-section-header-sticky)
+  .header__submenu
+  .header__menu-item,
+.template-index
+  .section-header:not(.shopify-section-header-sticky)
+  .mega-menu__content
+  .header__menu-item {
   text-shadow: none;
 }
-.template-index .section-header:not(.shopify-section-header-sticky) .header__submenu svg,
-.template-index .section-header:not(.shopify-section-header-sticky) .mega-menu__content svg {
+.template-index
+  .section-header:not(.shopify-section-header-sticky)
+  .header__submenu
+  svg,
+.template-index
+  .section-header:not(.shopify-section-header-sticky)
+  .mega-menu__content
+  svg {
   filter: none;
 }
 
@@ -370,47 +419,80 @@
    descendant <details>, and this styles the ancestor from it. It covers the
    mega menu and the country selector in one rule, since Dawn builds both on
    <details>. */
-.template-index .section-header:not(.shopify-section-header-sticky):has(details[open]),
-.template-index .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover),
 .template-index
-  .section-header:not(.shopify-section-header-sticky):has(.disclosure__button[aria-expanded='true']) {
+  .section-header:not(.shopify-section-header-sticky):has(details[open]),
+.template-index
+  .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover),
+.template-index
+  .section-header:not(.shopify-section-header-sticky):has(
+    .disclosure__button[aria-expanded="true"]
+  ) {
   background: rgb(var(--color-background)) !important;
 }
-.template-index .section-header:not(.shopify-section-header-sticky):has(details[open]) .header-wrapper,
-.template-index .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover) .header-wrapper,
 .template-index
-  .section-header:not(.shopify-section-header-sticky):has(.disclosure__button[aria-expanded='true'])
+  .section-header:not(.shopify-section-header-sticky):has(details[open])
+  .header-wrapper,
+.template-index
+  .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover)
+  .header-wrapper,
+.template-index
+  .section-header:not(.shopify-section-header-sticky):has(
+    .disclosure__button[aria-expanded="true"]
+  )
   .header-wrapper {
   --color-foreground: 18, 18, 18;
   --color-link: 18, 18, 18;
   background: rgb(var(--color-background));
 }
-.template-index .section-header:not(.shopify-section-header-sticky):has(details[open]) .header__menu-item,
-.template-index .section-header:not(.shopify-section-header-sticky):has(details[open]) .header__icon,
-.template-index .section-header:not(.shopify-section-header-sticky):has(details[open]) localization-form button,
-.template-index .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover) .header__menu-item,
-.template-index .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover) .header__icon,
+.template-index
+  .section-header:not(.shopify-section-header-sticky):has(details[open])
+  .header__menu-item,
+.template-index
+  .section-header:not(.shopify-section-header-sticky):has(details[open])
+  .header__icon,
+.template-index
+  .section-header:not(.shopify-section-header-sticky):has(details[open])
+  localization-form
+  button,
+.template-index
+  .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover)
+  .header__menu-item,
+.template-index
+  .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover)
+  .header__icon,
 .template-index
   .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover)
   localization-form
   button,
 .template-index
-  .section-header:not(.shopify-section-header-sticky):has(.disclosure__button[aria-expanded='true'])
+  .section-header:not(.shopify-section-header-sticky):has(
+    .disclosure__button[aria-expanded="true"]
+  )
   .header__menu-item,
 .template-index
-  .section-header:not(.shopify-section-header-sticky):has(.disclosure__button[aria-expanded='true'])
+  .section-header:not(.shopify-section-header-sticky):has(
+    .disclosure__button[aria-expanded="true"]
+  )
   .header__icon,
 .template-index
-  .section-header:not(.shopify-section-header-sticky):has(.disclosure__button[aria-expanded='true'])
+  .section-header:not(.shopify-section-header-sticky):has(
+    .disclosure__button[aria-expanded="true"]
+  )
   localization-form
   button {
   color: rgb(var(--color-foreground));
   text-shadow: none;
 }
-.template-index .section-header:not(.shopify-section-header-sticky):has(details[open]) svg,
-.template-index .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover) svg,
 .template-index
-  .section-header:not(.shopify-section-header-sticky):has(.disclosure__button[aria-expanded='true'])
+  .section-header:not(.shopify-section-header-sticky):has(details[open])
+  svg,
+.template-index
+  .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover)
+  svg,
+.template-index
+  .section-header:not(.shopify-section-header-sticky):has(
+    .disclosure__button[aria-expanded="true"]
+  )
   svg {
   filter: none;
 }
@@ -418,9 +500,15 @@
 /* Same correction applied directly to the dropdown panels, without relying on
    :has(). Should a browser not support it, the bar stays white-on-photo but
    the panels themselves remain readable rather than blank. */
-.template-index .section-header:not(.shopify-section-header-sticky) .disclosure__list-wrapper,
-.template-index .section-header:not(.shopify-section-header-sticky) .disclosure__list,
-.template-index .section-header:not(.shopify-section-header-sticky) .mega-menu__content {
+.template-index
+  .section-header:not(.shopify-section-header-sticky)
+  .disclosure__list-wrapper,
+.template-index
+  .section-header:not(.shopify-section-header-sticky)
+  .disclosure__list,
+.template-index
+  .section-header:not(.shopify-section-header-sticky)
+  .mega-menu__content {
   --color-foreground: 18, 18, 18;
   --color-link: 18, 18, 18;
 }
@@ -582,4 +670,30 @@ inbox-online-store-chat#ShopifyChat {
    Contact and the policies does not feel they have changed sites. */
 .main-page-title.page-title {
   font-size: 2.8rem;
+  text-align: center;
+}
+body:has(.faq__item) .main-page-title.page-title {
+  font-size: 3.6rem;
+  text-align: center;
+}
+
+/* Dawn wraps the current page's nav link in an extra .header__active-menu-item —
+   that element is what draws its underline. It picks up the shadow along with
+   everything else in the bar, but the rules that clear the shadow when a panel
+   opens listed only .header__menu-item, so the active item kept a dark halo
+   once the bar had turned white and every other item had gone clean.
+
+   Stated separately rather than folded into those selector lists: this file has
+   been through a formatter, and appending a self-contained rule is safer than
+   editing a selector list that now spans a dozen wrapped lines. */
+.template-index
+  .section-header:not(.shopify-section-header-sticky):has(details[open])
+  .header__active-menu-item,
+.template-index
+  .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover)
+  .header__active-menu-item,
+.template-index
+  .section-header:not(.shopify-section-header-sticky):has(.disclosure__button[aria-expanded='true'])
+  .header__active-menu-item {
+  text-shadow: none;
 }
