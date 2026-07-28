@@ -55,7 +55,9 @@
       grid-template-columns: 1fr auto 1fr;
       align-items: start;
       gap: 0 4rem;
-      padding-bottom: 2.4rem;
+      /* ① 内容与虚线之间的空白，第一段（另一段见 .footer__content-bottom
+         的 padding-top）。两段相加就是虚线上方的总间距。 */
+      padding-bottom: 1.6rem;
     }
     /* grid-row is stated as well as grid-column: this block comes after the
        newsletter in the markup, and grid's default sparse placement never goes
@@ -100,6 +102,16 @@
       align-items: flex-start;
       justify-content: flex-start;
     }
+    /* Second row spanning all three tracks: the icons clear the wordmark and
+       land centred just above the rule. Living on its own row rather than
+       inside the brand block is what lets the gap above it grow without
+       pushing the wordmark up. */
+    .section-{{ section.id }}-padding .footer__social-below-wordmark-{{ section.id }} {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      justify-self: center;
+      margin-top: 3.2rem;
+    }
     .section-{{ section.id }}-padding .footer-block__newsletter {
       text-align: left;
       /* was 28rem — a one-line heading fitted, but the subtext under it wrapped
@@ -122,7 +134,12 @@
       flex-direction: column;
       gap: 3.2rem;
     }
+    /* Wordmark first, social icons straight after it — they are siblings now,
+       so both need an order to stay together at the top of the stack. */
     .section-{{ section.id }}-padding .footer__brand-block-{{ section.id }} {
+      order: -2;
+    }
+    .section-{{ section.id }}-padding .footer__social-below-wordmark-{{ section.id }} {
       order: -1;
     }
     .section-{{ section.id }}-padding .footer__blocks-wrapper,
@@ -132,8 +149,13 @@
     /* Left as one centred column: a footer read on a phone is scanned down the
        middle, and centring the wordmark but ranging the links left leaves the
        stack looking unresolved. */
+    /* The heading is named as well as its container — Dawn ranges
+       .footer-block__heading left with a rule of its own, which an inherited
+       text-align on the parent cannot override. */
     .section-{{ section.id }}-padding .footer-block__newsletter,
-    .section-{{ section.id }}-padding .footer-block--menu {
+    .section-{{ section.id }}-padding .footer-block--menu,
+    .section-{{ section.id }}-padding .footer-block--menu .footer-block__heading,
+    .section-{{ section.id }}-padding .footer-block__newsletter .footer-block__heading {
       text-align: center;
     }
     /* Four short links stacked cost 180px of scrolling on a phone for very
@@ -323,9 +345,9 @@
     border-top: 1px dashed rgba(var(--color-foreground), 0.35);
   }
   .section-{{ section.id }}-padding .footer__content-bottom {
-    /* Trimming all three sources at once overshot — 74px became 20px, which
-       read as cramped. This puts back the difference in one place. */
-    padding-top: 3.6rem;
+    /* ② 内容与虚线之间的空白，第二段。想让虚线离内容更近就减小这个数字，
+       想留更多空气就调大；与上面 ① 的 padding-bottom 相加即总间距。 */
+    padding-top: 2rem;
   }
   .section-{{ section.id }}-padding .footer__copyright {
     justify-content: center;
@@ -707,16 +729,21 @@
               </svg>
             {%- endif -%}
           </div>
-          <div class="footer__social-below-wordmark-{{ section.id }}">
-            {%- if shop.features.follow_on_shop? and section.settings.enable_follow_on_shop -%}
-              <div class="footer__follow-on-shop">
-                {{ shop | login_button: action: 'follow' }}
-              </div>
-            {%- endif -%}
-            {%- if section.settings.show_social and has_social_icons -%}
-              {%- render 'social-icons', class: 'footer__list-social' -%}
-            {%- endif -%}
-          </div>
+        </div>
+        {%- comment -%}
+          A sibling of the brand block rather than a child of it, so the top row
+          can place it on a second line of its own — centred above the dashed
+          rule on desktop, directly under the wordmark on phones.
+        {%- endcomment -%}
+        <div class="footer__social-below-wordmark-{{ section.id }}">
+          {%- if shop.features.follow_on_shop? and section.settings.enable_follow_on_shop -%}
+            <div class="footer__follow-on-shop">
+              {{ shop | login_button: action: 'follow' }}
+            </div>
+          {%- endif -%}
+          {%- if section.settings.show_social and has_social_icons -%}
+            {%- render 'social-icons', class: 'footer__list-social' -%}
+          {%- endif -%}
         </div>
       </div>
     {%- endunless -%}
