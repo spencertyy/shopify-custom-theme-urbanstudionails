@@ -534,3 +534,44 @@ inbox-online-store-chat#ShopifyChat {
   transform: scale(0.82);
   transform-origin: bottom right;
 }
+
+/* ---- Policy pages (terms, refund, privacy, shipping) ----
+   Shopify renders these from the admin's policy editor into
+   .shopify-policy__container, so the type here is whatever the editor emitted
+   and the theme's page styles.
+
+   Section headings pasted as <h3> would otherwise inherit the theme's heading
+   scale and tower over the text. One step above the body size, bold, is enough
+   to break a wall of legal text into scannable sections — which is what
+   Pearlmano and YIJIU both do, at their body size exactly.
+
+   The page title is brought down from 40px for the same reason: it names a
+   document nobody chose to read, and does not need to announce itself. */
+.shopify-policy__title h1 {
+  font-size: 2.8rem;
+}
+
+.shopify-policy__body h1,
+.shopify-policy__body h2,
+.shopify-policy__body h3,
+.shopify-policy__body h4 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 3.2rem 0 0.8rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+/* A <strong> alone on its line is how the Shopify editor marks a heading when
+   the text was pasted as plain text rather than HTML. Treated the same, so the
+   page looks right either way. */
+.shopify-policy__body p > strong:only-child {
+  display: inline-block;
+  font-size: 1.8rem;
+  margin-top: 1.6rem;
+}
+
+.shopify-policy__body p {
+  margin: 0 0 1.4rem;
+}
