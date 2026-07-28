@@ -1,0 +1,187 @@
+{
+  "sections": {
+    "collab": {
+      "type": "collab-landing",
+      "blocks": {
+        "perk_gifted": {
+          "type": "perk",
+          "settings": {
+            "icon": "gift",
+            "title": "A set on us",
+            "text": "Tell us which of our aesthetics is most you — Coquette Dream, Clean Girl or Dark Feminine — and we'll send a set that actually suits your feed."
+          }
+        },
+        "perk_commission": {
+          "type": "perk",
+          "settings": {
+            "icon": "commission",
+            "title": "Commission on every sale",
+            "text": "You get your own link and discount code. Anything sold through it earns you a cut, paid out automatically through Shopify Collabs."
+          }
+        },
+        "perk_early": {
+          "type": "perk",
+          "settings": {
+            "icon": "early",
+            "title": "First look at new drops",
+            "text": "You'll see new designs before they go live, and you can tell us what you'd want us to make next. We do listen."
+          }
+        },
+        "crit_real": {
+          "type": "criteria",
+          "settings": {
+            "text": "A real account you actually post to — Instagram, TikTok or Pinterest. We don't have a follower minimum, and we're not going to pretend we do."
+          }
+        },
+        "crit_camera": {
+          "type": "criteria",
+          "settings": {
+            "text": "You're comfortable showing your hands on camera. Nail content doesn't work as a repost."
+          }
+        },
+        "crit_apply": {
+          "type": "criteria",
+          "settings": {
+            "text": "You know how to apply press-ons — or you're happy to learn. We'll send you our guide either way."
+          }
+        },
+        "crit_deliver": {
+          "type": "criteria",
+          "settings": {
+            "text": "You can post within about ten days of your set arriving. Life happens, but we'd rather agree on that up front."
+          }
+        }
+      },
+      "block_order": [
+        "perk_gifted",
+        "perk_commission",
+        "perk_early",
+        "crit_real",
+        "crit_camera",
+        "crit_apply",
+        "crit_deliver"
+      ],
+      "settings": {
+        "eyebrow": "Creator programme",
+        "heading": "Make something with us",
+        "heading_size": "h0",
+        "subheading": "<p>We send handmade press-on sets to creators who love them, and pay commission on every set they help sell. No follower minimum — just a real account and hands you're happy to film.</p>",
+        "apply_label": "Apply to collab",
+        "apply_url": "",
+        "fallback_email": "hello@urbanstudionails.com",
+        "cta_note": "Takes about two minutes. We read every application ourselves.",
+        "criteria_heading": "Who we're looking for",
+        "color_scheme": "scheme-1",
+        "padding_top": 64,
+        "padding_bottom": 56
+      }
+    },
+    "how_it_works": {
+      "type": "how-it-works",
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "Apply",
+            "description": "Fill in the short form. It asks about your platform, your country, and how you'd like to work with us."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "We reply",
+            "description": "A person reads it — usually within a few days. If it's a fit, we'll ask which aesthetic you want."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "Your set arrives",
+            "description": "Shipped free, with everything you need to apply it. Wear it, film it, make it yours."
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "title": "Post and earn",
+            "description": "Share what you made and drop your link. Commission on every set sold through it."
+          }
+        }
+      },
+      "block_order": ["step_1", "step_2", "step_3", "step_4"],
+      "settings": {
+        "heading": "How it works",
+        "heading_size": "h2",
+        "color_scheme": "scheme-2",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q_followers": {
+          "type": "question",
+          "settings": {
+            "question": "Do I need a certain number of followers?",
+            "answer": "<p>No. We'd rather work with someone whose 800 followers actually trust them than someone with 80,000 who scrolls past. What we look at is whether your content feels like you — not the number under your name.</p>"
+          }
+        },
+        "q_post": {
+          "type": "question",
+          "settings": {
+            "question": "What do I actually have to post?",
+            "answer": "<p>Whatever you'd have made anyway. An application video, a get-ready-with-me, a close-up of the set in your own light — it's your feed and your voice, and content that sounds like an advert doesn't work for either of us.</p><p>We'll ask for one piece within about ten days of your set arriving. Anything beyond that is up to you.</p>"
+          }
+        },
+        "q_buy": {
+          "type": "question",
+          "settings": {
+            "question": "Do I have to buy anything?",
+            "answer": "<p>No. Your first set is on us, shipped free. There's no starter kit to purchase and no fee to join — if anyone ever asks you for one, it isn't us.</p>"
+          }
+        },
+        "q_paid": {
+          "type": "question",
+          "settings": {
+            "question": "How does the commission work?",
+            "answer": "<p>You get a personal link and a discount code to share. Anything bought through either one is tracked automatically in Shopify Collabs, and your commission is paid out from there — you don't need to chase us or send an invoice.</p>"
+          }
+        },
+        "q_new": {
+          "type": "question",
+          "settings": {
+            "question": "I've never worn press-ons before. Can I still apply?",
+            "answer": "<p>Yes, and please say so on the form. We'll send you our application and removal guide with your set. A first-timer who prepped properly gets a far better result than a veteran who rushed it.</p>"
+          }
+        },
+        "q_where": {
+          "type": "question",
+          "settings": {
+            "question": "Which countries can you send sets to?",
+            "answer": "<p>We currently ship to 29 countries across North America, Europe, Asia, the Middle East and Oceania. Tell us where you are on the form — if we don't reach you yet, it genuinely helps us to know.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q_followers",
+        "q_post",
+        "q_buy",
+        "q_paid",
+        "q_new",
+        "q_where"
+      ],
+      "settings": {
+        "heading": "Before you apply",
+        "heading_size": "h2",
+        "color_scheme": "scheme-1",
+        "footer_link_label": "Read our customer FAQ →",
+        "footer_link_url": "/pages/faq",
+        "enable_schema": false,
+        "padding_top": 40,
+        "padding_bottom": 64
+      }
+    }
+  },
+  "order": ["collab", "how_it_works", "faq"]
+}
