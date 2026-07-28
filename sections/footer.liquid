@@ -46,12 +46,16 @@
        sizes to itself on the right, and the brand block takes whatever is left
        in the middle — so the wordmark stays centred in the row no matter how
        wide the screen gets. */
+    /* 1fr auto 1fr, not auto 1fr auto: equal side tracks put the middle track
+       dead centre in the row regardless of how much wider the newsletter is
+       than the menu, so the wordmark lands on the true centre line. Each side
+       block then anchors to its own outer edge. */
     .section-{{ section.id }}-padding .footer__content-top {
       display: grid;
-      grid-template-columns: auto 1fr auto;
+      grid-template-columns: 1fr auto 1fr;
       align-items: start;
       gap: 0 4rem;
-      padding-bottom: 4rem;
+      padding-bottom: 2.4rem;
     }
     /* grid-row is stated as well as grid-column: this block comes after the
        newsletter in the markup, and grid's default sparse placement never goes
@@ -65,17 +69,14 @@
          it reads better centred against the taller columns either side. */
       align-self: center;
     }
-    /* Menu on the right, newsletter on the left — swapped from the source
-       order, which still runs menu first.
-
-       Flex rather than two auto grid tracks: with the Policy column disabled
-       only one block is left, and a fixed second track kept reserving space to
-       its right, holding the menu 80px short of the edge. */
+    /* Flex rather than two auto grid tracks: with the Policy column disabled
+       only one block is left, and a fixed second track kept reserving space
+       beside it. */
     .section-{{ section.id }}-padding .footer__blocks-wrapper {
-      grid-column: 3 / 4;
+      grid-column: 1 / 2;
       grid-row: 1;
       display: flex;
-      justify-content: flex-end;
+      justify-content: flex-start;
       gap: 0 8rem;
       margin-bottom: 0;
     }
@@ -91,10 +92,10 @@
       padding-left: 0;
     }
     .section-{{ section.id }}-padding .footer-block--newsletter {
-      /* First track now, held to the left edge. */
-      grid-column: 1 / 2;
+      /* Third track, held to the right edge. */
+      grid-column: 3 / 4;
       grid-row: 1;
-      justify-self: start;
+      justify-self: end;
       margin-top: 0;
       align-items: flex-start;
       justify-content: flex-start;
@@ -134,6 +135,17 @@
     .section-{{ section.id }}-padding .footer-block__newsletter,
     .section-{{ section.id }}-padding .footer-block--menu {
       text-align: center;
+    }
+    /* Four short links stacked cost 180px of scrolling on a phone for very
+       little. On one wrapping row they take 45px and the stack stays short.
+       The 45px touch height moves into the row, so each link keeps its tap
+       target — it is the height that matters for a fingertip, and the gap
+       between links covers the width. */
+    .section-{{ section.id }}-padding .footer-block__details-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0 2.8rem;
     }
     .section-{{ section.id }}-padding .footer__newsletter .field {
       max-width: 32rem;
@@ -302,9 +314,18 @@
     align-items: baseline;
     justify-content: center;
     gap: 1.2rem 3rem;
-    margin-top: 2.4rem;
+    /* The space above the rule was 74px, stacked from three sources: this
+       margin, the top row's padding-bottom and .footer__content-bottom's own
+       padding-top. Trimmed at each source rather than only here, since
+       removing 74px from one of them would have needed a negative value. */
+    margin-top: 0;
     padding-top: 1.8rem;
     border-top: 1px dashed rgba(var(--color-foreground), 0.35);
+  }
+  .section-{{ section.id }}-padding .footer__content-bottom {
+    /* Trimming all three sources at once overshot — 74px became 20px, which
+       read as cramped. This puts back the difference in one place. */
+    padding-top: 3.6rem;
   }
   .section-{{ section.id }}-padding .footer__copyright {
     justify-content: center;
