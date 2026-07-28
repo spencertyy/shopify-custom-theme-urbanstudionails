@@ -110,6 +110,42 @@
     }
   }
 
+  /* ── Below the three-column breakpoint ──
+     Stacked, the source order puts the wordmark between the newsletter and the
+     social icons, where it reads as a stray graphic rather than as the brand.
+     Lifting it to the top gives the stack something to open on, and pairs it
+     with the social icons that already sit directly beneath it. */
+  @media screen and (max-width: 989px) {
+    .section-{{ section.id }}-padding .footer__content-top {
+      display: flex;
+      flex-direction: column;
+      gap: 3.2rem;
+    }
+    .section-{{ section.id }}-padding .footer__brand-block-{{ section.id }} {
+      order: -1;
+    }
+    .section-{{ section.id }}-padding .footer__blocks-wrapper,
+    .section-{{ section.id }}-padding .footer-block--newsletter {
+      margin: 0;
+    }
+    /* Left as one centred column: a footer read on a phone is scanned down the
+       middle, and centring the wordmark but ranging the links left leaves the
+       stack looking unresolved. */
+    .section-{{ section.id }}-padding .footer-block__newsletter,
+    .section-{{ section.id }}-padding .footer-block--menu {
+      text-align: center;
+    }
+    .section-{{ section.id }}-padding .footer__newsletter .field {
+      max-width: 32rem;
+      margin: 0 auto;
+    }
+    .section-{{ section.id }}-padding .footer__copyright,
+    .section-{{ section.id }}-padding .footer__copyright .policies {
+      justify-content: center;
+      text-align: center;
+    }
+  }
+
   .section-{{ section.id }}-padding .footer-block__heading {
     font-size: 1.4rem;
     letter-spacing: 0.12em;
@@ -235,15 +271,18 @@
        the icon row is taller than its text-sized line box. */
     padding-bottom: 1rem;
   }
-  /* A dashed rule sets the payment icons apart from the policy line above.
-     The rule sits on this wrapper's top edge, so margin-top is the distance to
-     the line above it and padding-top the distance down to the icons — the
-     latter stays tight so the rule reads as belonging to the icons. */
+  /* With payment icons off this wrapper renders empty — the Liquid condition is
+     on its contents, not on the wrapper — and would still draw the rule and
+     spacing around nothing. */
+  .section-{{ section.id }}-padding
+    .footer__content-bottom
+    > .footer__content-bottom-wrapper:first-of-type:not(:has(.footer__payment)) {
+    display: none;
+  }
   .section-{{ section.id }}-padding .footer__content-bottom > .footer__content-bottom-wrapper:first-of-type {
     order: 2;
     margin-top: 2.4rem;
     padding-top: 1rem;
-    border-top: 1px dashed rgba(var(--color-foreground), 0.35);
   }
   .section-{{ section.id }}-padding .footer__content-bottom > .footer__content-bottom-wrapper:last-of-type {
     order: 1;
@@ -252,13 +291,20 @@
   /* Copyright and links on the left, currency on the right, one line. */
   /* Centred now that the currency selector has been turned off and the
      copyright line is the only thing on this row — space-between would just
-     pin it to the left edge. */
+     pin it to the left edge.
+
+     The dashed rule lives here rather than on the payment wrapper: it marks
+     the boundary between the brand content above and the legal line below,
+     which holds whether or not payment icons are shown. */
   .section-{{ section.id }}-padding .footer__content-bottom > .footer__content-bottom-wrapper:last-of-type {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
     justify-content: center;
     gap: 1.2rem 3rem;
+    margin-top: 2.4rem;
+    padding-top: 1.8rem;
+    border-top: 1px dashed rgba(var(--color-foreground), 0.35);
   }
   .section-{{ section.id }}-padding .footer__copyright {
     justify-content: center;
