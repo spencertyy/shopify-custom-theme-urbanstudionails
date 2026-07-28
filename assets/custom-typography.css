@@ -697,3 +697,20 @@ body:has(.faq__item) .main-page-title.page-title {
   .header__active-menu-item {
   text-shadow: none;
 }
+
+/* ---- Marquee sitting directly above the footer ----
+   The 32px gap between them is the footer's own margin-top, set globally in
+   the theme editor. Lowering that setting closes this gap but also strips the
+   breathing room from every other page, where the last block is ordinary
+   content and needs it.
+
+   Scoped instead to the one case where it is unwanted: the page's final
+   section is the marquee. A full-bleed black band and the pink footer read as
+   two stacked bands, and a white line between them just looks like a mistake.
+
+   :has() is what makes this possible — the condition lives inside <main> while
+   the element to restyle is the <footer> beside it. */
+body:has(#MainContent > .shopify-section:last-child [class*="marquee-strip"])
+  .footer {
+  margin-top: 0;
+}
