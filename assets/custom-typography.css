@@ -371,11 +371,13 @@
    mega menu and the country selector in one rule, since Dawn builds both on
    <details>. */
 .template-index .section-header:not(.shopify-section-header-sticky):has(details[open]),
+.template-index .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover),
 .template-index
   .section-header:not(.shopify-section-header-sticky):has(.disclosure__button[aria-expanded='true']) {
   background: rgb(var(--color-background)) !important;
 }
 .template-index .section-header:not(.shopify-section-header-sticky):has(details[open]) .header-wrapper,
+.template-index .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover) .header-wrapper,
 .template-index
   .section-header:not(.shopify-section-header-sticky):has(.disclosure__button[aria-expanded='true'])
   .header-wrapper {
@@ -386,6 +388,12 @@
 .template-index .section-header:not(.shopify-section-header-sticky):has(details[open]) .header__menu-item,
 .template-index .section-header:not(.shopify-section-header-sticky):has(details[open]) .header__icon,
 .template-index .section-header:not(.shopify-section-header-sticky):has(details[open]) localization-form button,
+.template-index .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover) .header__menu-item,
+.template-index .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover) .header__icon,
+.template-index
+  .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover)
+  localization-form
+  button,
 .template-index
   .section-header:not(.shopify-section-header-sticky):has(.disclosure__button[aria-expanded='true'])
   .header__menu-item,
@@ -400,6 +408,7 @@
   text-shadow: none;
 }
 .template-index .section-header:not(.shopify-section-header-sticky):has(details[open]) svg,
+.template-index .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover) svg,
 .template-index
   .section-header:not(.shopify-section-header-sticky):has(.disclosure__button[aria-expanded='true'])
   svg {
@@ -428,6 +437,33 @@
 
    Matching the footer, the panel runs to the viewport edges rather than being
    capped at --page-width and centred. */
+/* ---- Mega menu opens on hover as well as on click ----
+   Dawn only opens it on click, because <details> is a click control. But it
+   does not use the element's own show/hide: the panel stays display: block and
+   visible at all times, and [open] merely switches opacity. Since visibility is
+   already decided in CSS, :hover can drive it too — no JavaScript needed, and
+   clicking still works exactly as before (a click sets [open], which keeps the
+   panel down after the pointer leaves).
+
+   Restricted to devices that actually hover. On a touchscreen :hover fires on
+   tap and would leave the panel stuck open with no way to dismiss it. */
+/* Opening on hover cannot be done here: the panel is inside a <details>, and a
+   browser skips rendering the contents of a closed <details> no matter what CSS
+   says about display or opacity. Only the open attribute controls it, so the
+   hover behaviour lives in custom-mega-hover.js. */
+
+/* The panel is transparent when closed, not hidden — it still covers ~689px of
+   the page and would swallow clicks meant for the content underneath. Ignoring
+   the pointer while closed is what keeps it out of the way. */
+.js .mega-menu__content {
+  pointer-events: none;
+}
+.js .mega-menu[open] > .mega-menu__content,
+.js .mega-menu:hover > .mega-menu__content,
+.js .mega-menu:focus-within > .mega-menu__content {
+  pointer-events: auto;
+}
+
 .mega-menu .mega-menu__list.page-width {
   max-width: 100%;
   padding-left: 4rem;
