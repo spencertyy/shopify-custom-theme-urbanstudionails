@@ -57,7 +57,7 @@
       gap: 0 4rem;
       /* ① 内容与虚线之间的空白，第一段（另一段见 .footer__content-bottom
          的 padding-top）。两段相加就是虚线上方的总间距。 */
-      padding-bottom: 1.6rem;
+      padding-bottom: 0.1rem;
     }
     /* grid-row is stated as well as grid-column: this block comes after the
        newsletter in the markup, and grid's default sparse placement never goes
@@ -66,10 +66,9 @@
       grid-column: 2 / 3;
       grid-row: 1;
       justify-self: center;
-      /* The row is align-items: start, which lines the three columns up by
-         their top edges. A wordmark has no baseline to share with a heading, so
-         it reads better centred against the taller columns either side. */
-      align-self: center;
+      /* Pinned to the top of the row so the wordmark starts level with the MENU
+         and NEWSLETTER headings either side of it. */
+      align-self: start;
     }
     /* Flex rather than two auto grid tracks: with the Policy column disabled
        only one block is left, and a fixed second track kept reserving space
@@ -102,16 +101,36 @@
       align-items: flex-start;
       justify-content: flex-start;
     }
-    /* Second row spanning all three tracks: the icons clear the wordmark and
-       land centred just above the rule. Living on its own row rather than
-       inside the brand block is what lets the gap above it grow without
-       pushing the wordmark up. */
+    /* Same cell as the wordmark, opposite end of it. Grid allows more than one
+       item per cell, so the wordmark hangs from the top of the row and the
+       icons from the bottom — and the row's height is set by the tallest
+       column, the menu. The icons therefore finish level with "About US" and
+       the wordmark starts level with the headings, with no measurements
+       involved: add or remove a menu link and both stay aligned. */
     .section-{{ section.id }}-padding .footer__social-below-wordmark-{{ section.id }} {
-      grid-column: 1 / -1;
-      grid-row: 2;
+      grid-column: 2 / 3;
+      grid-row: 1;
       justify-self: center;
-      margin-top: 3.2rem;
+      align-self: end;
+      margin-top: 0;
     }
+    /* Dawn's scroll-in animation starts each element 20px low and slides it up.
+       In this row it lands on two nested elements — the blocks wrapper and the
+       grid item inside it — so the menu column starts 40px low while the brand
+       block, which is not one of Dawn's blocks and carries no such class, does
+       not move at all. The columns therefore never line up, in the resting
+       state or mid-animation.
+
+       offsetTop confirms all four blocks lay out at the identical position, so
+       there is nothing to correct in the layout: the row simply opts out of the
+       transform and everything sits where it was always placed. */
+    .section-{{ section.id }}-padding .footer__content-top .scroll-trigger {
+      /* !important because Dawn drives this transform from an inline style
+         written by its scroll observer, which an ordinary rule cannot outrank. */
+      transform: none !important;
+      opacity: 1 !important;
+    }
+
     .section-{{ section.id }}-padding .footer-block__newsletter {
       text-align: left;
       /* was 28rem — a one-line heading fitted, but the subtext under it wrapped
@@ -347,7 +366,7 @@
   .section-{{ section.id }}-padding .footer__content-bottom {
     /* ② 内容与虚线之间的空白，第二段。想让虚线离内容更近就减小这个数字，
        想留更多空气就调大；与上面 ① 的 padding-bottom 相加即总间距。 */
-    padding-top: 2rem;
+    padding-top: 0.1rem;
   }
   .section-{{ section.id }}-padding .footer__copyright {
     justify-content: center;
