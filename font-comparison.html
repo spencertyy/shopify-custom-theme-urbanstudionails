@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UrbanStudio 字体方案对比</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&family=Jost:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600&family=Manrope:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 32px 28px 60px; background: #faf8f6; color: #111;
+    font-family: Inter, -apple-system, sans-serif;
+  }
+  h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; margin: 0 0 6px; }
+  .sub { font-size: 13px; color: #8a857f; margin-bottom: 26px; line-height: 1.6; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 18px; }
+
+  /* 每个方案卡片：所有排版靠 CSS 变量驱动，方便对照参数 */
+  .scheme {
+    border: 1px solid #e5e2de; border-radius: 14px; padding: 22px 22px 24px; background: #fff;
+    font-family: var(--f);
+  }
+  .scheme.now { border-color: #e8cfcf; background: #fffdfd; }
+
+  .tag { display: flex; align-items: center; gap: 8px; margin-bottom: 18px;
+         font-family: Inter, sans-serif; text-transform: none; letter-spacing: 0; }
+  .tag b { font-size: 12.5px; font-weight: 700; }
+  .tag span { font-size: 10px; font-weight: 500; padding: 3px 8px; border-radius: 99px;
+              background: #e6ede8; color: #2f5c3f; white-space: nowrap; }
+  .scheme.now .tag span { background: #f3d7d7; color: #8a3a3a; }
+
+  .nav { display: flex; gap: 16px; flex-wrap: wrap; padding-bottom: 14px; border-bottom: 1px solid #eee;
+         font-size: var(--navS); font-weight: var(--navW); text-transform: var(--navT); letter-spacing: var(--navL); }
+  .h2  { margin: 22px 0 8px; font-size: var(--h2S); font-weight: var(--h2W); letter-spacing: var(--h2L);
+         line-height: 1.2; text-transform: var(--allT); }
+  .body{ font-size: var(--bS); font-weight: var(--bW); letter-spacing: var(--bL); line-height: var(--lh);
+         color: #5c5751; margin-bottom: 20px; text-transform: var(--allT); }
+  .prod{ padding-top: 16px; border-top: 1px solid #eee; display: flex; gap: 16px; }
+  .prod > div { flex: 1; }
+  .ph  { height: 64px; border-radius: 8px; margin-bottom: 10px;
+         background: linear-gradient(135deg, #f0e6e6, #e6ecf0); }
+  .pname { font-size: var(--bS); font-weight: var(--mW); letter-spacing: var(--bL); margin-bottom: 4px;
+           text-transform: var(--allT); }
+  .price { font-size: calc(var(--bS) - 1px); font-weight: var(--bW); letter-spacing: var(--bL); color: #6b6660; }
+  .btn { margin-top: 20px; display: inline-block; border: 1px solid #111; padding: 11px 24px; border-radius: 2px;
+         font-size: calc(var(--bS) - 2px); font-weight: var(--mW); letter-spacing: var(--navL);
+         text-transform: var(--navT); }
+
+  .note { margin-top: 18px; padding-top: 14px; border-top: 1px dashed #eee;
+          font-family: Inter, sans-serif; font-size: 11px; color: #8a857f; line-height: 1.6;
+          text-transform: none; letter-spacing: 0; }
+  .note code { background: #f4f2ef; padding: 1px 5px; border-radius: 3px; font-size: 10.5px;
+               font-family: ui-monospace, Menlo, monospace; color: #55504a; }
+
+  /* ── 决赛区 ── */
+  .final { margin-top: 46px; padding: 28px; background: #fff; border: 1px solid #e5e2de; border-radius: 14px; }
+  .final h2 { font-size: 17px; font-weight: 700; margin: 0 0 5px; letter-spacing: -0.2px; }
+  .final .sub2 { font-size: 12.5px; color: #8a857f; margin: 0 0 26px; line-height: 1.6; }
+  .fsub { font-size: 13px; font-weight: 600; margin: 32px 0 4px; padding-top: 22px; border-top: 1px solid #f0eeeb; }
+  .final > .fsub:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+  .hint { font-size: 11.5px; color: #8a857f; margin: 0 0 16px; line-height: 1.6; }
+  .grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+
+  .glyphrow { display: flex; align-items: baseline; gap: 22px; padding: 14px 0; border-bottom: 1px solid #f4f2ef; }
+  .glyphrow .gname { font-family: Inter, sans-serif; font-size: 12px; font-weight: 700; width: 72px; flex: none; }
+  .glyphrow .gsample { font-size: 68px; font-weight: 400; line-height: 1.15; letter-spacing: 3px; }
+  .glyphrow .gnote { font-family: Inter, sans-serif; font-size: 11px; color: #8a857f; line-height: 1.6; flex: 1; min-width: 160px; }
+
+  .smallcard { border: 1px solid #e5e2de; border-radius: 12px; padding: 18px; background: #fff; }
+  .smallcard .sname { font-family: Inter, sans-serif; font-size: 11.5px; font-weight: 700; margin-bottom: 12px; }
+  .smallcard p { margin: 0; font-size: 13px; font-weight: 400; line-height: 1.7; color: #4a4540; }
+
+  /* ── 底部交互区 ── */
+  .lab { margin-top: 46px; padding: 26px; background: #fff; border: 1px solid #e5e2de; border-radius: 14px; }
+  .lab h2 { font-size: 16px; font-weight: 700; margin: 0 0 4px; }
+  .lab .sub2 { font-size: 12px; color: #8a857f; margin-bottom: 20px; }
+  .controls { display: flex; gap: 22px; flex-wrap: wrap; margin-bottom: 26px; }
+  .controls label { font-size: 11px; color: #6b6660; display: block; margin-bottom: 5px; font-weight: 500; }
+  .controls select, .controls input {
+    font-family: Inter, sans-serif; font-size: 13px; padding: 7px 9px;
+    border: 1px solid #ddd9d4; border-radius: 6px; background: #fff; min-width: 128px;
+  }
+  #out { border-top: 1px solid #eee; padding-top: 24px; }
+  #readout { margin-top: 20px; font-size: 11.5px; color: #8a857f; font-family: ui-monospace, Menlo, monospace; }
+</style>
+</head>
+<body>
+
+<h1>UrbanStudio 字体方案对比</h1>
+<p class="sub">
+  同一套真实文案，左上角是你现在线上的实际参数（实测自 urbanstudionails.com）。<br>
+  其余方案都已按「字重拉开层级 + 字号拉开落差 + 字距归零」调过 —— 换字体和修层级是两件事，缺一个都不干净。
+</p>
+
+<div class="grid" id="grid"></div>
+
+<!-- ── 决赛区：① Jost / ③ Outfit / ⑧ Figtree ── -->
+<div class="final">
+  <h2>决赛区 · ① Jost vs ③ Outfit vs ⑧ Figtree</h2>
+  <p class="sub2">这三个都是几何无衬线，小写 a / g / o 的<b>结构其实几乎一样</b>（都是单层圆 + 直干）。真正的差别在<b>比例</b>，不在结构。</p>
+
+  <h3 class="fsub">1. 字形放大 —— 差别一眼可见</h3>
+  <p class="hint">重点看两件事：① 小写字母有多高（x-height）② 字母有多宽。这两个决定了"粗不粗"。</p>
+  <div id="glyphs"></div>
+
+  <h3 class="fsub">2. 同一个页面，三种字体</h3>
+  <div class="grid3" id="final3"></div>
+
+  <h3 class="fsub">3. 小字号可读性 —— 手机上正文就是这么小</h3>
+  <p class="hint">这是 13px 的真实大小。你的客人大多从手机进，长文案实际就长这样。</p>
+  <div class="grid3" id="small3"></div>
+</div>
+
+<div class="lab">
+  <h2>实时试验台</h2>
+  <p class="sub2">自己调参数看效果。想找到你觉得"简约"的那个平衡点，改完把数值告诉我，我照着写进主题。</p>
+  <div class="controls">
+    <div><label>字体</label>
+      <select id="cFont">
+        <option>Jost</option><option>Inter</option><option>Outfit</option><option>Manrope</option>
+        <option>Poppins</option><option>DM Sans</option><option>Figtree</option>
+        <option>Helvetica</option><option>Fraunces</option>
+      </select></div>
+    <div><label>标题字号 <b id="vH2S">30</b>px</label><input type="range" id="cH2S" min="16" max="48" value="30"></div>
+    <div><label>标题字重 <b id="vH2W">500</b></label><input type="range" id="cH2W" min="300" max="700" step="100" value="500"></div>
+    <div><label>正文字号 <b id="vBS">15</b>px</label><input type="range" id="cBS" min="11" max="20" value="15"></div>
+    <div><label>正文字重 <b id="vBW">400</b></label><input type="range" id="cBW" min="300" max="600" step="100" value="400"></div>
+    <div><label>字距 <b id="vLS">0</b>px</label><input type="range" id="cLS" min="-0.5" max="3" step="0.1" value="0"></div>
+    <div><label>全大写</label><select id="cUp"><option value="none">否</option><option value="uppercase">是</option></select></div>
+  </div>
+  <div id="out"></div>
+  <div id="readout"></div>
+</div>
+
+<script>
+// 每个方案 = 一组排版参数。navS/h2S 等对应上面 CSS 里的变量。
+const SCHEMES = [
+  { name:'现状 · Fraunces 300', badge:'你现在的站', now:true, font:"Fraunces, serif",
+    navS:18, navW:300, navT:'none', navL:'0.6px',
+    h2S:20, h2W:300, h2L:'0.6px', bS:15, bW:300, bL:'0.6px', lh:1.8, mW:300,
+    note:'衬线体 + 全站字重 300 + 全局字距 <code>0.6px</code>。标题 20px 对正文 15px，落差仅 1.3 倍；导航 18px 反而比正文大。' },
+
+  { name:'① Jost', badge:'最瘦 · Futura 风', font:"Jost, sans-serif",
+    navS:13, navW:400, navT:'uppercase', navL:'1.2px',
+    h2S:30, h2W:400, h2L:'0.5px', bS:15, bW:400, bL:'0px', lh:1.7, mW:400,
+    note:'几何无衬线，但字腔窄、x-height 小、笔画细 —— 同样 400 字重比 Poppins 清瘦得多。时装/建筑感。<b>已确认在 Shopify 字体库</b>。' },
+
+  { name:'② Inter', badge:'最中性', font:"Inter, sans-serif",
+    navS:13, navW:500, navT:'uppercase', navL:'0.8px',
+    h2S:29, h2W:500, h2L:'-0.4px', bS:15, bW:400, bL:'0px', lh:1.65, mW:500,
+    note:'专为屏幕设计，几乎没有个人风格 —— 优点是永远不出错，缺点是没有记忆点。x-height 大，标题偏饱满。' },
+
+  { name:'③ Outfit', badge:'几何但更瘦', font:"Outfit, sans-serif",
+    navS:13, navW:400, navT:'uppercase', navL:'1px',
+    h2S:30, h2W:500, h2L:'0px', bS:15, bW:400, bL:'0px', lh:1.65, mW:500,
+    note:'可以理解成 Poppins 的清瘦版：圆润的甜度保留，但笔画薄一圈。<b>是否在 Shopify 字体库待核实</b>。' },
+
+  { name:'④ Manrope', badge:'现代柔和', font:"Manrope, sans-serif",
+    navS:13, navW:500, navT:'uppercase', navL:'0.8px',
+    h2S:29, h2W:600, h2L:'-0.3px', bS:15, bW:400, bL:'0px', lh:1.65, mW:500,
+    note:'笔画末端微微圆，比 Inter 柔一点。中庸选择，没有明显短板也没有明显个性。' },
+
+  { name:'⑤ Helvetica 极简派', badge:'Nailcissist 同款', font:"Helvetica, Arial, sans-serif",
+    navS:11, navW:400, navT:'uppercase', navL:'1px',
+    h2S:13, h2W:700, h2L:'4px', bS:12, bW:400, bL:'0.9px', lh:1.7, mW:400, allT:'uppercase',
+    note:'全大写 + 极小字号 + 宽字距，层级不靠字号靠留白。视觉最"贵"，<b>零字体下载性能最好</b>，但要求文案更短更硬，品牌调性会转冷。' },
+
+  { name:'⑥ Poppins', badge:'Pearlmano 同款', font:"Poppins, sans-serif",
+    navS:13, navW:500, navT:'uppercase', navL:'0.8px',
+    h2S:30, h2W:600, h2L:'0px', bS:15, bW:400, bL:'0px', lh:1.65, mW:500,
+    note:'几何圆润、x-height 大 —— 甜、现代、但视觉面积大，你觉得"太粗"就是这个原因。' },
+
+  { name:'⑦ DM Sans', badge:'冷静克制', font:"'DM Sans', sans-serif",
+    navS:13, navW:500, navT:'uppercase', navL:'0.8px',
+    h2S:30, h2W:700, h2L:'-0.3px', bS:15, bW:400, bL:'0px', lh:1.65, mW:500,
+    note:'字腔紧凑、笔画极匀，小字号下非常干净。偏中性时装感，甜度低。' },
+
+  { name:'⑧ Figtree', badge:'可读性最强', font:"Figtree, sans-serif",
+    navS:13, navW:600, navT:'uppercase', navL:'0.8px',
+    h2S:30, h2W:700, h2L:'-0.2px', bS:15, bW:400, bL:'0px', lh:1.65, mW:500,
+    note:'人文几何，长段落最好读。商务感偏重，最不甜。' },
+];
+
+const cardHTML = (s) => `
+  <div class="scheme${s.now ? ' now' : ''}" style="
+    --f:${s.font}; --navS:${s.navS}px; --navW:${s.navW}; --navT:${s.navT}; --navL:${s.navL};
+    --h2S:${s.h2S}px; --h2W:${s.h2W}; --h2L:${s.h2L};
+    --bS:${s.bS}px; --bW:${s.bW}; --bL:${s.bL}; --lh:${s.lh}; --mW:${s.mW};
+    --allT:${s.allT || 'none'};">
+    <div class="tag"><b>${s.name}</b><span>${s.badge}</span></div>
+    <div class="nav"><span>Home</span><span>Collections</span><span>Brand Story</span><span>Contact</span></div>
+    <div class="h2">Best Sellers</div>
+    <div class="body">Handcrafted, reusable press-on nails — salon-quality gel finish, applied at home in ten minutes and worn again and again.</div>
+    <div class="prod">
+      <div><div class="ph"></div><div class="pname">Pet Halloween Set</div><div class="price">$38.00 USD</div></div>
+      <div><div class="ph"></div><div class="pname">Pearl French Tip</div><div class="price">$38.00 USD</div></div>
+    </div>
+    <div class="btn">Shop All</div>
+    <div class="note">${s.note}</div>
+  </div>`;
+
+document.getElementById('grid').innerHTML = SCHEMES.map(cardHTML).join('');
+
+// ── 决赛区：Jost / Outfit / Figtree ──
+// 下面的观察是把三个字体放大到 68px 实际渲染后看出来的，不是凭印象。
+const FINALISTS = [
+  { key:'Jost', label:'① Jost', css:"Jost, sans-serif",
+    glyph:'x-height <b>最小</b>、字腔<b>最窄</b> → 同样 400 字重，视觉上最轻最瘦。<br>小写 t 顶部是直切，字母间显疏 —— 这就是"简约、冷静"的来源。' },
+  { key:'Outfit', label:'③ Outfit', css:"Outfit, sans-serif",
+    glyph:'x-height <b>最大</b>、字腔<b>最宽</b> → 视觉重量三个里最重。<br><b>注意：你嫌 Poppins 粗，Outfit 的厚度其实最接近 Poppins。</b>' },
+  { key:'Figtree', label:'⑧ Figtree', css:"Figtree, sans-serif",
+    glyph:'比例居中，比 Outfit 窄、比 Jost 饱满。<br>小写 t 底部带弯钩（人文体痕迹）—— 所以它读起来最"顺"，但也最没有风格。' },
+];
+
+document.getElementById('glyphs').innerHTML = FINALISTS.map(f => `
+  <div class="glyphrow">
+    <div class="gname">${f.label}</div>
+    <div class="gsample" style="font-family:${f.css}">aego Rt8</div>
+    <div class="gnote">${f.glyph}</div>
+  </div>`).join('');
+
+// 复用主卡片，只换字体，其余排版参数完全相同 —— 这样差异只来自字体本身
+const finalScheme = (f) => ({
+  name:f.label, badge:f.key, font:f.css,
+  navS:13, navW:500, navT:'uppercase', navL:'1px',
+  h2S:30, h2W:500, h2L:'0px', bS:15, bW:400, bL:'0px', lh:1.65, mW:500,
+  note:`统一参数：标题 30px/500，正文 15px/400，字距 0 —— <b>三张卡唯一的变量就是字体本身</b>。`
+});
+document.getElementById('final3').innerHTML = FINALISTS.map(f => cardHTML(finalScheme(f))).join('');
+
+document.getElementById('small3').innerHTML = FINALISTS.map(f => `
+  <div class="smallcard">
+    <div class="sname">${f.label}</div>
+    <p style="font-family:${f.css}">Each set is hand-sculpted with salon-grade gel, cured under UV, and finished by hand. Sizes are matched to your own nail bed, so the fit stays flush for up to three weeks — and because nothing is glued down permanently, you can take them off and wear them again.</p>
+  </div>`).join('');
+
+// ── 试验台 ──
+const $ = id => document.getElementById(id);
+const render = () => {
+  const font = $('cFont').value === 'Helvetica' ? 'Helvetica, Arial, sans-serif' : `'${$('cFont').value}', sans-serif`;
+  const h2S = +$('cH2S').value, h2W = +$('cH2W').value;
+  const bS = +$('cBS').value, bW = +$('cBW').value;
+  const ls = +$('cLS').value, up = $('cUp').value;
+
+  ['vH2S','vH2W','vBS','vBW','vLS'].forEach((v,i) => {
+    $(v).textContent = [h2S, h2W, bS, bW, ls][i];
+  });
+
+  $('out').innerHTML = cardHTML({
+    name:'试验结果', badge:$('cFont').value, font,
+    navS:13, navW:500, navT:up==='uppercase'?'uppercase':'uppercase', navL:(ls+0.8)+'px',
+    h2S, h2W, h2L:ls+'px', bS, bW, bL:ls+'px', lh:1.65, mW:bW+100,
+    allT: up,
+    note:'调到满意为止，然后把下面这行参数发给我。'
+  });
+  $('readout').textContent =
+    `font-family: ${font} | 标题 ${h2S}px/${h2W} | 正文 ${bS}px/${bW} | letter-spacing ${ls}px | text-transform: ${up}`;
+};
+['cFont','cH2S','cH2W','cBS','cBW','cLS','cUp'].forEach(id => $(id).addEventListener('input', render));
+render();
+</script>
+</body>
+</html>

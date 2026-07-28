@@ -38,6 +38,8 @@
       "settings": {
         "color_scheme": "scheme-1",
         "footer_bg_color": "#f5b1d5",
+        "brand_logo": "shopify://shop_images/URBAN_STUDIO.png",
+        "brand_logo_width": 44,
         "newsletter_enable": true,
         "newsletter_heading": "Newsletter",
         "newsletter_subtext": "<p>New drops, quiet restocks, and a welcome code to start.</p>",

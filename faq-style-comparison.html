@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAQ 排版方案对比 — UrbanStudio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 28px 24px 80px; background: #f2f0ec; color: #111;
+    font-family: Jost, -apple-system, sans-serif;
+  }
+  .page-head { max-width: 1400px; margin: 0 auto 24px; }
+  h1 { font-size: 21px; font-weight: 700; margin: 0 0 6px; }
+  .sub { font-size: 13.5px; color: #6b6560; line-height: 1.7; margin: 0; }
+  .sub code { background: #e2ded8; padding: 1px 5px; border-radius: 3px; font-size: 12.5px; }
+
+  .grid { max-width: 1400px; margin: 0 auto; display: grid; gap: 20px;
+          grid-template-columns: repeat(auto-fill, minmax(430px, 1fr)); }
+
+  .card { background: #fff; border: 1px solid #e0dcd6; border-radius: 12px; overflow: hidden; }
+  .card.current { border-color: #d9b8b8; }
+  .card-label {
+    padding: 11px 22px; font-size: 12px; letter-spacing: 0.09em; text-transform: uppercase;
+    font-weight: 500; background: #f7f5f2; border-bottom: 1px solid #e8e4de; color: #6b6560;
+    display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  }
+  .card.current .card-label { background: #fdf4f4; color: #9c5f5f; }
+  .card-label .spec { font-size: 11px; letter-spacing: 0; text-transform: none; color: #9a948e; }
+
+  /* ---- 这里开始模拟真实 FAQ 区块 ---- */
+  .faq { padding: 30px 26px 26px; }
+
+  .faq__category {
+    margin: 0 0 0;
+    padding-bottom: var(--cat-pad, 12px);
+    font-size: var(--cat-size);
+    font-weight: var(--cat-weight);
+    letter-spacing: var(--cat-track);
+    text-transform: var(--cat-transform);
+    line-height: 1.2;
+    border-bottom: var(--cat-border, 1px solid rgba(18,18,18,0.35));
+  }
+  .faq__item { border-bottom: 1px solid rgba(18,18,18,0.12); }
+  .faq__item summary {
+    list-style: none; cursor: pointer; display: flex; justify-content: space-between;
+    align-items: center; gap: 16px; padding: 18px 0;
+    font-size: var(--q-size); font-weight: var(--q-weight); line-height: 1.4;
+  }
+  .faq__item summary::-webkit-details-marker { display: none; }
+  .faq__icon { flex-shrink: 0; width: 14px; height: 14px; }
+  .faq__item[open] .faq__icon { transform: rotate(45deg); }
+  .faq__answer { padding: 0 0 18px; font-size: 15px; line-height: 1.65; color: rgba(18,18,18,0.78); }
+  .faq__answer p { margin: 0; }
+
+  /* ===== 方案 A：现在线上（对照组） ===== */
+  .s-now  { --cat-size: 13px;  --cat-weight: 500; --cat-track: 1.6px; --cat-transform: uppercase;
+            --q-size: 16px; --q-weight: 700; }
+
+  /* ===== 方案 B：分类标题放大，仍保留 tracked caps ===== */
+  .s-caps { --cat-size: 22px;  --cat-weight: 700; --cat-track: 2.4px; --cat-transform: uppercase;
+            --q-size: 17px; --q-weight: 400; }
+
+  /* ===== 方案 C：分类标题改成大号 Title case（最接近截图） ===== */
+  .s-title{ --cat-size: 34px;  --cat-weight: 700; --cat-track: -0.4px; --cat-transform: none;
+            --cat-pad: 16px; --q-size: 17px; --q-weight: 400; }
+
+  /* ===== 方案 D：同 C，但问题用 500 保留一点层级 ===== */
+  .s-mid  { --cat-size: 34px;  --cat-weight: 700; --cat-track: -0.4px; --cat-transform: none;
+            --cat-pad: 16px; --q-size: 17px; --q-weight: 500; }
+
+  /* ===== 方案 E：分类标题更大、去掉下划线（截图那种气势） ===== */
+  .s-big  { --cat-size: 46px;  --cat-weight: 700; --cat-track: -0.8px; --cat-transform: none;
+            --cat-pad: 20px; --cat-border: none; --q-size: 17px; --q-weight: 400; }
+
+  .note { max-width: 1400px; margin: 26px auto 0; font-size: 13px; color: #6b6560; line-height: 1.8; }
+  .note b { color: #111; font-weight: 500; }
+</style>
+</head>
+<body>
+
+<div class="page-head">
+  <h1>FAQ 排版方案对比</h1>
+  <p class="sub">
+    全部使用你现在的 <code>Jost</code>，字体没有变。左上角红框那张是<b>现在线上的样子</b>。<br>
+    每张卡片右上角标注了具体参数（分类标题字号／字重 · 问题字号／字重）。挑一个告诉我编号即可。
+  </p>
+</div>
+
+<div class="grid">
+
+  <!-- A -->
+  <div class="card current">
+    <div class="card-label"><span>A · 现在线上</span><span class="spec">标题 13px/500 大写 · 问题 16px/700</span></div>
+    <div class="faq s-now">
+      <h3 class="faq__category">The essentials</h3>
+      <details class="faq__item" open>
+        <summary><span>Will people know they're press-ons?</span>
+          <svg class="faq__icon" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </summary>
+        <div class="faq__answer"><p>Only if you tell them. Between the hand-finished shape and four sizes to choose from, the goal is a manicure that reads as fresh from the salon.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary><span>Are they reusable?</span>
+          <svg class="faq__icon" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </summary>
+      </details>
+      <details class="faq__item">
+        <summary><span>Will they damage my natural nails?</span>
+          <svg class="faq__icon" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </summary>
+      </details>
+    </div>
+  </div>
+
+  <!-- B -->
+  <div class="card">
+    <div class="card-label"><span>B · 大写标题放大</span><span class="spec">标题 22px/700 大写 · 问题 17px/400</span></div>
+    <div class="faq s-caps">
+      <h3 class="faq__category">The essentials</h3>
+      <details class="faq__item" open>
+        <summary><span>Will people know they're press-ons?</span>
+          <svg class="faq__icon" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </summary>
+        <div class="faq__answer"><p>Only if you tell them. Between the hand-finished shape and four sizes to choose from, the goal is a manicure that reads as fresh from the salon.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary><span>Are they reusable?</span>
+          <svg class="faq__icon" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </summary>
+      </details>
+      <details class="faq__item">
+        <summary><span>Will they damage my natural nails?</span>
+          <svg class="faq__icon" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </summary>
+      </details>
+    </div>
+  </div>
+
+  <!-- C -->
+  <div class="card">
+    <div class="card-label"><span>C · 大号标题（推荐）</span><span class="spec">标题 34px/700 · 问题 17px/400</span></div>
+    <div class="faq s-title">
+      <h3 class="faq__category">The essentials</h3>
+      <details class="faq__item" open>
+        <summary><span>Will people know they're press-ons?</span>
+          <svg class="faq__icon" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </summary>
+        <div class="faq__answer"><p>Only if you tell them. Between the hand-finished shape and four sizes to choose from, the goal is a manicure that reads as fresh from the salon.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary><span>Are they reusable?</span>
+          <svg class="faq__icon" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </summary>
+      </details>
+      <details class="faq__item">
+        <summary><span>Will they damage my natural nails?</span>
+          <svg class="faq__icon" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </summary>
+      </details>
+    </div>
+  </div>
+
+  <!-- D -->
+  <div class="card">
+    <div class="card-label"><span>D · 同 C，问题略重</span><span class="spec">标题 34px/700 · 问题 17px/500</span></div>
+    <div class="faq s-mid">
+      <h3 class="faq__category">The essentials</h3>
+      <details class="faq__item" open>
+        <summary><span>Will people know they're press-ons?</span>
+          <svg class="faq__icon" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </summary>
+        <div class="faq__answer"><p>Only if you tell them. Between the hand-finished shape and four sizes to choose from, the goal is a manicure that reads as fresh from the salon.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary><span>Are they reusable?</span>
+          <svg class="faq__icon" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </summary>
+      </details>
+      <details class="faq__item">
+        <summary><span>Will they damage my natural nails?</span>
+          <svg class="faq__icon" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </summary>
+      </details>
+    </div>
+  </div>
+
+  <!-- E -->
+  <div class="card">
+    <div class="card-label"><span>E · 截图那种气势</span><span class="spec">标题 46px/700 无下划线 · 问题 17px/400</span></div>
+    <div class="faq s-big">
+      <h3 class="faq__category">The essentials</h3>
+      <details class="faq__item" open>
+        <summary><span>Will people know they're press-ons?</span>
+          <svg class="faq__icon" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </summary>
+        <div class="faq__answer"><p>Only if you tell them. Between the hand-finished shape and four sizes to choose from, the goal is a manicure that reads as fresh from the salon.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary><span>Are they reusable?</span>
+          <svg class="faq__icon" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </summary>
+      </details>
+      <details class="faq__item">
+        <summary><span>Will they damage my natural nails?</span>
+          <svg class="faq__icon" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </summary>
+      </details>
+    </div>
+  </div>
+
+</div>
+
+<p class="note">
+  <b>关于问题的字重</b>：你现在写的是 600，但 Jost 只有 400 / 500 / 700 三个字重文件，
+  浏览器遇到 600 会往重的方向取，实际渲染成 <b>700</b>——所以才那么粗。
+  上面 B/C/E 用 <b>400</b>（和正文同重，最清爽），D 用 <b>500</b>（比正文略重，留一点层级）。<br>
+  <b>关于分类标题</b>：截图里 Pearlmano 的 "Product" 大约 60px。C 是 34px，E 是 46px，都比截图收敛。
+</p>
+
+</body>
+</html>
