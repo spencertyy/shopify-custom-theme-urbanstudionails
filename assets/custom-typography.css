@@ -575,3 +575,11 @@ inbox-online-store-chat#ShopifyChat {
 .shopify-policy__body p {
   margin: 0 0 1.4rem;
 }
+
+/* Ordinary pages (Contact, About, FAQ …) take Dawn's h0 for their title, which
+   is 52px — nearly twice the policy pages' 28px. A page title names the page;
+   it is not the page's message. Brought into line so a customer moving between
+   Contact and the policies does not feel they have changed sites. */
+.main-page-title.page-title {
+  font-size: 2.8rem;
+}

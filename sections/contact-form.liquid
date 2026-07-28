@@ -74,6 +74,13 @@
             spellcheck="false"
             autocapitalize="off"
             value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+            {% comment %}
+              aria-required only tells a screen reader the field matters; it does
+              not stop the form being sent. Without the real attribute the
+              asterisk on the label was decoration, and a message could arrive
+              with no address to answer it.
+            {% endcomment %}
+            required
             aria-required="true"
             {% if form.errors contains 'email' %}
               aria-invalid="true"
@@ -97,31 +104,27 @@
           {%- endif -%}
         </div>
       </div>
-      <div class="field">
-        <input
-          type="tel"
-          id="ContactForm-phone"
-          class="field__input"
-          autocomplete="tel"
-          name="contact[{{ 'templates.contact.form.phone' | t }}]"
-          pattern="[0-9\-]*"
-          value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
-          placeholder="{{ 'templates.contact.form.phone' | t }}"
-        >
-        <label class="field__label" for="ContactForm-phone">{{ 'templates.contact.form.phone' | t }}</label>
-      </div>
+      {% comment %}
+        The phone field is deliberately removed. We answer by email, so a phone
+        number is data we would store without ever using — which under GDPR
+        needs a purpose we do not have. Every extra field also costs completion
+        rate. None of the reference stores ask for one.
+      {% endcomment %}
       <div class="field">
         <textarea
           rows="10"
           id="ContactForm-body"
           class="text-area field__input"
           name="contact[{{ 'templates.contact.form.comment' | t }}]"
+          required
+          aria-required="true"
           placeholder="{{ 'templates.contact.form.comment' | t }}"
         >
           {{- form.body -}}
         </textarea>
         <label class="form__label field__label" for="ContactForm-body">
-          {{- 'templates.contact.form.comment' | t -}}
+          {{- 'templates.contact.form.comment' | t }}
+          <span aria-hidden="true">*</span>
         </label>
       </div>
       <div class="contact__button">
