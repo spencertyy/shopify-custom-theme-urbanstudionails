@@ -756,7 +756,7 @@ a.active-facets__button.focused .active-facets__button-inner {
 .mobile-facets__inner {
   background-color: rgb(var(--color-background));
   width: calc(100% - 5rem);
-  margin-left: auto;
+  margin-right: auto;
   height: 100%;
   overflow-y: auto;
   pointer-events: all;
@@ -766,7 +766,7 @@ a.active-facets__button.focused .active-facets__button-inner {
   flex-direction: column;
   border-color: rgba(var(--color-foreground), var(--drawer-border-opacity));
   border-style: solid;
-  border-width: 0 0 0 var(--drawer-border-width);
+  border-width: 0 var(--drawer-border-width) 0 0;
   filter: drop-shadow(
     var(--drawer-shadow-horizontal-offset) var(--drawer-shadow-vertical-offset) var(--drawer-shadow-blur-radius)
       rgba(var(--color-shadow), var(--drawer-shadow-opacity))
@@ -778,7 +778,7 @@ a.active-facets__button.focused .active-facets__button-inner {
 }
 
 .js .disclosure-has-popup:not(.menu-opening) .mobile-facets__inner {
-  transform: translateX(105vw);
+  transform: translateX(-105vw);
 }
 
 .mobile-facets__header {
