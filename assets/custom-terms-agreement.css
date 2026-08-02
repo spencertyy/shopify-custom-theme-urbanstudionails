@@ -1,0 +1,63 @@
+/* Clickwrap consent gate — see custom-terms-agreement.js */
+
+.terms-agreement {
+  display: block;
+  margin: 1.2rem 0 1.4rem;
+}
+
+.terms-agreement__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+}
+
+.terms-agreement__checkbox {
+  /* Sized in rem so it tracks the theme's root scale rather than the browser
+     default, which renders noticeably small next to Jost at these weights. */
+  flex: 0 0 auto;
+  width: 1.6rem;
+  height: 1.6rem;
+  margin: 0.2rem 0 0;
+  accent-color: rgb(var(--color-foreground));
+  cursor: pointer;
+}
+
+.terms-agreement__label {
+  font-size: 1.3rem;
+  line-height: 1.5;
+  letter-spacing: 0.02rem;
+  color: rgba(var(--color-foreground), 0.75);
+  cursor: pointer;
+}
+
+.terms-agreement__label a {
+  color: rgb(var(--color-foreground));
+  text-underline-offset: 0.3rem;
+}
+
+.terms-agreement__error {
+  margin-top: 0.7rem;
+  padding-left: 2.5rem; /* aligns under the label, clear of the checkbox */
+  font-size: 1.2rem;
+  line-height: 1.4;
+  color: rgba(var(--color-error, 218 68 83), 1);
+}
+
+.terms-agreement__error[hidden] {
+  display: none;
+}
+
+/* Blocked states.
+   The checkout button stays clickable so the JS guard can explain why nothing
+   happened — only its appearance changes. The wallet buttons are the opposite:
+   they live in third-party iframes, so `inert` (set by the JS) does the real
+   blocking and pointer-events is the fallback for browsers without inert. */
+.cart__checkout-button--blocked {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.additional-checkout-buttons--blocked {
+  opacity: 0.45;
+  pointer-events: none;
+}

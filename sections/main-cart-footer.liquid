@@ -104,6 +104,10 @@
                 </small>
               </div>
             {%- else -%}
+              {%- if cart != empty -%}
+                {% render 'terms-agreement', id_prefix: 'CartPage' %}
+              {%- endif -%}
+
               <div class="cart__ctas" {{ block.shopify_attributes }}>
                 <button
                   type="submit"

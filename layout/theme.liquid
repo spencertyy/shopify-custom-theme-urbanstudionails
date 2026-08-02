@@ -266,11 +266,13 @@
     {{ 'custom-cursor.css' | asset_url | stylesheet_tag }}
     {{ 'custom-hextom-bar.css' | asset_url | stylesheet_tag }}
     {{ 'custom-typography.css' | asset_url | stylesheet_tag }}
+    {{ 'custom-terms-agreement.css' | asset_url | stylesheet_tag }}
 
     {% comment %}
       defer so it runs after the header markup exists, without blocking render.
     {% endcomment %}
     <script src="{{ 'custom-mega-hover.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'custom-terms-agreement.js' | asset_url }}" defer="defer"></script>
 
     {%- unless settings.type_body_font.system? -%}
       {% comment %}theme-check-disable AssetPreload{% endcomment %}

@@ -535,6 +535,10 @@
 
         <!-- CTAs -->
 
+        {%- if cart != empty -%}
+          {% render 'terms-agreement', id_prefix: 'CartDrawer' %}
+        {%- endif -%}
+
         <div class="cart__ctas" {{ block.shopify_attributes }}>
           <button
             type="submit"

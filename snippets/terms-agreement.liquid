@@ -1,0 +1,54 @@
+{%- comment -%}
+  Renders a required "I agree to the terms" checkbox above a checkout button.
+
+  This is the clickwrap consent gate. Shopify's hosted checkout cannot host a
+  consent checkbox without Shopify Plus, so consent is captured here in the cart
+  instead. Every path that can reach checkout must render this snippet, or the
+  gate can be walked around.
+
+  Accepts:
+  - id_prefix: {String} unique per instance, so the label/input ids stay unique
+      when several carts exist in the DOM at once (page + drawer + notification).
+
+  Usage:
+  {% render 'terms-agreement', id_prefix: 'CartPage' %}
+{%- endcomment -%}
+
+{%- liquid
+  assign prefix = id_prefix | default: 'Cart'
+  assign checkbox_id = prefix | append: '-terms-agree'
+  assign error_id = prefix | append: '-terms-error'
+-%}
+
+<terms-agreement class="terms-agreement" data-error-id="{{ error_id }}">
+  <div class="terms-agreement__row">
+    <input
+      type="checkbox"
+      id="{{ checkbox_id }}"
+      class="terms-agreement__checkbox"
+      aria-describedby="{{ error_id }}"
+    >
+    <label for="{{ checkbox_id }}" class="terms-agreement__label">
+      I have read and agree to the
+      {%- if shop.terms_of_service.url != blank %}
+        <a href="{{ shop.terms_of_service.url }}" target="_blank" rel="noopener">Terms of Service</a>,
+      {%- endif %}
+      {%- if shop.refund_policy.url != blank %}
+        <a href="{{ shop.refund_policy.url }}" target="_blank" rel="noopener">Refund Policy</a>
+      {%- endif %}
+      and
+      {%- if shop.privacy_policy.url != blank %}
+        <a href="{{ shop.privacy_policy.url }}" target="_blank" rel="noopener">Privacy Policy</a>.
+      {%- endif %}
+    </label>
+  </div>
+
+  <div
+    id="{{ error_id }}"
+    class="terms-agreement__error"
+    role="status"
+    hidden
+  >
+    Please agree to the terms before continuing to checkout.
+  </div>
+</terms-agreement>
