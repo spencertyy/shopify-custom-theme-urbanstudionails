@@ -23,14 +23,14 @@
         "heading_dg8HJP": {
           "type": "heading",
           "settings": {
-            "heading": "@UrbanStudio.Nails",
+            "heading": "Why we exist",
             "heading_size": "h1"
           }
         },
         "text_KzehaY": {
           "type": "text",
           "settings": {
-            "text": "<p><em>UrbanStudio Nails was created for the modern woman—busy, ambitious, stylish, and always on the move.</em></p><p><em>We believe beauty should fit your life, not slow it down. Traditional salon visits are expensive and time-consuming, while cheap mass-produced press-ons never look or feel like the real thing.</em></p><p><em>So we set out to create a better option.</em></p><p><em>Inspired by the energy of urban life and the elegance of minimal, modern aesthetics, UrbanStudio Nails transforms hand-crafted press-ons into wearable art.</em></p><p><em>Each set is shaped, designed, and finished by hand—giving you the look of a fresh salon manicure in minutes, with the quality and individuality you deserve.<br/>We design for women who express themselves through style.Women who love effortless beauty.</em></p><p><em>Women who know that confidence starts with the small details.<br/>Our promise is simple:</em><em><strong>premium handmade nails that elevate your everyday life—anytime, anywhere.</strong></em><em><br/>Whether you’re heading to work, a date night, a weekend getaway, or simply want to feel a little more “you,” UrbanStudio Nails is here to help you look polished, empowered, and uniquely beautiful.</em></p><p><em>This is more than press-on nails.</em></p><p><em><strong>This is your story, your style, your confidence—crafted by hand.</strong></em></p>"
+            "text": "<p>Cities run fast. Most things have adapted to that — food, transport, work. Two have not: getting your hair coloured properly, and getting your nails done properly. Both still cost you an afternoon in a chair.</p><p>And the afternoon is only the beginning. A gel manicure locks you into one look for weeks, leaves an awkward gap at the base as it grows out, and taking it off means going back to the salon and sitting down all over again. Do that often enough and your nails start to thin, until the lamp begins to sting.</p>"
           }
         }
       },
@@ -55,8 +55,8 @@
           "settings": {
             "image": "shopify://shop_images/dfb1d7fefc64bf9fbaedba7a7d71a5f2_2f1f7f78-c6cb-4e0b-99c3-7577d856b8df.jpg",
             "caption": "",
-            "heading": "<strong>Why Handmade Matters</strong>",
-            "text": "<h4><strong> Handmade Craftsmanship, Elevated✨</strong></h4><p>Each UrbanStudio Nails set is individually crafted by hand—never mass-produced.</p><p>Our artists shape, paint, and finish every detail with precision, ensuring the quality, durability, and beauty that machine-made press-ons can’t achieve.</p><p>From soft pearls to holographic finishes, every element is selected with care and attached by hand, giving you a salon-perfect look with true artisanal value.</p><p>UrbanStudio Nails isn’t just nail art.</p><p>It’s craftsmanship you can feel the moment you wear it.</p>",
+            "heading": "What we make",
+            "text": "<p>Handmade press-on nails — shaped, painted and finished one set at a time by nail artists, never stamped out by the thousand.</p><p>They go on in about ten minutes and come off whenever you decide. No lamp, no drill, no acetone, no appointment. Applied with tabs, a set can be worn again and again, so you can keep several and choose the one that suits where you are going today rather than committing to one look for a month.</p>",
             "button_label": "",
             "button_link": ""
           }
@@ -66,19 +66,20 @@
           "settings": {
             "image": "shopify://shop_images/e0ebcfd471dfd8a68c983f98b5795137.jpg",
             "caption": "",
-            "heading": "<strong>Designed for Your Lifestyle</strong>",
-            "text": "<h4><strong>Beauty That Fits Your Life✨ </strong></h4><p>We design nails for real life—fast mornings, busy schedules, special nights out, and everything in between.</p><p>Our press-ons apply in minutes and stay flawless for days, giving you salon-quality beauty without the cost or time commitment.</p><p>Whether you love bold glam, clean minimalism, or soft feminine styles, each collection lets you express your personal style effortlessly.</p><p>UrbanStudio Nails exists to make beauty easy, flexible, and uniquely yours.</p>",
+            "heading": "Who makes them",
+            "text": "<p>Our nails are made by hand by a small group of nail artists in China, most of whom work from home.</p><p>It is deliberate. Skilled nail artists are not hard to find — what is hard to find is a way to sell that skill without a salon chair and fixed hours. Working this way, they set their own schedule and stay with their families, and we get sets painted by people who chose this craft rather than people assigned to a production line. A set someone cared about looks like one.</p><p>Every design is made by our founder alongside them, which is how the standard stays the same whoever picks up the brush.</p>",
             "button_label": "",
             "button_link": ""
           }
         },
         "row_6EJyf3": {
           "type": "row",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/6e43225a4e9d5cd2bfbb3f834242b389_7b9de1ac-db4d-469c-adcf-9e7fef464c96.jpg",
             "caption": "",
-            "heading": "<strong>Our Quality Promise</strong>",
-            "text": "<h4><strong>Our Commitment to Quality✨ </strong></h4><p>We use premium materials—professional-grade gel, long-lasting top coats, strong adhesive tabs, and cruelty-free embellishments—to ensure every set meets our quality standards.</p><p>Every piece is inspected before shipping to guarantee smooth edges, secure decorations, and a flawless finish.</p><p>We stand behind our work.</p><p>If your nails arrive with any issue, our team will make it right—because you deserve beauty without compromise.</p>",
+            "heading": "How a set reaches you",
+            "text": "<p>Each set is shaped to follow the curve of a natural nail, built up in layers of professional-grade gel, and finished with every pearl and charm placed by hand.</p><p>Then it gets checked — twice. Once by the studio, once before it is boxed. We are looking for the things that decide whether a set lasts a day or two weeks: smooth edges, embellishments that are properly set, an even finish. Anything that does not pass does not ship.</p><p>Because every set is made by a person, no two are exactly alike. Small differences in tone, in where a pearl sits, in how the light catches the top coat — those are not faults. They are the difference between a print and an original.</p>",
             "button_label": "",
             "button_link": ""
           }
@@ -103,6 +104,95 @@
         "mobile_content_alignment": "left",
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "multicolumn_j4tHYd": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_4hJEaP": {
+          "type": "column",
+          "settings": {
+            "title": "How a set reaches you",
+            "text": "<p>Each one is shaped to follow the curve of a natural nail, built up in layers of professional-grade gel, and finished with every pearl and charm placed by hand.</p><p>Then it is checked twice — once in the studio, once before it is boxed — for the things that decide whether a set lasts a day or two weeks: smooth edges, embellishments properly set, an even finish. Anything that does not pass does not ship.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_mGUKnQ": {
+          "type": "column",
+          "settings": {
+            "title": "What we won't do",
+            "text": "<p><strong>No mass production.</strong> Every design is made in small numbers. When a set sells out it may be a while before it returns — sometimes not at all.</p><p><strong>No pretending a machine did it better.</strong> Handmade means small differences in tone, in where a pearl sits, in how the light catches the top coat. That is the difference between a print and an original, and we would rather explain it than iron it out.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_MfX7W7": {
+          "type": "column",
+          "settings": {
+            "title": "Made by women, for women",
+            "text": "<p>Everyone who makes these nails is a woman, and most of what we know came from wearing them ourselves — the ones that lifted at the edges after a day, the ones that never quite fit, the ones that were beautiful but wrecked your nails.</p><p>We are building the ones we wanted and could not find.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_4hJEaP",
+        "column_mGUKnQ",
+        "column_MfX7W7"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_NBBLLK": {
+      "type": "rich-text",
+      "blocks": {
+        "text_xTePHJ": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Come and find us</h2><p>New designs land regularly, and the ones that sell out do not always come back. Our newsletter is where they are announced first, usually with a code attached.</p><p>We would also love to see yours — tag <strong>@UrbanStudio.Nails</strong> in your photos.</p>"
+          }
+        },
+        "button_AUMT89": {
+          "type": "button",
+          "settings": {
+            "button_label": "Shop all sets",
+            "button_link": "shopify://collections/all-products",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "text_xTePHJ",
+        "button_AUMT89"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 72,
+        "padding_bottom": 80
       }
     },
     "1723228228adee05cd": {
@@ -139,6 +229,8 @@
     "main",
     "rich_text_RmNxge",
     "multirow_9Ahxxk",
+    "multicolumn_j4tHYd",
+    "rich_text_NBBLLK",
     "1723228228adee05cd"
   ]
 }
