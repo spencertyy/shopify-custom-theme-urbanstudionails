@@ -17,3 +17,11 @@ config/settings_data.json
 # Private exports & tooling artifacts
 *.docx
 .playwright-mcp/
+
+# Legal policy source docs — the live versions are on the store; these stay
+# local so the public repo never carries a stale copy of the terms
+*_FINAL.html
+*_FINAL.txt
+
+# Spreadsheets and other working docs
+*.xlsx
