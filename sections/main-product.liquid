@@ -495,6 +495,29 @@
                   section_id: section.id,
                   show_pickup_availability: true
                 -%}
+              {%- when 'shipping_note' -%}
+                <div class="product__shipping-note" {{ block.shopify_attributes }}>
+                  {%- if block.settings.show_icon -%}
+                    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
+                      <path
+                        d="M1.6 4.6h9.4v9H1.6zM11 8.2h3.6l2.8 3v2.4H11z"
+                        stroke="currentColor"
+                        stroke-width="1.1"
+                        stroke-linejoin="round"
+                      />
+                      <circle cx="5" cy="15.4" r="1.5" stroke="currentColor" stroke-width="1.1"/>
+                      <circle cx="13.6" cy="15.4" r="1.5" stroke="currentColor" stroke-width="1.1"/>
+                    </svg>
+                  {%- endif -%}
+                  <div class="product__shipping-note-text">
+                    {%- if block.settings.processing_text != blank -%}
+                      <p>{{ block.settings.processing_text | escape }}</p>
+                    {%- endif -%}
+                    {%- if block.settings.delivery_text != blank -%}
+                      <p class="product__shipping-note-sub">{{ block.settings.delivery_text | escape }}</p>
+                    {%- endif -%}
+                  </div>
+                </div>
               {%- when 'rating' -%}
                 {%- if product.metafields.reviews.rating.value != blank -%}
                   <div class="rating-wrapper">
@@ -1190,6 +1213,36 @@
           "id": "page",
           "type": "page",
           "label": "t:sections.main-product.blocks.popup.settings.page.label"
+        }
+      ]
+    },
+    {
+      "type": "shipping_note",
+      "name": "Shipping note",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Processing and delivery are separate. Quote both, and give a range you can always meet rather than a single day you might miss."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_icon",
+          "default": true,
+          "label": "Show icon"
+        },
+        {
+          "type": "text",
+          "id": "processing_text",
+          "default": "Ships within 1–3 business days",
+          "label": "Processing time",
+          "info": "How long before the order leaves the studio."
+        },
+        {
+          "type": "text",
+          "id": "delivery_text",
+          "label": "Delivery time",
+          "info": "How long it spends in transit after dispatch. Leave empty to hide this line."
         }
       ]
     },

@@ -1,0 +1,44 @@
+/*
+  Product page shipping note.
+
+  Delivery time is the second-biggest question after sizing, and it used to be
+  answered only at checkout. This puts it next to the buy button instead.
+
+  Two lines on purpose: processing time (how long before it leaves us) and
+  delivery time (how long it spends in transit) are different things, and
+  quoting only one of them is what makes people feel misled.
+*/
+
+.product__shipping-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  margin: 1.6rem 0 0;
+  padding: 1.2rem 1.4rem;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.14);
+}
+
+.product__shipping-note svg {
+  flex-shrink: 0;
+  width: 1.9rem;
+  height: 1.9rem;
+  margin-top: 0.1rem;
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+.product__shipping-note-text {
+  min-width: 0;
+}
+
+.product__shipping-note-text p {
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+
+.product__shipping-note-text .product__shipping-note-sub {
+  margin-top: 0.3rem;
+  font-size: 1.3rem;
+  color: rgba(var(--color-foreground), 0.7);
+}

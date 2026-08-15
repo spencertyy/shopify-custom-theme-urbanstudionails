@@ -70,7 +70,7 @@
           "type": "shipping_note",
           "settings": {
             "show_icon": true,
-            "processing_text": "Most orders ship within 1–3 business days",
+            "processing_text": "Made to order — ships in 5–20 business days",
             "delivery_text": "Delivery 3–6 business days after dispatch (U.S.)"
           }
         }
@@ -184,7 +184,7 @@
           "type": "step",
           "settings": {
             "title": "Wear",
-            "description": "Glue tabs last 3–5 days. Nail glue lasts up to 14 days of wear."
+            "description": "Tabs last up to 5 days. Glue lasts 1–2 weeks, often longer."
           }
         },
         "step_3": {
@@ -206,7 +206,8 @@
         "color_scheme": "scheme-1",
         "padding_top": 40,
         "padding_bottom": 40
-      }
+      },
+      "disabled": true
     },
     "faq": {
       "type": "faq",
