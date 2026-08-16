@@ -1,13 +1,12 @@
 {%- comment -%}
-  Page tail: tagline + CTA on the left, a compact values accordion on
-  the right. Replaces the full-width collapsible-content section, whose
-  page-wide rows left too much empty space around short value texts.
+  Page tail: a compact values accordion, then tagline + CTA centred
+  underneath. Replaces the full-width collapsible-content section, whose
+  page-wide rows left too much empty space around short value texts —
+  the accordion column is capped instead of spanning the page.
 
   The accordion is native <details>/<summary> — no JavaScript, keyboard
   and screen-reader support for free. The chevron rotates via the
   details[open] selector.
-
-  On mobile the two columns stack: tagline + button first, values below.
 {%- endcomment -%}
 
 {%- style -%}
@@ -16,17 +15,16 @@
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
 
-  .outro-values__grid {
-    display: grid;
-    gap: 4rem;
+  /* Cap the accordion column so short value texts don't swim in a
+     page-wide row. */
+  .outro-values__values {
+    max-width: 64rem;
+    margin: 0 auto;
   }
 
-  @media screen and (min-width: 990px) {
-    .outro-values__grid {
-      grid-template-columns: 5fr 6fr;
-      column-gap: 8rem;
-      align-items: center;
-    }
+  .outro-values__outro {
+    text-align: center;
+    margin-top: 4.8rem;
   }
 
   /* Tagline reads at body size on purpose — it closes the page quietly
@@ -89,19 +87,7 @@
 
 <div class="outro-values-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
   <div class="page-width">
-    <div class="outro-values__grid">
-      <div class="outro-values__left">
-        {%- if section.settings.tagline != blank -%}
-          <div class="outro-values__tagline rte">{{ section.settings.tagline }}</div>
-        {%- endif -%}
-        {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
-          <a href="{{ section.settings.button_link }}" class="button">
-            {{- section.settings.button_label | escape -}}
-          </a>
-        {%- endif -%}
-      </div>
-
-      <div class="outro-values__right">
+    <div class="outro-values__values">
         {%- if section.settings.caption != blank -%}
           <p class="outro-values__caption caption-with-letter-spacing">{{ section.settings.caption | escape }}</p>
         {%- endif -%}
@@ -118,7 +104,17 @@
             <div class="outro-values__row-content rte">{{ block.settings.content }}</div>
           </details>
         {%- endfor -%}
-      </div>
+    </div>
+
+    <div class="outro-values__outro">
+      {%- if section.settings.tagline != blank -%}
+        <div class="outro-values__tagline rte">{{ section.settings.tagline }}</div>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+        <a href="{{ section.settings.button_link }}" class="button">
+          {{- section.settings.button_label | escape -}}
+        </a>
+      {%- endif -%}
     </div>
   </div>
 </div>
