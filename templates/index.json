@@ -261,19 +261,6 @@
       "settings": {
         "include_margins": true
       }
-    },
-    "marquee_shopnow": {
-      "type": "marquee-strip",
-      "settings": {
-        "text": "SHOP NOW",
-        "separator": "",
-        "background_color": "#0e0e0e",
-        "text_color": "#ffffff",
-        "font_size": 34,
-        "padding_vertical": 20,
-        "item_gap": 16,
-        "speed": 22
-      }
     }
   },
   "order": [
@@ -283,7 +270,6 @@
     "image_banner_HwgpbG",
     "collection_tabs_aesthetic",
     "split_banner_specials",
-    "instagram_instafeed",
-    "marquee_shopnow"
+    "instagram_instafeed"
   ]
 }

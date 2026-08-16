@@ -52,30 +52,29 @@
        block then anchors to its own outer edge. */
     .section-{{ section.id }}-padding .footer__content-top {
       display: grid;
-      grid-template-columns: 1fr auto 1fr;
+      grid-template-columns: 1fr 1fr;
       align-items: start;
       gap: 0 4rem;
       /* ① 内容与虚线之间的空白，第一段（另一段见 .footer__content-bottom
          的 padding-top）。两段相加就是虚线上方的总间距。 */
       padding-bottom: 1rem;
     }
-    /* grid-row is stated as well as grid-column: this block comes after the
-       newsletter in the markup, and grid's default sparse placement never goes
-       back to fill an earlier row, so column 2 alone would drop it to row 2. */
-    .section-{{ section.id }}-padding .footer__brand-block-{{ section.id }} {
-      grid-column: 2 / 3;
-      grid-row: 1;
-      justify-self: center;
-      /* Pinned to the top of the row so the wordmark starts level with the MENU
-         and NEWSLETTER headings either side of it. */
-      align-self: start;
-    }
-    /* Flex rather than two auto grid tracks: with the Policy column disabled
-       only one block is left, and a fixed second track kept reserving space
-       beside it. */
-    .section-{{ section.id }}-padding .footer__blocks-wrapper {
+    /* Left column: the menu with the country selector stacked directly beneath
+       it. It is its own flex column, so the selector sits tight under "About US"
+       no matter how tall the newsletter column on the right grows — a grid row
+       would couple their heights and open a gap. */
+    .section-{{ section.id }}-padding .footer__col-left {
       grid-column: 1 / 2;
-      grid-row: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      /* No gap: the country selector sits directly under the last menu link
+         ("About US"). */
+      gap: 0;
+    }
+    /* Flex rather than grid tracks: with one menu block a fixed second track
+       kept reserving empty space beside it. */
+    .section-{{ section.id }}-padding .footer__blocks-wrapper {
       display: flex;
       justify-content: flex-start;
       gap: 0 8rem;
@@ -92,26 +91,15 @@
       max-width: none;
       padding-left: 0;
     }
+    /* Right column: the newsletter with the social icons stacked beneath it,
+       held to the right edge. Its own flex column, mirroring the left. */
     .section-{{ section.id }}-padding .footer-block--newsletter {
-      /* Third track, held to the right edge. */
-      grid-column: 3 / 4;
-      grid-row: 1;
-      justify-self: end;
-      margin-top: 0;
-      align-items: flex-start;
-      justify-content: flex-start;
-    }
-    /* Same cell as the wordmark, opposite end of it. Grid allows more than one
-       item per cell, so the wordmark hangs from the top of the row and the
-       icons from the bottom — and the row's height is set by the tallest
-       column, the menu. The icons therefore finish level with "About US" and
-       the wordmark starts level with the headings, with no measurements
-       involved: add or remove a menu link and both stay aligned. */
-    .section-{{ section.id }}-padding .footer__social-below-wordmark-{{ section.id }} {
       grid-column: 2 / 3;
-      grid-row: 1;
-      justify-self: center;
-      align-self: end;
+      justify-self: end;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2rem;
       margin-top: 0;
     }
     /* Dawn's scroll-in animation starts each element 20px low and slides it up.
@@ -153,13 +141,20 @@
       flex-direction: column;
       gap: 3.2rem;
     }
-    /* Wordmark first, social icons straight after it — they are siblings now,
-       so both need an order to stay together at the top of the stack. */
-    .section-{{ section.id }}-padding .footer__brand-block-{{ section.id }} {
-      order: -2;
+    /* One centred column now: the left block (menu + country selector) first,
+       then the newsletter with its social icons. Source order already gives
+       this, so no per-item order is needed. */
+    .section-{{ section.id }}-padding .footer__col-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.4rem;
     }
-    .section-{{ section.id }}-padding .footer__social-below-wordmark-{{ section.id }} {
-      order: -1;
+    .section-{{ section.id }}-padding .footer__col-left .footer__localization {
+      justify-content: center;
+    }
+    .section-{{ section.id }}-padding .footer-block--newsletter {
+      align-items: center;
     }
     .section-{{ section.id }}-padding .footer__blocks-wrapper,
     .section-{{ section.id }}-padding .footer-block--newsletter {
@@ -252,10 +247,13 @@
     background: transparent;
     border: none;
     padding-left: 0;
-    font-size: 0.8rem;
+    /* Same 1.4rem as the menu links, so the typed email and the "Email"
+       placeholder read at the same size as "About US". */
+    font-size: 1.4rem;
   }
   .section-{{ section.id }}-padding .footer__newsletter .field__label {
     padding-left: 0;
+    font-size: 1.4rem;
   }
   /* Dawn's own arrow, back in place of the "OK" label. */
   .section-{{ section.id }}-padding .newsletter-form__button {
@@ -287,6 +285,14 @@
     font-size: 1.4rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+  }
+  /* Match the menu links (e.g. "About US"): keep the 1.4rem above but drop the
+     tracked-caps treatment so the copyright and policy links read in normal
+     case with no extra letter-spacing, the same as the menu column. */
+  .section-{{ section.id }}-padding .footer__copyright .copyright__content,
+  .section-{{ section.id }}-padding .footer__copyright .policies a {
+    letter-spacing: normal;
+    text-transform: none;
   }
   /* The copyright is an inline <small> and the link list is a block-level flex
      that fills the row, so by default they can only stack. Making the wrapper
@@ -422,15 +428,55 @@
     border-bottom: 1px solid rgba(var(--color-foreground), 0.45);
     border-radius: 0;
     box-shadow: none;
+    /* Right padding is 0, so the caret is pulled back into the flex flow below
+       and separated by gap instead of Dawn's absolute right-anchored default. */
     padding: 0.4rem 0;
     min-height: 0;
-    font-size: 1rem;
+    /* Same size as the dropdown rows (caption-large, 1.4rem) so the selected
+       "USD $" reads at the same size as the "USD $" inside the list. */
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
     transition: border-bottom-color var(--duration-short) ease;
+  }
+  /* Dawn positions the caret absolutely against the button's right padding.
+     With that padding removed it landed on top of the text (~26px overlap).
+     Put it back in normal flow so the button's gap spaces it off the text. */
+  .section-{{ section.id }}-padding .footer__localization .disclosure__button svg {
+    position: static;
+    margin: 0;
+    flex: 0 0 auto;
+  }
+  /* Country search box hidden: with a short country list it is noise, and the
+     dropdown still closes on outside-click / Esc. */
+  .section-{{ section.id }}-padding .footer__localization .country-filter {
+    display: none;
+  }
+  /* Dawn draws the select's frame with a spread box-shadow on ::after (a black
+     1px ring) and a drop shadow on ::before, not with a real border — so
+     clearing border above left that frame behind. Kill both pseudo-elements'
+     shadows, same treatment as the email field, leaving only the underline. */
+  .section-{{ section.id }}-padding .footer__localization .disclosure__button::before,
+  .section-{{ section.id }}-padding .footer__localization .disclosure__button::after,
+  .section-{{ section.id }}-padding .footer__localization .localization-form__select::before,
+  .section-{{ section.id }}-padding .footer__localization .localization-form__select::after {
+    box-shadow: none;
+    border: none;
   }
   .section-{{ section.id }}-padding .footer__localization .localization-form__select:hover,
   .section-{{ section.id }}-padding .footer__localization .disclosure__button:hover,
   .section-{{ section.id }}-padding .footer__localization .disclosure__button[aria-expanded='true'] {
     border-bottom-color: rgba(var(--color-foreground), 1);
+  }
+  /* Match the menu links exactly (e.g. "About US"): the footer gives every
+     .caption-large tracked uppercase caps, which made the selector read
+     differently from the links beside it even at the same 1.4rem. Drop the
+     transform and letter-spacing on the selector and its dropdown so both show
+     normal-case "United States | USD $" / "Australia AUD $", same as the menu. */
+  .section-{{ section.id }}-padding .footer__localization .caption-large {
+    text-transform: none;
+    letter-spacing: normal;
   }
 
   /* The footer menu inherits the main nav, whose items are laid out inline for
@@ -462,53 +508,41 @@
     padding: 0;
   }
 
-  /* The wordmark used to span the full page width on a row of its own. As the
-     middle column of the top row it is capped and centred instead — the SVG
-     scales to whatever width it is given, so the cap is all it takes. */
-  .footer__brand-block-{{ section.id }} {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-  }
-
-  .footer__brand-wordmark-{{ section.id }} {
-    width: 100%;
-    max-width: {{ section.settings.brand_logo_width | default: 30 }}rem;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-  }
-
-  .footer__brand-wordmark-{{ section.id }} svg,
-  .footer__brand-wordmark-{{ section.id }} .footer__brand-logo-img {
-    display: block;
-    width: 100%;
-    height: auto;
-    color: rgb(var(--color-foreground));
-  }
-
-  .footer__social-below-wordmark-{{ section.id }} {
-    padding: 0.8rem 0 0;
+  /* Social icons now sit beneath the newsletter (they render inside the
+     newsletter column). Left-aligned with it on desktop; the media query above
+     centres them under it on phones. */
+  .footer__social-{{ section.id }} {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
     flex-wrap: wrap;
-    gap: 1rem 2rem;
+    gap: 1rem 1.6rem;
+    margin: 0;
   }
 
-  .footer__social-below-wordmark-{{ section.id }} .footer__follow-on-shop,
-  .footer__social-below-wordmark-{{ section.id }} .footer__follow-on-shop:first-child:not(:last-child) {
+  .footer__social-{{ section.id }} .footer__follow-on-shop,
+  .footer__social-{{ section.id }} .footer__follow-on-shop:first-child:not(:last-child) {
     display: flex;
     align-items: center;
     margin-right: 0;
-    justify-content: center;
-    text-align: center;
   }
 
-  .footer__social-below-wordmark-{{ section.id }} .footer__list-social {
+  .footer__social-{{ section.id }} .footer__list-social {
     margin: 0;
+  }
+
+  /* Country selector, moved up out of the bottom copyright row to sit directly
+     under the menu. It inherits the transparent/underline select styling from
+     the .footer__localization rules further up; this only lays the label and
+     control out on one line. */
+  .footer__col-left .footer__localization {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 1.2rem;
+    margin: 0;
+    padding: 0;
+    width: auto;
   }
 {%- endstyle -%}
 
@@ -535,6 +569,7 @@
   -%}
     {%- unless only_empty_brand -%}
       <div class="footer__content-top page-width">
+        <div class="footer__col-left">
         {%- if section.blocks.size > 0 -%}
           {%- liquid
             if section.blocks.size == 9
@@ -644,6 +679,38 @@
           </div>
         {%- endif -%}
 
+          {%- comment -%}
+            Country/language selectors, moved up from the bottom copyright row to
+            sit directly under the menu (About US) as the second item in the left
+            column.
+          {%- endcomment -%}
+          <div class="footer__column footer__localization isolate">
+            {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+              <localization-form>
+                {%- form 'localization', id: 'FooterCountryForm', class: 'localization-form' -%}
+                  <div>
+                    <h2 class="visually-hidden" id="FooterCountryLabel">{{ 'localization.country_label' | t }}</h2>
+                    {%- render 'country-localization', localPosition: 'FooterCountry' -%}
+                  </div>
+                {%- endform -%}
+              </localization-form>
+            {%- endif -%}
+
+            {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+              <localization-form>
+                {%- form 'localization', id: 'FooterLanguageForm', class: 'localization-form' -%}
+                  <div>
+                    <h2 class="caption-large text-body" id="FooterLanguageLabel">
+                      {{ 'localization.language_label' | t }}
+                    </h2>
+                    {%- render 'language-localization', localPosition: 'FooterLanguage' -%}
+                  </div>
+                {%- endform -%}
+              </localization-form>
+            {%- endif -%}
+          </div>
+        </div>
+
         <div
           class="footer-block--newsletter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           {% if settings.animations_reveal_on_scroll %}
@@ -718,51 +785,21 @@
             </div>
           {%- endif -%}
 
-        </div>
-
-        {%- comment -%}
-          Brand block: the wordmark with the social icons directly beneath it,
-          sitting between the menu column and the newsletter.
-        {%- endcomment -%}
-        <div class="footer__brand-block-{{ section.id }}">
           {%- comment -%}
-            An uploaded logo wins over the text rendering. A logo set in a
-            licensed typeface can be used here as an image without needing the
-            web licence embedding the font itself would require, and it keeps
-            the exact spacing and any tagline that a web font could not
-            reproduce. The SVG stays as the fallback so the footer is never
-            left without a brand mark.
+            Social icons, moved in from their own row to sit directly under the
+            newsletter. Rendered inside the newsletter column so they stack
+            beneath it on every breakpoint.
           {%- endcomment -%}
-          <div class="footer__brand-wordmark-{{ section.id }}" aria-label="{{ shop.name }}">
-            {%- if section.settings.brand_logo != blank -%}
-              {{
-                section.settings.brand_logo
-                | image_url: width: 1200
-                | image_tag: loading: 'lazy', alt: shop.name, class: 'footer__brand-logo-img'
-              }}
-            {%- else -%}
-              <svg viewBox="0 0 1200 150" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                <text x="600" y="130" text-anchor="middle" font-size="170" fill="currentColor"
-                  textLength="1180" lengthAdjust="spacingAndGlyphs"
-                  style="font-weight:900;letter-spacing:-2px;font-family:inherit">{{ shop.name }}</text>
-              </svg>
+          <div class="footer__social-{{ section.id }}">
+            {%- if shop.features.follow_on_shop? and section.settings.enable_follow_on_shop -%}
+              <div class="footer__follow-on-shop">
+                {{ shop | login_button: action: 'follow' }}
+              </div>
+            {%- endif -%}
+            {%- if section.settings.show_social and has_social_icons -%}
+              {%- render 'social-icons', class: 'footer__list-social' -%}
             {%- endif -%}
           </div>
-        </div>
-        {%- comment -%}
-          A sibling of the brand block rather than a child of it, so the top row
-          can place it on a second line of its own — centred above the dashed
-          rule on desktop, directly under the wordmark on phones.
-        {%- endcomment -%}
-        <div class="footer__social-below-wordmark-{{ section.id }}">
-          {%- if shop.features.follow_on_shop? and section.settings.enable_follow_on_shop -%}
-            <div class="footer__follow-on-shop">
-              {{ shop | login_button: action: 'follow' }}
-            </div>
-          {%- endif -%}
-          {%- if section.settings.show_social and has_social_icons -%}
-            {%- render 'social-icons', class: 'footer__list-social' -%}
-          {%- endif -%}
         </div>
       </div>
     {%- endunless -%}
@@ -802,7 +839,7 @@
         {%- endif -%}
       </div>
     </div>
-    <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
+    <div class="footer__content-bottom-wrapper page-width">
       <div class="footer__copyright caption">
         {%- comment -%}
           Brand name first, then the year, with no comma between — the year is
@@ -838,35 +875,6 @@
               {%- endif -%}
             {%- endfor -%}
           </ul>
-        {%- endif -%}
-      </div>
-      {%- comment -%}
-        Moved up from the wrapper above so the currency sits at the end of the
-        copyright line rather than on a row of its own.
-      {%- endcomment -%}
-      <div class="footer__column footer__localization isolate">
-        {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
-          <localization-form>
-            {%- form 'localization', id: 'FooterCountryForm', class: 'localization-form' -%}
-              <div>
-                <h2 class="caption-large text-body" id="FooterCountryLabel">{{ 'localization.country_label' | t }}</h2>
-                {%- render 'country-localization', localPosition: 'FooterCountry' -%}
-              </div>
-            {%- endform -%}
-          </localization-form>
-        {%- endif -%}
-
-        {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
-          <localization-form>
-            {%- form 'localization', id: 'FooterLanguageForm', class: 'localization-form' -%}
-              <div>
-                <h2 class="caption-large text-body" id="FooterLanguageLabel">
-                  {{ 'localization.language_label' | t }}
-                </h2>
-                {%- render 'language-localization', localPosition: 'FooterLanguage' -%}
-              </div>
-            {%- endform -%}
-          </localization-form>
         {%- endif -%}
       </div>
     </div>
@@ -992,22 +1000,6 @@
       "id": "footer_bg_color",
       "label": "Footer background color",
       "default": "#f5b1d5"
-    },
-    {
-      "type": "image_picker",
-      "id": "brand_logo",
-      "label": "Footer logo image",
-      "info": "Shown in the middle of the footer. Upload a transparent PNG or an SVG. Leave empty to render the shop name as text instead."
-    },
-    {
-      "type": "range",
-      "id": "brand_logo_width",
-      "min": 12,
-      "max": 60,
-      "step": 2,
-      "unit": "rem",
-      "label": "Footer logo width",
-      "default": 30
     },
     {
       "type": "header",
