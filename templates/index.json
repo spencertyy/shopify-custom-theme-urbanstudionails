@@ -79,7 +79,7 @@
     "featured_collection_yWJRKA": {
       "type": "featured-collection",
       "settings": {
-        "title": "<strong>BEST SELLERS</strong>",
+        "title": "BEST SELLERS",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
@@ -179,7 +179,7 @@
         "tab_dark"
       ],
       "settings": {
-        "title": "<strong>Shop by aesthetic</strong>",
+        "title": "Shop by aesthetic",
         "heading_size": "h2",
         "products_to_show": 8,
         "columns_desktop": 4,

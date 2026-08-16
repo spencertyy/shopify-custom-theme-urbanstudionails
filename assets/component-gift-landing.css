@@ -67,7 +67,7 @@
 .gift-landing__tag {
   font-size: 1rem;
   letter-spacing: 0.12em;
-  font-weight: 600;
+  font-weight: 400;
   opacity: 0.55;
   text-transform: uppercase;
 }
@@ -93,7 +93,7 @@
   text-align: center;
   padding: 1rem 2rem;
   font-size: 1.3rem;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.06em;
   border-radius: 0.3rem;
   cursor: pointer;

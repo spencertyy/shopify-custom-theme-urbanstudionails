@@ -163,6 +163,6 @@ variant-selects {
 
 .product-form__input--nail-shape input[type='radio']:checked + label {
   border-width: 1.5px;
-  font-weight: 700;
+  font-weight: 400;
 }
 
