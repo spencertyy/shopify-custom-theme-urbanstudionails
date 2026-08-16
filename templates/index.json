@@ -261,6 +261,17 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "insta_collage": {
+      "type": "insta-collage",
+      "settings": {
+        "eyebrow": "Follow us",
+        "handle": "@UrbanStudio.Nails",
+        "ig_url": "https://www.instagram.com/urbanstudio.nails/",
+        "color_scheme": "scheme-1",
+        "padding_top": 52,
+        "padding_bottom": 24
+      }
     }
   },
   "order": [
@@ -270,6 +281,7 @@
     "image_banner_HwgpbG",
     "collection_tabs_aesthetic",
     "split_banner_specials",
+    "insta_collage",
     "instagram_instafeed"
   ]
 }

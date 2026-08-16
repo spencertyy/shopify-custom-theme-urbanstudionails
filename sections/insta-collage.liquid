@@ -1,0 +1,243 @@
+{%- comment -%}
+  Instagram collage in the spirit of heirest.com's social grid: a few
+  scattered, differently-sized images orbiting a large @handle, instead
+  of the uniform card strip the Instafeed app ships with.
+
+  The images are NOT uploaded by hand. The Instafeed app block (which
+  must remain somewhere on the same page) fetches the latest posts and
+  writes each thumbnail URL into a data-instafeed-thumbnail attribute.
+  After load, this section harvests the first few thumbnails from that
+  DOM, fills its collage slots, then hides the app's own rendering. If
+  the app ever fails or changes markup, the harvest finds nothing, this
+  section stays hidden, and the app's stock feed remains visible — the
+  page degrades to exactly what it was before.
+{%- endcomment -%}
+
+{%- style -%}
+  .insta-collage-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    display: none;
+  }
+
+  .insta-collage-{{ section.id }}.insta-collage--ready {
+    display: block;
+  }
+
+  .insta-collage__stage {
+    position: relative;
+  }
+
+  @media screen and (min-width: 990px) {
+    .insta-collage__stage {
+      height: 56rem;
+    }
+  }
+
+  .insta-collage__slot {
+    display: block;
+    position: absolute;
+    overflow: hidden;
+  }
+
+  .insta-collage__slot img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Scattered sizes, all 4:5 like heirest — one anchor image, smaller
+     satellites, none aligned to a shared edge. Percentages keep the
+     composition stable across page widths. */
+  @media screen and (min-width: 990px) {
+    .insta-collage__slot--1 { left: 0;     top: 4%;   width: 30%;   aspect-ratio: 4 / 5; }
+    .insta-collage__slot--2 { left: 24%;   top: 58%;  width: 13%;   aspect-ratio: 4 / 5; }
+    .insta-collage__slot--3 { left: 46%;   top: 0;    width: 12%;   aspect-ratio: 4 / 5; }
+    .insta-collage__slot--4 { right: 0;    top: 22%;  width: 19%;   aspect-ratio: 4 / 5; }
+    .insta-collage__slot--5 { right: 21%;  top: 56%;  width: 16%;   aspect-ratio: 4 / 5; }
+  }
+
+  .insta-collage__center {
+    text-align: center;
+  }
+
+  @media screen and (min-width: 990px) {
+    .insta-collage__center {
+      position: absolute;
+      left: 50%;
+      top: 34%;
+      transform: translateX(-50%);
+      z-index: 2;
+      width: max-content;
+    }
+  }
+
+  .insta-collage__eyebrow {
+    margin: 0 0 1.2rem;
+  }
+
+  .insta-collage__handle {
+    font-size: 3.2rem;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    text-decoration: none;
+    color: rgb(var(--color-foreground));
+  }
+
+  .insta-collage__handle:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.4rem;
+  }
+
+  /* Mobile: centre text first, then a loose two-column stagger. */
+  @media screen and (max-width: 989px) {
+    .insta-collage__center { margin-bottom: 3.2rem; }
+    .insta-collage__handle { font-size: 2.4rem; }
+    .insta-collage__stage { display: block; }
+    .insta-collage__slots {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.6rem;
+    }
+    .insta-collage__slot { position: static; aspect-ratio: 4 / 5; }
+    .insta-collage__slot--2 { margin-top: 2.4rem; }
+    .insta-collage__slot--4 { margin-top: -2.4rem; }
+    .insta-collage__slot--5 { display: none; }
+  }
+
+  /* Applied to the Instafeed app's own section once the collage is
+     filled. Kept as height-collapse rather than display:none so the
+     app's scripts keep a live element to talk to. */
+  .insta-collage-app-hidden {
+    height: 0 !important;
+    overflow: hidden !important;
+    visibility: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+{%- endstyle -%}
+
+<div id="InstaCollage-{{ section.id }}" class="insta-collage-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width">
+    <div class="insta-collage__stage">
+      <div class="insta-collage__center">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="insta-collage__eyebrow caption-with-letter-spacing">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        <a class="insta-collage__handle" href="{{ section.settings.ig_url }}" target="_blank" rel="noopener">
+          {{- section.settings.handle | escape -}}
+        </a>
+      </div>
+      <div class="insta-collage__slots">
+        {%- for i in (1..5) -%}
+          <a class="insta-collage__slot insta-collage__slot--{{ i }}"
+             href="{{ section.settings.ig_url }}" target="_blank" rel="noopener"
+             data-collage-slot aria-label="{{ section.settings.handle | escape }} on Instagram"></a>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var root = document.getElementById('InstaCollage-{{ section.id }}');
+    if (!root) return;
+    var slots = root.querySelectorAll('[data-collage-slot]');
+    var deadline = Date.now() + 10000;
+
+    function harvest() {
+      var items = document.querySelectorAll('#insta-feed [data-instafeed-thumbnail]');
+      var urls = [];
+      for (var i = 0; i < items.length; i++) {
+        var u = items[i].getAttribute('data-instafeed-thumbnail');
+        if (u && urls.indexOf(u) === -1) urls.push(u);
+      }
+      if (urls.length >= slots.length) {
+        slots.forEach(function (slot, i) {
+          var img = document.createElement('img');
+          img.src = urls[i];
+          img.alt = '';
+          img.loading = 'lazy';
+          slot.appendChild(img);
+        });
+        root.classList.add('insta-collage--ready');
+        var feed = document.querySelector('#insta-feed');
+        var appSection = feed && feed.closest('.shopify-section');
+        if (appSection) appSection.classList.add('insta-collage-app-hidden');
+        return;
+      }
+      if (Date.now() < deadline) setTimeout(harvest, 400);
+      /* deadline passed: leave the app's stock feed visible, collage stays hidden */
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', harvest);
+    } else {
+      harvest();
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Instagram collage",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Needs the Instafeed app block on the same page (it can sit below — it is hidden automatically once the collage loads)."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Follow us"
+    },
+    {
+      "type": "text",
+      "id": "handle",
+      "label": "Handle",
+      "default": "@UrbanStudio.Nails"
+    },
+    {
+      "type": "url",
+      "id": "ig_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 52
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram collage"
+    }
+  ]
+}
+{% endschema %}
