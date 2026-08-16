@@ -3566,3 +3566,24 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
+
+/* ------------------------------------------------------------------
+   UrbanStudio custom typography (appended after stock Dawn styles)
+
+   Editorial tracking: the larger the heading, the tighter the letter
+   spacing. Dawn ships every heading at letter-spacing normal; pulling
+   the big sizes slightly negative is what gives reference sites
+   (heirest, Loulou de Saison) their dense, editorial look. Body copy
+   and captions are deliberately left untouched — negative tracking
+   below ~20px hurts legibility instead of helping it.
+   ------------------------------------------------------------------ */
+h1,
+.h1,
+.h0 {
+  letter-spacing: -0.02em;
+}
+
+h2,
+.h2 {
+  letter-spacing: -0.015em;
+}

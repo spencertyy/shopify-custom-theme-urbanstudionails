@@ -26,17 +26,56 @@
         "padding_bottom": 28
       }
     },
-    "rich_text_RmNxge": {
+    "rich_text_about_lead": {
       "type": "rich-text",
       "blocks": {
-        "text_KzehaY": {
+        "text_lead": {
           "type": "text",
           "settings": {
-            "text": "<p>Two everyday things never caught up: getting your hair coloured properly, and getting your nails done properly. Both still cost you an afternoon in a chair.<br/>And the afternoon is only the beginning. A gel manicure locks you into one look for weeks, leaves an awkward gap at the base as it grows out, and taking it off means going back to the salon and sitting down all over again. Do that often enough and your nails start to thin, until the lamp begins to sting.</p>"
+            "text": "<p>Made for cities that run fast, by hands that don't rush. Salon nails on in ten minutes, off whenever you decide.</p>"
           }
         }
       },
       "block_order": [
+        "text_lead"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 52,
+        "padding_bottom": 20
+      }
+    },
+    "rich_text_RmNxge": {
+      "type": "rich-text",
+      "blocks": {
+        "caption_story": {
+          "type": "caption",
+          "settings": {
+            "caption": "Our story",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "small"
+          }
+        },
+        "heading_story": {
+          "type": "heading",
+          "settings": {
+            "heading": "The afternoon problem.",
+            "heading_size": "h1"
+          }
+        },
+        "text_KzehaY": {
+          "type": "text",
+          "settings": {
+            "text": "<p>A proper manicure still costs you an afternoon in a chair. Then it locks you into one look for weeks, grows out awkwardly at the base, and only comes off where it went on. Do it often enough and your nails thin, until the lamp begins to sting.</p><p>We didn't think the problem was the manicure. It was everything around it.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "caption_story",
+        "heading_story",
         "text_KzehaY"
       ],
       "settings": {
@@ -55,9 +94,9 @@
           "type": "row",
           "settings": {
             "image": "shopify://shop_images/dfb1d7fefc64bf9fbaedba7a7d71a5f2_2f1f7f78-c6cb-4e0b-99c3-7577d856b8df.jpg",
-            "caption": "",
-            "heading": "What we make",
-            "text": "<p>Handmade press-on nails — shaped, painted and finished one set at a time by nail artists, never stamped out by the thousand.</p><p>They go on in about ten minutes and come off whenever you decide. No lamp, no drill, no acetone, no appointment. Applied with tabs, a set can be worn again and again, so you can keep several and choose the one that suits where you are going today rather than committing to one look for a month.</p>",
+            "caption": "001",
+            "heading": "One set at a time",
+            "text": "<p>Handmade press-on nails — shaped, painted and finished one set at a time by nail artists, never stamped out by the thousand.</p><p>On with tabs in about ten minutes, off whenever you decide. No lamp, no drill, no acetone, no appointment.</p>",
             "button_label": "",
             "button_link": ""
           }
@@ -66,21 +105,9 @@
           "type": "row",
           "settings": {
             "image": "shopify://shop_images/e0ebcfd471dfd8a68c983f98b5795137.jpg",
-            "caption": "",
-            "heading": "Who makes them",
-            "text": "<p>Our nails are made by hand by a small group of nail artists in China, most of whom work from home.</p><p>It is deliberate. Skilled nail artists are not hard to find — what is hard to find is a way to sell that skill without a salon chair and fixed hours. Working this way, they set their own schedule and stay with their families, and we get sets painted by people who chose this craft rather than people assigned to a production line. A set someone cared about looks like one.</p><p>Every design is made by our founder alongside them, which is how the standard stays the same whoever picks up the brush.</p>",
-            "button_label": "",
-            "button_link": ""
-          }
-        },
-        "row_6EJyf3": {
-          "type": "row",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/6e43225a4e9d5cd2bfbb3f834242b389_7b9de1ac-db4d-469c-adcf-9e7fef464c96.jpg",
-            "caption": "",
-            "heading": "How a set reaches you",
-            "text": "<p>Each set is shaped to follow the curve of a natural nail, built up in layers of professional-grade gel, and finished with every pearl and charm placed by hand.</p><p>Then it gets checked — twice. Once by the studio, once before it is boxed. We are looking for the things that decide whether a set lasts a day or two weeks: smooth edges, embellishments that are properly set, an even finish. Anything that does not pass does not ship.</p><p>Because every set is made by a person, no two are exactly alike. Small differences in tone, in where a pearl sits, in how the light catches the top coat — those are not faults. They are the difference between a print and an original.</p>",
+            "caption": "002",
+            "heading": "Hands, not lines",
+            "text": "<p>Our nails are made by a small group of nail artists in China, most of whom work from home. It is deliberate: they set their own hours and stay with their families, and we get sets painted by people who chose this craft — not people assigned to a production line.</p><p>Every design is developed by our founder alongside them, which is how the standard stays the same whoever picks up the brush.</p>",
             "button_label": "",
             "button_link": ""
           }
@@ -88,8 +115,7 @@
       },
       "block_order": [
         "row_gittWh",
-        "row_pFhMgG",
-        "row_6EJyf3"
+        "row_pFhMgG"
       ],
       "settings": {
         "image_height": "medium",
@@ -104,61 +130,76 @@
         "row_color_scheme": "",
         "mobile_content_alignment": "left",
         "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "editorial_sticky_003": {
+      "type": "editorial-sticky",
+      "settings": {
+        "hero_image": "shopify://shop_images/6e43225a4e9d5cd2bfbb3f834242b389_7b9de1ac-db4d-469c-adcf-9e7fef464c96.jpg",
+        "caption": "003",
+        "heading": "Checked twice, shipped once",
+        "heading_size": "h1",
+        "text": "<p>Each set is shaped to follow the curve of a natural nail, built up in layers of professional-grade gel, and finished with every pearl and charm placed by hand.</p><p>Then it is checked twice — once in the studio, once before it is boxed. Anything that does not pass does not ship.</p>",
+        "link_label": "",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
         "padding_bottom": 36
       }
     },
-    "multicolumn_j4tHYd": {
-      "type": "multicolumn",
+    "values_accordion": {
+      "type": "collapsible-content",
       "blocks": {
-        "column_4hJEaP": {
-          "type": "column",
+        "value_small_numbers": {
+          "type": "collapsible_row",
           "settings": {
-            "title": "How a set reaches you",
-            "text": "<p>Each one is shaped to follow the curve of a natural nail, built up in layers of professional-grade gel, and finished with every pearl and charm placed by hand.</p><p>Then it is checked twice — once in the studio, once before it is boxed — for the things that decide whether a set lasts a day or two weeks: smooth edges, embellishments properly set, an even finish. Anything that does not pass does not ship.</p>",
-            "link_label": "",
-            "link": ""
+            "heading": "Made in small numbers",
+            "icon": "none",
+            "row_content": "<p>Every design is made in limited numbers. When a set sells out it may be a while before it returns — sometimes not at all. We would rather make fewer sets properly than more sets faster.</p>"
           }
         },
-        "column_mGUKnQ": {
-          "type": "column",
+        "value_original": {
+          "type": "collapsible_row",
           "settings": {
-            "title": "What we won't do",
-            "text": "<p><strong>No mass production.</strong> Every design is made in small numbers. When a set sells out it may be a while before it returns — sometimes not at all.</p><p><strong>No pretending a machine did it better.</strong> Handmade means small differences in tone, in where a pearl sits, in how the light catches the top coat. That is the difference between a print and an original, and we would rather explain it than iron it out.</p>",
-            "link_label": "",
-            "link": ""
+            "heading": "An original, not a print",
+            "icon": "none",
+            "row_content": "<p>Because every set is made by a person, no two are exactly alike. Small differences in tone, in where a pearl sits, in how the light catches the top coat — those are not faults. They are the difference between a print and an original, and we would rather explain that than iron it out.</p>"
           }
         },
-        "column_MfX7W7": {
-          "type": "column",
+        "value_by_women": {
+          "type": "collapsible_row",
           "settings": {
-            "title": "Made by women, for women",
-            "text": "<p>Everyone who makes these nails is a woman, and most of what we know came from wearing them ourselves — the ones that lifted at the edges after a day, the ones that never quite fit, the ones that were beautiful but wrecked your nails.</p><p>We are building the ones we wanted and could not find.</p>",
-            "link_label": "",
-            "link": ""
+            "heading": "Made by women, for women",
+            "icon": "none",
+            "row_content": "<p>Everyone who makes these nails is a woman, and most of what we know came from wearing them ourselves — the sets that lifted at the edges after a day, the ones that never quite fit, the ones that were beautiful but wrecked your nails. We are building the ones we wanted and could not find.</p>"
+          }
+        },
+        "value_reuse": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Yours to reuse",
+            "icon": "none",
+            "row_content": "<p>Applied with tabs, a set comes off clean and survives to be worn again. Keep a few and choose the one that suits where you are going today, rather than committing to one look for a month.</p>"
           }
         }
       },
       "block_order": [
-        "column_4hJEaP",
-        "column_mGUKnQ",
-        "column_MfX7W7"
+        "value_small_numbers",
+        "value_original",
+        "value_by_women",
+        "value_reuse"
       ],
-      "name": "t:sections.multicolumn.presets.name",
       "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "columns_desktop": 3,
-        "column_alignment": "left",
-        "background_style": "primary",
-        "button_label": "",
-        "button_link": "",
+        "caption": "Our values",
+        "heading": "What we stand by",
+        "heading_size": "h2",
+        "heading_alignment": "left",
+        "layout": "none",
         "color_scheme": "",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "container_color_scheme": "",
+        "open_first_collapsible_row": false,
+        "padding_top": 52,
+        "padding_bottom": 52
       }
     },
     "rich_text_NBBLLK": {
@@ -167,24 +208,12 @@
         "text_xTePHJ": {
           "type": "text",
           "settings": {
-            "text": "<h2>Come and find us</h2><p>New designs land regularly, and the ones that sell out do not always come back. Our newsletter is where they are announced first, usually with a code attached.</p><p>We would also love to see yours — tag <strong>@UrbanStudio.Nails</strong> in your photos.</p>"
-          }
-        },
-        "button_AUMT89": {
-          "type": "button",
-          "settings": {
-            "button_label": "Shop all sets",
-            "button_link": "shopify://collections/all-products",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "text": "<h2>Come and find us</h2><p>New designs land regularly, and the ones that sell out do not always come back. Our newsletter is where they are announced first, usually with a code attached.</p><p>We would also love to see yours — tag <strong>@UrbanStudio.Nails</strong> in your photos.</p>"
           }
         }
       },
       "block_order": [
-        "text_xTePHJ",
-        "button_AUMT89"
+        "text_xTePHJ"
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
@@ -193,7 +222,16 @@
         "color_scheme": "",
         "full_width": true,
         "padding_top": 72,
-        "padding_bottom": 80
+        "padding_bottom": 8
+      }
+    },
+    "cta_shop_count": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div style=\"text-align:center;\"><a class=\"button\" href=\"/collections/all-products\">Shop all sets&nbsp;&nbsp;[{{ collections['all-products'].products_count }}]</a></div>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 72
       }
     },
     "1723228228adee05cd": {
@@ -225,35 +263,13 @@
         "include_margins": true
       }
     },
-    "rich_text_about_lead": {
-      "type": "rich-text",
-      "blocks": {
-        "text_lead": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Made for cities that run fast, made by hands that don't rush. Handmade, reusable and unmistakably yours — salon nails on in ten minutes, off whenever you decide. Made by women, for the way women actually live.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "text_lead"
-      ],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 52,
-        "padding_bottom": 20
-      }
-    },
     "rich_text_about_outro": {
       "type": "rich-text",
       "blocks": {
         "text_outro": {
           "type": "text",
           "settings": {
-            "text": "<p>The manicure the city finally caught up to.</p>"
+            "text": "<p>The manicure that finally caught up with the city.</p>"
           }
         }
       },
@@ -276,8 +292,10 @@
     "rich_text_about_lead",
     "rich_text_RmNxge",
     "multirow_9Ahxxk",
-    "multicolumn_j4tHYd",
+    "editorial_sticky_003",
+    "values_accordion",
     "rich_text_NBBLLK",
+    "cta_shop_count",
     "1723228228adee05cd",
     "rich_text_about_outro"
   ]
