@@ -12,7 +12,7 @@
     "about_heading_css": {
       "type": "custom-liquid",
       "settings": {
-        "custom_liquid": "<style>#MainContent .h1{font-size:28px !important;}#MainContent [id$=\"__rich_text_about_lead\"] p,#MainContent [id$=\"__rich_text_about_outro\"] p{font-size:22px !important;line-height:1.5;}</style>",
+        "custom_liquid": "<style>#MainContent .h1{font-size:28px !important;}#insta-feed h2{font-size:17px !important;font-weight:400 !important;}</style>",
         "color_scheme": "",
         "padding_top": 0,
         "padding_bottom": 0
@@ -24,28 +24,6 @@
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
-      }
-    },
-    "rich_text_about_lead": {
-      "type": "rich-text",
-      "blocks": {
-        "text_lead": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Made for cities that run fast, by hands that don't rush. Salon nails on in ten minutes, off whenever you decide.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "text_lead"
-      ],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 52,
-        "padding_bottom": 20
       }
     },
     "rich_text_RmNxge": {
@@ -62,14 +40,14 @@
         "heading_story": {
           "type": "heading",
           "settings": {
-            "heading": "The afternoon problem.",
+            "heading": "Made for cities that run fast, by hands that don't rush.",
             "heading_size": "h1"
           }
         },
         "text_KzehaY": {
           "type": "text",
           "settings": {
-            "text": "<p>A proper manicure still costs you an afternoon in a chair. Then it locks you into one look for weeks, grows out awkwardly at the base, and only comes off where it went on. Do it often enough and your nails thin, until the lamp begins to sting.</p><p>We didn't think the problem was the manicure. It was everything around it.</p>"
+            "text": "<p>Salon nails on in ten minutes, off whenever you decide.</p><p>A proper manicure still costs you an afternoon in a chair. Then it locks you into one look for weeks, grows out awkwardly at the base, and only comes off where it went on. Do it often enough and your nails thin, until the lamp begins to sting.</p><p>We didn't think the problem was the manicure. It was everything around it.</p>"
           }
         }
       },
@@ -83,7 +61,7 @@
         "content_alignment": "center",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 40,
+        "padding_top": 52,
         "padding_bottom": 52
       }
     },
@@ -130,31 +108,28 @@
         "padding_bottom": 36
       }
     },
-    "values_accordion": {
-      "type": "collapsible-content",
+    "outro_values": {
+      "type": "outro-values",
       "blocks": {
         "value_original": {
-          "type": "collapsible_row",
+          "type": "value",
           "settings": {
             "heading": "An original, not a print",
-            "icon": "none",
-            "row_content": "<p>Because every set is made by a person, no two are exactly alike. Small differences in tone, in where a pearl sits, in how the light catches the top coat — those are not faults. They are the difference between a print and an original, and we would rather explain that than iron it out.</p>"
+            "content": "<p>Because every set is made by a person, no two are exactly alike. Small differences in tone, in where a pearl sits, in how the light catches the top coat — those are not faults. They are the difference between a print and an original, and we would rather explain that than iron it out.</p>"
           }
         },
         "value_by_women": {
-          "type": "collapsible_row",
+          "type": "value",
           "settings": {
             "heading": "Made by women, for women",
-            "icon": "none",
-            "row_content": "<p>Everyone who makes these nails is a woman, and most of what we know came from wearing them ourselves — the sets that lifted at the edges after a day, the ones that never quite fit, the ones that were beautiful but wrecked your nails. We are building the ones we wanted and could not find.</p>"
+            "content": "<p>Everyone who makes these nails is a woman, and most of what we know came from wearing them ourselves — the sets that lifted at the edges after a day, the ones that never quite fit, the ones that were beautiful but wrecked your nails. We are building the ones we wanted and could not find.</p>"
           }
         },
         "value_reuse": {
-          "type": "collapsible_row",
+          "type": "value",
           "settings": {
             "heading": "Yours to reuse",
-            "icon": "none",
-            "row_content": "<p>Applied with tabs, a set comes off clean and survives to be worn again. Keep a few and choose the one that suits where you are going today, rather than committing to one look for a month.</p>"
+            "content": "<p>Applied with tabs, a set comes off clean and survives to be worn again. Keep a few and choose the one that suits where you are going today, rather than committing to one look for a month.</p>"
           }
         }
       },
@@ -164,14 +139,11 @@
         "value_reuse"
       ],
       "settings": {
+        "tagline": "<p>The manicure that finally caught up with the city.</p>",
+        "button_label": "Shop all sets",
+        "button_link": "shopify://collections/all-products",
         "caption": "Our values",
-        "heading": "What we stand by",
-        "heading_size": "h2",
-        "heading_alignment": "left",
-        "layout": "none",
-        "color_scheme": "",
-        "container_color_scheme": "",
-        "open_first_collapsible_row": false,
+        "color_scheme": "scheme-1",
         "padding_top": 52,
         "padding_bottom": 52
       }
@@ -204,50 +176,14 @@
       "settings": {
         "include_margins": true
       }
-    },
-    "rich_text_about_outro": {
-      "type": "rich-text",
-      "blocks": {
-        "text_outro": {
-          "type": "text",
-          "settings": {
-            "text": "<p>The manicure that finally caught up with the city.</p>"
-          }
-        },
-        "button_outro": {
-          "type": "button",
-          "settings": {
-            "button_label": "Shop all sets",
-            "button_link": "shopify://collections/all-products",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "text_outro",
-        "button_outro"
-      ],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 36,
-        "padding_bottom": 64
-      }
     }
   },
   "order": [
     "about_heading_css",
     "main",
-    "rich_text_about_lead",
     "rich_text_RmNxge",
     "editorial_sticky_003",
-    "values_accordion",
-    "1723228228adee05cd",
-    "rich_text_about_outro"
+    "outro_values",
+    "1723228228adee05cd"
   ]
 }

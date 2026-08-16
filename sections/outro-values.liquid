@@ -1,0 +1,209 @@
+{%- comment -%}
+  Page tail: tagline + CTA on the left, a compact values accordion on
+  the right. Replaces the full-width collapsible-content section, whose
+  page-wide rows left too much empty space around short value texts.
+
+  The accordion is native <details>/<summary> — no JavaScript, keyboard
+  and screen-reader support for free. The chevron rotates via the
+  details[open] selector.
+
+  On mobile the two columns stack: tagline + button first, values below.
+{%- endcomment -%}
+
+{%- style -%}
+  .outro-values-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  .outro-values__grid {
+    display: grid;
+    gap: 4rem;
+  }
+
+  @media screen and (min-width: 990px) {
+    .outro-values__grid {
+      grid-template-columns: 5fr 6fr;
+      column-gap: 8rem;
+      align-items: center;
+    }
+  }
+
+  /* Tagline reads at body size on purpose — it closes the page quietly
+     instead of shouting (the big statement already happened up top). */
+  .outro-values__tagline {
+    margin: 0 0 2rem;
+  }
+
+  .outro-values__caption {
+    margin: 0 0 0.8rem;
+  }
+
+  .outro-values__row {
+    border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.12);
+  }
+
+  .outro-values__row:first-of-type {
+    border-top: 0.1rem solid rgba(var(--color-foreground), 0.12);
+  }
+
+  .outro-values__row summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.6rem;
+    padding: 1.3rem 0;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .outro-values__row summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .outro-values__row-title {
+    font-weight: 500;
+  }
+
+  .outro-values__row .icon-caret {
+    flex-shrink: 0;
+    transition: transform var(--duration-short) ease;
+  }
+
+  .outro-values__row[open] .icon-caret {
+    transform: rotate(180deg);
+  }
+
+  .outro-values__row-content {
+    padding: 0 0 1.6rem;
+  }
+
+  .outro-values__row-content p {
+    margin: 0 0 0.8rem;
+  }
+
+  .outro-values__row-content p:last-child {
+    margin-bottom: 0;
+  }
+{%- endstyle -%}
+
+<div class="outro-values-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width">
+    <div class="outro-values__grid">
+      <div class="outro-values__left">
+        {%- if section.settings.tagline != blank -%}
+          <div class="outro-values__tagline rte">{{ section.settings.tagline }}</div>
+        {%- endif -%}
+        {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+          <a href="{{ section.settings.button_link }}" class="button">
+            {{- section.settings.button_label | escape -}}
+          </a>
+        {%- endif -%}
+      </div>
+
+      <div class="outro-values__right">
+        {%- if section.settings.caption != blank -%}
+          <p class="outro-values__caption caption-with-letter-spacing">{{ section.settings.caption | escape }}</p>
+        {%- endif -%}
+        {%- for block in section.blocks -%}
+          <details class="outro-values__row" {{ block.shopify_attributes }}>
+            <summary>
+              <span class="outro-values__row-title">{{ block.settings.heading | escape }}</span>
+              <span class="svg-wrapper icon-caret">
+                <svg aria-hidden="true" width="12" height="12" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11 5.5L7 9.5L3 5.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </summary>
+            <div class="outro-values__row-content rte">{{ block.settings.content }}</div>
+          </details>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Outro + values",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "tagline",
+      "label": "Tagline"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Values caption",
+      "default": "Our values"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 52
+    }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Value",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Outro + values",
+      "blocks": [
+        { "type": "value" },
+        { "type": "value" },
+        { "type": "value" }
+      ]
+    }
+  ]
+}
+{% endschema %}
