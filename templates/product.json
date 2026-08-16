@@ -15,7 +15,7 @@
         "vendor": {
           "type": "text",
           "settings": {
-            "text": "{{ product.vendor }}",
+            "text": "URBAN STUDIO",
             "text_style": "uppercase"
           }
         },
