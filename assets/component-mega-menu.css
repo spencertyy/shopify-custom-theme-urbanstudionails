@@ -52,8 +52,17 @@
   word-wrap: break-word;
 }
 
+/* Category headers inside the mega menu, Loulou de Saison style: muted
+   grey marks them as labels, the black items beneath stay the links.
+   They remain clickable, so hover restores full foreground. */
 .mega-menu__link--level-2 {
   font-weight: 400;
+  color: rgba(var(--color-foreground), 0.5);
+}
+
+.mega-menu__link--level-2:hover,
+.mega-menu__link--level-2:focus-visible {
+  color: rgb(var(--color-foreground));
 }
 
 .header--top-center .mega-menu__list {
