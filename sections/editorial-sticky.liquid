@@ -1,55 +1,75 @@
 {%- comment -%}
-  Editorial section modelled on wwake.com's homepage "editorial" block.
+  Editorial section modelled on wwake.com's homepage "editorial" block,
+  extended to hold several numbered entries (001, 002, 003…).
 
   Desktop is a three-column grid: a pair of small detail images on the
-  left, text in the middle, one tall hero image on the right. The left
-  pair is position: sticky, so while the taller hero column scrolls the
-  small images follow the reader down the section — the effect only
-  works because the sticky column is much shorter than the grid row it
-  sits in. No JavaScript involved.
+  left, entry text in the middle, one tall image per entry on the right.
+  The left pair is position: sticky inside a cell that spans every entry
+  row, so it follows the reader from the first entry to the last — the
+  effect exists because the pair is far shorter than the stacked image
+  column. No JavaScript involved.
 
-  On mobile the grid collapses to a single column: text first, then the
-  hero, then the two detail shots side by side.
+  Grid auto-placement does the row bookkeeping: the pair cell explicitly
+  spans all rows in column 1, and each entry emits a text cell pinned to
+  column 2 and an image cell pinned to column 3, so consecutive entries
+  fall onto consecutive rows on their own.
+
+  On mobile the grid collapses to normal flow: the detail pair first,
+  then each entry as text followed by its image, sticky disabled.
+
+  .rte styles live in base.css (loaded globally), so no extra stylesheet.
 {%- endcomment -%}
 
-{%- comment -%}
-  No extra stylesheet needed: this theme keeps its .rte styles in
-  base.css, which is loaded globally by theme.liquid.
-{%- endcomment -%}
 {%- style -%}
   .editorial-sticky-{{ section.id }} {
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
 
-  .editorial-sticky__grid {
-    display: grid;
-    gap: 2.4rem;
-    align-items: start;
-  }
-
   @media screen and (min-width: 990px) {
     .editorial-sticky__grid {
-      /* Small-pair column | text column | hero column. The fr values
-         roughly mirror wwake's 408 / 320 / 464 px proportions. */
+      display: grid;
+      /* Small-pair column | text column | image column, roughly wwake's
+         408 / 320 / 464 px proportions. */
       grid-template-columns: 5fr 4fr 6fr;
-      gap: 3.2rem;
+      column-gap: 3.2rem;
+      row-gap: 8rem;
+      align-items: start;
     }
-  }
 
-  /* The sticky pair. top clears the sticky header; 9rem ≈ header height
-     plus a small breathing gap. */
-  .editorial-sticky__pair {
-    display: flex;
-    gap: 1.6rem;
-    align-self: start;
-  }
+    .editorial-sticky__pair-cell {
+      grid-column: 1;
+      grid-row: 1 / span {{ section.blocks.size | default: 1 }};
+      align-self: stretch;
+    }
 
-  @media screen and (min-width: 990px) {
+    /* The sticky pair. top clears the sticky header; 9rem ≈ header
+       height plus a small breathing gap. */
     .editorial-sticky__pair {
       position: sticky;
       top: 9rem;
     }
+
+    /* Keep the small images small: the height difference between this
+       pair and the stacked image column is what makes the sticky effect
+       visible at all. */
+    .editorial-sticky__pair-item {
+      max-width: 14.4rem;
+    }
+
+    .editorial-sticky__entry-text {
+      grid-column: 2;
+      align-self: center;
+    }
+
+    .editorial-sticky__entry-image {
+      grid-column: 3;
+    }
+  }
+
+  .editorial-sticky__pair {
+    display: flex;
+    gap: 1.6rem;
   }
 
   .editorial-sticky__pair-item {
@@ -57,45 +77,23 @@
     margin: 0;
   }
 
-  /* Keep the small images small: cap them well under half the column so
-     the height difference against the hero column stays large — that
-     difference is what makes the sticky effect visible at all. */
-  @media screen and (min-width: 990px) {
-    .editorial-sticky__pair-item {
-      max-width: 14.4rem;
-    }
-  }
-
   .editorial-sticky__pair-item img,
-  .editorial-sticky__hero img {
+  .editorial-sticky__entry-image img {
     display: block;
     width: 100%;
     height: auto;
   }
 
   .editorial-sticky__pair-item .placeholder-svg,
-  .editorial-sticky__hero .placeholder-svg {
+  .editorial-sticky__entry-image .placeholder-svg {
     width: 100%;
     height: 100%;
+    aspect-ratio: 4 / 5;
     background: rgba(var(--color-foreground), 0.04);
   }
 
-  .editorial-sticky__pair-item .placeholder-svg {
-    aspect-ratio: 4 / 5;
-  }
-
-  .editorial-sticky__hero {
+  .editorial-sticky__entry-image {
     margin: 0;
-  }
-
-  .editorial-sticky__hero .placeholder-svg {
-    aspect-ratio: 4 / 5;
-  }
-
-  /* Center the text block vertically against the hero column so the
-     copy floats mid-section the way wwake's does. */
-  .editorial-sticky__content {
-    align-self: center;
   }
 
   .editorial-sticky__caption {
@@ -107,70 +105,69 @@
   }
 
   .editorial-sticky__text {
-    margin: 0 0 2rem;
+    margin: 0;
   }
 
-  .editorial-sticky__link {
-    text-underline-offset: 0.3rem;
-  }
-
-  /* Mobile source order is handled with grid areas: content, hero,
-     then the detail pair. */
   @media screen and (max-width: 989px) {
-    .editorial-sticky__grid {
-      grid-template-areas: 'content' 'hero' 'pair';
+    .editorial-sticky__pair {
+      margin-bottom: 3.2rem;
     }
-    .editorial-sticky__pair { grid-area: pair; }
-    .editorial-sticky__content { grid-area: content; }
-    .editorial-sticky__hero-wrapper { grid-area: hero; }
+
+    .editorial-sticky__entry-text {
+      margin-bottom: 2rem;
+    }
+
+    .editorial-sticky__entry-image {
+      margin-bottom: 4rem;
+    }
+
+    .editorial-sticky__grid > .editorial-sticky__entry-image:last-child {
+      margin-bottom: 0;
+    }
   }
 {%- endstyle -%}
 
 <div class="editorial-sticky-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
   <div class="page-width">
     <div class="editorial-sticky__grid">
-      <div class="editorial-sticky__pair">
-        {%- for i in (1..2) -%}
-          {%- liquid
-            assign image_setting = 'detail_image_' | append: i
-            assign image = section.settings[image_setting]
-          -%}
-          <figure class="editorial-sticky__pair-item">
-            {%- if image != blank -%}
-              {{ image | image_url: width: 640 | image_tag: widths: '288, 432, 640', sizes: '(min-width: 990px) 144px, 45vw' }}
-            {%- else -%}
-              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-            {%- endif -%}
-          </figure>
-        {%- endfor -%}
+      <div class="editorial-sticky__pair-cell">
+        <div class="editorial-sticky__pair">
+          {%- for i in (1..2) -%}
+            {%- liquid
+              assign image_setting = 'detail_image_' | append: i
+              assign image = section.settings[image_setting]
+            -%}
+            <figure class="editorial-sticky__pair-item">
+              {%- if image != blank -%}
+                {{ image | image_url: width: 640 | image_tag: widths: '288, 432, 640', sizes: '(min-width: 990px) 144px, 45vw' }}
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </figure>
+          {%- endfor -%}
+        </div>
       </div>
 
-      <div class="editorial-sticky__content">
-        {%- if section.settings.caption != blank -%}
-          <p class="editorial-sticky__caption caption-with-letter-spacing">{{ section.settings.caption | escape }}</p>
-        {%- endif -%}
-        {%- if section.settings.heading != blank -%}
-          <h2 class="editorial-sticky__heading {{ section.settings.heading_size }}">{{ section.settings.heading | escape }}</h2>
-        {%- endif -%}
-        {%- if section.settings.text != blank -%}
-          <div class="editorial-sticky__text rte">{{ section.settings.text }}</div>
-        {%- endif -%}
-        {%- if section.settings.link_label != blank and section.settings.link != blank -%}
-          <a href="{{ section.settings.link }}" class="editorial-sticky__link link underlined-link">
-            {{- section.settings.link_label | escape -}}
-          </a>
-        {%- endif -%}
-      </div>
-
-      <div class="editorial-sticky__hero-wrapper">
-        <figure class="editorial-sticky__hero">
-          {%- if section.settings.hero_image != blank -%}
-            {{ section.settings.hero_image | image_url: width: 1500 | image_tag: widths: '465, 750, 1100, 1500', sizes: '(min-width: 990px) 465px, 100vw' }}
+      {%- for block in section.blocks -%}
+        <div class="editorial-sticky__entry-text" {{ block.shopify_attributes }}>
+          {%- if block.settings.caption != blank -%}
+            <p class="editorial-sticky__caption caption-with-letter-spacing">{{ block.settings.caption | escape }}</p>
+          {%- endif -%}
+          {%- if block.settings.heading != blank -%}
+            <h2 class="editorial-sticky__heading {{ section.settings.heading_size }}">{{ block.settings.heading | escape }}</h2>
+          {%- endif -%}
+          {%- if block.settings.text != blank -%}
+            <div class="editorial-sticky__text rte">{{ block.settings.text }}</div>
+          {%- endif -%}
+        </div>
+        <figure class="editorial-sticky__entry-image">
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 1500 | image_tag: widths: '465, 750, 1100, 1500', sizes: '(min-width: 990px) 465px, 100vw' }}
           {%- else -%}
             {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
           {%- endif -%}
         </figure>
-      </div>
+      {%- endfor -%}
     </div>
   </div>
 </div>
@@ -192,23 +189,6 @@
       "label": "Detail image 2 (sticky pair)"
     },
     {
-      "type": "image_picker",
-      "id": "hero_image",
-      "label": "Tall hero image"
-    },
-    {
-      "type": "text",
-      "id": "caption",
-      "label": "Caption",
-      "default": "003"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Checked twice, shipped once"
-    },
-    {
       "type": "select",
       "id": "heading_size",
       "label": "Heading size",
@@ -218,21 +198,6 @@
         { "value": "h0", "label": "Large" }
       ],
       "default": "h1"
-    },
-    {
-      "type": "richtext",
-      "id": "text",
-      "label": "Text"
-    },
-    {
-      "type": "text",
-      "id": "link_label",
-      "label": "Link label"
-    },
-    {
-      "type": "url",
-      "id": "link",
-      "label": "Link"
     },
     {
       "type": "color_scheme",
@@ -261,9 +226,43 @@
       "default": 36
     }
   ],
+  "blocks": [
+    {
+      "type": "entry",
+      "name": "Entry",
+      "settings": [
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption",
+          "default": "001"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Editorial sticky"
+      "name": "Editorial sticky",
+      "blocks": [
+        { "type": "entry" },
+        { "type": "entry" },
+        { "type": "entry" }
+      ]
     }
   ]
 }

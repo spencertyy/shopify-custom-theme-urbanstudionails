@@ -87,61 +87,44 @@
         "padding_bottom": 52
       }
     },
-    "multirow_9Ahxxk": {
-      "type": "multirow",
+    "editorial_sticky_003": {
+      "type": "editorial-sticky",
       "blocks": {
-        "row_gittWh": {
-          "type": "row",
+        "entry_001": {
+          "type": "entry",
           "settings": {
-            "image": "shopify://shop_images/dfb1d7fefc64bf9fbaedba7a7d71a5f2_2f1f7f78-c6cb-4e0b-99c3-7577d856b8df.jpg",
             "caption": "001",
             "heading": "One set at a time",
             "text": "<p>Handmade press-on nails — shaped, painted and finished one set at a time by nail artists, never stamped out by the thousand.</p><p>On with tabs in about ten minutes, off whenever you decide. No lamp, no drill, no acetone, no appointment.</p>",
-            "button_label": "",
-            "button_link": ""
+            "image": "shopify://shop_images/dfb1d7fefc64bf9fbaedba7a7d71a5f2_2f1f7f78-c6cb-4e0b-99c3-7577d856b8df.jpg"
           }
         },
-        "row_pFhMgG": {
-          "type": "row",
+        "entry_002": {
+          "type": "entry",
           "settings": {
-            "image": "shopify://shop_images/e0ebcfd471dfd8a68c983f98b5795137.jpg",
             "caption": "002",
             "heading": "Hands, not lines",
             "text": "<p>Our nails are made by a small group of nail artists in China, most of whom work from home. It is deliberate: they set their own hours and stay with their families, and we get sets painted by people who chose this craft — not people assigned to a production line.</p><p>Every design is developed by our founder alongside them, which is how the standard stays the same whoever picks up the brush.</p>",
-            "button_label": "",
-            "button_link": ""
+            "image": "shopify://shop_images/e0ebcfd471dfd8a68c983f98b5795137.jpg"
+          }
+        },
+        "entry_003": {
+          "type": "entry",
+          "settings": {
+            "caption": "003",
+            "heading": "Checked twice, shipped once",
+            "text": "<p>Each set is shaped to follow the curve of a natural nail, built up in layers of professional-grade gel, and finished with every pearl and charm placed by hand.</p><p>Then it is checked twice — once in the studio, once before it is boxed. Anything that does not pass does not ship.</p>",
+            "image": "shopify://shop_images/6e43225a4e9d5cd2bfbb3f834242b389_7b9de1ac-db4d-469c-adcf-9e7fef464c96.jpg"
           }
         }
       },
       "block_order": [
-        "row_gittWh",
-        "row_pFhMgG"
+        "entry_001",
+        "entry_002",
+        "entry_003"
       ],
       "settings": {
-        "image_height": "medium",
-        "desktop_image_width": "medium",
         "heading_size": "h1",
-        "text_style": "body",
-        "button_style": "secondary",
-        "desktop_content_position": "middle",
-        "desktop_content_alignment": "left",
-        "image_layout": "alternate-left",
-        "section_color_scheme": "",
-        "row_color_scheme": "",
-        "mobile_content_alignment": "left",
-        "padding_top": 36,
-        "padding_bottom": 0
-      }
-    },
-    "editorial_sticky_003": {
-      "type": "editorial-sticky",
-      "settings": {
-        "hero_image": "shopify://shop_images/6e43225a4e9d5cd2bfbb3f834242b389_7b9de1ac-db4d-469c-adcf-9e7fef464c96.jpg",
-        "caption": "003",
-        "heading": "Checked twice, shipped once",
-        "heading_size": "h1",
-        "text": "<p>Each set is shaped to follow the curve of a natural nail, built up in layers of professional-grade gel, and finished with every pearl and charm placed by hand.</p><p>Then it is checked twice — once in the studio, once before it is boxed. Anything that does not pass does not ship.</p>",
-        "link_label": "",
         "color_scheme": "scheme-1",
         "padding_top": 36,
         "padding_bottom": 36
@@ -150,14 +133,6 @@
     "values_accordion": {
       "type": "collapsible-content",
       "blocks": {
-        "value_small_numbers": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "Made in small numbers",
-            "icon": "none",
-            "row_content": "<p>Every design is made in limited numbers. When a set sells out it may be a while before it returns — sometimes not at all. We would rather make fewer sets properly than more sets faster.</p>"
-          }
-        },
         "value_original": {
           "type": "collapsible_row",
           "settings": {
@@ -184,7 +159,6 @@
         }
       },
       "block_order": [
-        "value_small_numbers",
         "value_original",
         "value_by_women",
         "value_reuse"
@@ -200,38 +174,6 @@
         "open_first_collapsible_row": false,
         "padding_top": 52,
         "padding_bottom": 52
-      }
-    },
-    "rich_text_NBBLLK": {
-      "type": "rich-text",
-      "blocks": {
-        "text_xTePHJ": {
-          "type": "text",
-          "settings": {
-            "text": "<h2>Come and find us</h2><p>New designs land regularly, and the ones that sell out do not always come back. Our newsletter is where they are announced first, usually with a code attached.</p><p>We would also love to see yours — tag <strong>@UrbanStudio.Nails</strong> in your photos.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "text_xTePHJ"
-      ],
-      "name": "t:sections.rich-text.presets.name",
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 72,
-        "padding_bottom": 8
-      }
-    },
-    "cta_shop_count": {
-      "type": "custom-liquid",
-      "settings": {
-        "custom_liquid": "<div style=\"text-align:center;\"><a class=\"button\" href=\"/collections/all-products\">Shop all sets&nbsp;&nbsp;[{{ collections['all-products'].products_count }}]</a></div>",
-        "color_scheme": "",
-        "padding_top": 0,
-        "padding_bottom": 72
       }
     },
     "1723228228adee05cd": {
@@ -271,18 +213,30 @@
           "settings": {
             "text": "<p>The manicure that finally caught up with the city.</p>"
           }
+        },
+        "button_outro": {
+          "type": "button",
+          "settings": {
+            "button_label": "Shop all sets",
+            "button_link": "shopify://collections/all-products",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
         }
       },
       "block_order": [
-        "text_outro"
+        "text_outro",
+        "button_outro"
       ],
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 28,
-        "padding_bottom": 52
+        "padding_top": 36,
+        "padding_bottom": 64
       }
     }
   },
@@ -291,11 +245,8 @@
     "main",
     "rich_text_about_lead",
     "rich_text_RmNxge",
-    "multirow_9Ahxxk",
     "editorial_sticky_003",
     "values_accordion",
-    "rich_text_NBBLLK",
-    "cta_shop_count",
     "1723228228adee05cd",
     "rich_text_about_outro"
   ]
