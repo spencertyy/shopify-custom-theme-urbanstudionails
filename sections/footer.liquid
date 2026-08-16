@@ -368,7 +368,7 @@
        padding-top. Trimmed at each source rather than only here, since
        removing 74px from one of them would have needed a negative value. */
     margin-top: 0;
-    padding-top: 1rem;
+    padding-top: 0.4rem;
     /* Hand-drawn dash pattern instead of border-style dashed: the browser's
        dashes are chunky (3px on / 3px off at whatever it fancies). A repeating
        gradient gives a finer 2px-on / 4px-off hairline. */
@@ -389,6 +389,14 @@
     > .footer__content-bottom-wrapper:first-of-type:not(:has(.footer__payment)) {
     display: none;
   }
+  /* The bottom row inherits Dawn's caption line-height (~1.8), which pads
+     every line with ~6px of air above and below the glyphs — that slack, not
+     padding, is most of the visible gap around this row. */
+  .section-{{ section.id }}-padding .footer__copyright .copyright__content,
+  .section-{{ section.id }}-padding .footer__copyright .policies a,
+  .section-{{ section.id }}-padding .footer__copyright .policies li {
+    line-height: 1.2;
+  }
   /* Legal links one step smaller and quieter than the copyright itself. */
   .section-{{ section.id }}-padding .footer__copyright .policies a {
     font-size: 1.2rem;
@@ -397,11 +405,22 @@
   .section-{{ section.id }}-padding .footer__content-bottom {
     /* ② 内容与虚线之间的空白，第二段。想让虚线离内容更近就减小这个数字，
        想留更多空气就调大；与上面 ① 的 padding-bottom 相加即总间距。 */
-    padding-top: 1rem;
+    padding-top: 0.2rem;
   }
   .section-{{ section.id }}-padding .footer__copyright {
     justify-content: center;
     grid-column: 2;
+    /* Dawn gives the copyright 1.5rem of top margin; the row's own padding
+       already handles the dash clearance. */
+    margin-top: 0;
+  }
+  /* The localization <form> carries Dawn's default bottom margin, inflating
+     the selector column to ~60px and thickening the whole row. */
+  .section-{{ section.id }}-padding .footer__content-bottom-wrapper:last-of-type .footer__localization .localization-form,
+  .section-{{ section.id }}-padding .footer__content-bottom-wrapper:last-of-type .footer__localization localization-form,
+  .section-{{ section.id }}-padding .footer__content-bottom-wrapper:last-of-type .footer__localization .localization-form > div {
+    margin: 0;
+    padding: 0;
   }
   .section-{{ section.id }}-padding .footer__content-bottom-wrapper:last-of-type .footer__localization {
     grid-column: 1;
@@ -476,8 +495,11 @@
     border-radius: 0;
     box-shadow: none;
     /* Right padding is 0, so the caret is pulled back into the flex flow below
-       and separated by gap instead of Dawn's absolute right-anchored default. */
-    padding: 0.4rem 0;
+       and separated by gap instead of Dawn's absolute right-anchored default.
+       Vertical padding near zero: this button is the tallest thing on the
+       bottom row, so its height sets the dash-to-text distance for the row. */
+    padding: 0.1rem 0;
+    line-height: 1.2;
     min-height: 0;
     /* Same size as the dropdown rows (caption-large, 1.4rem) so the selected
        "USD $" reads at the same size as the "USD $" inside the list. */
