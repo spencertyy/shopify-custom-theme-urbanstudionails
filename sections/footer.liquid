@@ -141,51 +141,51 @@
       flex-direction: column;
       gap: 3.2rem;
     }
-    /* One centred column now: the left block (menu + country selector) first,
-       then the newsletter with its social icons. Source order already gives
-       this, so no per-item order is needed. */
+    /* heirest-style mobile: the menu blocks sit in a two-column grid, all
+       ranged left, links stacked vertically under their headings. */
     .section-{{ section.id }}-padding .footer__col-left {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: stretch;
       gap: 2.4rem;
     }
-    .section-{{ section.id }}-padding .footer__col-left .footer__localization {
-      justify-content: center;
-    }
     .section-{{ section.id }}-padding .footer-block--newsletter {
-      align-items: center;
+      align-items: flex-start;
     }
     .section-{{ section.id }}-padding .footer__blocks-wrapper,
     .section-{{ section.id }}-padding .footer-block--newsletter {
       margin: 0;
     }
-    /* Left as one centred column: a footer read on a phone is scanned down the
-       middle, and centring the wordmark but ranging the links left leaves the
-       stack looking unresolved. */
-    /* The heading is named as well as its container — Dawn ranges
-       .footer-block__heading left with a rule of its own, which an inherited
-       text-align on the parent cannot override. */
     .section-{{ section.id }}-padding .footer-block__newsletter,
     .section-{{ section.id }}-padding .footer-block--menu,
     .section-{{ section.id }}-padding .footer-block--menu .footer-block__heading,
     .section-{{ section.id }}-padding .footer-block__newsletter .footer-block__heading {
-      text-align: center;
+      text-align: left;
     }
-    /* Four short links stacked cost 180px of scrolling on a phone for very
-       little. On one wrapping row they take 45px and the stack stays short.
-       The 45px touch height moves into the row, so each link keeps its tap
-       target — it is the height that matters for a fingertip, and the gap
-       between links covers the width. */
+    /* Two tracks; a third block wraps onto the next row on the left, exactly
+       the SHOP / ABOUT / CUSTOMER CARE arrangement on heirest. */
+    .section-{{ section.id }}-padding .footer__blocks-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.2rem 2rem;
+    }
+    .section-{{ section.id }}-padding .footer-block.grid__item {
+      width: auto;
+      max-width: none;
+      padding: 0;
+      margin: 0;
+    }
+    /* Links stack vertically; the roomy line-height keeps each one a
+       comfortable tap target without extra padding. */
     .section-{{ section.id }}-padding .footer-block__details-content {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0 2.8rem;
+      display: block;
+    }
+    .section-{{ section.id }}-padding .footer-block__details-content > li {
+      margin: 0 0 0.6rem;
     }
     .section-{{ section.id }}-padding .footer__newsletter .field {
       max-width: 32rem;
-      margin: 0 auto;
+      margin: 0;
     }
     .section-{{ section.id }}-padding .footer__copyright,
     .section-{{ section.id }}-padding .footer__copyright .policies {
