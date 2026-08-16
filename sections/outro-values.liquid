@@ -16,10 +16,12 @@
   }
 
   /* Cap the accordion column so short value texts don't swim in a
-     page-wide row. */
+     page-wide row, and park it on the right edge of the page — the
+     asymmetry against the centred story above is deliberate. */
   .outro-values__values {
-    max-width: 64rem;
-    margin: 0 auto;
+    max-width: 44rem;
+    margin-left: auto;
+    margin-right: 0;
   }
 
   .outro-values__outro {
@@ -50,7 +52,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 1.6rem;
-    padding: 1.3rem 0;
+    padding: 1rem 0;
     cursor: pointer;
     list-style: none;
   }
