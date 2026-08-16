@@ -9,32 +9,11 @@
  */
 {
   "sections": {
-    "rich_text_tagline": {
-      "type": "rich-text",
-      "blocks": {
-        "text_tagline": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Made for cities that run fast, made by hands that don't rush. Handmade, reusable and unmistakably yours — salon nails on in ten minutes, off whenever you decide.</p><p>Made by women, for the way women actually live. The manicure the city finally caught up to.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "text_tagline"
-      ],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 52,
-        "padding_bottom": 8
-      }
-    },
     "about_heading_css": {
       "type": "custom-liquid",
       "settings": {
-        "custom_liquid": "<style>#MainContent .h1{font-size:28px !important;}</style>",
+        "custom_liquid": "<style>#MainContent .h1{font-size:28px !important;}#MainContent [id$=\"__rich_text_about_lead\"] p,#MainContent [id$=\"__rich_text_about_outro\"] p{font-size:22px !important;line-height:1.5;}</style>",
+        "color_scheme": "",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -50,22 +29,14 @@
     "rich_text_RmNxge": {
       "type": "rich-text",
       "blocks": {
-        "heading_dg8HJP": {
-          "type": "heading",
-          "settings": {
-            "heading": "Why we exist",
-            "heading_size": "h1"
-          }
-        },
         "text_KzehaY": {
           "type": "text",
           "settings": {
-            "text": "<p>Two everyday things never caught up: getting your hair coloured properly, and getting your nails done properly. Both still cost you an afternoon in a chair.</p><p>And the afternoon is only the beginning. A gel manicure locks you into one look for weeks, leaves an awkward gap at the base as it grows out, and taking it off means going back to the salon and sitting down all over again. Do that often enough and your nails start to thin, until the lamp begins to sting.</p>"
+            "text": "<p>Two everyday things never caught up: getting your hair coloured properly, and getting your nails done properly. Both still cost you an afternoon in a chair.<br/>And the afternoon is only the beginning. A gel manicure locks you into one look for weeks, leaves an awkward gap at the base as it grows out, and taking it off means going back to the salon and sitting down all over again. Do that often enough and your nails start to thin, until the lamp begins to sting.</p>"
           }
         }
       },
       "block_order": [
-        "heading_dg8HJP",
         "text_KzehaY"
       ],
       "settings": {
@@ -253,16 +224,61 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "rich_text_about_lead": {
+      "type": "rich-text",
+      "blocks": {
+        "text_lead": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Made for cities that run fast, made by hands that don't rush. Handmade, reusable and unmistakably yours — salon nails on in ten minutes, off whenever you decide. Made by women, for the way women actually live.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_lead"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 52,
+        "padding_bottom": 20
+      }
+    },
+    "rich_text_about_outro": {
+      "type": "rich-text",
+      "blocks": {
+        "text_outro": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The manicure the city finally caught up to.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_outro"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 28,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
-    "rich_text_tagline",
     "about_heading_css",
     "main",
+    "rich_text_about_lead",
     "rich_text_RmNxge",
     "multirow_9Ahxxk",
     "multicolumn_j4tHYd",
     "rich_text_NBBLLK",
-    "1723228228adee05cd"
+    "1723228228adee05cd",
+    "rich_text_about_outro"
   ]
 }
