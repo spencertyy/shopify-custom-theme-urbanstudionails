@@ -369,7 +369,30 @@
        removing 74px from one of them would have needed a negative value. */
     margin-top: 0;
     padding-top: 1.8rem;
-    border-top: 1px dashed rgba(var(--color-foreground), 0.35);
+    /* Hand-drawn dash pattern instead of border-style dashed: the browser's
+       dashes are chunky (3px on / 3px off at whatever it fancies). A repeating
+       gradient gives a finer 2px-on / 4px-off hairline. */
+    border-top: 0;
+    background-image: repeating-linear-gradient(
+      90deg,
+      rgba(var(--color-foreground), 0.35) 0 2px,
+      transparent 2px 6px
+    );
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+    background-position: top left;
+  }
+  /* The payment wrapper renders even with payment icons off and was donating
+     ~34px of dead space below the copyright row. */
+  .section-{{ section.id }}-padding
+    .footer__content-bottom
+    > .footer__content-bottom-wrapper:first-of-type:not(:has(.footer__payment)) {
+    display: none;
+  }
+  /* Legal links one step smaller and quieter than the copyright itself. */
+  .section-{{ section.id }}-padding .footer__copyright .policies a {
+    font-size: 1.2rem;
+    color: rgba(var(--color-foreground), 0.6);
   }
   .section-{{ section.id }}-padding .footer__content-bottom {
     /* ② 内容与虚线之间的空白，第二段。想让虚线离内容更近就减小这个数字，
@@ -447,8 +470,9 @@
   .section-{{ section.id }}-padding .footer__localization .localization-form__select,
   .section-{{ section.id }}-padding .footer__localization .disclosure__button {
     background: transparent;
+    /* No underline: on the bottom bar the selector reads as plain text like
+       the copyright beside it; the caret alone signals it opens. */
     border: none;
-    border-bottom: 1px solid rgba(var(--color-foreground), 0.45);
     border-radius: 0;
     box-shadow: none;
     /* Right padding is 0, so the caret is pulled back into the flex flow below
