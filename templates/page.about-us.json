@@ -12,7 +12,7 @@
     "about_heading_css": {
       "type": "custom-liquid",
       "settings": {
-        "custom_liquid": "<style>#MainContent .h1{font-size:28px !important;}#insta-feed h2{font-size:17px !important;font-weight:400 !important;}</style>",
+        "custom_liquid": "<style>#MainContent .h1{font-size:20px !important;}#insta-feed h2{font-size:17px !important;font-weight:400 !important;}</style>",
         "color_scheme": "",
         "padding_top": 0,
         "padding_bottom": 0
