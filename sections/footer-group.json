@@ -17,29 +17,34 @@
         "link_list_j3cUbt": {
           "type": "link_list",
           "settings": {
-            "heading": "Menu",
-            "menu": "main-menu"
+            "heading": "Shop",
+            "menu": "footer-shop"
           }
         },
         "link_list_wN34a8": {
           "type": "link_list",
-          "disabled": true,
           "settings": {
-            "heading": "Policy",
-            "menu": "footer"
+            "heading": "Help",
+            "menu": "footer-help"
+          }
+        },
+        "link_list_about": {
+          "type": "link_list",
+          "settings": {
+            "heading": "About",
+            "menu": "footer-about"
           }
         }
       },
       "block_order": [
         "link_list_j3cUbt",
-        "link_list_wN34a8"
+        "link_list_wN34a8",
+        "link_list_about"
       ],
       "custom_css": [],
       "settings": {
         "color_scheme": "scheme-1",
         "footer_bg_color": "#f5b1d5",
-        "brand_logo": "shopify://shop_images/URBAN_STUDIO.png",
-        "brand_logo_width": 44,
         "newsletter_enable": true,
         "newsletter_heading": "Newsletter",
         "newsletter_subtext": "<p>New drops, quiet restocks, and a welcome code to start.</p>",
@@ -49,7 +54,7 @@
         "enable_language_selector": false,
         "payment_enable": false,
         "show_policy": true,
-        "bottom_menu": "footer-bottom",
+        "bottom_menu": "footer",
         "margin_top": 32,
         "padding_top": 32,
         "padding_bottom": 0
