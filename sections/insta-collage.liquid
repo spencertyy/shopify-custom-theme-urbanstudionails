@@ -40,6 +40,18 @@
     overflow: hidden;
   }
 
+  /* Feathered edges: a ring of the section's own background colour blurred
+     inwards, so each photo melts into the page instead of ending on a hard
+     line. Tune the first length (blur) for softness reach, the second
+     (spread) for how far the fade eats into the image. */
+  .insta-collage__slot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    box-shadow: inset 0 0 2.4rem 0.6rem rgb(var(--color-background));
+  }
+
   .insta-collage__slot img {
     display: block;
     width: 100%;
@@ -100,7 +112,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 1.6rem;
     }
-    .insta-collage__slot { position: static; aspect-ratio: 4 / 5; }
+    .insta-collage__slot { position: relative; aspect-ratio: 4 / 5; }
     .insta-collage__slot--2 { margin-top: 2.4rem; }
     .insta-collage__slot--4 { margin-top: -2.4rem; }
     .insta-collage__slot--5 { display: none; }

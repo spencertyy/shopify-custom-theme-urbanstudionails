@@ -334,3 +334,12 @@ details[open].menu-opening > .menu-drawer__submenu {
 .menu-drawer__localization .country-filter:has(.field) .field {
   display: none;
 }
+
+/* The Shopify Inbox chat bubble floats above the drawer's utility row and
+   covers the currency selector. Hide it while the drawer is open; it
+   returns on its own the moment the drawer closes. (:has() needs a modern
+   browser; older ones simply keep the bubble.) */
+body:has(#Details-menu-drawer-container[open]) shopify-chat {
+  visibility: hidden;
+  opacity: 0;
+}
