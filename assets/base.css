@@ -3587,3 +3587,12 @@ h2,
 .h2 {
   letter-spacing: -0.015em;
 }
+
+/* Shopify Inbox bubble appears on the homepage only — on product pages it
+   covered the sticky add-to-cart bar. (The drawer-open rule in
+   component-menu-drawer.css still hides it while the menu is open.) */
+body:not(.template-index) shopify-chat {
+  /* !important: the Inbox app's own rule (shopify-chat:defined:empty)
+     carries two pseudo-classes and outranks any plain selector. */
+  display: none !important;
+}

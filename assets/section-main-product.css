@@ -1476,3 +1476,47 @@ a.product__text {
     border: none;
   }
 }
+
+/* ------------------------------------------------------------------
+   UrbanStudio: the size-chart popup shows the image alone. The page
+   title is hidden, every padding stripped, and the dialog wraps the
+   image with no gap; the close button stays floating on top.
+   ------------------------------------------------------------------ */
+.product-popup-modal__content {
+  padding: 0;
+  width: min(92%, 60rem);
+  height: auto;
+  max-height: 88%;
+}
+
+@media screen and (min-width: 750px) {
+  .product-popup-modal__content {
+    padding: 0;
+    width: min(70%, 60rem);
+    margin-top: 5rem;
+  }
+}
+
+.product-popup-modal__content-info {
+  padding: 0;
+}
+
+.product-popup-modal__content-info > h1 {
+  display: none;
+}
+
+.product-popup-modal__content-info > p {
+  margin: 0;
+  line-height: 0;
+}
+
+.product-popup-modal__content img {
+  width: 100%;
+  max-width: 100%;
+}
+
+.product-popup-modal__toggle {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+}
