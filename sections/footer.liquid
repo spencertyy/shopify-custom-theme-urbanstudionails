@@ -181,7 +181,14 @@
       display: block;
     }
     .section-{{ section.id }}-padding .footer-block__details-content > li {
-      margin: 0 0 0.6rem;
+      margin: 0;
+    }
+    /* Dawn pads every list link 1rem top and bottom on mobile; with the
+       1.8 line-height that spreads links ~50px apart. Tightened to match
+       the reference density while keeping a finger-sized target. */
+    .section-{{ section.id }}-padding .footer-block__details-content .list-menu__item {
+      padding-top: 0.4rem;
+      padding-bottom: 0.4rem;
     }
     .section-{{ section.id }}-padding .footer__newsletter .field {
       max-width: 32rem;

@@ -239,3 +239,61 @@ details[open].menu-opening > .menu-drawer__submenu {
     transition: none !important;
   }
 }
+
+/* ------------------------------------------------------------------
+   UrbanStudio: mobile drawer submenus open in place (accordion) instead
+   of sliding in as a covering panel. The <details> element hides closed
+   content natively once the submenu stops being absolutely positioned,
+   so no open/close CSS is needed beyond undoing Dawn's slide plumbing.
+   The drawer itself (hamburger panel) keeps its slide-in.
+   ------------------------------------------------------------------ */
+.js .menu-drawer__submenu,
+.js .menu-drawer__submenu .menu-drawer__submenu {
+  position: static;
+  top: auto;
+  bottom: auto;
+  width: auto;
+  transform: none;
+  visibility: visible;
+  background: transparent;
+  padding-left: 1.6rem;
+}
+
+.js details[open] > .menu-drawer__submenu {
+  transition: none;
+}
+
+/* The "back" header of the old sliding panel has no job in an accordion. */
+.menu-drawer__close-button {
+  display: none;
+}
+
+/* Plus / minus instead of the forward arrow and caret. */
+.menu-drawer summary.menu-drawer__menu-item .icon-arrow,
+.menu-drawer summary.menu-drawer__menu-item .icon-caret {
+  display: none;
+}
+
+.menu-drawer summary.menu-drawer__menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu-drawer summary.menu-drawer__menu-item::after {
+  content: '+';
+  font-size: 1.8rem;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.js details[open] > summary.menu-drawer__menu-item::after {
+  content: '\2212';
+}
+
+/* Dawn hides the parent list while a submenu covers it; in accordion mode
+   nothing covers anything, so the parents stay visible. */
+.js .menu-drawer__menu.submenu-open,
+.js .menu-drawer__menu.submenu-open > li {
+  visibility: visible;
+}
