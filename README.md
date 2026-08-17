@@ -24,7 +24,10 @@ A fully custom Shopify storefront for **UrbanStudio Nails**, a handcrafted press
 | Brand Hero | `sections/brand-hero.liquid` | Full-width hero with animated SVG wordmark and CTA |
 | Marquee Strip | `sections/marquee-strip.liquid` | Infinite scrolling text banner (SHOP NOW) |
 | Product Spotlight | `sections/product-spotlight.liquid` | Featured product split layout with lifestyle image |
-| Instagram Feed | `sections/instagram-feed.liquid` | 3×2 grid with per-image product handle linking + UTM |
+| Editorial Sticky | `sections/editorial-sticky.liquid` | Numbered brand-story entries beside a `position: sticky` detail-image rail that follows the scroll (no JS) |
+| Outro + Values | `sections/outro-values.liquid` | Native `<details>` values accordion docked beside a tagline CTA |
+| Instagram Collage | `sections/insta-collage.liquid` | Scattered collage around a large @handle; thumbnails harvested from the Instafeed app's DOM so it tracks the live feed, with graceful fallback to the stock strip |
+| FAQ | `sections/faq.liquid` | Categorised accordion FAQ (31 questions) |
 | Lookbook Grid | `sections/lookbook-grid.liquid` | Price-free mosaic grid → lightbox with ATC |
 | Gift Landing | `sections/gift-landing.liquid` | Dedicated gift page with gift card + wrap add-on |
 
@@ -105,6 +108,18 @@ Custom work built on top of Dawn (image priority, `srcset`, and async CSS loadin
 
 ---
 
+## 2026-08 Editorial Redesign
+
+A full visual-language pass, benchmarked against editorial jewellery storefronts (wwake.com, heirest.com, louloudesaison.com):
+
+- **Typography:** site-wide switch to Karla with a **bold-free system** — every heading and label runs at weight 400, hierarchy carried by a uniform 20px/16px scale, tracked-caps eyebrows and whitespace; negative letter-spacing on large headings
+- **Brand story page:** rebuilt as eyebrow → statement → numbered entries (001–003) on the sticky editorial rail → values accordion → tagline CTA
+- **Footer:** three admin-menu-driven link columns (Shop / Help / About) plus a three-zone bottom bar — currency selector left, `© year` centre, de-emphasised legal links trailing; two-column left-aligned grid on mobile
+- **Mobile drawer:** top-level items keep the slide-in panel, nested categories open as an inline plus/minus accordion; utility row holds Log in + a currency-only selector; the Shopify Inbox bubble yields while the drawer is open
+- **Scoped app chrome:** Inbox chat bubble restricted to the homepage (it covered the mobile sticky add-to-cart), size-chart popup stripped to the bare image
+
+---
+
 ## Built but not yet live
 
 Complete code in the repo, **not currently active** on the live store:
@@ -119,5 +134,5 @@ Complete code in the repo, **not currently active** on the live store:
 
 | Branch | Purpose |
 |--------|---------|
-| `main` | Production-stable |
-| `zachAuth` | Active development |
+| `main` | Production — active development happens here |
+| `zachAuth` | Early development branch (historical; last active May 2026) |
