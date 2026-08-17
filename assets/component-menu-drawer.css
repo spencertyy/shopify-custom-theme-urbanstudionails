@@ -319,10 +319,9 @@ details[open].menu-opening > .menu-drawer__submenu {
   margin-left: auto;
 }
 
+/* Social icons hidden here — the footer right below already carries them. */
 .menu-drawer__utility-links .list-social {
-  width: 100%;
-  justify-content: flex-start;
-  margin: 0;
+  display: none;
 }
 
 /* Currency reads as just "USD $" here; the full country name still shows
