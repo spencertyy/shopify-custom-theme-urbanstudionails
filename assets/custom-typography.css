@@ -1053,8 +1053,10 @@ shopify-payment-terms {
 }
 
 /* A line the promotion made free reads FREE, not $0.00 — red like a
-   sale flash, matching the struck original beside it. */
-.cart-item__free {
+   sale flash, matching the struck original beside it. The class is
+   doubled because component-price.css loads later and its `.price`
+   colour would win a specificity tie. */
+.cart-item__free.cart-item__free {
   color: #e12222;
   letter-spacing: 0.04em;
 }
@@ -1231,9 +1233,23 @@ shopify-payment-terms {
   border-radius: 0.8rem;
 }
 
+/* Wider image column: Dawn's four equal 1fr tracks squeeze the photo,
+   so the first track becomes a fixed 10rem for the thumbnail. Doubled
+   class again — component-cart-drawer.css sets the tracks via the
+   grid-template shorthand and loads later. */
+.cart-drawer .cart-item.cart-item {
+  grid-template-columns: 10rem repeat(3, 1fr);
+}
+
 .cart-drawer .cart-item__name {
   margin-top: 0;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+}
+
+/* Quieter secondary lines (SIZE, discount tag) under the smaller title. */
+.cart-drawer .cart-item .product-option,
+.cart-drawer .cart-item .discounts__discount {
+  font-size: 1.2rem;
 }
 
 /* Bottom row of the card: Remove on the left, quantity pill on the right.
