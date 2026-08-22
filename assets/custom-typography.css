@@ -784,3 +784,258 @@ body:has(#MainContent > .shopify-section:last-child [class*="marquee-strip"])
   line-height: 1.7;
   color: #8a8880;
 }
+
+/* --- Product page notes (2026-08): the Dawn tax caption and the Shop Pay
+   instalments banner are hidden as visual noise. Instalments stay
+   available at checkout — only the on-page banner goes. --- */
+.product__tax {
+  display: none;
+}
+
+shopify-payment-terms {
+  display: none !important;
+}
+
+/* --- PDP media gallery: thumbnails as a vertical rail on the left of
+   the main image (YIJIU-style) on tablet up; mobile keeps the standard
+   horizontal strip under the image. --- */
+@media screen and (min-width: 750px) {
+  .product__media-wrapper media-gallery {
+    display: grid;
+    grid-template-columns: 7.2rem minmax(0, 1fr);
+    column-gap: 1.6rem;
+    align-items: start;
+  }
+
+  .product__media-wrapper media-gallery > .thumbnail-slider {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .product__media-wrapper media-gallery > :not(.thumbnail-slider) {
+    grid-column: 2;
+  }
+
+  .product__media-wrapper .thumbnail-slider .thumbnail-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow: visible;
+  }
+
+  .product__media-wrapper .thumbnail-list__item.slider__slide {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* Size-chart link is rendered inline in the size label's legend (see
+   product-variant-picker.liquid); the standalone opener block that used
+   to float above the picker is hidden — its modal is still used. */
+.product__info-container .product-popup-modal__opener {
+  display: none;
+}
+
+.product-form__input--pill .form__label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.size-chart-inline__button {
+  all: unset;
+  cursor: pointer;
+  font-size: inherit;
+  letter-spacing: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+}
+
+.size-chart-inline__button:focus-visible {
+  outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
+  outline-offset: 0.3rem;
+}
+
+/* --- Related products: full-width stage (like the collection grid) and
+   a quiet swipeable row instead of a fixed 4-up grid. --- */
+@media screen and (min-width: 990px) {
+  .related-products.page-width {
+    max-width: 160rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+.related-products__heading {
+  font-weight: 300;
+}
+
+.related-products .grid {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  gap: 1.6rem;
+}
+
+.related-products .grid::-webkit-scrollbar {
+  display: none;
+}
+
+.related-products .grid__item {
+  flex: 0 0 68%;
+  width: auto;
+  max-width: none;
+  scroll-snap-align: start;
+}
+
+@media screen and (min-width: 750px) {
+  .related-products .grid__item {
+    flex-basis: 31%;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .related-products .grid__item {
+    flex-basis: 23.4%;
+  }
+}
+
+/* --- PDP round 2 (2026-08): wider page, YIJIU-style related row. --- */
+
+/* The whole product page breathes at the same 1600px stage as the
+   collection pages, which also walks the gallery toward the left edge. */
+@media screen and (min-width: 990px) {
+  .template-product #MainContent .page-width {
+    max-width: 160rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+/* "You may also like" — left-aligned, larger, tracked caps. */
+.related-products .related-products__heading {
+  text-align: left;
+  font-size: 2.2rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+}
+
+/* Stage wraps the row so the round arrows can sit at its vertical middle. */
+.related-products__stage {
+  position: relative;
+}
+
+.related-products__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  border: none;
+  background: #ffffff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2f2f2f;
+}
+
+.related-products__arrow svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.related-products__arrow--prev {
+  left: -1rem;
+}
+
+.related-products__arrow--prev svg {
+  transform: rotate(90deg);
+}
+
+.related-products__arrow--next {
+  right: -1rem;
+}
+
+.related-products__arrow--next svg {
+  transform: rotate(-90deg);
+}
+
+@media screen and (max-width: 749px) {
+  .related-products__arrow--prev { left: 0.2rem; }
+  .related-products__arrow--next { right: 0.2rem; }
+}
+
+/* Size pills stretch edge to edge, sharing the row width equally —
+   the same footprint as the Add to cart button below them. */
+.product-form__input--pill {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.product-form__input--pill .form__label {
+  flex: 0 0 100%;
+}
+
+.product-form__input--pill label {
+  flex: 1 1 0;
+  text-align: center;
+  margin: 0;
+}
+
+/* Quick add as a small round + on the card's lower right — the big
+   "Choose options" bar is hidden into it; clicking still opens the
+   variant modal. */
+.related-products .card-wrapper {
+  position: relative;
+}
+
+.related-products .quick-add {
+  position: absolute;
+  right: 0.6rem;
+  bottom: 0.2rem;
+  z-index: 2;
+  margin: 0;
+  width: auto;
+}
+
+.related-products .quick-add__submit {
+  width: 3.6rem;
+  height: 3.6rem;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 0;
+  background: #2f2f2f;
+  color: #ffffff;
+  position: relative;
+}
+
+.related-products .quick-add__submit::after {
+  content: '+';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 1;
+  box-shadow: none;
+  border-radius: 50%;
+}
+
+.related-products .quick-add__submit::before {
+  box-shadow: none;
+}

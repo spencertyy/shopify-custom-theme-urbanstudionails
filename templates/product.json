@@ -67,12 +67,6 @@
         "description": {
           "type": "description",
           "settings": {}
-        },
-        "share": {
-          "type": "share",
-          "settings": {
-            "share_label": "Share"
-          }
         }
       },
       "block_order": [
@@ -84,9 +78,8 @@
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
-        "shipping_note_usn",
         "description",
-        "share"
+        "shipping_note_usn"
       ],
       "settings": {
         "enable_sticky_info": true,
@@ -94,10 +87,10 @@
         "media_size": "large",
         "constrain_to_viewport": true,
         "media_fit": "contain",
-        "gallery_layout": "stacked",
+        "gallery_layout": "thumbnail",
         "media_position": "left",
         "image_zoom": "lightbox",
-        "mobile_thumbnails": "hide",
+        "mobile_thumbnails": "show",
         "hide_variants": true,
         "enable_video_looping": false,
         "padding_top": 36,
@@ -107,15 +100,6 @@
     "collapsible_content_eHiwXa": {
       "type": "collapsible-content",
       "blocks": {
-        "collapsible_row_nyrCgK": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": " DETAILS",
-            "icon": "clipboard",
-            "row_content": "<h3><strong>📦 What’s Included</strong></h3><p>• 10 handmade press-on nails</p><p>• Nail glue</p><p>• Adhesive nail tabs</p><p>• Nail file</p><p>• Wooden cuticle pusher</p><p>• Alcohol wipes</p><p>Everything you need is in the box — no follow-up order, no trip to the shop.</p><h3><strong>⏱ Wear Time</strong></h3><p>• <strong>With glue</strong> — 1–2 weeks, and often longer with careful wear</p><p>• <strong>With adhesive tabs</strong> — up to 5 days, and the set stays reusable</p><p>Hot showers, gym sessions and washing up without gloves are all quietly working against you.</p>",
-            "page": ""
-          }
-        },
         "collapsible_row_Q8V9NM": {
           "type": "collapsible_row",
           "settings": {
@@ -124,15 +108,34 @@
             "row_content": "<p>Finding your correct size ensures the most natural fit and long-lasting wear.</p><p><strong>Before placing your order</strong></p><p>Please review our Size Guide. Measure the widest point of each natural nail bed and match it to the closest width on the chart. If a nail falls between two sizes, size up — a slightly wide nail can be filed down, a narrow one can’t be stretched.</p><p><strong>Please choose carefully</strong></p><p>Because our nails are handmade and worn directly on the body, we’re not able to accept returns or exchanges for sizing — the same rule that applies to most beauty and personal care products.</p><p>Which is exactly why we’d rather you spent two minutes measuring now. Still unsure? Message us before you order — we genuinely don’t mind.</p>",
             "page": "size"
           }
+        },
+        "row_included": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "📦 What’s Included",
+            "icon": "none",
+            "row_content": "<p>• 10 handmade press-on nails</p><p>• Nail glue</p><p>• Adhesive nail tabs</p><p>• Nail file</p><p>• Wooden cuticle pusher</p><p>• Alcohol wipes</p><p>Everything you need is in the box — no follow-up order, no trip to the shop.</p>",
+            "page": ""
+          }
+        },
+        "row_wear": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "⏱ Wear Time",
+            "icon": "none",
+            "row_content": "<p>• <strong>With glue</strong> — 1–2 weeks, and often longer with careful wear</p><p>• <strong>With adhesive tabs</strong> — up to 5 days, and the set stays reusable</p><p>Hot showers, gym sessions and washing up without gloves are all quietly working against you.</p>",
+            "page": ""
+          }
         }
       },
       "block_order": [
-        "collapsible_row_nyrCgK",
+        "row_included",
+        "row_wear",
         "collapsible_row_Q8V9NM"
       ],
       "settings": {
         "caption": "",
-        "heading": "",
+        "heading": "Details",
         "heading_size": "h1",
         "heading_alignment": "center",
         "layout": "none",
@@ -295,7 +298,7 @@
       "settings": {
         "heading": "You may also like",
         "heading_size": "h2",
-        "products_to_show": 4,
+        "products_to_show": 8,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
         "image_ratio": "square",

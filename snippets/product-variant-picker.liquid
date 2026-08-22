@@ -114,7 +114,32 @@
         </fieldset>
       {%- elsif picker_type == 'button' -%}
         <fieldset class="js product-form__input product-form__input--pill">
-          <legend class="form__label">{{ option.name }}</legend>
+          <legend class="form__label">
+            <span>{{ option.name }}</span>
+            {%- comment -%}
+              Size-chart link lives on the label's own line, flush right —
+              it reuses the popup block's modal, whose opener block in the
+              info column is hidden by CSS.
+            {%- endcomment -%}
+            {%- liquid
+              assign size_popup_block = nil
+              if option_name_lower contains 'size'
+                for b in section.blocks
+                  if b.type == 'popup'
+                    assign size_popup_block = b
+                    break
+                  endif
+                endfor
+              endif
+            -%}
+            {%- if size_popup_block -%}
+              <modal-opener class="size-chart-inline" data-modal="#PopupModal-{{ size_popup_block.id }}">
+                <button type="button" class="size-chart-inline__button link" aria-haspopup="dialog">
+                  {{- size_popup_block.settings.text | default: size_popup_block.settings.page.title | escape -}}
+                </button>
+              </modal-opener>
+            {%- endif -%}
+          </legend>
           {% render 'product-variant-options',
             product: product,
             option: option,
