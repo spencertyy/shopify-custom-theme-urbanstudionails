@@ -73,10 +73,19 @@
     object-fit: cover;
   }
 
+  /* Wider than the site's page-width on purpose: the collage spreads
+     toward the screen edges so the sides don't sit in dead whitespace,
+     while the centre cell stays centred. */
+  .insta-collage__wide {
+    max-width: 156rem;
+    margin: 0 auto;
+    padding: 0 2.4rem;
+  }
+
   @media screen and (min-width: 990px) {
     .insta-collage__grid {
-      grid-template-columns: 1fr 1fr 1.1fr 1fr 1fr;
-      gap: 1.8rem;
+      grid-template-columns: 0.9fr 1.15fr 1.3fr 1.15fr 0.9fr;
+      gap: 2.2rem;
     }
 
     .insta-collage__center {
@@ -87,7 +96,7 @@
     }
 
     .insta-collage__col {
-      gap: 1.8rem;
+      gap: 2rem;
       grid-row: 1;
     }
 
@@ -96,10 +105,32 @@
     .insta-collage__col--c { grid-column: 4; }
     .insta-collage__col--d { grid-column: 5; }
 
-    /* The offset that keeps the symmetric grid from reading as a table:
-       outer columns ride high, inner columns sit low. */
-    .insta-collage__col--up { transform: translateY(-2.6rem); }
-    .insta-collage__col--down { transform: translateY(2.6rem); }
+    /* Loosened composition: unequal offsets (deliberately NOT mirrored
+       left/right), mixed aspect ratios, and some slots narrower than
+       their column so no two images share a size or an edge. */
+    .insta-collage__col--a { transform: translateY(-4.4rem); }
+    .insta-collage__col--b { transform: translateY(5.2rem); }
+    .insta-collage__col--c { transform: translateY(-3rem); }
+    .insta-collage__col--d { transform: translateY(2.8rem); }
+
+    .insta-collage__col--a .insta-collage__slot:nth-child(2) {
+      aspect-ratio: 1 / 1;
+      width: 78%;
+      align-self: flex-end;
+    }
+
+    .insta-collage__col--b .insta-collage__slot {
+      aspect-ratio: 3 / 4;
+    }
+
+    .insta-collage__col--c .insta-collage__slot {
+      width: 88%;
+    }
+
+    .insta-collage__col--d .insta-collage__slot:nth-child(1) {
+      aspect-ratio: 1 / 1;
+      width: 74%;
+    }
   }
 
   .insta-collage__eyebrow {
@@ -136,7 +167,7 @@
 {%- endstyle -%}
 
 <div id="InstaCollage-{{ section.id }}" class="insta-collage-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
-  <div class="page-width">
+  <div class="insta-collage__wide">
     <div class="insta-collage__grid">
       <div class="insta-collage__center">
         {%- if section.settings.eyebrow != blank -%}
