@@ -597,18 +597,25 @@
 /* --- New / Hot tag badges (2026-08): driven by product tags "new" /
    "hot" in card-product.liquid. Quiet pill styling to match the brand's
    grey palette; Sale keeps its own scheme colours. --- */
-.card__badge {
-  display: flex;
-  gap: 0.6rem;
-}
-
 .badge--tag-new,
 .badge--tag-hot {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  left: auto;
+  bottom: auto;
+  z-index: 1;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-size: 1rem;
   padding: 0.4rem 1rem;
   border-radius: 4rem;
+}
+
+/* When a product carries both tags, the second pill drops below the first. */
+.badge--tag-new + .badge--tag-hot,
+.badge--tag-hot + .badge--tag-new {
+  top: 4.2rem;
 }
 
 .badge--tag-new {
@@ -618,7 +625,7 @@
 }
 
 .badge--tag-hot {
-  background-color: #2f2f2f;
-  color: #ffffff;
-  border-color: #2f2f2f;
+  background-color: #f5b1d5;
+  color: #2f2f2f;
+  border-color: #f5b1d5;
 }
