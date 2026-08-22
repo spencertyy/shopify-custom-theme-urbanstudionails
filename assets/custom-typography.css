@@ -1712,3 +1712,35 @@ shopify-payment-terms {
 .cart__note.cart__note.cart__note.cart__note::after {
   border-radius: 1.2rem;
 }
+
+/* --- Empty bag (2026-08): the drawer keeps its normal layout — header,
+   rail, note, totals — with a quiet line where the items would be.
+   Dawn's is-empty rules built the old full-screen empty state; each is
+   neutralised with one extra class of specificity. --- */
+cart-drawer.is-empty .drawer__inner.drawer__inner {
+  display: flex;
+  padding: 0 1.5rem;
+  align-items: stretch;
+}
+
+cart-drawer.is-empty .drawer__header.drawer__header {
+  display: flex;
+}
+
+cart-drawer-items.is-empty + .drawer__footer.drawer__footer {
+  display: block;
+}
+
+/* component-cart.css hides the whole form when empty — the empty note
+   lives inside it. */
+cart-drawer-items.is-empty .cart__contents.cart__contents {
+  display: block;
+}
+
+.cart-drawer__empty-note {
+  margin: 0;
+  padding: 3.2rem 0 2rem;
+  text-align: center;
+  font-size: 1.4rem;
+  color: rgba(var(--color-foreground), 0.6);
+}

@@ -134,7 +134,16 @@ customElements.define('cart-drawer-items', CartDrawerItems);
 class CartDrawerRecommendations extends HTMLElement {
   connectedCallback() {
     const url = this.dataset.url;
-    if (!url) return;
+    if (!url) {
+      // Empty-bag rail is server-rendered (best sellers) — no fetch,
+      // but the + buttons still need their handler.
+      if (this.querySelector('.cart-drawer-recommendations__card')) {
+        this.addEventListener('click', this.onClick.bind(this));
+      } else {
+        this.hidden = true;
+      }
+      return;
+    }
     fetch(url)
       .then((response) => response.text())
       .then((text) => {

@@ -27,38 +27,6 @@
       aria-label="{{ 'sections.cart.title' | t }}"
       tabindex="-1"
     >
-      {%- if cart == empty -%}
-        <div class="drawer__inner-empty">
-          <div class="cart-drawer__warnings center{% if settings.cart_drawer_collection != blank %} cart-drawer__warnings--has-collection{% endif %}">
-            <div class="cart-drawer__empty-content">
-              <h2 class="cart__empty-text">{{ 'sections.cart.empty' | t }}</h2>
-              <button
-                class="drawer__close"
-                type="button"
-                onclick="this.closest('cart-drawer').close()"
-                aria-label="{{ 'accessibility.close' | t }}"
-              >
-                {% render 'icon-close' %}
-              </button>
-              <a href="{{ routes.all_products_collection_url }}" class="button">
-                {{ 'general.continue_shopping' | t }}
-              </a>
-
-              {%- if shop.customer_accounts_enabled and customer == null -%}
-                <p class="cart__login-title h3">{{ 'sections.cart.login.title' | t }}</p>
-                <p class="cart__login-paragraph">
-                  {{ 'sections.cart.login.paragraph_html' | t: link: routes.account_login_url }}
-                </p>
-              {%- endif -%}
-            </div>
-          </div>
-          {%- if settings.cart_drawer_collection != blank -%}
-            <div class="cart-drawer__collection">
-              {% render 'card-collection', card_collection: settings.cart_drawer_collection, columns: 1 %}
-            </div>
-          {%- endif -%}
-        </div>
-      {%- endif -%}
       <div class="drawer__header">
         <h2 class="drawer__heading">Shopping bag</h2>
         <button
@@ -418,6 +386,8 @@
                   </tbody>
                 </table>
               </div>
+            {%- else -%}
+              <p class="cart-drawer__empty-note">Your bag is empty.</p>
             {%- endif -%}
             <p id="CartDrawer-LiveRegionText" class="visually-hidden" role="status"></p>
             <p id="CartDrawer-LineItemStatus" class="visually-hidden" aria-hidden="true" role="status">
@@ -431,6 +401,27 @@
             class="cart-drawer-recommendations"
             data-url="{{ routes.product_recommendations_url }}?section_id=cart-drawer-recommendations&product_id={{ cart.items.first.product_id }}&limit=10&intent=related"
           ></cart-drawer-recommendations>
+        {%- else -%}
+          {%- comment -%}
+            Empty bag: no first item to feed the recommendations API, so
+            the rail is rendered server-side from the best-sellers
+            collection instead.
+          {%- endcomment -%}
+          <cart-drawer-recommendations class="cart-drawer-recommendations">
+            <div class="cart-drawer-recommendations__inner">
+              <div class="cart-drawer-recommendations__header">
+                <h3 class="cart-drawer-recommendations__heading">You may also like</h3>
+                <a href="{{ routes.all_products_collection_url }}" class="cart-drawer-recommendations__view-all">View all</a>
+              </div>
+              <ul class="cart-drawer-recommendations__row" role="list">
+                {%- for rec in collections['best-sellers'].products limit: 6 -%}
+                  {%- if rec.available -%}
+                    {% render 'cart-recs-card', rec: rec %}
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+            </div>
+          </cart-drawer-recommendations>
         {%- endif -%}
       </cart-drawer-items>
       <div class="drawer__footer">

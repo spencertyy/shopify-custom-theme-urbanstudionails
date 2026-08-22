@@ -1,0 +1,49 @@
+{%- comment -%}
+  One card in the cart drawer's "You may also like" rail.
+  Used by sections/cart-drawer-recommendations.liquid (recommendations
+  render) and by snippets/cart-drawer.liquid (empty-bag fallback fed
+  from the best-sellers collection).
+
+  Accepts: rec (product)
+{%- endcomment -%}
+
+{%- capture variants_json -%}
+  [
+    {%- for v in rec.variants -%}
+      {"id":{{ v.id }},"title":{{ v.title | json }},"available":{{ v.available }}}
+      {%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+{%- endcapture -%}
+<li class="cart-drawer-recommendations__card">
+  <div class="cart-drawer-recommendations__media">
+    <a
+      href="{{ rec.url }}"
+      class="cart-drawer-recommendations__img-link"
+      aria-label="{{ rec.title | escape }}"
+      tabindex="-1"
+    >
+      {%- if rec.featured_media -%}
+        {{
+          rec.featured_media
+          | image_url: width: 400
+          | image_tag: loading: 'lazy', widths: '200, 400', alt: rec.title
+        }}
+      {%- endif -%}
+    </a>
+    <button
+      type="button"
+      class="cart-drawer-recommendations__plus"
+      aria-label="Add {{ rec.title | escape }} to cart"
+      data-product-title="{{ rec.title | escape }}"
+      data-option-name="{{ rec.options.first | escape }}"
+      data-variants="{{ variants_json | strip | escape }}"
+    >
+      +
+    </button>
+  </div>
+  <a href="{{ rec.url }}" class="cart-drawer-recommendations__link">
+    <p class="cart-drawer-recommendations__title">{{ rec.title | escape }}</p>
+    <p class="cart-drawer-recommendations__price">{{ rec.price | money }}</p>
+  </a>
+</li>
