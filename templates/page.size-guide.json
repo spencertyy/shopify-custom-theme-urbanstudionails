@@ -1,0 +1,24 @@
+{
+  "sections": {
+    "size_css": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<style>#MainContent .main-page-title{font-size:1.4rem;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:#8a8880;}</style>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "size_css",
+    "main"
+  ]
+}
