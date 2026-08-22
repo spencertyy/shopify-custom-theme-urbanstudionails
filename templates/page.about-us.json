@@ -113,7 +113,7 @@
         "entry_003"
       ],
       "settings": {
-        "autoplay_interval": 5,
+        "autoplay_interval": 4,
         "color_scheme": "scheme-1",
         "padding_top": 64,
         "padding_bottom": 64

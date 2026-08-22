@@ -247,7 +247,6 @@
     let cur = 0;
     let timer = null;
     let resumeTimer = null;
-    let visible = false;
 
     function show(i) {
       cur = i;
@@ -275,16 +274,14 @@
       show(i);
       stop();
       clearTimeout(resumeTimer);
-      resumeTimer = setTimeout(() => { if (visible) start(); }, PAUSE_AFTER_CLICK);
+      resumeTimer = setTimeout(start, PAUSE_AFTER_CLICK);
     }));
 
-    /* Autoplay only while the section is actually on screen. */
-    new IntersectionObserver((entries) => {
-      visible = entries[0].isIntersecting;
-      if (visible) start(); else stop();
-    }, { threshold: 0.3 }).observe(root);
-
+    /* Run from page load, like Palmer does: by the time the reader
+       scrolls here the cycle is mid-flight, so the first visible switch
+       arrives quickly and the section reads as alive on arrival. */
     show(0);
+    start();
   })();
 </script>
 
