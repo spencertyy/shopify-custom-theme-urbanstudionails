@@ -1690,3 +1690,24 @@ shopify-payment-terms {
     padding-right: 2rem;
   }
 }
+
+/* Order note in the drawer: pull the box up toward its label (Dawn
+   drops it 2.5rem) and soften the corners. */
+.drawer__footer .cart__note {
+  top: 0.6rem;
+}
+
+/* Tripled class: component-cart.css loads later and re-squares the
+   field (inputs-radius 0, plus a bottom-right 0 for the resize grip,
+   including on :focus). */
+.cart__note .text-area.text-area.text-area {
+  border-radius: 1.2rem;
+}
+
+/* The visible border/fill of the note field is painted on the
+   .cart__note wrapper's own pseudo elements, not the textarea — those
+   need the radius too. Quadrupled past the :hover re-squaring rules. */
+.cart__note.cart__note.cart__note.cart__note::before,
+.cart__note.cart__note.cart__note.cart__note::after {
+  border-radius: 1.2rem;
+}
