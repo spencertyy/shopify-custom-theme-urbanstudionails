@@ -20,7 +20,7 @@
             "heading_size": "h1",
             "subheading": "",
             "button_label": "SHOP ALL",
-            "link": "shopify://collections/all",
+            "link": "shopify://collections/all-products",
             "button_style_secondary": true,
             "box_align": "bottom-center",
             "show_text_box": false,
@@ -233,6 +233,17 @@
         "padding_bottom": 0
       }
     },
+    "insta_collage": {
+      "type": "insta-collage",
+      "settings": {
+        "eyebrow": "Follow us",
+        "handle": "@URBANSTUDIO.NAILS",
+        "ig_url": "https://www.instagram.com/urbanstudio.nails/",
+        "color_scheme": "scheme-1",
+        "padding_top": 52,
+        "padding_bottom": 24
+      }
+    },
     "instagram_instafeed": {
       "type": "apps",
       "blocks": {
@@ -260,17 +271,6 @@
       ],
       "settings": {
         "include_margins": true
-      }
-    },
-    "insta_collage": {
-      "type": "insta-collage",
-      "settings": {
-        "eyebrow": "Follow us",
-        "handle": "@URBANSTUDIO.NAILS",
-        "ig_url": "https://www.instagram.com/urbanstudio.nails/",
-        "color_scheme": "scheme-1",
-        "padding_top": 52,
-        "padding_bottom": 24
       }
     }
   },
