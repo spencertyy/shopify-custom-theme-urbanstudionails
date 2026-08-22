@@ -298,25 +298,25 @@
   letter-spacing: 0.08em;
 }
 
-/* ---- Transparent header overlaying the hero, homepage only ----
+/* ---- Transparent header overlaying the hero, homepage & collection pages ----
    The header stays in normal flow (so the announcement bars above it are never
    covered); instead the first content section is pulled up underneath it by the
    header's own height. Both backgrounds are cleared — .section-header carries a
    hard-coded pink in header.liquid, so this needs higher specificity to win.
    When Dawn's sticky header engages on scroll-up, the pink comes back so the
    nav stays readable over page content. */
-.template-index .section-header:not(.shopify-section-header-sticky) {
+:is(.template-index, .template-collection) .section-header:not(.shopify-section-header-sticky) {
   position: relative;
   z-index: 4;
   background: transparent !important;
 }
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky)
   .header-wrapper {
   background: transparent;
   border-bottom: none;
 }
-.template-index #MainContent > .shopify-section:first-child {
+:is(.template-index, .template-collection) #MainContent > .shopify-section:first-child {
   margin-top: calc(-1 * var(--header-height, 48px));
 }
 
@@ -330,7 +330,7 @@
    the moment the sticky header engages — or on any page that is not the
    homepage — the pink comes back and so does the dark text. White on that pink
    would sit at 1.7:1, far below the 4.5:1 needed to stay readable. */
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky)
   .header-wrapper {
   --color-foreground: 255, 255, 255;
@@ -339,7 +339,7 @@
 /* Dawn holds nav links at 75% so they sit back from the page content. Over a
    photograph that reads as grey rather than understated, so take them to full
    strength — this is the one place the nav has to compete with an image. */
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky)
   .header__menu-item {
   color: rgb(var(--color-foreground));
@@ -353,30 +353,30 @@
    Shadow on the type, drop-shadow on the icons: text-shadow does nothing to an
    SVG, and filter on a shared ancestor would catch the logo too. The logo is
    an image with its own colour and is deliberately left untouched. */
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky)
   .header__menu-item,
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky)
   .header__icon,
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky)
   localization-form
   button,
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky)
   .header__active-menu-item {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
 }
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky)
   .header__icon
   svg,
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky)
   localization-form
   svg,
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky)
   .header__menu-item
   svg {
@@ -387,21 +387,21 @@
    which their colour scheme redefines. The shadow above is a plain property
    with no such mechanism, so it inherits into the panel and puts a dark halo
    behind dark text. Switch it off where the photograph is no longer behind. */
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky)
   .header__submenu
   .header__menu-item,
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky)
   .mega-menu__content
   .header__menu-item {
   text-shadow: none;
 }
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky)
   .header__submenu
   svg,
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky)
   .mega-menu__content
   svg {
@@ -419,23 +419,23 @@
    descendant <details>, and this styles the ancestor from it. It covers the
    mega menu and the country selector in one rule, since Dawn builds both on
    <details>. */
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky):has(details[open]),
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover),
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky):has(
     .disclosure__button[aria-expanded="true"]
   ) {
   background: rgb(var(--color-background)) !important;
 }
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky):has(details[open])
   .header-wrapper,
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover)
   .header-wrapper,
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky):has(
     .disclosure__button[aria-expanded="true"]
   )
@@ -444,37 +444,37 @@
   --color-link: 18, 18, 18;
   background: rgb(var(--color-background));
 }
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky):has(details[open])
   .header__menu-item,
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky):has(details[open])
   .header__icon,
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky):has(details[open])
   localization-form
   button,
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover)
   .header__menu-item,
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover)
   .header__icon,
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover)
   localization-form
   button,
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky):has(
     .disclosure__button[aria-expanded="true"]
   )
   .header__menu-item,
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky):has(
     .disclosure__button[aria-expanded="true"]
   )
   .header__icon,
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky):has(
     .disclosure__button[aria-expanded="true"]
   )
@@ -483,13 +483,13 @@
   color: rgb(var(--color-foreground));
   text-shadow: none;
 }
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky):has(details[open])
   svg,
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover)
   svg,
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky):has(
     .disclosure__button[aria-expanded="true"]
   )
@@ -500,13 +500,13 @@
 /* Same correction applied directly to the dropdown panels, without relying on
    :has(). Should a browser not support it, the bar stays white-on-photo but
    the panels themselves remain readable rather than blank. */
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky)
   .disclosure__list-wrapper,
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky)
   .disclosure__list,
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky)
   .mega-menu__content {
   --color-foreground: 18, 18, 18;
@@ -686,13 +686,13 @@ body:has(.faq__item) .main-page-title.page-title {
    Stated separately rather than folded into those selector lists: this file has
    been through a formatter, and appending a self-contained rule is safer than
    editing a selector list that now spans a dozen wrapped lines. */
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky):has(details[open])
   .header__active-menu-item,
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover)
   .header__active-menu-item,
-.template-index
+:is(.template-index, .template-collection)
   .section-header:not(.shopify-section-header-sticky):has(.disclosure__button[aria-expanded='true'])
   .header__active-menu-item {
   text-shadow: none;
@@ -713,4 +713,45 @@ body:has(.faq__item) .main-page-title.page-title {
 body:has(#MainContent > .shopify-section:last-child [class*="marquee-strip"])
   .footer {
   margin-top: 0;
+}
+
+/* --- Collection hero refinements (2026-08): thinner, smaller title;
+   quieter description; and on collection pages the header floats
+   transparently over the banner so menu and image read as one hero
+   (the YIJIU-style fusion). --- */
+.template-collection .collection-hero__title {
+  font-size: 3.4rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+/* The banner slides up under the floating header, so its centred text
+   needs the header's height back as clearance — otherwise short banners
+   push the title into the logo. */
+.template-collection .collection-hero--with-image .collection-hero__inner {
+  padding-top: calc(var(--header-height, 48px) + 2rem);
+}
+
+.template-collection .collection-hero--with-image .collection-hero__description {
+  font-size: 1.4rem;
+  line-height: 1.7;
+  max-width: 34em;
+  margin: 1.2rem auto 0;
+  opacity: 0.9;
+}
+
+.template-collection .collection-hero--with-image .collection-hero__description p {
+  font-size: inherit;
+}
+
+@media screen and (min-width: 750px) {
+  .template-collection .collection-hero--with-image {
+    min-height: 42rem;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .template-collection .collection-hero__title {
+    font-size: 2.6rem;
+  }
 }

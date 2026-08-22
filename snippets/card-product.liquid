@@ -140,6 +140,13 @@
                 {{- 'products.product.on_sale' | t -}}
               </span>
             {%- endif -%}
+            {%- assign tags_down = card_product.tags | join: ',' | downcase | split: ',' -%}
+            {%- if tags_down contains 'new' -%}
+              <span class="badge badge--tag-new">New</span>
+            {%- endif -%}
+            {%- if tags_down contains 'hot' -%}
+              <span class="badge badge--tag-hot">Hot</span>
+            {%- endif -%}
           </div>
         </div>
       </div>
@@ -565,6 +572,13 @@
             >
               {{- 'products.product.on_sale' | t -}}
             </span>
+          {%- endif -%}
+          {%- assign tags_down = card_product.tags | join: ',' | downcase | split: ',' -%}
+          {%- if tags_down contains 'new' -%}
+            <span class="badge badge--tag-new">New</span>
+          {%- endif -%}
+          {%- if tags_down contains 'hot' -%}
+            <span class="badge badge--tag-hot">Hot</span>
           {%- endif -%}
         </div>
       </div>
