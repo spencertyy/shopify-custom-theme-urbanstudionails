@@ -1496,9 +1496,11 @@ shopify-payment-terms {
 }
 
 /* Quick-add modal on mobile: a true full-bleed bottom sheet — only a
-   sliver of backdrop above the rounded top corners. */
+   sliver of backdrop above the rounded top corners. Parent element
+   included in the selector because quick-add.css loads later and its
+   same-specificity width/margin rules would win the tie. */
 @media screen and (max-width: 749px) {
-  .quick-add-modal__content {
+  quick-add-modal .quick-add-modal__content {
     top: auto;
     bottom: 0;
     left: 0;
@@ -1615,4 +1617,12 @@ shopify-payment-terms {
   .related-products .card__information .price .price-item {
     font-size: 1.2rem;
   }
+}
+
+/* The badge positions against the media overlay, which Dawn offsets by
+   the editor's image-padding — releasing the overlay's positioning
+   lets the badge anchor to the image container itself, flush to the
+   corner. Doubled class outranks Dawn's later-loading rule. */
+.card--media .card__inner > .card__content.card__content {
+  position: static;
 }

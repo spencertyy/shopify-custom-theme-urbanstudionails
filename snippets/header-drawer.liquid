@@ -259,3 +259,28 @@
     </div>
   </details>
 </header-drawer>
+
+<script>
+  // Accordion nav: Dawn's MenuDrawer JS animates slide-out submenu
+  // panels — on a second click it adds .menu-opening/.submenu-open and
+  // hides the row's own summary. The accordion needs none of that, so
+  // summary clicks inside the nav are stopped in the capture phase
+  // before Dawn's handlers run; the native <details> toggle (the
+  // event's default action) still happens.
+  (() => {
+    if (window.__accordionNavWired) return;
+    window.__accordionNavWired = true;
+    document.addEventListener(
+      'click',
+      (event) => {
+        const summary = event.target.closest('.menu-drawer__navigation summary');
+        if (!summary) return;
+        event.stopPropagation();
+        requestAnimationFrame(() => {
+          summary.setAttribute('aria-expanded', summary.parentElement.hasAttribute('open'));
+        });
+      },
+      true
+    );
+  })();
+</script>

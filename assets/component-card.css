@@ -63,8 +63,12 @@
 }
 
 /* Needed for gradient continuity with or without animation, the transform scopes the gradient to its container which happens already when animation are turned on */
-.card--card.gradient,
-.card__inner.gradient {
+/* .card__inner dropped from this rule (2026-08): perspective(0) makes
+   the inner a stacking context, trapping the quick-add bag button
+   below the card link overlay so taps navigated instead of opening
+   the modal. Card colour schemes here are flat, so nothing visibly
+   relied on the gradient scoping. */
+.card--card.gradient {
   transform: perspective(0);
 }
 
