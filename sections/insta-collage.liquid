@@ -1,16 +1,16 @@
 {%- comment -%}
-  Instagram collage in the spirit of heirest.com's social grid: a few
-  scattered, differently-sized images orbiting a large @handle, instead
-  of the uniform card strip the Instafeed app ships with.
+  Instagram centre-gallery: two loose image columns either side of a
+  large @handle sitting in a clear middle column — a symmetric grid
+  with offset columns, not a scattered collage.
 
   The images are NOT uploaded by hand. The Instafeed app block (which
   must remain somewhere on the same page) fetches the latest posts and
   writes each thumbnail URL into a data-instafeed-thumbnail attribute.
   After load, this section harvests the first few thumbnails from that
-  DOM, fills its collage slots, then hides the app's own rendering. If
-  the app ever fails or changes markup, the harvest finds nothing, this
-  section stays hidden, and the app's stock feed remains visible — the
-  page degrades to exactly what it was before.
+  DOM, fills its slots, then hides the app's own rendering. If the app
+  ever fails or changes markup, the harvest finds nothing, this section
+  stays hidden, and the app's stock feed remains visible — the page
+  degrades to exactly what it was before.
 {%- endcomment -%}
 
 {%- style -%}
@@ -24,20 +24,34 @@
     display: block;
   }
 
-  .insta-collage__stage {
-    position: relative;
+  /* Mobile first: centre text on top, then the four columns flowing
+     into a two-column grid. Desktop lifts the centre back into the
+     middle column of a five-column row. */
+  .insta-collage__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.6rem;
+    align-items: center;
   }
 
-  @media screen and (min-width: 990px) {
-    .insta-collage__stage {
-      height: 56rem;
-    }
+  .insta-collage__center {
+    grid-column: 1 / -1;
+    order: -1;
+    text-align: center;
+    margin-bottom: 1.6rem;
+  }
+
+  .insta-collage__col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
   }
 
   .insta-collage__slot {
     display: block;
-    position: absolute;
+    position: relative;
     overflow: hidden;
+    aspect-ratio: 4 / 5;
   }
 
   /* Feathered edges: a ring of the section's own background colour blurred
@@ -59,30 +73,33 @@
     object-fit: cover;
   }
 
-  /* Scattered sizes, all 4:5 like heirest — one anchor image, smaller
-     satellites, none aligned to a shared edge. Percentages keep the
-     composition stable across page widths. */
   @media screen and (min-width: 990px) {
-    .insta-collage__slot--1 { left: 0;     top: 4%;   width: 30%;   aspect-ratio: 4 / 5; }
-    .insta-collage__slot--2 { left: 24%;   top: 58%;  width: 13%;   aspect-ratio: 4 / 5; }
-    .insta-collage__slot--3 { left: 46%;   top: 0;    width: 12%;   aspect-ratio: 4 / 5; }
-    .insta-collage__slot--4 { right: 0;    top: 22%;  width: 19%;   aspect-ratio: 4 / 5; }
-    .insta-collage__slot--5 { right: 21%;  top: 56%;  width: 16%;   aspect-ratio: 4 / 5; }
-  }
-
-  .insta-collage__center {
-    text-align: center;
-  }
-
-  @media screen and (min-width: 990px) {
-    .insta-collage__center {
-      position: absolute;
-      left: 50%;
-      top: 34%;
-      transform: translateX(-50%);
-      z-index: 2;
-      width: max-content;
+    .insta-collage__grid {
+      grid-template-columns: 1fr 1fr 1.1fr 1fr 1fr;
+      gap: 1.8rem;
     }
+
+    .insta-collage__center {
+      grid-column: 3;
+      grid-row: 1;
+      order: 0;
+      margin-bottom: 0;
+    }
+
+    .insta-collage__col {
+      gap: 1.8rem;
+      grid-row: 1;
+    }
+
+    .insta-collage__col--a { grid-column: 1; }
+    .insta-collage__col--b { grid-column: 2; }
+    .insta-collage__col--c { grid-column: 4; }
+    .insta-collage__col--d { grid-column: 5; }
+
+    /* The offset that keeps the symmetric grid from reading as a table:
+       outer columns ride high, inner columns sit low. */
+    .insta-collage__col--up { transform: translateY(-2.6rem); }
+    .insta-collage__col--down { transform: translateY(2.6rem); }
   }
 
   .insta-collage__eyebrow {
@@ -91,7 +108,7 @@
 
   .insta-collage__handle {
     font-size: 2.4rem;
-    letter-spacing: 0.04em;
+    letter-spacing: normal;
     line-height: 1.1;
     text-decoration: none;
     color: rgb(var(--color-foreground));
@@ -102,20 +119,8 @@
     text-underline-offset: 0.4rem;
   }
 
-  /* Mobile: centre text first, then a loose two-column stagger. */
   @media screen and (max-width: 989px) {
-    .insta-collage__center { margin-bottom: 3.2rem; }
     .insta-collage__handle { font-size: 1.8rem; }
-    .insta-collage__stage { display: block; }
-    .insta-collage__slots {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.6rem;
-    }
-    .insta-collage__slot { position: relative; aspect-ratio: 4 / 5; }
-    .insta-collage__slot--2 { margin-top: 2.4rem; }
-    .insta-collage__slot--4 { margin-top: -2.4rem; }
-    .insta-collage__slot--5 { display: none; }
   }
 
   /* Applied to the Instafeed app's own section once the collage is
@@ -132,7 +137,7 @@
 
 <div id="InstaCollage-{{ section.id }}" class="insta-collage-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
   <div class="page-width">
-    <div class="insta-collage__stage">
+    <div class="insta-collage__grid">
       <div class="insta-collage__center">
         {%- if section.settings.eyebrow != blank -%}
           <p class="insta-collage__eyebrow caption-with-letter-spacing">{{ section.settings.eyebrow | escape }}</p>
@@ -141,12 +146,26 @@
           {{- section.settings.handle | escape -}}
         </a>
       </div>
-      <div class="insta-collage__slots">
-        {%- for i in (1..5) -%}
-          <a class="insta-collage__slot insta-collage__slot--{{ i }}"
-             href="{{ section.settings.ig_url }}" target="_blank" rel="noopener"
-             data-collage-slot aria-label="{{ section.settings.handle | escape }} on Instagram"></a>
-        {%- endfor -%}
+
+      {%- comment -%}
+        Column layout: outer columns carry two images and ride high,
+        inner columns carry one and sit low. The centre cell is placed
+        between them by source order on desktop; on mobile it jumps to
+        the top via order: -1.
+      {%- endcomment -%}
+      <div class="insta-collage__col insta-collage__col--a insta-collage__col--up">
+        <a class="insta-collage__slot" href="{{ section.settings.ig_url }}" target="_blank" rel="noopener" data-collage-slot aria-label="{{ section.settings.handle | escape }} on Instagram"></a>
+        <a class="insta-collage__slot" href="{{ section.settings.ig_url }}" target="_blank" rel="noopener" data-collage-slot aria-label="{{ section.settings.handle | escape }} on Instagram"></a>
+      </div>
+      <div class="insta-collage__col insta-collage__col--b insta-collage__col--down">
+        <a class="insta-collage__slot" href="{{ section.settings.ig_url }}" target="_blank" rel="noopener" data-collage-slot aria-label="{{ section.settings.handle | escape }} on Instagram"></a>
+      </div>
+      <div class="insta-collage__col insta-collage__col--c insta-collage__col--up">
+        <a class="insta-collage__slot" href="{{ section.settings.ig_url }}" target="_blank" rel="noopener" data-collage-slot aria-label="{{ section.settings.handle | escape }} on Instagram"></a>
+      </div>
+      <div class="insta-collage__col insta-collage__col--d insta-collage__col--down">
+        <a class="insta-collage__slot" href="{{ section.settings.ig_url }}" target="_blank" rel="noopener" data-collage-slot aria-label="{{ section.settings.handle | escape }} on Instagram"></a>
+        <a class="insta-collage__slot" href="{{ section.settings.ig_url }}" target="_blank" rel="noopener" data-collage-slot aria-label="{{ section.settings.handle | escape }} on Instagram"></a>
       </div>
     </div>
   </div>
