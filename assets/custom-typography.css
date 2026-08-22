@@ -1744,3 +1744,9 @@ cart-drawer-items.is-empty .cart__contents.cart__contents {
   font-size: 1.4rem;
   color: rgba(var(--color-foreground), 0.6);
 }
+
+/* Empty bag: with no terms checkbox between them, Subtotal sat right
+   on top of the Check out button. */
+cart-drawer.is-empty .cart__ctas {
+  margin-top: 1.6rem;
+}
