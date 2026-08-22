@@ -1239,3 +1239,93 @@ input.mobile-facets__checkbox {
     padding: 0 1rem 1rem;
   }
 }
+
+/* --- Accordion mobile filters (2026-08): options expand in place under
+   each label instead of sliding in as a second panel; the arrow icon is
+   replaced by a plus that folds to a minus while open. --- */
+.mobile-facets__plus {
+  position: relative;
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.mobile-facets__plus::before,
+.mobile-facets__plus::after {
+  content: '';
+  position: absolute;
+  background-color: currentColor;
+}
+
+.mobile-facets__plus::before {
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 0.1rem;
+  transform: translateY(-50%);
+}
+
+.mobile-facets__plus::after {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 0.1rem;
+  transform: translateX(-50%);
+  transition: transform 0.25s ease;
+}
+
+.mobile-facets__details[open] .mobile-facets__plus::after {
+  transform: translateX(-50%) scaleY(0);
+}
+
+.js .mobile-facets__details .mobile-facets__submenu {
+  position: static;
+  transform: none;
+  visibility: visible;
+  z-index: auto;
+  display: block;
+}
+
+.js .mobile-facets__details[open] > .mobile-facets__submenu {
+  transition: none;
+}
+
+.mobile-facets__details .mobile-facets__close-button {
+  display: none;
+}
+
+/* Dawn hides sibling menus while a sliding submenu is open; with the
+   accordion everything stays visible. */
+.js .mobile-facets .submenu-open {
+  visibility: visible;
+}
+
+/* Keep the drawer heading clear of notches / status bars on devices
+   where the drawer reaches the physical top of the screen. */
+.mobile-facets__header {
+  padding-top: calc(1.6rem + env(safe-area-inset-top, 0px));
+  padding-bottom: 1.6rem;
+}
+
+/* Accordion mode: each group's own Clear/Apply bar duplicates the
+   drawer footer, so only the drawer-level footer survives. */
+.mobile-facets__submenu .mobile-facets__footer {
+  display: none;
+}
+
+/* Compact price inputs — the roomy sub-panel sizing is oversized once
+   the fields sit inline inside the accordion. */
+.mobile-facets__submenu .facets__price {
+  padding: 0.4rem 2.5rem 1.6rem;
+}
+
+.mobile-facets__submenu .facets__price .field__input {
+  height: 4rem;
+  min-height: 4rem;
+  font-size: 1.3rem;
+}
+
+.mobile-facets__submenu .facets__price .field__label {
+  font-size: 1.3rem;
+}
