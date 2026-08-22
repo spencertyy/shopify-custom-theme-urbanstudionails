@@ -12,7 +12,7 @@
     "about_heading_css": {
       "type": "custom-liquid",
       "settings": {
-        "custom_liquid": "<style>#MainContent .h1{font-size:20px !important;}#insta-feed h2{font-size:17px !important;font-weight:400 !important;}</style>",
+        "custom_liquid": "<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=Karla:wght@300&display=swap\" rel=\"stylesheet\"><style>#insta-feed h2{font-size:17px !important;font-weight:400 !important;}#MainContent .image-with-text .caption-with-letter-spacing{font-size:1.2rem;letter-spacing:0.1em;color:#8a8880;margin-bottom:2.4rem;}@media screen and (min-width:750px){#MainContent .image-with-text__grid--reverse .image-with-text__content{padding-left:0;padding-right:4rem;}}#MainContent .image-with-text__heading{font-size:3.6rem;font-weight:300;line-height:1.25;color:#2f2f2f;letter-spacing:-0.01em;}#MainContent .image-with-text__text{font-size:1.45rem;line-height:1.8;color:#424242;max-width:30em;}#MainContent .outro-values__tagline{font-size:2.1rem;font-weight:300;line-height:1.4;color:#2f2f2f;}#MainContent .outro-values__tagline p{font-weight:300;}#MainContent .outro-values__outro .button{text-transform:uppercase;letter-spacing:0.16em;font-size:1.2rem;background:#ffffff;color:#2f2f2f;border:1px solid #424242;border-radius:0;box-shadow:none;}#MainContent .outro-values__outro .button::after{box-shadow:none;}@media screen and (max-width:749px){#MainContent .image-with-text__heading{font-size:2.8rem;}#MainContent .outro-values__tagline{font-size:1.9rem;}}</style>",
         "color_scheme": "",
         "padding_top": 0,
         "padding_bottom": 0
@@ -26,13 +26,13 @@
         "padding_bottom": 28
       }
     },
-    "rich_text_RmNxge": {
-      "type": "rich-text",
+    "story_image_text": {
+      "type": "image-with-text",
       "blocks": {
         "caption_story": {
           "type": "caption",
           "settings": {
-            "caption": "Our story",
+            "caption": "About Urban Studio",
             "text_style": "caption-with-letter-spacing",
             "text_size": "small"
           }
@@ -40,58 +40,69 @@
         "heading_story": {
           "type": "heading",
           "settings": {
-            "heading": "Made for cities that run fast, by hands that don't rush.",
+            "heading": "A studio born in the city.",
             "heading_size": "h1"
           }
         },
-        "text_KzehaY": {
+        "text_story": {
           "type": "text",
           "settings": {
-            "text": "<p>Salon nails on in ten minutes, off whenever you decide.</p><p>A proper manicure still costs you an afternoon in a chair. Then it locks you into one look for weeks, grows out awkwardly at the base, and only comes off where it went on. Do it often enough and your nails thin, until the lamp begins to sting.</p><p>We didn't think the problem was the manicure. It was everything around it.</p>"
+            "text": "<p>It began with a simple thought: in a city that never slows down, beauty shouldn't ask you to.</p><p>We make wearable art — nails shaped, painted and finished by hand, one set at a time. Each is a small original: the depth of the colour, the way the light catches, the quiet signature of the hand that made it.</p><p>Think of them as you think of your makeup, your dress, your perfume — the finishing touch before you step out. Ten minutes at the mirror, and your nails are dressed for tonight. Tomorrow, back at your desk, they come off as easily as they went on.</p>",
+            "text_style": "body"
           }
         }
       },
       "block_order": [
         "caption_story",
         "heading_story",
-        "text_KzehaY"
+        "text_story"
       ],
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
+        "image": "shopify://shop_images/IMG_8009_6ed92002-8bd4-4a11-9f64-47a5037e8f13.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "",
         "color_scheme": "",
-        "full_width": true,
-        "padding_top": 52,
-        "padding_bottom": 52
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 96,
+        "padding_bottom": 96
       }
     },
-    "editorial_sticky_003": {
-      "type": "editorial-sticky",
+    "values_carousel": {
+      "type": "values-carousel",
       "blocks": {
         "entry_001": {
           "type": "entry",
           "settings": {
+            "short_title": "Original",
             "caption": "001",
-            "heading": "One set at a time",
-            "text": "<p>Handmade press-on nails — shaped, painted and finished one set at a time by nail artists, never stamped out by the thousand.</p><p>On with tabs in about ten minutes, off whenever you decide. No lamp, no drill, no acetone, no appointment.</p>",
+            "heading": "An original, not a print",
+            "text": "<p>Painted by hand, one set at a time — no two ever quite the same. The small differences are the artist's signature: proof you're wearing an original, not a print.</p>",
             "image": "shopify://shop_images/dfb1d7fefc64bf9fbaedba7a7d71a5f2_2f1f7f78-c6cb-4e0b-99c3-7577d856b8df.jpg"
           }
         },
         "entry_002": {
           "type": "entry",
           "settings": {
+            "short_title": "Unhurried",
             "caption": "002",
-            "heading": "Hands, not lines",
-            "text": "<p>Our nails are made by a small group of nail artists in China, most of whom work from home. It is deliberate: they set their own hours and stay with their families, and we get sets painted by people who chose this craft — not people assigned to a production line.</p><p>Every design is developed by our founder alongside them, which is how the standard stays the same whoever picks up the brush.</p>",
+            "heading": "Art shouldn't keep you waiting",
+            "text": "<p>Salon artistry in ten unhurried minutes. No appointment, no lamp, no afternoon lost — beauty that fits into your day instead of taking it over.</p>",
             "image": "shopify://shop_images/e0ebcfd471dfd8a68c983f98b5795137.jpg"
           }
         },
         "entry_003": {
           "type": "entry",
           "settings": {
+            "short_title": "Many lives",
             "caption": "003",
-            "heading": "Checked twice, shipped once",
-            "text": "<p>Each set is shaped to follow the curve of a natural nail, built up in layers of professional-grade gel, and finished with every pearl and charm placed by hand.</p><p>Then it is checked twice — once in the studio, once before it is boxed. Anything that does not pass does not ship.</p>",
+            "heading": "More than one life in a day",
+            "text": "<p>One look for the meeting, another for the night. Nails chosen the way you choose an outfit — change whenever the occasion does.</p>",
             "image": "shopify://shop_images/6e43225a4e9d5cd2bfbb3f834242b389_7b9de1ac-db4d-469c-adcf-9e7fef464c96.jpg"
           }
         }
@@ -102,50 +113,33 @@
         "entry_003"
       ],
       "settings": {
-        "heading_size": "h1",
+        "autoplay_interval": 5,
         "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 64,
+        "padding_bottom": 64
       }
     },
     "outro_values": {
       "type": "outro-values",
-      "blocks": {
-        "value_original": {
-          "type": "value",
-          "settings": {
-            "heading": "An original, not a print",
-            "content": "<p>Because every set is made by a person, no two are exactly alike. Small differences in tone, in where a pearl sits, in how the light catches the top coat — those are not faults. They are the difference between a print and an original, and we would rather explain that than iron it out.</p>"
-          }
-        },
-        "value_by_women": {
-          "type": "value",
-          "settings": {
-            "heading": "Made by women, for women",
-            "content": "<p>Everyone who makes these nails is a woman, and most of what we know came from wearing them ourselves — the sets that lifted at the edges after a day, the ones that never quite fit, the ones that were beautiful but wrecked your nails. We are building the ones we wanted and could not find.</p>"
-          }
-        },
-        "value_reuse": {
-          "type": "value",
-          "settings": {
-            "heading": "Yours to reuse",
-            "content": "<p>Applied with tabs, a set comes off clean and survives to be worn again. Keep a few and choose the one that suits where you are going today, rather than committing to one look for a month.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "value_original",
-        "value_by_women",
-        "value_reuse"
-      ],
       "settings": {
-        "tagline": "<p>The manicure that finally caught up with the city.</p>",
+        "tagline": "<p>Wearable art, at the speed of your city.</p>",
         "button_label": "Shop all sets",
         "button_link": "shopify://collections/all-products",
-        "caption": "Our values",
+        "caption": "",
+        "color_scheme": "scheme-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "insta_collage": {
+      "type": "insta-collage",
+      "settings": {
+        "eyebrow": "Follow us",
+        "handle": "@URBANSTUDIO.NAILS",
+        "ig_url": "https://www.instagram.com/urbanstudio.nails/",
         "color_scheme": "scheme-1",
         "padding_top": 52,
-        "padding_bottom": 52
+        "padding_bottom": 24
       }
     },
     "1723228228adee05cd": {
@@ -176,24 +170,13 @@
       "settings": {
         "include_margins": true
       }
-    },
-    "insta_collage": {
-      "type": "insta-collage",
-      "settings": {
-        "eyebrow": "Follow us",
-        "handle": "@URBANSTUDIO.NAILS",
-        "ig_url": "https://www.instagram.com/urbanstudio.nails/",
-        "color_scheme": "scheme-1",
-        "padding_top": 52,
-        "padding_bottom": 24
-      }
     }
   },
   "order": [
     "about_heading_css",
     "main",
-    "rich_text_RmNxge",
-    "editorial_sticky_003",
+    "story_image_text",
+    "values_carousel",
     "outro_values",
     "insta_collage",
     "1723228228adee05cd"

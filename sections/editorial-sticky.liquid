@@ -65,6 +65,18 @@
     .editorial-sticky__entry-image {
       grid-column: 3;
     }
+
+    /* Stagger the entry images — full width, narrower and pushed right,
+       then in between — so the column reads as a collage, not a uniform
+       stack. 3n patterns keep the rhythm if more entries are added. */
+    .editorial-sticky__grid > figure.editorial-sticky__entry-image:nth-of-type(3n + 2) {
+      width: 76%;
+      justify-self: end;
+    }
+
+    .editorial-sticky__grid > figure.editorial-sticky__entry-image:nth-of-type(3n) {
+      width: 86%;
+    }
   }
 
   .editorial-sticky__pair {
@@ -119,6 +131,16 @@
 
     .editorial-sticky__entry-image {
       margin-bottom: 4rem;
+    }
+
+    /* Same collage rhythm on mobile, just gentler. */
+    .editorial-sticky__grid > figure.editorial-sticky__entry-image:nth-of-type(3n + 2) {
+      width: 84%;
+      margin-left: auto;
+    }
+
+    .editorial-sticky__grid > figure.editorial-sticky__entry-image:nth-of-type(3n) {
+      width: 92%;
     }
 
     .editorial-sticky__grid > .editorial-sticky__entry-image:last-child {
