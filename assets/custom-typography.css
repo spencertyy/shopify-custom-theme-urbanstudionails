@@ -988,10 +988,33 @@ shopify-payment-terms {
   flex: 0 0 100%;
 }
 
-.product-form__input--pill label {
+/* Doubled class: Dawn's component-product-variant-picker.css styles the
+   pills via `.product-form__input--pill input + label` (display:
+   inline-block, staggered margins) and loads later — these rules must
+   outrank it, not just tie. */
+.product-form__input--pill.product-form__input--pill input[type='radio'] + label {
   flex: 1 1 0;
   text-align: center;
   margin: 0;
+  /* Flex centering instead of padding-derived height: when a sibling
+     pill wraps to two lines the whole row grows, and padding-based
+     text ends up sitting high in the stretched pills. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 4.4rem;
+  line-height: 1.2;
+  /* Narrower than Dawn's 2rem sides so longer labels ("Mixed Surprise
+     ✨") still fit a half-width pill on one line. */
+  padding: 1rem 1.2rem;
+}
+
+/* Groups with 5+ options (e.g. mystery-box Style Preference) wrap into
+   even halves instead of ragged content-width rows — wide enough that
+   labels like "Dark Feminine" stay on one line. */
+.product-form__input--pill.product-form__input--pill:has(input:nth-of-type(5)) input[type='radio'] + label {
+  flex: 1 1 calc(50% - 0.8rem);
+  max-width: calc(50% - 0.4rem);
 }
 
 /* Quick add as a small round + on the card's lower right — the big
@@ -1461,4 +1484,96 @@ shopify-payment-terms {
 .quick-add-modal .product-form__submit {
   font-size: 1.3rem;
   letter-spacing: 0.08em;
+}
+
+/* Quick-add modal on mobile: a true full-bleed bottom sheet — only a
+   sliver of backdrop above the rounded top corners. */
+@media screen and (max-width: 749px) {
+  .quick-add-modal__content {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    transform: none;
+    margin: 0;
+    width: 100%;
+    height: calc(100% - 2rem);
+    border-radius: 1.6rem 1.6rem 0 0;
+    overflow-y: auto;
+  }
+}
+
+/* --- Mobile menu drawer (2026-08): slide-out submenu panels become an
+   in-place accordion with +/- toggles, competitor-style. Selectors are
+   deliberately over-specific: component-menu-drawer.css loads later
+   (in <body>) and wins any tie. --- */
+
+/* Submenus sit in the flow instead of sliding in as absolute panels.
+   Native <details> behaviour handles the show/hide. */
+.js .menu-drawer__navigation .menu-drawer__submenu.menu-drawer__submenu,
+.js .menu-drawer__navigation .menu-drawer__submenu details[open] > .menu-drawer__submenu.menu-drawer__submenu {
+  position: static;
+  transform: none;
+  visibility: visible;
+  bottom: auto;
+  z-index: auto;
+  transition: none;
+  overflow: visible;
+}
+
+/* Parent lists were hidden from view while a submenu covered them. */
+.js .menu-drawer__navigation .submenu-open {
+  visibility: visible;
+}
+
+/* The in-panel "back" row is meaningless in an accordion. */
+.js .menu-drawer__navigation .menu-drawer__close-button {
+  display: none;
+}
+
+/* One quiet type scale for every row, like the competitor's menu. */
+.js .menu-drawer__navigation .menu-drawer__menu-item {
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding-top: 1.3rem;
+  padding-bottom: 1.3rem;
+}
+
+/* Child rows: slightly smaller and indented. */
+.js .menu-drawer__navigation .menu-drawer__submenu .menu-drawer__menu-item {
+  font-size: 1.2rem;
+  padding-left: 4rem;
+}
+
+.js .menu-drawer__navigation .menu-drawer__submenu .menu-drawer__submenu .menu-drawer__menu-item {
+  padding-left: 5rem;
+}
+
+/* Dawn's -> arrow goes; a light +/- takes its place. */
+.js .menu-drawer__navigation .menu-drawer__menu-item .icon-arrow {
+  display: none;
+}
+
+.js .menu-drawer__navigation summary.menu-drawer__menu-item {
+  position: relative;
+}
+
+.js .menu-drawer__navigation summary.menu-drawer__menu-item.menu-drawer__menu-item::after {
+  content: '+';
+  position: absolute;
+  right: 3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+  height: auto;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.js .menu-drawer__navigation details[open] > summary.menu-drawer__menu-item.menu-drawer__menu-item::after {
+  content: '\2212';
+  transform: translateY(-50%);
 }

@@ -594,38 +594,64 @@
   }
 }
 
-/* --- New / Hot tag badges (2026-08): driven by product tags "new" /
-   "hot" in card-product.liquid. Quiet pill styling to match the brand's
-   grey palette; Sale keeps its own scheme colours. --- */
-.badge--tag-new,
-.badge--tag-hot {
+/* --- Card badges (2026-08 round 2): one translucent pill row in the
+   top-right corner, competitor-style. New/Hot come from product tags,
+   Sale/Sold-out are Dawn's availability badges retagged with their own
+   classes in card-product.liquid. Two badges sit side by side. --- */
+/* An absolutely positioned grid item resolves top/right against its own
+   grid AREA, and Dawn parks the badge in row 3 (bottom of the media) —
+   so the badge is first moved to row 1 before the offsets mean "card
+   corner". Doubled class outranks Dawn's .card__badge.top/.bottom. */
+.card__badge.card__badge {
   position: absolute;
   top: 1rem;
   right: 1rem;
   left: auto;
   bottom: auto;
+  grid-row-start: 1;
+  align-self: flex-start;
+  justify-self: flex-end;
   z-index: 1;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 1rem;
-  padding: 0.4rem 1rem;
-  border-radius: 4rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-/* When a product carries both tags, the second pill drops below the first. */
-.badge--tag-new + .badge--tag-hot,
-.badge--tag-hot + .badge--tag-new {
-  top: 4.2rem;
+/* Dawn's 1.3rem badge margin would push the pills a further step in
+   from the corner offsets above. */
+.card:not(.card--horizontal) > .card__content > .card__badge {
+  margin: 0;
+}
+
+.card__badge .badge {
+  position: static;
+  margin: 0;
+  border: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.9rem;
+  line-height: 1;
+  padding: 0.5rem 0.9rem;
+  border-radius: 4rem;
+  color: #2f2f2f;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 }
 
 .badge--tag-new {
-  background-color: #ffffff;
-  color: #2f2f2f;
-  border-color: rgba(18, 18, 18, 0.25);
+  background-color: rgba(255, 255, 255, 0.72);
 }
 
 .badge--tag-hot {
-  background-color: #f5b1d5;
-  color: #2f2f2f;
-  border-color: #f5b1d5;
+  background-color: rgba(245, 177, 213, 0.78);
+}
+
+.badge--tag-sale {
+  background-color: rgba(255, 190, 158, 0.82);
+}
+
+.badge--tag-soldout {
+  background-color: rgba(47, 47, 47, 0.6);
+  color: #ffffff;
 }
