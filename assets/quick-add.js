@@ -120,3 +120,26 @@ if (!customElements.get('quick-add-modal')) {
     }
   );
 }
+
+// Quick-add modal thumbnails: the modal's media list is a scroll-snap
+// rail (see custom-typography.css), so a thumbnail tap just scrolls the
+// rail to that photo — no dependency on the PDP's media-gallery script,
+// which isn't loaded on collection/home pages.
+(() => {
+  if (window.__quickAddThumbsWired) return;
+  window.__quickAddThumbsWired = true;
+  document.addEventListener('click', (event) => {
+    const thumb = event.target.closest('quick-add-modal .thumbnail-list__item .thumbnail');
+    if (!thumb) return;
+    event.preventDefault();
+    const modal = thumb.closest('quick-add-modal');
+    const list = modal.querySelector('.product__media-list');
+    if (!list) return;
+    const item = thumb.closest('.thumbnail-list__item');
+    const index = [...item.parentElement.querySelectorAll('.thumbnail-list__item')].indexOf(item);
+    const target = list.querySelectorAll('.product__media-item')[index];
+    if (!target) return;
+    const left = target.getBoundingClientRect().left - list.getBoundingClientRect().left + list.scrollLeft;
+    list.scrollTo({ left, behavior: 'smooth' });
+  });
+})();

@@ -52,7 +52,15 @@ if (!customElements.get('product-form')) {
                 errors: response.errors || response.description,
                 message: response.message,
               });
-              this.handleErrorMessage(response.description);
+              // Inventory-cap messages come from Shopify's API ("You can
+              // only add N...", "Only N items were added... due to
+              // availability") — swap them for the brand's small-batch
+              // line so the story stays consistent.
+              let brandMessage = response.description;
+              if (typeof brandMessage === 'string' && /only|availability/i.test(brandMessage) && /cart|add/i.test(brandMessage)) {
+                brandMessage = window.cartStrings.quantityError;
+              }
+              this.handleErrorMessage(brandMessage);
 
               const soldOutMessage = this.submitButton.querySelector('.sold-out-message');
               if (!soldOutMessage) return;

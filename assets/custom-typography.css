@@ -1799,3 +1799,53 @@ quick-add-modal .product__media-list .product__media-item.product__media-item {
     width: calc(48% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 }
+
+/* --- Quick-add modal, desktop: PDP-style thumbnails. The vertical
+   rail fills the gutter left of the photo; tapping a thumbnail scrolls
+   the main rail (wiring in quick-add.js). Phones keep the swipe-only
+   gallery. Doubled/tripled classes push past Dawn's !important hides. --- */
+@media screen and (min-width: 750px) {
+  quick-add-modal .thumbnail-slider.thumbnail-slider {
+    display: block !important;
+    order: -1;
+    flex: 0 0 6rem;
+  }
+
+  quick-add-modal .thumbnail-slider .thumbnail-list.slider--tablet-up.slider--tablet-up {
+    display: flex !important;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0.8rem;
+    width: 6rem;
+    overflow-y: auto;
+    max-height: 46rem;
+    scrollbar-width: none;
+  }
+
+  quick-add-modal .thumbnail-list__item.thumbnail-list__item {
+    width: 6rem;
+    max-width: 6rem;
+  }
+
+  quick-add-modal .thumbnail-slider .thumbnail {
+    width: 100%;
+    border-radius: 0.6rem;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  quick-add-modal .thumbnail-slider .slider-button {
+    display: none !important;
+  }
+
+  quick-add-modal media-gallery {
+    display: flex !important;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  quick-add-modal media-gallery > .slider-mobile-gutter:not(.thumbnail-slider) {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
