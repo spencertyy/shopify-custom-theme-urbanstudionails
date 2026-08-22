@@ -130,3 +130,26 @@ class CartDrawerItems extends CartItems {
 }
 
 customElements.define('cart-drawer-items', CartDrawerItems);
+
+class CartDrawerRecommendations extends HTMLElement {
+  connectedCallback() {
+    const url = this.dataset.url;
+    if (!url) return;
+    fetch(url)
+      .then((response) => response.text())
+      .then((text) => {
+        const html = new DOMParser().parseFromString(text, 'text/html');
+        const inner = html.querySelector('.cart-drawer-recommendations__inner');
+        if (inner && inner.querySelector('.cart-drawer-recommendations__card')) {
+          this.innerHTML = inner.outerHTML;
+        } else {
+          this.hidden = true;
+        }
+      })
+      .catch(() => {
+        this.hidden = true;
+      });
+  }
+}
+
+customElements.define('cart-drawer-recommendations', CartDrawerRecommendations);

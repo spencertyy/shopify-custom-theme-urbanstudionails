@@ -886,7 +886,8 @@ shopify-payment-terms {
 }
 
 .related-products .grid__item {
-  flex: 0 0 68%;
+  /* ~2.3 cards visible per mobile viewport — small tiles, not one big card */
+  flex: 0 0 42%;
   width: auto;
   max-width: none;
   scroll-snap-align: start;
@@ -1038,4 +1039,152 @@ shopify-payment-terms {
 
 .related-products .quick-add__submit::before {
   box-shadow: none;
+}
+
+/* --- Cart drawer polish (2026-08): "Subtotal" row with compare-at strike,
+   FREE label for fully discounted lines, and the recommendations rail. --- */
+
+/* Struck original subtotal sits quietly before the real price. */
+.totals__total-compare {
+  color: rgba(var(--color-foreground), 0.5);
+  font-size: 0.85em;
+  margin-right: 0.6rem;
+  font-weight: 400;
+}
+
+/* A line the promotion made free reads FREE, not $0.00. */
+.cart-item__free {
+  color: #d6336c;
+  letter-spacing: 0.04em;
+}
+
+/* Smaller + bubble on the shrunken mobile related cards. */
+@media screen and (max-width: 749px) {
+  .related-products .quick-add__submit {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .related-products .quick-add__submit::after {
+    font-size: 1.7rem;
+  }
+}
+
+/* --- "You may also like" inside the cart drawer: a swipeable rail of
+   small cards, scrolling with the items; checkout stays pinned below. --- */
+.cart-drawer-recommendations {
+  display: block;
+  padding: 2rem 1.5rem 0.5rem;
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  margin-top: 1rem;
+}
+
+.cart-drawer-recommendations[hidden] {
+  display: none;
+}
+
+.cart-drawer-recommendations__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.4rem;
+}
+
+.cart-drawer-recommendations__heading {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cart-drawer-recommendations__view-all {
+  flex-shrink: 0;
+  background: #2f2f2f;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.7rem 1.6rem;
+  border-radius: 4rem;
+}
+
+.cart-drawer-recommendations__row {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1.2rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cart-drawer-recommendations__row::-webkit-scrollbar {
+  display: none;
+}
+
+.cart-drawer-recommendations__card {
+  flex: 0 0 36%;
+  scroll-snap-align: start;
+}
+
+.cart-drawer-recommendations__link {
+  display: block;
+  text-decoration: none;
+  color: rgb(var(--color-foreground));
+}
+
+.cart-drawer-recommendations__media {
+  position: relative;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  aspect-ratio: 1;
+  background: rgba(var(--color-foreground), 0.04);
+}
+
+.cart-drawer-recommendations__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cart-drawer-recommendations__plus {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  background: #2f2f2f;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.cart-drawer-recommendations__title {
+  margin: 0.8rem 0 0.2rem;
+  font-size: 1.2rem;
+  line-height: 1.3;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.cart-drawer-recommendations__price {
+  margin: 0;
+  font-size: 1.2rem;
+  color: rgba(var(--color-foreground), 0.75);
 }
