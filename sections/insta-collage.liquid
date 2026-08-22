@@ -77,60 +77,47 @@
      toward the screen edges so the sides don't sit in dead whitespace,
      while the centre cell stays centred. */
   .insta-collage__wide {
-    max-width: 156rem;
+    max-width: 148rem;
     margin: 0 auto;
     padding: 0 2.4rem;
   }
 
+  /* Desktop: free composition, hand-placed on a 1480x640 stage (values
+     from the layout editor session of 2026-08-21). Percentages scale
+     with the container; each slot keeps its own aspect ratio. */
   @media screen and (min-width: 990px) {
     .insta-collage__grid {
-      grid-template-columns: 0.9fr 1.15fr 1.3fr 1.15fr 0.9fr;
-      gap: 2.2rem;
+      display: block;
+      position: relative;
+      aspect-ratio: 1480 / 640;
     }
 
     .insta-collage__center {
-      grid-column: 3;
-      grid-row: 1;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
       order: 0;
       margin-bottom: 0;
+      width: max-content;
     }
 
+    /* Columns are only a mobile grouping device; on desktop they melt
+       away so each slot positions against the stage itself. */
     .insta-collage__col {
-      gap: 2rem;
-      grid-row: 1;
+      display: contents;
     }
 
-    .insta-collage__col--a { grid-column: 1; }
-    .insta-collage__col--b { grid-column: 2; }
-    .insta-collage__col--c { grid-column: 4; }
-    .insta-collage__col--d { grid-column: 5; }
-
-    /* Loosened composition: unequal offsets (deliberately NOT mirrored
-       left/right), mixed aspect ratios, and some slots narrower than
-       their column so no two images share a size or an edge. */
-    .insta-collage__col--a { transform: translateY(-4.4rem); }
-    .insta-collage__col--b { transform: translateY(5.2rem); }
-    .insta-collage__col--c { transform: translateY(-3rem); }
-    .insta-collage__col--d { transform: translateY(2.8rem); }
-
-    .insta-collage__col--a .insta-collage__slot:nth-child(2) {
-      aspect-ratio: 1 / 1;
-      width: 78%;
-      align-self: flex-end;
+    .insta-collage__slot {
+      position: absolute;
     }
 
-    .insta-collage__col--b .insta-collage__slot {
-      aspect-ratio: 3 / 4;
-    }
-
-    .insta-collage__col--c .insta-collage__slot {
-      width: 88%;
-    }
-
-    .insta-collage__col--d .insta-collage__slot:nth-child(1) {
-      aspect-ratio: 1 / 1;
-      width: 74%;
-    }
+    .insta-collage__col--a .insta-collage__slot              { left: 1%;    top: 45.1%; width: 15.6%; aspect-ratio: 4 / 5; }
+    .insta-collage__col--b .insta-collage__slot              { left: 19.8%; top: 5%;    width: 18.2%; aspect-ratio: 3 / 4; }
+    .insta-collage__col--c .insta-collage__slot              { left: 61.4%; top: 29.8%; width: 18.2%; aspect-ratio: 4 / 5; }
+    .insta-collage__col--d .insta-collage__slot:nth-child(1) { left: 82.7%; top: 5.8%;  width: 12.6%; aspect-ratio: 1 / 1; }
+    .insta-collage__col--d .insta-collage__slot:nth-child(2) { left: 83%;   top: 52.2%; width: 15.6%; aspect-ratio: 4 / 5; }
   }
 
   .insta-collage__eyebrow {
@@ -185,7 +172,6 @@
         the top via order: -1.
       {%- endcomment -%}
       <div class="insta-collage__col insta-collage__col--a insta-collage__col--up">
-        <a class="insta-collage__slot" href="{{ section.settings.ig_url }}" target="_blank" rel="noopener" data-collage-slot aria-label="{{ section.settings.handle | escape }} on Instagram"></a>
         <a class="insta-collage__slot" href="{{ section.settings.ig_url }}" target="_blank" rel="noopener" data-collage-slot aria-label="{{ section.settings.handle | escape }} on Instagram"></a>
       </div>
       <div class="insta-collage__col insta-collage__col--b insta-collage__col--down">
