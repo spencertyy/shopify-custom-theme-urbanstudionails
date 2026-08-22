@@ -1025,15 +1025,24 @@ shopify-payment-terms {
   position: relative;
 }
 
+/* The quick-add markup now lives inside .card__inner (see
+   card-product.liquid), so these offsets pin it to the IMAGE corner
+   regardless of how many lines the title below wraps to. */
+.card__inner {
+  position: relative;
+}
+
 .card-wrapper .quick-add {
   position: absolute;
-  right: 0.6rem;
-  bottom: 0.2rem;
+  right: 0.8rem;
+  bottom: 0.8rem;
   z-index: 2;
   margin: 0;
   width: auto;
 }
 
+/* White circle with a shopping-bag glyph, competitor-style. The bag is
+   a masked SVG painted with currentColor. */
 .card-wrapper .quick-add__submit {
   width: 3.6rem;
   height: 3.6rem;
@@ -1042,23 +1051,21 @@ shopify-payment-terms {
   padding: 0;
   border-radius: 50%;
   font-size: 0;
-  background: #2f2f2f;
-  color: #ffffff;
+  background: #ffffff;
+  color: #2f2f2f;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.18);
   position: relative;
 }
 
 .card-wrapper .quick-add__submit::after {
-  content: '+';
+  content: '';
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  font-weight: 300;
-  line-height: 1;
+  background-color: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M5.5 8.5h13L19.5 20h-15z'/%3E%3Cpath d='M9 8.5V7a3 3 0 0 1 6 0v1.5'/%3E%3C/svg%3E") center / 1.7rem auto no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M5.5 8.5h13L19.5 20h-15z'/%3E%3Cpath d='M9 8.5V7a3 3 0 0 1 6 0v1.5'/%3E%3C/svg%3E") center / 1.7rem auto no-repeat;
   box-shadow: none;
-  border-radius: 50%;
+  border-radius: 0;
 }
 
 .card-wrapper .quick-add__submit::before {
@@ -1093,7 +1100,8 @@ shopify-payment-terms {
   }
 
   .card-wrapper .quick-add__submit::after {
-    font-size: 1.7rem;
+    -webkit-mask-size: 1.5rem auto;
+    mask-size: 1.5rem auto;
   }
 }
 
@@ -1188,14 +1196,19 @@ shopify-payment-terms {
   width: 2.8rem;
   height: 2.8rem;
   border-radius: 50%;
-  background: #2f2f2f;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.8rem;
-  font-weight: 300;
-  line-height: 1;
+  background: #ffffff;
+  color: #2f2f2f;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.18);
+  font-size: 0;
+}
+
+.cart-drawer-recommendations__plus::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M5.5 8.5h13L19.5 20h-15z'/%3E%3Cpath d='M9 8.5V7a3 3 0 0 1 6 0v1.5'/%3E%3C/svg%3E") center / 1.4rem auto no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M5.5 8.5h13L19.5 20h-15z'/%3E%3Cpath d='M9 8.5V7a3 3 0 0 1 6 0v1.5'/%3E%3C/svg%3E") center / 1.4rem auto no-repeat;
 }
 
 .cart-drawer-recommendations__title {
@@ -1432,10 +1445,6 @@ shopify-payment-terms {
   }
 }
 
-/* The + circle centres on the price line instead of hanging below it. */
-.card-wrapper .quick-add {
-  bottom: 1.4rem;
-}
 
 /* --- Quick-add modal (2026-08): rounded near-fullscreen sheet with
    quieter type, echoing the competitor's Choose Options layout. --- */
@@ -1576,4 +1585,34 @@ shopify-payment-terms {
 .js .menu-drawer__navigation details[open] > summary.menu-drawer__menu-item.menu-drawer__menu-item::after {
   content: '\2212';
   transform: translateY(-50%);
+}
+
+/* Product cards: title and price share one size. Dawn mixes h3 (17px,
+   collection grid) and h5 (12px, sliders) titles against a fixed
+   1.6rem price, so the price reads bigger than some titles. */
+.card__information .card__heading,
+.card__information .price,
+.card__information .price .price-item {
+  font-size: 1.4rem;
+}
+
+@media screen and (min-width: 750px) {
+  .card__information .card__heading,
+  .card__information .price,
+  .card__information .price .price-item {
+    font-size: 1.5rem;
+  }
+}
+
+/* The swipeable related row keeps its smaller tile type (re-stated
+   after the general rule above so it still wins the tie). */
+@media screen and (max-width: 749px) {
+  .related-products .card__information .card__heading {
+    font-size: 1.15rem;
+  }
+
+  .related-products .card__information .price,
+  .related-products .card__information .price .price-item {
+    font-size: 1.2rem;
+  }
 }

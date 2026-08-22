@@ -233,14 +233,14 @@
                                   </dt>
                                   <dd>
                                     <s class="variant-item__old-price">
-                                      {{ variant_price_compare | money_with_currency }}
+                                      {{ variant_price_compare | money }}
                                     </s>
                                   </dd>
                                 </dl>
                               {%- endif -%}
                               {%- if current_qty_for_volume_pricing < volume_pricing_array.last.minimum_quantity -%}
                                 {%- assign variant_price = product.selected_or_first_available_variant.price
-                                  | money_with_currency
+                                  | money
                                 -%}
                                 <span class="price-per-item--current">
                                   {{- 'products.product.volume_pricing.price_at_each' | t: price: variant_price -}}
@@ -248,7 +248,7 @@
                               {%- else -%}
                                 {%- for price_break in volume_pricing_array -%}
                                   {%- if current_qty_for_volume_pricing >= price_break.minimum_quantity -%}
-                                    {%- assign price_break_price = price_break.price | money_with_currency -%}
+                                    {%- assign price_break_price = price_break.price | money -%}
                                     <span class="price-per-item--current">
                                       {{-
                                         'products.product.volume_pricing.price_at_each'
@@ -262,7 +262,7 @@
                             </div>
                           {%- else -%}
                             {%- assign variant_price = product.selected_or_first_available_variant.price
-                              | money_with_currency
+                              | money
                             -%}
                             {%- assign variant_price_compare = product.selected_or_first_available_variant.compare_at_price -%}
                             <div class="price-per-item">
@@ -273,7 +273,7 @@
                                   </dt>
                                   <dd>
                                     <s class="variant-item__old-price">
-                                      {{ variant_price_compare | money_with_currency }}
+                                      {{ variant_price_compare | money }}
                                     </s>
                                   </dd>
                                   <dt class="visually-hidden">
@@ -329,20 +329,20 @@
                             <li>
                               <span>{{ product.selected_or_first_available_variant.quantity_rule.min }}+</span>
                               {%- assign price = product.selected_or_first_available_variant.price
-                                | money_with_currency
+                                | money
                               -%}
                               <span data-text="{{ 'products.product.volume_pricing.price_at_each' | t: price: variant_price }}">
                                 {{ 'sections.quick_order_list.each' | t: money: price -}}
                               </span>
                             </li>
                             {%- for price_break in product.selected_or_first_available_variant.quantity_price_breaks -%}
-                              {%- assign price_break_price = price_break.price | money_with_currency -%}
+                              {%- assign price_break_price = price_break.price | money -%}
                               <li class="{%- if forloop.index >= 3 -%}show-more-item hidden{%- endif -%}">
                                 <span>
                                   {{- price_break.minimum_quantity -}}
                                   <span aria-hidden="true">+</span></span
                                 >
-                                {%- assign price = price_break.price | money_with_currency -%}
+                                {%- assign price = price_break.price | money -%}
                                 <span data-text="{{ 'products.product.volume_pricing.price_at_each' | t: price: price_break_price }}">
                                   {{ 'sections.quick_order_list.each' | t: money: price -}}
                                 </span>
