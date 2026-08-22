@@ -1785,6 +1785,20 @@ quick-add-modal .product__media-list .product__media-item.product__media-item {
   scroll-snap-align: start;
 }
 
+/* Desktop: thumbnails do the navigating, so the rail locks to one
+   photo — no drag, no peeking edge. Programmatic scrollTo from the
+   thumbnail clicks still works on an overflow-hidden container. */
+@media screen and (min-width: 750px) {
+  quick-add-modal .product__media-list.product__media-list.product__media-list {
+    overflow-x: hidden;
+  }
+
+  quick-add-modal .product__media-list .product__media-item.product__media-item {
+    flex-basis: 100%;
+    width: 100% !important;
+  }
+}
+
 /* Desktop: the photo column earns more of the sheet; the copy column
    gives up its extra gutter. */
 @media screen and (min-width: 750px) {
