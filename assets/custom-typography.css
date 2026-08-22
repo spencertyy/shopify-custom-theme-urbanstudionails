@@ -1750,3 +1750,52 @@ cart-drawer-items.is-empty .cart__contents.cart__contents {
 cart-drawer.is-empty .cart__ctas {
   margin-top: 1.6rem;
 }
+
+/* --- Quick-add modal media (2026-08): every product photo, swipeable.
+   Dawn hides all but the first media item with !important — matched
+   with !important at higher specificity. The list becomes a
+   scroll-snap rail on every breakpoint: swipe on phones, drag/scroll
+   on desktop, with the next photo peeking in as the affordance. --- */
+quick-add-modal .product__media-list .product__media-item:not(:first-child) {
+  display: block !important;
+}
+
+quick-add-modal .product__media-list.product__media-list.product__media-list {
+  display: flex !important;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+quick-add-modal .product__media-list.product__media-list.product__media-list::-webkit-scrollbar {
+  display: none;
+}
+
+quick-add-modal .product__media-list .product__media-item.product__media-item {
+  flex: 0 0 calc(100% - 2.4rem);
+  width: calc(100% - 2.4rem) !important;
+  max-width: none !important;
+  margin: 0 !important;
+  scroll-snap-align: start;
+}
+
+/* Desktop: the photo column earns more of the sheet; the copy column
+   gives up its extra gutter. */
+@media screen and (min-width: 750px) {
+  quick-add-modal .product:not(.product--no-media) .product__media-wrapper.product__media-wrapper {
+    max-width: 52%;
+    width: calc(52% - var(--grid-desktop-horizontal-spacing) / 2);
+  }
+
+  quick-add-modal .product:not(.product--no-media) .product__info-wrapper.product__info-wrapper {
+    padding-left: 3rem;
+    max-width: 48%;
+    width: calc(48% - var(--grid-desktop-horizontal-spacing) / 2);
+  }
+}

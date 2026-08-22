@@ -71,6 +71,10 @@ class CartDrawer extends HTMLElement {
   renderContents(parsedState) {
     this.querySelector('.drawer__inner').classList.contains('is-empty') &&
       this.querySelector('.drawer__inner').classList.remove('is-empty');
+    // Dawn clears is-empty on the inner div only; the <cart-drawer>
+    // shell kept the stale class, leaving the empty-state CSS applied
+    // to a bag that now has items.
+    this.classList.remove('is-empty');
     this.productId = parsedState.id;
     this.getSectionsToRender().forEach((section) => {
       const sectionElement = section.selector
