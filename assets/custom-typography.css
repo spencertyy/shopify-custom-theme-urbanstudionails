@@ -886,8 +886,8 @@ shopify-payment-terms {
 }
 
 .related-products .grid__item {
-  /* ~2.3 cards visible per mobile viewport — small tiles, not one big card */
-  flex: 0 0 42%;
+  /* ~2.7 cards visible per mobile viewport — small tiles, not one big card */
+  flex: 0 0 36%;
   width: auto;
   max-width: none;
   scroll-snap-align: start;
@@ -1052,9 +1052,10 @@ shopify-payment-terms {
   font-weight: 400;
 }
 
-/* A line the promotion made free reads FREE, not $0.00. */
+/* A line the promotion made free reads FREE, not $0.00 — red like a
+   sale flash, matching the struck original beside it. */
 .cart-item__free {
-  color: #d6336c;
+  color: #e12222;
   letter-spacing: 0.04em;
 }
 
@@ -1187,4 +1188,211 @@ shopify-payment-terms {
   margin: 0;
   font-size: 1.2rem;
   color: rgba(var(--color-foreground), 0.75);
+}
+
+/* --- Cart drawer round 2 (2026-08): full-screen on mobile, card-style
+   line items, size-picker sheet for the recommendation "+". --- */
+
+/* Phone screens are small — the drawer takes the whole width.
+   component-cart-drawer.css loads per-section and would win a specificity
+   tie, so the parent class is included. */
+@media screen and (max-width: 749px) {
+  .cart-drawer .drawer__inner {
+    width: 100vw;
+    max-width: 100vw;
+    border: 0;
+  }
+}
+
+/* The picker sheet positions against the drawer body. */
+.drawer__inner {
+  position: relative;
+}
+
+/* PRODUCT / TOTAL header row adds nothing in a drawer this narrow. */
+.cart-drawer .cart-items thead {
+  display: none;
+}
+
+/* Each line item becomes a soft card. */
+.cart-drawer .cart-item {
+  border: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  border-radius: 1.2rem;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+  padding: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.cart-drawer .cart-items td {
+  padding-top: 0;
+}
+
+.cart-drawer .cart-item__image {
+  border-radius: 0.8rem;
+}
+
+.cart-drawer .cart-item__name {
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+/* Bottom row of the card: Remove on the left, quantity pill on the right.
+   DOM order is quantity first, so the row is reversed. */
+.cart-drawer .cart-item__quantity-wrapper {
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Dawn draws the quantity border as a box-shadow on ::after and the fill
+   on ::before, both squared by --inputs-radius — all three layers need
+   the pill radius or the corners poke out. */
+.cart-drawer .quantity.cart-quantity {
+  border-radius: 2.4rem;
+  min-height: 3.8rem;
+}
+
+.cart-drawer .quantity.cart-quantity::before,
+.cart-drawer .quantity.cart-quantity::after {
+  border-radius: 2.4rem;
+}
+
+/* Trash icon becomes a quiet underlined REMOVE. */
+.cart-drawer .cart-remove-button {
+  margin: 0;
+  min-width: 0;
+  min-height: 0;
+  width: auto;
+  height: auto;
+}
+
+.cart-remove-text {
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+  color: rgb(var(--color-foreground));
+}
+
+/* --- Size-picker sheet for the recommendations "+" --- */
+.cart-recs-picker {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: flex-end;
+}
+
+.cart-recs-picker__panel {
+  background: rgb(var(--color-background));
+  width: 100%;
+  border-radius: 1.6rem 1.6rem 0 0;
+  padding: 1.8rem 2rem 2.4rem;
+  animation: cart-recs-picker-up 0.25s ease;
+}
+
+@keyframes cart-recs-picker-up {
+  from { transform: translateY(30%); opacity: 0.4; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.cart-recs-picker__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.cart-recs-picker__title {
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: 0.04em;
+}
+
+.cart-recs-picker__close {
+  border: 0;
+  background: none;
+  font-size: 2.2rem;
+  line-height: 1;
+  padding: 0 0.2rem;
+  cursor: pointer;
+  color: rgb(var(--color-foreground));
+}
+
+.cart-recs-picker__label {
+  margin: 0.6rem 0 1.2rem;
+  font-size: 1.2rem;
+  color: rgba(var(--color-foreground), 0.65);
+}
+
+.cart-recs-picker__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.cart-recs-picker__option {
+  flex: 1 1 calc(25% - 0.8rem);
+  min-width: 6rem;
+  padding: 1rem 0.6rem;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.25);
+  border-radius: 3rem;
+  background: transparent;
+  color: rgb(var(--color-foreground));
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.cart-recs-picker__option:hover:not(:disabled) {
+  border-color: rgb(var(--color-foreground));
+}
+
+.cart-recs-picker__option:disabled {
+  opacity: 0.35;
+  text-decoration: line-through;
+  cursor: default;
+}
+
+.cart-recs-picker.is-adding .cart-recs-picker__option {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* The + is a real button now. */
+.cart-drawer-recommendations__plus {
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.cart-drawer-recommendations.is-adding .cart-drawer-recommendations__plus {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* --- Mobile "You may also like" (page sections): tighter heading,
+   smaller card type, + aligned with the price line. --- */
+@media screen and (max-width: 749px) {
+  .related-products .related-products__heading {
+    font-size: 1.5rem;
+    letter-spacing: 0.06em;
+    margin-bottom: 2rem;
+  }
+
+  .related-products .card__heading {
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+  }
+
+  .related-products .price {
+    font-size: 1.2rem;
+  }
+}
+
+/* The + circle centres on the price line instead of hanging below it. */
+.related-products .quick-add {
+  bottom: 1.4rem;
 }

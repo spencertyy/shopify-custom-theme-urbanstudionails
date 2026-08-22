@@ -123,7 +123,11 @@
             {%- endcomment -%}
             {%- liquid
               assign size_popup_block = nil
-              if option_name_lower contains 'size'
+              comment
+                Exact match on purpose: "Box Size" (mystery box) must not
+                get the nail size chart.
+              endcomment
+              if option_name_lower == 'size'
                 for b in section.blocks
                   if b.type == 'popup'
                     assign size_popup_block = b

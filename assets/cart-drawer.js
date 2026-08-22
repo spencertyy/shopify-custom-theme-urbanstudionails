@@ -142,6 +142,7 @@ class CartDrawerRecommendations extends HTMLElement {
         const inner = html.querySelector('.cart-drawer-recommendations__inner');
         if (inner && inner.querySelector('.cart-drawer-recommendations__card')) {
           this.innerHTML = inner.outerHTML;
+          this.addEventListener('click', this.onClick.bind(this));
         } else {
           this.hidden = true;
         }
@@ -149,6 +150,97 @@ class CartDrawerRecommendations extends HTMLElement {
       .catch(() => {
         this.hidden = true;
       });
+  }
+
+  onClick(event) {
+    const plusButton = event.target.closest('.cart-drawer-recommendations__plus');
+    if (!plusButton) return;
+    event.preventDefault();
+    let variants = [];
+    try {
+      variants = JSON.parse(plusButton.dataset.variants);
+    } catch (e) {
+      return;
+    }
+    const available = variants.filter((v) => v.available);
+    if (available.length === 0) return;
+    if (variants.length === 1) {
+      this.addVariant(available[0].id);
+    } else {
+      this.openPicker(plusButton.dataset.productTitle, plusButton.dataset.optionName, variants);
+    }
+  }
+
+  addVariant(variantId) {
+    const cartDrawer = this.closest('cart-drawer');
+    const config = fetchConfig('javascript');
+    config.body = JSON.stringify({
+      items: [{ id: variantId, quantity: 1 }],
+      sections: cartDrawer.getSectionsToRender().map((section) => section.id),
+      sections_url: window.location.pathname,
+    });
+    this.classList.add('is-adding');
+    fetch(`${routes.cart_add_url}`, config)
+      .then((response) => response.json())
+      .then((parsedState) => {
+        if (parsedState.status) return; // add failed (e.g. sold out) — keep the drawer as is
+        cartDrawer.renderContents(parsedState);
+      })
+      .finally(() => {
+        this.classList.remove('is-adding');
+        this.closePicker();
+      });
+  }
+
+  openPicker(title, optionName, variants) {
+    this.closePicker();
+    const drawerInner = this.closest('.drawer__inner');
+    if (!drawerInner) return;
+
+    const picker = document.createElement('div');
+    picker.className = 'cart-recs-picker';
+    picker.innerHTML = `
+      <div class="cart-recs-picker__panel">
+        <div class="cart-recs-picker__head">
+          <p class="cart-recs-picker__title"></p>
+          <button type="button" class="cart-recs-picker__close" aria-label="Close">&times;</button>
+        </div>
+        <p class="cart-recs-picker__label"></p>
+        <div class="cart-recs-picker__options"></div>
+      </div>`;
+    picker.querySelector('.cart-recs-picker__title').textContent = title;
+    picker.querySelector('.cart-recs-picker__label').textContent = optionName
+      ? `Choose ${optionName.toLowerCase()}:`
+      : 'Choose an option:';
+
+    const options = picker.querySelector('.cart-recs-picker__options');
+    variants.forEach((variant) => {
+      const optionButton = document.createElement('button');
+      optionButton.type = 'button';
+      optionButton.className = 'cart-recs-picker__option';
+      optionButton.textContent = variant.title;
+      if (variant.available) {
+        optionButton.addEventListener('click', () => {
+          picker.classList.add('is-adding');
+          this.addVariant(variant.id);
+        });
+      } else {
+        optionButton.disabled = true;
+      }
+      options.appendChild(optionButton);
+    });
+
+    picker.addEventListener('click', (event) => {
+      if (event.target === picker || event.target.closest('.cart-recs-picker__close')) this.closePicker();
+    });
+
+    drawerInner.appendChild(picker);
+  }
+
+  closePicker() {
+    this.closest('.drawer__inner')
+      ?.querySelectorAll('.cart-recs-picker')
+      .forEach((picker) => picker.remove());
   }
 }
 

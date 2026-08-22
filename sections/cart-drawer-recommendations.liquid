@@ -3,7 +3,9 @@
   recommendations endpoint (?section_id=cart-drawer-recommendations),
   fetched by <cart-drawer-recommendations> in cart-drawer.js.
   Products already in the cart are skipped so the row always suggests
-  something new.
+  something new. The + button carries the variant list as JSON; the
+  drawer JS opens a size picker (or adds directly for single-variant
+  products).
 {%- endcomment -%}
 
 {%- if recommendations.performed and recommendations.products_count > 0 -%}
@@ -25,9 +27,22 @@
         {%- endfor -%}
         {%- if in_cart or rec.available == false -%}{%- continue -%}{%- endif -%}
         {%- assign shown = shown | plus: 1 -%}
+        {%- capture variants_json -%}
+          [
+            {%- for v in rec.variants -%}
+              {"id":{{ v.id }},"title":{{ v.title | json }},"available":{{ v.available }}}
+              {%- unless forloop.last -%},{%- endunless -%}
+            {%- endfor -%}
+          ]
+        {%- endcapture -%}
         <li class="cart-drawer-recommendations__card">
-          <a href="{{ rec.url }}" class="cart-drawer-recommendations__link">
-            <div class="cart-drawer-recommendations__media">
+          <div class="cart-drawer-recommendations__media">
+            <a
+              href="{{ rec.url }}"
+              class="cart-drawer-recommendations__img-link"
+              aria-label="{{ rec.title | escape }}"
+              tabindex="-1"
+            >
               {%- if rec.featured_media -%}
                 {{
                   rec.featured_media
@@ -35,8 +50,19 @@
                   | image_tag: loading: 'lazy', widths: '200, 400', alt: rec.title
                 }}
               {%- endif -%}
-              <span class="cart-drawer-recommendations__plus" aria-hidden="true">+</span>
-            </div>
+            </a>
+            <button
+              type="button"
+              class="cart-drawer-recommendations__plus"
+              aria-label="Add {{ rec.title | escape }} to cart"
+              data-product-title="{{ rec.title | escape }}"
+              data-option-name="{{ rec.options.first | escape }}"
+              data-variants="{{ variants_json | strip | escape }}"
+            >
+              +
+            </button>
+          </div>
+          <a href="{{ rec.url }}" class="cart-drawer-recommendations__link">
             <p class="cart-drawer-recommendations__title">{{ rec.title | escape }}</p>
             <p class="cart-drawer-recommendations__price">{{ rec.price | money }}</p>
           </a>
