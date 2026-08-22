@@ -124,6 +124,71 @@
     margin: 0 0 1.2rem;
   }
 
+  /* Instagram glyph rides the eyebrow text at its own size. */
+  .insta-collage__ig-icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    margin-left: 0.4em;
+  }
+
+  .insta-collage__marquee {
+    display: none;
+  }
+
+  /* Mobile: the collage columns give way to one row of equal squares
+     drifting left. */
+  @media screen and (max-width: 989px) {
+    .insta-collage__grid {
+      display: block;
+    }
+
+    .insta-collage__center {
+      margin-bottom: 2rem;
+    }
+
+    .insta-collage__col {
+      display: none;
+    }
+
+    .insta-collage__wide {
+      padding: 0;
+    }
+
+    .insta-collage__marquee {
+      display: block;
+      overflow: hidden;
+    }
+
+    .insta-collage__marquee-track {
+      display: flex;
+      width: max-content;
+      animation: insta-marquee 30s linear infinite;
+    }
+
+    .insta-collage__marquee-track a {
+      display: block;
+      flex: none;
+      width: 33vw;
+      aspect-ratio: 1;
+      margin-right: 0.8rem;
+      overflow: hidden;
+    }
+
+    .insta-collage__marquee-track img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @keyframes insta-marquee {
+      to {
+        transform: translateX(-50%);
+      }
+    }
+  }
+
   .insta-collage__handle {
     font-size: 2.4rem;
     letter-spacing: normal;
@@ -158,7 +223,14 @@
     <div class="insta-collage__grid">
       <div class="insta-collage__center">
         {%- if section.settings.eyebrow != blank -%}
-          <p class="insta-collage__eyebrow caption-with-letter-spacing">{{ section.settings.eyebrow | escape }}</p>
+          <p class="insta-collage__eyebrow caption-with-letter-spacing">
+            {{- section.settings.eyebrow | escape -}}
+            <svg class="insta-collage__ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false">
+              <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/>
+              <circle cx="12" cy="12" r="4.5"/>
+              <circle cx="17.2" cy="6.8" r="1.3" fill="currentColor" stroke="none"/>
+            </svg>
+          </p>
         {%- endif -%}
         <a class="insta-collage__handle" href="{{ section.settings.ig_url }}" target="_blank" rel="noopener">
           {{- section.settings.handle | escape -}}
@@ -186,6 +258,15 @@
       </div>
     </div>
   </div>
+  {%- comment -%}
+    Mobile replaces the collage columns with this marquee: one row of
+    equal squares drifting left. The harvest fills the track with two
+    copies of the image set, and translateX(-50%) loops seamlessly
+    because both copies are identical in width.
+  {%- endcomment -%}
+  <div class="insta-collage__marquee">
+    <div class="insta-collage__marquee-track" data-collage-track></div>
+  </div>
 </div>
 
 <script>
@@ -210,6 +291,26 @@
           img.loading = 'lazy';
           slot.appendChild(img);
         });
+        var track = root.querySelector('[data-collage-track]');
+        if (track) {
+          /* two identical copies -> translateX(-50%) loops without a seam */
+          for (var copy = 0; copy < 2; copy++) {
+            for (var j = 0; j < slots.length; j++) {
+              var link = document.createElement('a');
+              link.href = {{ section.settings.ig_url | json }};
+              link.target = '_blank';
+              link.rel = 'noopener';
+              if (copy > 0) link.setAttribute('aria-hidden', 'true');
+              if (copy > 0) link.tabIndex = -1;
+              var mimg = document.createElement('img');
+              mimg.src = urls[j];
+              mimg.alt = '';
+              mimg.loading = 'lazy';
+              link.appendChild(mimg);
+              track.appendChild(link);
+            }
+          }
+        }
         root.classList.add('insta-collage--ready');
         var feed = document.querySelector('#insta-feed');
         var appSection = feed && feed.closest('.shopify-section');

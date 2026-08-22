@@ -1650,3 +1650,22 @@ shopify-payment-terms {
 #fsb_background {
   z-index: 90 !important;
 }
+
+/* Quick-add close X: Dawn fixes it to the viewport corner (1.5rem),
+   which floats half of it above the mobile bottom sheet and into the
+   announcement bar. Tucked just inside the sheet instead. */
+@media screen and (max-width: 749px) {
+  quick-add-modal .quick-add-modal__toggle {
+    top: 3rem;
+    right: 1.2rem;
+  }
+}
+
+/* image-with-text (About page prose): mobile side padding was eating
+   a third of the line width. */
+@media screen and (max-width: 749px) {
+  .image-with-text .image-with-text__content {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
