@@ -1682,12 +1682,13 @@ shopify-payment-terms {
   }
 }
 
-/* image-with-text (About page prose): mobile side padding was eating
-   a third of the line width. */
+/* image-with-text (About page prose): the text runs the same width as
+   the photo above it — the section container's own gutter is the only
+   inset on mobile. */
 @media screen and (max-width: 749px) {
   .image-with-text .image-with-text__content {
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
