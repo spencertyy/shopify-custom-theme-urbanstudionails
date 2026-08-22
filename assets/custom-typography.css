@@ -1098,6 +1098,8 @@ shopify-payment-terms {
 .cart-item__free.cart-item__free {
   color: #e12222;
   letter-spacing: 0.04em;
+  font-size: 1.2rem;
+  font-weight: 700;
 }
 
 /* Smaller + bubble on the shrunken mobile related cards. */
@@ -1518,7 +1520,26 @@ shopify-payment-terms {
     height: calc(100% - 2rem);
     border-radius: 1.6rem 1.6rem 0 0;
     overflow-y: auto;
+    /* overflow-y:auto silently turns the visible x-axis into auto too,
+       which is what let the sheet drag sideways into white space. */
+    overflow-x: hidden;
+    /* no rubber-band past the sheet's own content, no scroll chaining
+       to the page behind */
+    overscroll-behavior: none;
   }
+}
+
+/* The inner info column scrolls on its own in Dawn — same boundaries. */
+.quick-add-modal .quick-add-modal__content-info {
+  overflow-x: hidden;
+  overscroll-behavior: none;
+}
+
+/* The size-chart popup can't work from inside the quick-add modal (its
+   modal target isn't in this DOM) — hide it here; the full product
+   page still has it. */
+.quick-add-modal .size-chart-inline {
+  display: none;
 }
 
 /* --- Mobile menu drawer (2026-08): slide-out submenu panels become an
