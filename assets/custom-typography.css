@@ -996,12 +996,13 @@ shopify-payment-terms {
 
 /* Quick add as a small round + on the card's lower right — the big
    "Choose options" bar is hidden into it; clicking still opens the
-   variant modal. */
-.related-products .card-wrapper {
+   variant modal. Applies to every product card (homepage sliders,
+   collection grids, related rows) for one consistent look. */
+.card-wrapper {
   position: relative;
 }
 
-.related-products .quick-add {
+.card-wrapper .quick-add {
   position: absolute;
   right: 0.6rem;
   bottom: 0.2rem;
@@ -1010,7 +1011,7 @@ shopify-payment-terms {
   width: auto;
 }
 
-.related-products .quick-add__submit {
+.card-wrapper .quick-add__submit {
   width: 3.6rem;
   height: 3.6rem;
   min-width: 0;
@@ -1023,7 +1024,7 @@ shopify-payment-terms {
   position: relative;
 }
 
-.related-products .quick-add__submit::after {
+.card-wrapper .quick-add__submit::after {
   content: '+';
   position: absolute;
   inset: 0;
@@ -1037,7 +1038,7 @@ shopify-payment-terms {
   border-radius: 50%;
 }
 
-.related-products .quick-add__submit::before {
+.card-wrapper .quick-add__submit::before {
   box-shadow: none;
 }
 
@@ -1063,12 +1064,12 @@ shopify-payment-terms {
 
 /* Smaller + bubble on the shrunken mobile related cards. */
 @media screen and (max-width: 749px) {
-  .related-products .quick-add__submit {
+  .card-wrapper .quick-add__submit {
     width: 3rem;
     height: 3rem;
   }
 
-  .related-products .quick-add__submit::after {
+  .card-wrapper .quick-add__submit::after {
     font-size: 1.7rem;
   }
 }
@@ -1098,7 +1099,7 @@ shopify-payment-terms {
   margin: 0;
   font-size: 1.5rem;
   font-weight: 400;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
@@ -1108,7 +1109,7 @@ shopify-payment-terms {
   color: #ffffff;
   text-decoration: none;
   font-size: 1.1rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   padding: 0.7rem 1.6rem;
   border-radius: 4rem;
@@ -1178,7 +1179,7 @@ shopify-payment-terms {
   margin: 0.8rem 0 0.2rem;
   font-size: 1.2rem;
   line-height: 1.3;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.01em;
   text-transform: uppercase;
   overflow: hidden;
   display: -webkit-box;
@@ -1409,6 +1410,55 @@ shopify-payment-terms {
 }
 
 /* The + circle centres on the price line instead of hanging below it. */
-.related-products .quick-add {
+.card-wrapper .quick-add {
   bottom: 1.4rem;
+}
+
+/* --- Quick-add modal (2026-08): rounded near-fullscreen sheet with
+   quieter type, echoing the competitor's Choose Options layout. --- */
+.quick-add-modal__content {
+  border-radius: 1.6rem;
+}
+
+/* Vendor line repeats the store name — dropped inside the modal. */
+.quick-add-modal .product__text.caption-with-letter-spacing {
+  display: none;
+}
+
+/* Dawn reuses the PDP's h1-scale title here; the modal wants card-scale. */
+.quick-add-modal .product__title > * {
+  font-size: 2rem;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.quick-add-modal .price {
+  font-size: 1.4rem;
+}
+
+.quick-add-modal .product-form__input .form__label,
+.quick-add-modal .quantity__label {
+  font-size: 1.2rem;
+}
+
+.quick-add-modal .product-form__input--pill label {
+  font-size: 1.2rem;
+  padding: 0.9rem 1.4rem;
+}
+
+/* Same three-layer rounding as the drawer quantity (border lives on
+   ::after, fill on ::before). */
+.quick-add-modal .quantity,
+.quick-add-modal .quantity::before,
+.quick-add-modal .quantity::after {
+  border-radius: 2.4rem;
+}
+
+.quick-add-modal .quantity {
+  min-height: 4rem;
+}
+
+.quick-add-modal .product-form__submit {
+  font-size: 1.3rem;
+  letter-spacing: 0.08em;
 }
