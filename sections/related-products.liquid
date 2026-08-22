@@ -31,13 +31,20 @@
     data-product-id="{{ product.id }}"
   >
     {% if recommendations.performed and recommendations.products_count > 0 %}
-      <h2 class="related-products__heading inline-richtext {{ section.settings.heading_size }}">
-        {{ section.settings.heading }}
-      </h2>
+      <div class="related-products__header">
+        <h2 class="related-products__heading inline-richtext {{ section.settings.heading_size }}">
+          {{ section.settings.heading }}
+        </h2>
+        <div class="related-products__nav">
+          <button type="button" class="related-products__arrow related-products__arrow--prev" aria-label="{{ 'general.slider.previous_slide' | t }}">
+            {% render 'icon-caret' %}
+          </button>
+          <button type="button" class="related-products__arrow related-products__arrow--next" aria-label="{{ 'general.slider.next_slide' | t }}">
+            {% render 'icon-caret' %}
+          </button>
+        </div>
+      </div>
       <div class="related-products__stage">
-        <button type="button" class="related-products__arrow related-products__arrow--prev" aria-label="{{ 'general.slider.previous_slide' | t }}">
-          {% render 'icon-caret' %}
-        </button>
         <ul
           class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
           role="list"
@@ -60,9 +67,6 @@
             {%- assign skip_card_product_styles = true -%}
           {% endfor %}
         </ul>
-        <button type="button" class="related-products__arrow related-products__arrow--next" aria-label="{{ 'general.slider.next_slide' | t }}">
-          {% render 'icon-caret' %}
-        </button>
       </div>
     {% endif %}
   </product-recommendations>
@@ -79,7 +83,7 @@
       document.addEventListener('click', (e) => {
         const btn = e.target.closest('.related-products__arrow');
         if (!btn) return;
-        const row = btn.closest('.related-products__stage').querySelector('ul.grid');
+        const row = btn.closest('.related-products').querySelector('ul.grid');
         if (!row) return;
         const dir = btn.classList.contains('related-products__arrow--prev') ? -1 : 1;
         row.scrollBy({ left: dir * Math.max(row.clientWidth * 0.8, 240), behavior: 'smooth' });

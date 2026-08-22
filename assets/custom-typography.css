@@ -927,27 +927,42 @@ shopify-payment-terms {
   margin-bottom: 3rem;
 }
 
-/* Stage wraps the row so the round arrows can sit at its vertical middle. */
-.related-products__stage {
-  position: relative;
+/* Heading row carries the slider arrows at its right end, so they
+   never cover the product tiles. */
+.related-products__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.related-products__header .related-products__heading {
+  margin-bottom: 0;
+}
+
+.related-products__nav {
+  display: flex;
+  gap: 0.8rem;
+  flex-shrink: 0;
 }
 
 .related-products__arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-  width: 4rem;
-  height: 4rem;
+  width: 3.4rem;
+  height: 3.4rem;
   border-radius: 50%;
-  border: none;
+  border: 0.1rem solid rgba(0, 0, 0, 0.15);
   background: #ffffff;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #2f2f2f;
+  padding: 0;
+}
+
+.related-products__arrow:hover {
+  border-color: #2f2f2f;
 }
 
 .related-products__arrow svg {
@@ -955,16 +970,8 @@ shopify-payment-terms {
   height: 1rem;
 }
 
-.related-products__arrow--prev {
-  left: -1rem;
-}
-
 .related-products__arrow--prev svg {
   transform: rotate(90deg);
-}
-
-.related-products__arrow--next {
-  right: -1rem;
 }
 
 .related-products__arrow--next svg {
@@ -972,8 +979,9 @@ shopify-payment-terms {
 }
 
 @media screen and (max-width: 749px) {
-  .related-products__arrow--prev { left: 0.2rem; }
-  .related-products__arrow--next { right: 0.2rem; }
+  .related-products__header {
+    margin-bottom: 2rem;
+  }
 }
 
 /* Size pills stretch edge to edge, sharing the row width equally —
@@ -1625,4 +1633,20 @@ shopify-payment-terms {
    corner. Doubled class outranks Dawn's later-loading rule. */
 .card--media .card__inner > .card__content.card__content {
   position: static;
+}
+
+/* A breath of space between the SIZE label and its pills. Doubled
+   class: Dawn's own .form__label margin (0.2rem) loads later and wins
+   a plain tie. */
+.product-form__input--pill .form__label.form__label {
+  margin-bottom: 0.8rem;
+}
+
+/* Hextom's free-shipping bar injects z-index: 99998 as an inline
+   style, floating it above the quick-add modal (101) and the cart
+   drawer (1000) — it kept covering their close buttons. 90 keeps the
+   bar above page content and the sticky header but below every
+   overlay; !important is the only way past an inline style. */
+#fsb_background {
+  z-index: 90 !important;
 }
