@@ -165,7 +165,14 @@ class CartItems extends HTMLElement {
 
         if (parsedState.errors) {
           quantityElement.value = quantityElement.getAttribute('value');
-          this.updateLiveRegions(line, parsedState.errors);
+          // Inventory-cap wording comes straight from Shopify's API
+          // ("Only N items were added to your cart due to
+          // availability.") — swap it for the brand's small-batch line.
+          let errorMessage = parsedState.errors;
+          if (typeof errorMessage === 'string' && /only|availability/i.test(errorMessage) && /cart|add/i.test(errorMessage)) {
+            errorMessage = window.cartStrings.quantityError;
+          }
+          this.updateLiveRegions(line, errorMessage);
           return;
         }
 
