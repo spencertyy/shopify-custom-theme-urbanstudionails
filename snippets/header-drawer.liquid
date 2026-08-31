@@ -25,7 +25,7 @@
                 <li>
                   {%- if link.links != blank -%}
                     {%- comment -%} Top-level groups start expanded (accordion) {%- endcomment -%}
-                    <details id="Details-menu-drawer-menu-item-{{ forloop.index }}" open>
+                    <details id="Details-menu-drawer-menu-item-{{ forloop.index }}" class="drawer-accordion" open>
                       <summary
                         id="HeaderDrawer-{{ link.handle }}"
                         class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}"

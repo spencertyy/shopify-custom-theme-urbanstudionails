@@ -420,9 +420,18 @@
    :has() is what makes this possible in CSS alone — the state lives on a
    descendant <details>, and this styles the ancestor from it. It covers the
    mega menu and the country selector in one rule, since Dawn builds both on
-   <details>. */
+   <details>.
+
+   The .drawer-accordion exclusion is load-bearing. The mobile drawer's
+   top-level groups ship with a hard-coded open attribute so they read as an
+   expanded accordion, and :has() sees the DOM, not the screen — that drawer is
+   display:none on desktop but its <details open> is still there, so a bare
+   :has(details[open]) matched from first paint on every viewport and pinned the
+   bar white, transparent header and all. Excluding that one marker class keeps
+   every genuine panel — the drawer container itself included, since only the
+   inner groups carry the class — and drops the one that is never really open. */
 :is(.template-index, .template-collection:has(.collection-hero--with-image))
-  .section-header:not(.shopify-section-header-sticky):has(details[open]),
+  .section-header:not(.shopify-section-header-sticky):has(details[open]:not(.drawer-accordion)),
 :is(.template-index, .template-collection:has(.collection-hero--with-image))
   .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover),
 :is(.template-index, .template-collection:has(.collection-hero--with-image))
@@ -432,7 +441,7 @@
   background: rgb(var(--color-background)) !important;
 }
 :is(.template-index, .template-collection:has(.collection-hero--with-image))
-  .section-header:not(.shopify-section-header-sticky):has(details[open])
+  .section-header:not(.shopify-section-header-sticky):has(details[open]:not(.drawer-accordion))
   .header-wrapper,
 :is(.template-index, .template-collection:has(.collection-hero--with-image))
   .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover)
@@ -447,13 +456,13 @@
   background: rgb(var(--color-background));
 }
 :is(.template-index, .template-collection:has(.collection-hero--with-image))
-  .section-header:not(.shopify-section-header-sticky):has(details[open])
+  .section-header:not(.shopify-section-header-sticky):has(details[open]:not(.drawer-accordion))
   .header__menu-item,
 :is(.template-index, .template-collection:has(.collection-hero--with-image))
-  .section-header:not(.shopify-section-header-sticky):has(details[open])
+  .section-header:not(.shopify-section-header-sticky):has(details[open]:not(.drawer-accordion))
   .header__icon,
 :is(.template-index, .template-collection:has(.collection-hero--with-image))
-  .section-header:not(.shopify-section-header-sticky):has(details[open])
+  .section-header:not(.shopify-section-header-sticky):has(details[open]:not(.drawer-accordion))
   localization-form
   button,
 :is(.template-index, .template-collection:has(.collection-hero--with-image))
@@ -486,7 +495,7 @@
   text-shadow: none;
 }
 :is(.template-index, .template-collection:has(.collection-hero--with-image))
-  .section-header:not(.shopify-section-header-sticky):has(details[open])
+  .section-header:not(.shopify-section-header-sticky):has(details[open]:not(.drawer-accordion))
   svg,
 :is(.template-index, .template-collection:has(.collection-hero--with-image))
   .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover)
@@ -689,7 +698,7 @@ body:has(.faq__item) .main-page-title.page-title {
    been through a formatter, and appending a self-contained rule is safer than
    editing a selector list that now spans a dozen wrapped lines. */
 :is(.template-index, .template-collection:has(.collection-hero--with-image))
-  .section-header:not(.shopify-section-header-sticky):has(details[open])
+  .section-header:not(.shopify-section-header-sticky):has(details[open]:not(.drawer-accordion))
   .header__active-menu-item,
 :is(.template-index, .template-collection:has(.collection-hero--with-image))
   .section-header:not(.shopify-section-header-sticky):has(.mega-menu:hover)
