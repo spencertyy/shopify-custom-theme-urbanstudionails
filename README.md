@@ -12,7 +12,7 @@ A fully custom Shopify storefront for **UrbanStudio Nails**, a handcrafted press
 
 ![Shopify admin analytics dashboard](Analytics-UrbanStudio.png)
 
-*Shopify admin analytics, last 2 years (Jan 2024 – Jun 2026): returning-customer rate, average order value, sessions by device type, and sessions by social referrer.*
+*Shopify admin analytics since launch: returning-customer rate, average order value, sessions by device type, and sessions by social referrer.*
 
 ---
 
