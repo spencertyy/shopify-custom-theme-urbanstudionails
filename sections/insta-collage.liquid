@@ -1,195 +1,59 @@
 {%- comment -%}
-  Instagram centre-gallery: two loose image columns either side of a
-  large @handle sitting in a clear middle column — a symmetric grid
-  with offset columns, not a scattered collage.
+  Instagram row: one horizontally scrolling strip of square thumbnails under a
+  centred @handle. Replaces the earlier free-placed collage (2026-09-01) —
+  the scattered layout read as too busy next to the rest of the homepage.
 
-  The images are NOT uploaded by hand. The Instafeed app block (which
-  must remain somewhere on the same page) fetches the latest posts and
-  writes each thumbnail URL into a data-instafeed-thumbnail attribute.
-  After load, this section harvests the first few thumbnails from that
-  DOM, fills its slots, then hides the app's own rendering. If the app
-  ever fails or changes markup, the harvest finds nothing, this section
-  stays hidden, and the app's stock feed remains visible — the page
-  degrades to exactly what it was before.
+  The images are NOT uploaded by hand. The Instafeed app block (which must
+  remain somewhere on the same page) fetches the latest posts and writes each
+  thumbnail URL into a data-instafeed-thumbnail attribute. After load, this
+  section harvests those thumbnails from the DOM, builds one tile per URL,
+  then hides the app's own rendering. If the app ever fails or changes markup,
+  the harvest finds nothing, this section stays hidden, and the app's stock
+  feed remains visible — the page degrades to exactly what it was before.
+
+  Unlike the collage this replaces, the tile count is not fixed in markup:
+  the harvest builds as many tiles as it found (capped by max_items), so a
+  short feed renders a short row instead of suppressing the section entirely.
 {%- endcomment -%}
 
+{%- liquid
+  assign min_items = section.settings.min_items
+  assign max_items = section.settings.max_items
+  if min_items > max_items
+    assign min_items = max_items
+  endif
+-%}
+
 {%- style -%}
-  .insta-collage-{{ section.id }} {
+  .insta-row-{{ section.id }} {
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
     display: none;
   }
 
-  .insta-collage-{{ section.id }}.insta-collage--ready {
+  .insta-row-{{ section.id }}.insta-row--ready {
     display: block;
   }
 
-  /* Mobile first: centre text on top, then the four columns flowing
-     into a two-column grid. Desktop lifts the centre back into the
-     middle column of a five-column row. */
-  .insta-collage__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.6rem;
-    align-items: center;
-  }
-
-  .insta-collage__center {
-    grid-column: 1 / -1;
-    order: -1;
+  .insta-row__head {
     text-align: center;
-    margin-bottom: 1.6rem;
-  }
-
-  .insta-collage__col {
-    display: flex;
-    flex-direction: column;
-    gap: 1.6rem;
-  }
-
-  .insta-collage__slot {
-    display: block;
-    position: relative;
-    overflow: hidden;
-    aspect-ratio: 4 / 5;
-  }
-
-  /* Feathered edges: a ring of the section's own background colour blurred
-     inwards, so each photo melts into the page instead of ending on a hard
-     line. Tune the first length (blur) for softness reach, the second
-     (spread) for how far the fade eats into the image. */
-  .insta-collage__slot::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    box-shadow: inset 0 0 2.4rem 0.6rem rgb(var(--color-background));
-  }
-
-  .insta-collage__slot img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  /* Wider than the site's page-width on purpose: the collage spreads
-     toward the screen edges so the sides don't sit in dead whitespace,
-     while the centre cell stays centred. */
-  .insta-collage__wide {
-    max-width: 148rem;
-    margin: 0 auto;
+    margin-bottom: 2.4rem;
     padding: 0 2.4rem;
   }
 
-  /* Desktop: free composition, hand-placed on a 1480x640 stage (values
-     from the layout editor session of 2026-08-21). Percentages scale
-     with the container; each slot keeps its own aspect ratio. */
-  @media screen and (min-width: 990px) {
-    .insta-collage__grid {
-      display: block;
-      position: relative;
-      aspect-ratio: 1480 / 640;
-    }
-
-    .insta-collage__center {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 2;
-      order: 0;
-      margin-bottom: 0;
-      width: max-content;
-    }
-
-    /* Columns are only a mobile grouping device; on desktop they melt
-       away so each slot positions against the stage itself. */
-    .insta-collage__col {
-      display: contents;
-    }
-
-    .insta-collage__slot {
-      position: absolute;
-    }
-
-    .insta-collage__col--a .insta-collage__slot              { left: 1%;    top: 45.1%; width: 15.6%; aspect-ratio: 4 / 5; }
-    .insta-collage__col--b .insta-collage__slot              { left: 19.8%; top: 5%;    width: 18.2%; aspect-ratio: 3 / 4; }
-    .insta-collage__col--c .insta-collage__slot              { left: 61.4%; top: 29.8%; width: 18.2%; aspect-ratio: 4 / 5; }
-    .insta-collage__col--d .insta-collage__slot:nth-child(1) { left: 82.7%; top: 5.8%;  width: 12.6%; aspect-ratio: 1 / 1; }
-    .insta-collage__col--d .insta-collage__slot:nth-child(2) { left: 83%;   top: 52.2%; width: 15.6%; aspect-ratio: 4 / 5; }
-  }
-
-  .insta-collage__eyebrow {
-    margin: 0 0 1.2rem;
+  .insta-row__eyebrow {
+    margin: 0 0 1rem;
   }
 
   /* Instagram glyph rides the eyebrow text at its own size. */
-  .insta-collage__ig-icon {
+  .insta-row__ig-icon {
     width: 1em;
     height: 1em;
     vertical-align: -0.15em;
     margin-left: 0.4em;
   }
 
-  .insta-collage__marquee {
-    display: none;
-  }
-
-  /* Mobile: the collage columns give way to one row of equal squares
-     drifting left. */
-  @media screen and (max-width: 989px) {
-    .insta-collage__grid {
-      display: block;
-    }
-
-    .insta-collage__center {
-      margin-bottom: 2rem;
-    }
-
-    .insta-collage__col {
-      display: none;
-    }
-
-    .insta-collage__wide {
-      padding: 0;
-    }
-
-    .insta-collage__marquee {
-      display: block;
-      overflow: hidden;
-    }
-
-    .insta-collage__marquee-track {
-      display: flex;
-      width: max-content;
-      animation: insta-marquee 30s linear infinite;
-    }
-
-    .insta-collage__marquee-track a {
-      display: block;
-      flex: none;
-      width: 33vw;
-      aspect-ratio: 1;
-      margin-right: 0.8rem;
-      overflow: hidden;
-    }
-
-    .insta-collage__marquee-track img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    @keyframes insta-marquee {
-      to {
-        transform: translateX(-50%);
-      }
-    }
-  }
-
-  .insta-collage__handle {
+  .insta-row__handle {
     font-size: 2.4rem;
     letter-spacing: normal;
     line-height: 1.1;
@@ -197,18 +61,174 @@
     color: rgb(var(--color-foreground));
   }
 
-  .insta-collage__handle:hover {
+  .insta-row__handle:hover {
     text-decoration: underline;
     text-underline-offset: 0.4rem;
   }
 
-  @media screen and (max-width: 989px) {
-    .insta-collage__handle { font-size: 1.8rem; }
+  /* ---- the scrolling strip ---------------------------------------- */
+
+  .insta-row__viewport {
+    position: relative;
   }
 
-  /* Applied to the Instafeed app's own section once the collage is
-     filled. Kept as height-collapse rather than display:none so the
-     app's scripts keep a live element to talk to. */
+  .insta-row__track {
+    display: flex;
+    gap: {{ section.settings.gap }}rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    /* Bleed off the right edge on purpose: a tile cut by the viewport is the
+       cue that there is more to scroll. Left keeps the page's own margin. */
+    padding: 0 2.4rem;
+    /* Hide the scrollbar without disabling the scrolling itself. */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .insta-row__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .insta-row--snap .insta-row__track {
+    scroll-snap-type: x proximity;
+    scroll-padding-left: 2.4rem;
+  }
+
+  .insta-row__tile {
+    display: block;
+    flex: none;
+    width: {{ section.settings.tile_width_mobile }}vw;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: rgba(var(--color-foreground), 0.04);
+  }
+
+  .insta-row--snap .insta-row__tile {
+    scroll-snap-align: start;
+  }
+
+  .insta-row__tile img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .insta-row__tile:hover img {
+    transform: scale(1.04);
+  }
+
+  @media screen and (min-width: 750px) {
+    .insta-row__track {
+      padding: 0 4rem;
+      gap: {{ section.settings.gap }}rem;
+    }
+
+    .insta-row--snap .insta-row__track {
+      scroll-padding-left: 4rem;
+    }
+
+    .insta-row__tile {
+      width: {{ section.settings.tile_width_desktop }}vw;
+    }
+  }
+
+  /* ---- desktop arrows --------------------------------------------- */
+
+  .insta-row__arrow {
+    display: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 4.4rem;
+    height: 4.4rem;
+    border-radius: 50%;
+    border: 1px solid rgba(var(--color-foreground), 0.16);
+    background: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: opacity 0.2s ease, border-color 0.2s ease;
+  }
+
+  .insta-row__arrow:hover {
+    border-color: rgba(var(--color-foreground), 0.5);
+  }
+
+  .insta-row__arrow[disabled] {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .insta-row__arrow svg {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+
+  .insta-row__arrow--prev { left: 1.2rem; }
+  .insta-row__arrow--next { right: 1.2rem; }
+
+  /* Arrows are a pointer affordance; touch users just swipe. */
+  @media screen and (min-width: 990px) {
+    .insta-row--has-arrows .insta-row__arrow {
+      display: flex;
+    }
+  }
+
+  /* ---- auto-drift: the seamless one-way loop ---------------------------------------- */
+
+  .insta-row--auto .insta-row__track {
+    overflow-x: hidden;
+    scroll-snap-type: none;
+  }
+
+  .insta-row--auto .insta-row__inner {
+    display: flex;
+    gap: {{ section.settings.gap }}rem;
+    width: max-content;
+    animation: insta-row-drift {{ section.settings.auto_speed }}s linear infinite;
+  }
+
+  .insta-row--auto .insta-row__track:hover .insta-row__inner {
+    animation-play-state: paused;
+  }
+
+  @keyframes insta-row-drift {
+    to {
+      /* two identical copies -> -50% loops without a visible seam */
+      transform: translateX(calc(-50% - {{ section.settings.gap | divided_by: 2.0 }}rem));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .insta-row--auto .insta-row__inner {
+      animation: none;
+    }
+
+    .insta-row--auto .insta-row__track {
+      overflow-x: auto;
+    }
+
+    .insta-row__track {
+      scroll-behavior: auto;
+    }
+
+    .insta-row__tile img {
+      transition: none;
+    }
+
+    .insta-row__tile:hover img {
+      transform: none;
+    }
+  }
+
+  /* Applied to the Instafeed app's own section once this row is filled.
+     Kept as height-collapse rather than display:none so the app's scripts
+     keep a live element to talk to. */
   .insta-collage-app-hidden {
     height: 0 !important;
     overflow: hidden !important;
@@ -218,126 +238,232 @@
   }
 {%- endstyle -%}
 
-<div id="InstaCollage-{{ section.id }}" class="insta-collage-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
-  <div class="insta-collage__wide">
-    <div class="insta-collage__grid">
-      <div class="insta-collage__center">
-        {%- if section.settings.eyebrow != blank -%}
-          <p class="insta-collage__eyebrow caption-with-letter-spacing">
-            {{- section.settings.eyebrow | escape -}}
-            <svg class="insta-collage__ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false">
-              <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/>
-              <circle cx="12" cy="12" r="4.5"/>
-              <circle cx="17.2" cy="6.8" r="1.3" fill="currentColor" stroke="none"/>
-            </svg>
-          </p>
-        {%- endif -%}
-        <a class="insta-collage__handle" href="{{ section.settings.ig_url }}" target="_blank" rel="noopener">
-          {{- section.settings.handle | escape -}}
-        </a>
-      </div>
-
-      {%- comment -%}
-        Column layout: outer columns carry two images and ride high,
-        inner columns carry one and sit low. The centre cell is placed
-        between them by source order on desktop; on mobile it jumps to
-        the top via order: -1.
-      {%- endcomment -%}
-      <div class="insta-collage__col insta-collage__col--a insta-collage__col--up">
-        <a class="insta-collage__slot" href="{{ section.settings.ig_url }}" target="_blank" rel="noopener" data-collage-slot aria-label="{{ section.settings.handle | escape }} on Instagram"></a>
-      </div>
-      <div class="insta-collage__col insta-collage__col--b insta-collage__col--down">
-        <a class="insta-collage__slot" href="{{ section.settings.ig_url }}" target="_blank" rel="noopener" data-collage-slot aria-label="{{ section.settings.handle | escape }} on Instagram"></a>
-      </div>
-      <div class="insta-collage__col insta-collage__col--c insta-collage__col--up">
-        <a class="insta-collage__slot" href="{{ section.settings.ig_url }}" target="_blank" rel="noopener" data-collage-slot aria-label="{{ section.settings.handle | escape }} on Instagram"></a>
-      </div>
-      <div class="insta-collage__col insta-collage__col--d insta-collage__col--down">
-        <a class="insta-collage__slot" href="{{ section.settings.ig_url }}" target="_blank" rel="noopener" data-collage-slot aria-label="{{ section.settings.handle | escape }} on Instagram"></a>
-        <a class="insta-collage__slot" href="{{ section.settings.ig_url }}" target="_blank" rel="noopener" data-collage-slot aria-label="{{ section.settings.handle | escape }} on Instagram"></a>
-      </div>
-    </div>
+<div
+  id="InstaRow-{{ section.id }}"
+  class="insta-row-{{ section.id }} insta-row color-{{ section.settings.color_scheme }} gradient{% if section.settings.scroll_mode == 'auto' %} insta-row--auto{% else %} insta-row--snap{% endif %}"
+  data-scroll-mode="{{ section.settings.scroll_mode }}"
+  data-min-items="{{ min_items }}"
+  data-max-items="{{ max_items }}"
+>
+  <div class="insta-row__head">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="insta-row__eyebrow caption-with-letter-spacing">
+        {{- section.settings.eyebrow | escape -}}
+        <svg class="insta-row__ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false">
+          <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/>
+          <circle cx="12" cy="12" r="4.5"/>
+          <circle cx="17.2" cy="6.8" r="1.3" fill="currentColor" stroke="none"/>
+        </svg>
+      </p>
+    {%- endif -%}
+    <a class="insta-row__handle" href="{{ section.settings.ig_url }}" target="_blank" rel="noopener">
+      {{- section.settings.handle | escape -}}
+    </a>
   </div>
-  {%- comment -%}
-    Mobile replaces the collage columns with this marquee: one row of
-    equal squares drifting left. The harvest fills the track with two
-    copies of the image set, and translateX(-50%) loops seamlessly
-    because both copies are identical in width.
-  {%- endcomment -%}
-  <div class="insta-collage__marquee">
-    <div class="insta-collage__marquee-track" data-collage-track></div>
+
+  <div class="insta-row__viewport">
+    <button
+      class="insta-row__arrow insta-row__arrow--prev"
+      type="button"
+      data-row-prev
+      disabled
+      aria-label="{{ 'general.slider.previous_slide' | t | default: 'Previous' }}"
+    >
+      <svg viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false">
+        <path d="M10 1 2 10l8 9"/>
+      </svg>
+    </button>
+
+    <div class="insta-row__track" data-row-track>
+      {%- comment -%}
+        Filled by the harvest below. In auto mode the tiles are wrapped in
+        .insta-row__inner (two copies) so the drift animation can loop.
+      {%- endcomment -%}
+    </div>
+
+    <button
+      class="insta-row__arrow insta-row__arrow--next"
+      type="button"
+      data-row-next
+      disabled
+      aria-label="{{ 'general.slider.next_slide' | t | default: 'Next' }}"
+    >
+      <svg viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false">
+        <path d="M2 1l8 9-8 9"/>
+      </svg>
+    </button>
   </div>
 </div>
 
 <script>
   (function () {
-    var root = document.getElementById('InstaCollage-{{ section.id }}');
+    var root = document.getElementById('InstaRow-{{ section.id }}');
     if (!root) return;
-    var slots = root.querySelectorAll('[data-collage-slot]');
-    var deadline = Date.now() + 10000;
+
+    var track = root.querySelector('[data-row-track]');
+    var prev = root.querySelector('[data-row-prev]');
+    var next = root.querySelector('[data-row-next]');
+    var igUrl = {{ section.settings.ig_url | json }};
+    var handle = {{ section.settings.handle | json }};
+    var mode = root.getAttribute('data-scroll-mode') || 'manual';
+    var isAuto = mode === 'auto';
+    var minItems = parseInt(root.getAttribute('data-min-items'), 10) || 4;
+    var maxItems = parseInt(root.getAttribute('data-max-items'), 10) || 8;
+
+    function makeTile(url, decorative) {
+      var link = document.createElement('a');
+      link.className = 'insta-row__tile';
+      link.href = igUrl;
+      link.target = '_blank';
+      link.rel = 'noopener';
+      if (decorative) {
+        link.setAttribute('aria-hidden', 'true');
+        link.tabIndex = -1;
+      } else {
+        link.setAttribute('aria-label', handle + ' on Instagram');
+      }
+      var img = document.createElement('img');
+      img.src = url;
+      img.alt = '';
+      img.loading = 'lazy';
+      link.appendChild(img);
+      return link;
+    }
+
+    function build(urls) {
+      if (isAuto) {
+        var inner = document.createElement('div');
+        inner.className = 'insta-row__inner';
+        /* two identical copies -> translateX(-50%) loops without a seam */
+        for (var copy = 0; copy < 2; copy++) {
+          for (var j = 0; j < urls.length; j++) {
+            inner.appendChild(makeTile(urls[j], copy > 0));
+          }
+        }
+        track.appendChild(inner);
+      } else {
+        for (var i = 0; i < urls.length; i++) {
+          track.appendChild(makeTile(urls[i], false));
+        }
+      }
+    }
+
+    function syncArrows() {
+      if (mode !== 'manual') return;
+      /* 1px of slack absorbs sub-pixel rounding at the ends of the scroll. */
+      var maxScroll = track.scrollWidth - track.clientWidth;
+      if (maxScroll <= 1) {
+        root.classList.remove('insta-row--has-arrows');
+        return;
+      }
+      root.classList.add('insta-row--has-arrows');
+      prev.disabled = track.scrollLeft <= 1;
+      next.disabled = track.scrollLeft >= maxScroll - 1;
+    }
+
+    function step(direction) {
+      var tile = track.querySelector('.insta-row__tile');
+      if (!tile) return;
+      /* TODO(you): decide how far one arrow click travels — see the note
+         in the chat. Change the multiplier below.
+         1 = one tile per click, 2 = two, or use track.clientWidth for a
+         full "page" of tiles. */
+      var distance = (tile.offsetWidth + {{ section.settings.gap }} * 10) * 1;
+      track.scrollBy({ left: direction * distance, behavior: 'smooth' });
+    }
 
     function harvest() {
       var items = document.querySelectorAll('#insta-feed [data-instafeed-thumbnail]');
       var urls = [];
-      for (var i = 0; i < items.length; i++) {
+      for (var i = 0; i < items.length && urls.length < maxItems; i++) {
         var u = items[i].getAttribute('data-instafeed-thumbnail');
         if (u && urls.indexOf(u) === -1) urls.push(u);
       }
-      if (urls.length >= slots.length) {
-        slots.forEach(function (slot, i) {
-          var img = document.createElement('img');
-          img.src = urls[i];
-          img.alt = '';
-          img.loading = 'lazy';
-          slot.appendChild(img);
-        });
-        var track = root.querySelector('[data-collage-track]');
-        if (track) {
-          /* two identical copies -> translateX(-50%) loops without a seam */
-          for (var copy = 0; copy < 2; copy++) {
-            for (var j = 0; j < slots.length; j++) {
-              var link = document.createElement('a');
-              link.href = {{ section.settings.ig_url | json }};
-              link.target = '_blank';
-              link.rel = 'noopener';
-              if (copy > 0) link.setAttribute('aria-hidden', 'true');
-              if (copy > 0) link.tabIndex = -1;
-              var mimg = document.createElement('img');
-              mimg.src = urls[j];
-              mimg.alt = '';
-              mimg.loading = 'lazy';
-              link.appendChild(mimg);
-              track.appendChild(link);
-            }
-          }
+
+      if (urls.length >= minItems) {
+        build(urls);
+        root.classList.add('insta-row--ready');
+
+        if (mode === 'manual') {
+          prev.addEventListener('click', function () { step(-1); });
+          next.addEventListener('click', function () { step(1); });
+          track.addEventListener('scroll', syncArrows, { passive: true });
+          window.addEventListener('resize', syncArrows);
+          /* Tiles are sized in vw, so widths are known before the images
+             decode — but wait a frame so layout has actually run. */
+          requestAnimationFrame(syncArrows);
         }
-        root.classList.add('insta-collage--ready');
+
         var feed = document.querySelector('#insta-feed');
         var appSection = feed && feed.closest('.shopify-section');
         if (appSection) appSection.classList.add('insta-collage-app-hidden');
-        return;
+        return true;
       }
-      if (Date.now() < deadline) setTimeout(harvest, 400);
-      /* deadline passed: leave the app's stock feed visible, collage stays hidden */
+
+      return false;
+    }
+
+    /* The Instafeed app fetches its posts from a third-party CDN after
+       window load, so the thumbnails appear at an unpredictable moment.
+       Polling against a fixed deadline loses that race on a slow response —
+       observed failing once at ~10s on a cold theme — so watch the app's
+       container for the mutation instead and harvest the moment it fills.
+
+       The interval and the cap are belt-and-braces: the interval covers a
+       feed that is swapped in some way the observer misses, and the cap
+       stops both so a page left open overnight is not watching forever. */
+    function watchForFeed() {
+      var stopped = false;
+      var poll = null;
+      var observer = null;
+
+      function stop() {
+        if (stopped) return;
+        stopped = true;
+        if (poll) clearInterval(poll);
+        if (observer) observer.disconnect();
+      }
+
+      function attempt() {
+        if (harvest()) stop();
+      }
+
+      if ('MutationObserver' in window) {
+        observer = new MutationObserver(attempt);
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true,
+          attributes: true,
+          attributeFilter: ['data-instafeed-thumbnail']
+        });
+      }
+
+      poll = setInterval(attempt, 500);
+      /* Cap passed: leave the app's stock feed visible, this row stays hidden. */
+      setTimeout(stop, 30000);
+    }
+
+    function start() {
+      if (!harvest()) watchForFeed();
     }
 
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', harvest);
+      document.addEventListener('DOMContentLoaded', start);
     } else {
-      harvest();
+      start();
     }
   })();
 </script>
 
 {% schema %}
 {
-  "name": "Instagram collage",
+  "name": "Instagram row",
   "tag": "section",
   "class": "section",
   "settings": [
     {
       "type": "paragraph",
-      "content": "Needs the Instafeed app block on the same page (it can sit below — it is hidden automatically once the collage loads)."
+      "content": "Images come from the Instafeed app block, which must stay on the same page. If it fails to load, this section hides itself and the app's own feed shows instead."
     },
     {
       "type": "text",
@@ -355,6 +481,80 @@
       "type": "url",
       "id": "ig_url",
       "label": "Instagram URL"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "scroll_mode",
+      "label": "Scrolling",
+      "options": [
+        { "value": "auto", "label": "Auto — loops one way" },
+        { "value": "manual", "label": "Swipe / arrows only" }
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "range",
+      "id": "auto_speed",
+      "min": 20,
+      "max": 90,
+      "step": 5,
+      "unit": "s",
+      "label": "Auto drift duration",
+      "info": "Only used when Scrolling is set to Auto drift. Higher is slower.",
+      "default": 45
+    },
+    {
+      "type": "range",
+      "id": "tile_width_desktop",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "vw",
+      "label": "Tile width (desktop)",
+      "default": 17
+    },
+    {
+      "type": "range",
+      "id": "tile_width_mobile",
+      "min": 25,
+      "max": 70,
+      "step": 1,
+      "unit": "vw",
+      "label": "Tile width (mobile)",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "min": 0,
+      "max": 3,
+      "step": 0.2,
+      "unit": "rem",
+      "label": "Gap between tiles",
+      "default": 0.8
+    },
+    {
+      "type": "range",
+      "id": "max_items",
+      "min": 4,
+      "max": 16,
+      "step": 1,
+      "label": "Max images",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "min_items",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "label": "Min images before showing",
+      "info": "If the app returns fewer than this, the section stays hidden and the app's own feed shows instead.",
+      "default": 4
     },
     {
       "type": "color_scheme",
@@ -380,12 +580,12 @@
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
-      "default": 52
+      "default": 24
     }
   ],
   "presets": [
     {
-      "name": "Instagram collage"
+      "name": "Instagram row"
     }
   ]
 }
