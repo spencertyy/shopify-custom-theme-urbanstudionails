@@ -15,7 +15,7 @@
         "slide_qFwTrq": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/db471bcffa13508b0b73069b7f386794.jpg",
+            "image": "shopify://shop_images/IMG_0725_68dc17b6-cfd2-47e9-a434-83658e80f0a4.jpg",
             "heading": "",
             "heading_size": "h1",
             "subheading": "",
@@ -132,7 +132,8 @@
       ],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
-        "image": "shopify://shop_images/e0ebcfd471dfd8a68c983f98b5795137_68dce79d-493b-4316-9862-dc94dbcba346.png",
+        "image": "shopify://shop_images/IMG_0750.jpg",
+        "image_2": "shopify://shop_images/IMG_0688.jpg",
         "image_overlay_opacity": 0,
         "image_height": "medium",
         "desktop_content_position": "top-center",
@@ -214,7 +215,7 @@
         "tile_custom": {
           "type": "tile",
           "settings": {
-            "image": "shopify://shop_images/6e43225a4e9d5cd2bfbb3f834242b389_7b9de1ac-db4d-469c-adcf-9e7fef464c96.jpg",
+            "image": "shopify://shop_images/IMG_0804.jpg",
             "heading": "<em>Custom</em> Couture",
             "text": "Your design, made one set at a time.",
             "link_label": "EXPLORE",
