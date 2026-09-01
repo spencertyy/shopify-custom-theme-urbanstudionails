@@ -12,7 +12,7 @@
     "about_heading_css": {
       "type": "custom-liquid",
       "settings": {
-        "custom_liquid": "<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=Karla:wght@300&display=swap\" rel=\"stylesheet\"><style>#insta-feed h2{font-size:17px !important;font-weight:400 !important;}#MainContent .image-with-text .caption-with-letter-spacing{font-size:1.2rem;letter-spacing:0.1em;color:#8a8880;margin-bottom:2.4rem;}@media screen and (min-width:750px){#MainContent .image-with-text__grid--reverse .image-with-text__content{padding-left:0;padding-right:4rem;}}#MainContent .image-with-text__heading{font-size:3.6rem;font-weight:300;line-height:1.25;color:#2f2f2f;letter-spacing:-0.01em;}#MainContent .image-with-text__text{font-size:1.45rem;line-height:1.8;color:#424242;max-width:30em;}#MainContent .outro-values__tagline{font-size:2.1rem;font-weight:300;line-height:1.4;color:#2f2f2f;}#MainContent .outro-values__tagline p{font-weight:300;}#MainContent .outro-values__outro .button{text-transform:uppercase;letter-spacing:0.16em;font-size:1.2rem;background:#ffffff;color:#2f2f2f;border:1px solid #424242;border-radius:0;box-shadow:none;}#MainContent .outro-values__outro .button::after{box-shadow:none;}@media screen and (max-width:749px){#MainContent .image-with-text__heading{font-size:2.8rem;}#MainContent .outro-values__tagline{font-size:1.9rem;}}</style>",
+        "custom_liquid": "<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=Karla:wght@300&display=swap\" rel=\"stylesheet\"><style>#insta-feed h2{font-size:17px !important;font-weight:400 !important;}#MainContent .image-with-text .caption-with-letter-spacing{font-size:1.2rem;letter-spacing:0.1em;color:#8a8880;margin-bottom:2.4rem;}@media screen and (min-width:750px){#MainContent .image-with-text__grid--reverse .image-with-text__content{padding-left:0;padding-right:4rem;}}#MainContent .image-with-text__heading{font-size:3.6rem;font-weight:300;line-height:1.25;color:#2f2f2f;letter-spacing:-0.01em;}#MainContent .image-with-text__text{font-size:1.45rem;line-height:1.8;color:#424242;max-width:30em;}#MainContent .outro-values__tagline{font-size:2.1rem;font-weight:300;line-height:1.4;color:#2f2f2f;}#MainContent .outro-values__tagline p{font-weight:300;}#MainContent .outro-values__outro .button{text-transform:uppercase;letter-spacing:0.16em;font-size:1.2rem;background:#ffffff;color:#2f2f2f;border:1px solid #424242;border-radius:0;box-shadow:none;}#MainContent .outro-values__outro .button::after{box-shadow:none;}@media screen and (max-width:749px){#MainContent .image-with-text__heading{font-size:2.8rem;text-align:center;width:100%;}#MainContent .image-with-text .caption-with-letter-spacing{text-align:center;width:100%;}#MainContent .outro-values__tagline{font-size:1.9rem;}}</style>",
         "color_scheme": "",
         "padding_top": 0,
         "padding_bottom": 0
@@ -47,7 +47,7 @@
         "text_story": {
           "type": "text",
           "settings": {
-            "text": "<p>It began with a simple thought: in a city that never slows down, beauty shouldn't ask you to.</p><p>We make wearable art — nails shaped, painted and finished by hand, one set at a time. Each is a small original: the depth of the colour, the way the light catches, the quiet signature of the hand that made it.</p><p>Think of them as you think of your makeup, your dress, your perfume — the finishing touch before you step out. Ten minutes at the mirror, and your nails are dressed for tonight. Tomorrow, back at your desk, they come off as easily as they went on.</p>",
+            "text": "<p>It began with a simple thought: in a city that never slows down, beauty shouldn't ask you to.</p><p>We make wearable art — nails shaped, painted and finished by hand, one set at a time. Each is a small original: the depth of the colour, the way the light catches, the quiet signature of the hand that made it.</p><p>Think of them as you think of your makeup, your dress, your perfume — the finishing touch before you step out. Ten minutes at the mirror, and your nails are dressed for tonight. Tomorrow, back at your desk, they come off as easily as they went on.</p><p>As for trends — consider them watched. We follow what's current, and care even more that every set is beautiful and well made: each one passes our own eye before it reaches you. All that's left for you is the best part: picking the one you love.</p>",
             "text_style": "body"
           }
         }
@@ -58,7 +58,7 @@
         "text_story"
       ],
       "settings": {
-        "image": "shopify://shop_images/IMG_7836.jpg",
+        "image": "shopify://shop_images/IMG_0716_8e9707fd-8492-4852-9ada-4e26a93bd489.jpg",
         "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "text_first",
@@ -82,8 +82,8 @@
             "short_title": "Original",
             "caption": "001",
             "heading": "An original, not a print",
-            "text": "<p>Painted by hand, one set at a time — no two ever quite the same. The small differences are the artist's signature: proof you're wearing an original, not a print.</p>",
-            "image": "shopify://shop_images/dfb1d7fefc64bf9fbaedba7a7d71a5f2_2f1f7f78-c6cb-4e0b-99c3-7577d856b8df.jpg"
+            "text": "<p>Painted by hand, one set at a time. Look closely and you'll find the artist's hand in the details — quiet proof you're wearing an original, not a print.</p>",
+            "image": "shopify://shop_images/IMG_0765.jpg"
           }
         },
         "entry_002": {
@@ -92,8 +92,8 @@
             "short_title": "Unhurried",
             "caption": "002",
             "heading": "Art shouldn't keep you waiting",
-            "text": "<p>Salon artistry in ten unhurried minutes. No appointment, no lamp, no afternoon lost — beauty that fits into your day instead of taking it over.</p>",
-            "image": "shopify://shop_images/e0ebcfd471dfd8a68c983f98b5795137.jpg"
+            "text": "<p>Salon artistry in ten unhurried minutes. No appointment, no afternoon lost — beauty that fits into your day instead of taking it over.</p>",
+            "image": "shopify://shop_images/IMG_0710.jpg"
           }
         },
         "entry_003": {
@@ -103,7 +103,7 @@
             "caption": "003",
             "heading": "More than one life in a day",
             "text": "<p>One look for the meeting, another for the night. Nails chosen the way you choose an outfit — change whenever the occasion does.</p>",
-            "image": "shopify://shop_images/6e43225a4e9d5cd2bfbb3f834242b389_7b9de1ac-db4d-469c-adcf-9e7fef464c96.jpg"
+            "image": "shopify://shop_images/IMG_0747.jpg"
           }
         }
       },
