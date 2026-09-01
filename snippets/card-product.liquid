@@ -137,7 +137,7 @@
                 id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
                 class="badge badge--tag-sale badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
               >
-                {{- 'products.product.on_sale' | t -}}
+                {%- render 'sale-badge-text', product: card_product -%}
               </span>
             {%- endif -%}
             {%- assign tags_down = card_product.tags | join: ',' | downcase | split: ',' -%}

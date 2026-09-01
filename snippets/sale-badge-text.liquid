@@ -1,0 +1,62 @@
+{%- comment -%}
+  Renders the label that goes inside a sale badge: the real discount worked
+  out from compare-at vs price, e.g. "45% off", instead of a flat "Sale".
+
+  Accepts:
+  - product: {Object} the product (required)
+  - variant: {Object} a specific variant (optional). Pass this on the product
+      page, where the shopper has picked a variant and the badge should track
+      that pick. Omit it on cards, where no variant is selected yet.
+
+  Behaviour:
+  - One variant given      -> that variant's discount, e.g. "45% off"
+  - No variant, all equal  -> the shared discount, e.g. "45% off"
+  - No variant, mixed      -> "Up to 45% off" using the largest discount,
+                              which is what "up to" actually promises
+  - Nothing computable     -> falls back to the stock "Sale" label, so a badge
+                              never renders empty or with a wrong number
+
+  Percentages are floored, never rounded up: a 44.6% discount prints as 44%.
+  Rounding up would advertise a bigger discount than the shopper gets.
+
+  Prices are integers in cents, so the numerator is multiplied by 100.0 to
+  force float division before flooring — plain integer division would
+  truncate to 0 first.
+{%- endcomment -%}
+
+{%- liquid
+  assign pct_min = 101
+  assign pct_max = 0
+  assign counted = 0
+
+  if variant != nil and variant != blank and variant.compare_at_price > variant.price
+    assign numerator = variant.compare_at_price | minus: variant.price | times: 100.0
+    assign pct_max = numerator | divided_by: variant.compare_at_price | floor
+    assign pct_min = pct_max
+    assign counted = 1
+  elsif product != nil
+    for v in product.variants
+      if v.compare_at_price > v.price
+        assign numerator = v.compare_at_price | minus: v.price | times: 100.0
+        assign v_pct = numerator | divided_by: v.compare_at_price | floor
+        if v_pct < pct_min
+          assign pct_min = v_pct
+        endif
+        if v_pct > pct_max
+          assign pct_max = v_pct
+        endif
+        assign counted = counted | plus: 1
+      endif
+    endfor
+  endif
+-%}
+
+{%- if counted > 0 and pct_max > 0 -%}
+  {%- if pct_min == pct_max -%}
+    {{- 'products.product.percent_off' | t: percent: pct_max -}}
+  {%- else -%}
+    {{- 'products.product.percent_off_up_to' | t: percent: pct_max -}}
+  {%- endif -%}
+{%- else -%}
+  {{- 'products.product.on_sale' | t -}}
+{%- endif -%}

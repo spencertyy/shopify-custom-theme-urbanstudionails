@@ -2902,6 +2902,14 @@ details-disclosure > details {
   word-break: break-word;
 }
 
+/* Sale badges carry a percentage now ("45% off"), not just "Sale". The
+   inherited word-break would split that across two lines in a narrow card,
+   so keep these two on one line. */
+.badge--tag-sale,
+.price__badge-sale {
+  white-space: nowrap;
+}
+
 .gradient {
   background: rgb(var(--color-background));
   background: var(--gradient-background);
