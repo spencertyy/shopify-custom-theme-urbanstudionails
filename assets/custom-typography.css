@@ -1960,3 +1960,51 @@ html:root {
   order: 2;
   font-weight: 500;
 }
+
+/* ==========================================================================
+   Soft corners everywhere
+   The input radius itself comes from the theme setting (Inputs → corner
+   radius) so that fields, selects, quantity boxes and the cart note all pick
+   it up through Dawn's own --inputs-radius. The rules below cover the few
+   controls Dawn hard-codes square or leaves without a radius at all, where the
+   only visible square is the keyboard focus ring (outline and box-shadow both
+   follow border-radius).
+   ========================================================================== */
+
+/* Dawn sets these three selects to a hard 0 */
+.facets-container .facet-filters__sort.select__select,
+.facets-container .facet-filters__field .select__select,
+.facets-container .mobile-facets__sort .select__select {
+  border-radius: var(--inputs-radius);
+}
+
+/* icon / text controls with no box of their own: the radius only shapes the
+   focus ring, so it can be generous */
+.header__icon,
+.header__menu-item,
+.slider-button,
+.field__button,
+.quantity__button,
+.modal__close-button,
+.drawer__close,
+.cart-remove-button,
+.mobile-facets__open-wrapper,
+.mobile-facets__close-button,
+.facets__summary,
+.collection-sort__toggle,
+.collection-tabs__tab,
+.size-chart-inline__button,
+.disclosure__button,
+.disclosure__link,
+.share-button__button,
+.pagination__item,
+.cart__checkout-button,
+.product-form__submit {
+  border-radius: var(--buttons-radius);
+}
+
+/* product thumbnails carry a 1px frame, so their corners are visible */
+.thumbnail {
+  border-radius: var(--inputs-radius);
+  overflow: hidden;
+}
