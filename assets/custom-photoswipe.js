@@ -20,7 +20,7 @@
     bgOpacity: 1,
     padding: { top: 24, bottom: 24, left: 12, right: 12 },
     initialZoomLevel: 'fit',
-    secondaryZoomLevel: 2.5,
+    secondaryZoomLevel: 1, // double-tap shows the photo at its own pixels
     maxZoomLevel: 5,
     closeOnVerticalDrag: true,
     pinchToClose: true,

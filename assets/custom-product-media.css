@@ -60,7 +60,16 @@
   --pswp-preloader-color: rgba(0, 0, 0, 0.3);
   --pswp-preloader-color-secondary: rgba(0, 0, 0, 0.8);
 }
+/* counter sits under the photo, centred, instead of in the top-left corner */
 .pswp.pswp .pswp__counter {
+  position: fixed;
+  left: 50%;
+  bottom: 2.4rem;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 0;
+  height: auto;
+  opacity: 1;
   color: #222222;
   text-shadow: none;
   font-size: 1.3rem;
@@ -113,8 +122,18 @@
    is what showed the box's white behind the image ---- */
 .product-popup-modal .product-popup-modal__content {
   overscroll-behavior: none !important;
+  /* Dawn centres this box with translateX(-50%), and a transform makes the box
+     the containing block for any fixed child - which is why the close button
+     drifted with the scroll. Centre it with left instead (the box is 92% wide,
+     so 4% each side) and the button can be pinned to the viewport. */
+  left: 4% !important;
+  transform: none !important;
 }
 .product-popup-modal .product-popup-modal__toggle {
+  position: fixed !important;
+  top: 6.5rem !important;
+  right: calc(4% + 1rem) !important;
+  margin: 0 !important;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
