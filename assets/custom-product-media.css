@@ -59,6 +59,12 @@
 .product-media-modal {
   background-color: transparent !important;
 }
+/* the slide strip carries Dawn's colour-scheme "gradient" class, which paints
+   it white; it must be see-through too, or a white band shows during a drag */
+.product-media-modal .product-media-modal__content.gradient,
+.product-media-modal .product-media-modal__content {
+  background: transparent !important;
+}
 .product-media-modal .product-media-modal__content {
   display: flex !important;
   flex-wrap: nowrap;
