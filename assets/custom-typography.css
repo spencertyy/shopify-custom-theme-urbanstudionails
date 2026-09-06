@@ -565,22 +565,23 @@
 
 .mega-menu .mega-menu__list.page-width {
   max-width: 100%;
-  padding-left: 4rem;
-  padding-right: 4rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
+/* One equal track per column (the count comes from Liquid as --mega-cols),
+   spread across the full row — the same tracks the image tiles below use,
+   so each heading sits directly over its tile. */
 .mega-menu .mega-menu__list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 1.8rem 8rem;
+  display: grid;
+  grid-template-columns: repeat(var(--mega-cols, 5), minmax(0, 1fr));
+  gap: 1.8rem 1.6rem;
 }
 /* Dawn sets word-wrap: break-word on the links, which lets a column's
    min-content width collapse to a single character — flex then shrank every
    column to roughly 116px and wrapped every link. Pin each column to the width
    its longest link actually needs and stop it being compressed. */
 .mega-menu .mega-menu__list > li {
-  flex: 0 0 auto;
-  min-width: max-content;
+  min-width: 0;
 }
 .mega-menu .mega-menu__link {
   white-space: nowrap;

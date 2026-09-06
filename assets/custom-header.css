@@ -281,11 +281,11 @@ predictive-search[loading] .search-panel__popular {
    would otherwise centre the row and leave it indented) */
 .mega-menu .mega-menu__tiles.page-width {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--mega-cols, 5), minmax(0, 1fr));
   gap: 1.6rem;
   max-width: 100%;
   margin: 3.2rem 0 0;
-  padding: 0 4rem;
+  padding: 0 2rem;
   list-style: none;
 }
 .mega-menu__tile {
