@@ -76,11 +76,19 @@
 /* Dawn's focus ring is an outline + box-shadow on the <input>; some
    browsers draw that as a rectangle around the pill. The ring moves to the
    .field::after frame, which already carries the pill radius. */
+.search-modal .field .search__input,
+.search-modal .field .search__input:hover,
 .search-modal .field .search__input:focus,
 .search-modal .field .search__input:focus-visible,
 .search-modal .field .search__input.focused {
-  outline: 0;
-  box-shadow: none;
+  /* Safari keeps its native "searchfield" look on type=search unless told
+     otherwise, and that look clamps the corner radius — which is what made
+     the box read as squarer while focused. */
+  -webkit-appearance: none;
+  appearance: none;
+  outline: 0 !important;
+  box-shadow: none !important;
+  border-radius: 4rem !important;
 }
 .search-modal .field:focus-within::after {
   box-shadow: 0 0 0 0.2rem rgb(var(--color-foreground));
