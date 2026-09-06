@@ -54,8 +54,14 @@
   padding: 0 4.8rem 0 5rem;
   font-size: 1.5rem;
 }
+/* Dawn's hover rule (.field:hover.field:after) resets the frame's radius to
+   the theme's 6px, so the pill went squarer under the pointer; the doubled
+   .field.field outranks it in every state. */
 .search-modal .field::before,
-.search-modal .field::after {
+.search-modal .field::after,
+.search-modal .field.field:hover::before,
+.search-modal .field.field:hover::after,
+.search-modal .field.field:focus-within::after {
   border-radius: 4rem;
 }
 /* the label doubles as the placeholder: it stays put and readable while the
@@ -270,12 +276,16 @@ predictive-search[loading] .search-panel__popular {
    3. Desktop mega menu: a row of square tiles under the link columns, each
    linking to a collection ("Desktop menu tile" blocks on the header).
    ========================================================================== */
-.mega-menu__tiles {
+/* runs edge to edge with the same side padding as the link columns above,
+   so the first tile lines up under the first column (the .page-width cap
+   would otherwise centre the row and leave it indented) */
+.mega-menu .mega-menu__tiles.page-width {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 1.6rem;
-  margin: 3.2rem auto 0;
-  padding: 0;
+  max-width: 100%;
+  margin: 3.2rem 0 0;
+  padding: 0 4rem;
   list-style: none;
 }
 .mega-menu__tile {
