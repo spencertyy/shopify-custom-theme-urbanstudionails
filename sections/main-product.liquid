@@ -236,6 +236,27 @@
                       </summary>
                       <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
                         {{ product.description }}
+                        {%- liquid
+                          # Shape comes from the product's shape tag, length from Product type.
+                          # Renders nothing when both are empty (gift card, mystery box).
+                          assign spec_shape = ''
+                          for tag in product.tags
+                            if 'Almond,Square,Coffin,Stiletto' contains tag
+                              assign spec_shape = tag
+                            endif
+                          endfor
+                          assign spec_length = product.type
+                          if spec_length == 'Gift Card'
+                            assign spec_length = ''
+                          endif
+                        -%}
+                        {%- if spec_shape != '' or spec_length != '' -%}
+                          <p class="product__specs">
+                            {%- if spec_shape != '' -%}Shape: {{ spec_shape }}{%- endif -%}
+                            {%- if spec_shape != '' and spec_length != '' -%}<span aria-hidden="true"> · </span>{%- endif -%}
+                            {%- if spec_length != '' -%}Length: {{ spec_length }}{%- endif -%}
+                          </p>
+                        {%- endif -%}
                       </div>
                     </details>
                   </div>

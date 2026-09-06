@@ -71,12 +71,6 @@
         "description": {
           "type": "description",
           "settings": {}
-        },
-        "specs_shape_length": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "{%- comment -%} Shape comes from the product's shape tag, length from Product type. Renders nothing when both are empty (gift card, mystery box). {%- endcomment -%}{%- assign shape = '' -%}{%- for tag in product.tags -%}{%- if 'Almond,Square,Coffin,Stiletto' contains tag -%}{%- assign shape = tag -%}{%- endif -%}{%- endfor -%}{%- assign len = product.type -%}{%- if len == 'Gift Card' -%}{%- assign len = '' -%}{%- endif -%}{%- if shape != '' or len != '' -%}<p class='product__specs'>{%- if shape != '' -%}Shape: {{ shape }}{%- endif -%}{%- if shape != '' and len != '' -%}<span aria-hidden='true'> · </span>{%- endif -%}{%- if len != '' -%}Length: {{ len }}{%- endif -%}</p><style>.product__specs{margin:0 0 1.6rem;font-size:1.4rem;letter-spacing:.04em;color:rgba(var(--color-foreground),.75)}</style>{%- endif -%}"
-          }
         }
       },
       "block_order": [
@@ -89,7 +83,6 @@
         "quantity_selector",
         "buy_buttons",
         "description",
-        "specs_shape_length",
         "shipping_note_usn"
       ],
       "settings": {
@@ -156,14 +149,14 @@
       ],
       "settings": {
         "caption": "",
-        "heading": "Details",
+        "heading": "",
         "heading_size": "h2",
         "heading_alignment": "left",
         "content_max_width": 1100,
         "layout": "none",
         "color_scheme": "",
         "container_color_scheme": "",
-        "open_first_collapsible_row": false,
+        "open_first_collapsible_row": true,
         "image_ratio": "adapt",
         "desktop_layout": "image_second",
         "padding_top": 36,

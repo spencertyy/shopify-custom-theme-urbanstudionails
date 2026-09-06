@@ -1914,7 +1914,7 @@ html:root {
    both come from stylesheets that load after this one, hence !important. */
 .collapsible-content .collapsible-content__heading,
 [class*="faq-"] .faq__heading {
-  font-weight: 500 !important;
+  font-weight: 600 !important; /* Karla has no 600 file; browsers use the 700 one */
 }
 .collapsible-content .collapsible-content__heading {
   margin-bottom: 1.6rem !important;
@@ -1924,4 +1924,10 @@ html:root {
 }
 [class*="faq-"] .faq__heading {
   margin-bottom: 1.6rem !important;
+}
+
+/* Product page "Details" block has no heading now; the first row starts the
+   list, so it needs no top rule, and the section's top padding shrinks. */
+.collapsible-content .accordion:first-of-type {
+  border-top: 0 !important;
 }

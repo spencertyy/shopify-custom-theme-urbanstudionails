@@ -44,9 +44,9 @@
     opacity: 0.7;
   }
 }
-@media (hover: none) {
+@media (hover: none), (pointer: coarse) {
   .product__media-list .product__modal-opener .product__media-icon {
-    opacity: 0.6;
+    opacity: 0.6 !important;
   }
 }
 
@@ -160,4 +160,53 @@
 /* ---- 4. size-chart / other pop-ups: keep the scroll inside the box ---- */
 .product-popup-modal .product-popup-modal__content {
   overscroll-behavior: contain;
+}
+
+/* ---- 5. size-chart pop-up sized to its image, not to 80% of the screen ---- */
+.product-popup-modal .product-popup-modal__content {
+  height: auto !important;
+  max-height: calc(100dvh - 4rem) !important;
+  margin-top: 2rem !important;
+  padding: 2rem !important;
+}
+.product-popup-modal .product-popup-modal__content-info {
+  padding: 0 !important;
+}
+.product-popup-modal .product-popup-modal__content-info .rte > p {
+  margin: 0;
+}
+.product-popup-modal .product-popup-modal__content-info img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ---- 6. Shape · Length line under the description copy ---- */
+.product__specs {
+  margin: 1.6rem 0 0;
+  font-size: 1.4rem;
+  letter-spacing: 0.04em;
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+/* ---- 7. selected size shown next to the label ---- */
+.form__label-value {
+  margin-left: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* ---- 8. sale badge on the product page: same look as the product cards,
+   and small, instead of a black pill as tall as the price ---- */
+.product .price .price__badge-sale {
+  background-color: rgba(255, 190, 158, 0.82) !important;
+  color: #2f2f2f !important;
+  border: 0 !important;
+  border-radius: 4rem !important;
+  font-size: 1rem !important;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: 0.45rem 0.9rem !important;
+  vertical-align: middle;
 }

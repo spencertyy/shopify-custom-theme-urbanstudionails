@@ -116,6 +116,7 @@
         <fieldset class="js product-form__input product-form__input--pill">
           <legend class="form__label">
             <span>{{ option.name }}</span>
+            <span class="form__label-value" data-selected-value>{{ option.selected_value }}</span>
             {%- comment -%}
               Size-chart link lives on the label's own line, flush right —
               it reuses the popup block's modal, whose opener block in the
