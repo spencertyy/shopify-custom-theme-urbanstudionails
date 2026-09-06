@@ -744,17 +744,10 @@
       media modal for images: fitted slides, swipe to change, pinch to zoom
       inside the lightbox, vertical drag to close, counter, arrows, and its own
       scroll lock. custom-photoswipe.js reads this JSON and intercepts the zoom
-      buttons; the size-chart link opens the chart image in the same lightbox.
+      buttons. The size chart keeps Dawn's pop-up.
     {%- endcomment -%}
     {%- liquid
       assign lightbox_images = product.media | where: 'media_type', 'image'
-      assign size_chart_src = ''
-      for block in section.blocks
-        if block.type == 'popup' and block.settings.page.content contains '<img'
-          assign size_chart_src = block.settings.page.content | split: 'src="' | last | split: '"' | first
-          break
-        endif
-      endfor
     -%}
     {{ 'photoswipe.css' | asset_url | stylesheet_tag }}
     <script
@@ -776,8 +769,7 @@
               "alt": {{ media.alt | json }}
             }{% unless forloop.last %},{% endunless %}
           {%- endfor -%}
-        ],
-        "sizeChart": {{ size_chart_src | json }}
+        ]
       }
     </script>
     <script src="{{ 'custom-photoswipe.js' | asset_url }}" type="module"></script>
