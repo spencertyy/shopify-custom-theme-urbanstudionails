@@ -67,6 +67,32 @@
                     </li>
                   {%- endfor -%}
                 </ul>
+                {%- liquid
+                  assign mega_tiles = section.blocks | where: 'type', 'mega_tile'
+                -%}
+                {%- if mega_tiles.size > 0 -%}
+                  <ul class="mega-menu__tiles page-width" role="list">
+                    {%- for block in mega_tiles -%}
+                      {%- liquid
+                        assign tile_collection = block.settings.collection
+                        assign tile_title = block.settings.title | default: tile_collection.title
+                        assign tile_url = block.settings.link | default: tile_collection.url
+                        assign tile_image = block.settings.image | default: tile_collection.image
+                        if tile_url == blank or tile_image == blank
+                          continue
+                        endif
+                      -%}
+                      <li {{ block.shopify_attributes }}>
+                        <a class="mega-menu__tile" href="{{ tile_url }}">
+                          <span class="mega-menu__tile-media">
+                            {{ tile_image | image_url: width: 600, height: 600, crop: 'center' | image_tag: loading: 'lazy', alt: tile_title }}
+                          </span>
+                          <span class="mega-menu__tile-title">{{ tile_title | escape }}</span>
+                        </a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
               </div>
             </details>
           </header-menu>

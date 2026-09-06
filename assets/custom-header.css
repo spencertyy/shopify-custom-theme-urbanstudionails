@@ -73,6 +73,18 @@
 .search-modal .field .field__input:not(:placeholder-shown) ~ .field__label {
   opacity: 0;
 }
+/* Dawn's focus ring is an outline + box-shadow on the <input>; some
+   browsers draw that as a rectangle around the pill. The ring moves to the
+   .field::after frame, which already carries the pill radius. */
+.search-modal .field .search__input:focus,
+.search-modal .field .search__input:focus-visible,
+.search-modal .field .search__input.focused {
+  outline: 0;
+  box-shadow: none;
+}
+.search-modal .field:focus-within::after {
+  box-shadow: 0 0 0 0.2rem rgb(var(--color-foreground));
+}
 /* magnifier moves to the left end of the pill; the clear (x) stays right */
 .search-modal .field .search__button {
   left: 0.6rem;
@@ -200,21 +212,26 @@ predictive-search[loading] .search-panel__popular {
 }
 
 /* ==========================================================================
-   2. Mobile menu: square thumbnail on the left of a top-level row, and the
-   first-level sub-items grouped in a rounded card under it.
+   2. Mobile menu: a square image flush with the left edge of each top-level
+   row, rows stacked edge to edge, and the first-level sub-items aligned
+   under the row's title (no frame).
    ========================================================================== */
-.menu-drawer__menu-item--thumb {
+.js .menu-drawer__navigation .menu-drawer__menu > li {
+  margin: 0;
+}
+.js .menu-drawer__navigation .menu-drawer__menu-item--thumb {
   display: flex;
   align-items: center;
-  gap: 1.4rem;
-  padding-top: 0.9rem;
-  padding-bottom: 0.9rem;
+  gap: 2rem;
+  min-height: 7.6rem;
+  padding: 0 3rem 0 0;
 }
 .menu-drawer__thumb {
   flex: none;
-  width: 6.4rem;
-  height: 6.4rem;
-  border-radius: 0.8rem;
+  align-self: stretch;
+  width: 7.6rem;
+  min-height: 7.6rem;
+  border-radius: 0 0.8rem 0.8rem 0;
   overflow: hidden;
   background: rgba(var(--color-foreground), 0.04);
 }
@@ -224,18 +241,62 @@ predictive-search[loading] .search-panel__popular {
   height: 100%;
   object-fit: cover;
 }
+/* first-level sub-items start where the title text starts: image 7.6rem + gap 2rem */
 .js .menu-drawer__navigation > .menu-drawer__menu > li > details > .menu-drawer__submenu > .menu-drawer__inner-submenu {
-  margin: 0.2rem 2rem 1.4rem;
-  padding: 0.2rem 0;
-  border: 0.1rem solid rgba(var(--color-foreground), 0.1);
-  border-radius: 1.2rem;
+  margin: 0 3rem 1.2rem 9.6rem;
+  padding: 0.4rem 0 0;
+  border: 0;
+  border-radius: 0;
 }
 .js .menu-drawer__navigation > .menu-drawer__menu > li > details > .menu-drawer__submenu .menu-drawer__menu-item {
-  padding-left: 2rem;
+  padding-left: 0;
 }
 .js .menu-drawer__navigation > .menu-drawer__menu > li > details > .menu-drawer__submenu .menu-drawer__submenu .menu-drawer__menu-item {
-  padding-left: 3.4rem;
+  padding-left: 1.6rem;
 }
 .js .menu-drawer__navigation > .menu-drawer__menu > li > details > .menu-drawer__submenu summary.menu-drawer__menu-item.menu-drawer__menu-item::after {
-  right: 2rem;
+  right: 0;
+}
+
+/* ==========================================================================
+   3. Desktop mega menu: a row of square tiles under the link columns, each
+   linking to a collection ("Desktop menu tile" blocks on the header).
+   ========================================================================== */
+.mega-menu__tiles {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1.6rem;
+  margin: 3.2rem auto 0;
+  padding: 0;
+  list-style: none;
+}
+.mega-menu__tile {
+  display: block;
+  color: rgb(var(--color-foreground));
+  text-decoration: none;
+}
+.mega-menu__tile-media {
+  display: block;
+  aspect-ratio: 1;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  background: rgba(var(--color-foreground), 0.04);
+}
+.mega-menu__tile-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.mega-menu__tile:hover .mega-menu__tile-media img {
+  transform: scale(1.04);
+}
+.mega-menu__tile-title {
+  display: block;
+  margin-top: 1.2rem;
+  text-align: center;
+  font-size: 1.1rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }

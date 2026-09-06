@@ -464,7 +464,7 @@
 {
   "name": "t:sections.header.name",
   "class": "section-header",
-  "max_blocks": 3,
+  "max_blocks": 20,
   "settings": [
     {
       "type": "header",
@@ -741,6 +741,36 @@
           "id": "collection",
           "label": "…or a collection",
           "info": "Its cover image is used when no image is picked"
+        }
+      ]
+    },
+    {
+      "type": "mega_tile",
+      "name": "Desktop menu tile",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection",
+          "info": "Gives the tile its image, caption and link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Optional — replaces the collection cover. Square."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Caption",
+          "info": "Optional — replaces the collection name"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link",
+          "info": "Optional — replaces the collection link"
         }
       ]
     }

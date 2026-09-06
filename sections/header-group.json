@@ -86,12 +86,47 @@
             "menu_item": "ABOUT US",
             "collection": "best-sellers"
           }
+        },
+        "mega_tile_1": {
+          "type": "mega_tile",
+          "settings": {
+            "collection": "new-arrival"
+          }
+        },
+        "mega_tile_2": {
+          "type": "mega_tile",
+          "settings": {
+            "collection": "best-sellers"
+          }
+        },
+        "mega_tile_3": {
+          "type": "mega_tile",
+          "settings": {
+            "collection": "christmas"
+          }
+        },
+        "mega_tile_4": {
+          "type": "mega_tile",
+          "settings": {
+            "collection": "halloween-collection"
+          }
+        },
+        "mega_tile_5": {
+          "type": "mega_tile",
+          "settings": {
+            "collection": "all-products"
+          }
         }
       },
       "block_order": [
         "drawer_image_shop",
         "drawer_image_faq",
-        "drawer_image_about"
+        "drawer_image_about",
+        "mega_tile_1",
+        "mega_tile_2",
+        "mega_tile_3",
+        "mega_tile_4",
+        "mega_tile_5"
       ]
     }
   },
