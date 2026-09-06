@@ -175,12 +175,24 @@ predictive-search[loading] .search-panel__popular {
 .search-panel__products li:nth-child(n + 4) {
   display: none;
 }
-.search-panel__products .card__heading {
-  font-size: 1.25rem;
+/* phones: three cards share ~110px each, so the name stays on one line at a
+   small size (ellipsis if it still cannot fit) and every card ends up the
+   same height */
+.search-panel__products .card__information {
+  padding-top: 0.8rem;
+}
+.search-panel__products .card__heading,
+.search-panel__products .card__heading a {
+  font-size: 1.1rem;
+  letter-spacing: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
 }
 .search-panel__products .card__information .price,
 .search-panel__products .card__information .price .price-item {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
 }
 
 @media screen and (min-width: 750px) {
@@ -219,9 +231,12 @@ predictive-search[loading] .search-panel__popular {
     display: block;
   }
   .search-panel__products .card__heading,
+  .search-panel__products .card__heading a,
   .search-panel__products .card__information .price,
   .search-panel__products .card__information .price .price-item {
     font-size: 1.4rem;
+    white-space: normal;
+    letter-spacing: inherit;
   }
 }
 
