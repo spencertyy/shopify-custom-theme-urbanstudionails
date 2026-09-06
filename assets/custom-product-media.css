@@ -1,0 +1,129 @@
+/*
+  Product media on the product page.
+
+  1. Mobile thumbnails: Dawn shows three per row under the main image, which
+     reads as three more product photos. Five per row keeps them clearly
+     "thumbnails", the way YIJIU / Pearlmano lay theirs out.
+  2. Zoom icon: only on hover where a pointer exists, and translucent; on touch
+     screens (no hover) it stays, lighter, so people know the image opens.
+  3. Lightbox: Dawn's modal drops the image in at full resolution and lets the
+     page scroll around it. Here every media item is one full-screen slide,
+     fitted to the viewport, with horizontal scroll-snap for swiping; the
+     counter and arrows are added by custom-lightbox.js.
+*/
+
+/* ---- 1. thumbnails ---- */
+/* section-main-product.css loads after this sheet (inside the section), so
+   the selectors below carry one extra class to win on specificity. */
+@media screen and (max-width: 749px) {
+  .product__media-wrapper .thumbnail-list__item.slider__slide {
+    width: calc(20% - 0.6rem);
+  }
+}
+
+/* ---- 2. zoom icon ---- */
+@media (hover: hover) {
+  .product__media-list .product__modal-opener .product__media-icon {
+    opacity: 0;
+  }
+  .product__media-list .product__modal-opener:hover .product__media-icon,
+  .product__media-list .product__modal-opener:focus-visible .product__media-icon {
+    opacity: 0.7;
+  }
+}
+@media (hover: none) {
+  .product__media-list .product__modal-opener .product__media-icon {
+    opacity: 0.6;
+  }
+}
+
+/* ---- 3. lightbox as full-screen swipeable slides ---- */
+.product-media-modal .product-media-modal__dialog {
+  height: 100dvh;
+}
+.product-media-modal .product-media-modal__content {
+  display: flex !important;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 100%;
+  height: 100dvh;
+  max-height: 100dvh;
+  padding: 0 !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.product-media-modal__content::-webkit-scrollbar {
+  display: none;
+}
+.product-media-modal .product-media-modal__content > * {
+  display: block !important;
+  flex: 0 0 100%;
+  box-sizing: border-box;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100dvh;
+  margin: 0 !important;
+  padding: 4rem 1.5rem 6rem;
+  object-fit: contain;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  background: rgb(var(--color-background));
+}
+@media screen and (min-width: 750px) {
+  .product-media-modal .product-media-modal__content > * {
+    padding: 4rem 8rem 6rem;
+  }
+}
+/* videos / 3D keep their own box, just centred in the slide */
+.product-media-modal .product-media-modal__content > deferred-media,
+.product-media-modal .product-media-modal__content > .product-media-modal__model {
+  display: flex !important;
+  align-items: center;
+  height: 100dvh;
+}
+
+.custom-lightbox__counter {
+  position: fixed;
+  left: 50%;
+  bottom: 2.4rem;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-size: 1.3rem;
+  letter-spacing: 0.08em;
+  color: rgba(var(--color-foreground), 0.7);
+  pointer-events: none;
+}
+.custom-lightbox__arrow {
+  display: none;
+  position: fixed;
+  top: 50%;
+  z-index: 3;
+  width: 4.4rem;
+  height: 4.4rem;
+  transform: translateY(-50%);
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.1);
+  border-radius: 50%;
+  background: rgb(var(--color-background));
+  color: rgba(var(--color-foreground), 0.7);
+  font-size: 2.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.custom-lightbox__arrow:hover {
+  color: rgb(var(--color-foreground));
+}
+.custom-lightbox__arrow--prev { left: 2rem; }
+.custom-lightbox__arrow--next { right: 2rem; }
+.custom-lightbox__arrow[hidden] { display: none !important; }
+@media (hover: hover) and (min-width: 750px) {
+  .custom-lightbox__arrow {
+    display: flex;
+  }
+}

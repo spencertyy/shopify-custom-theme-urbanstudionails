@@ -269,12 +269,14 @@
     {{ 'custom-terms-agreement.css' | asset_url | stylesheet_tag }}
     {{ 'custom-shipping-note.css' | asset_url | stylesheet_tag }}
     {{ 'custom-reviews.css' | asset_url | stylesheet_tag }}
+    {{ 'custom-product-media.css' | asset_url | stylesheet_tag }}
 
     {% comment %}
       defer so it runs after the header markup exists, without blocking render.
     {% endcomment %}
     <script src="{{ 'custom-mega-hover.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'custom-terms-agreement.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'custom-lightbox.js' | asset_url }}" defer="defer"></script>
 
     {%- unless settings.type_body_font.system? -%}
       {% comment %}theme-check-disable AssetPreload{% endcomment %}
