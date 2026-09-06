@@ -63,8 +63,9 @@
             "processing_text": "Ships within 24 hours, Monday to Friday.",
             "delivery_text": "U.S. delivery 3–6 business days after dispatch, with tracking.",
             "cost_text": "Flat $7.99 shipping, free on orders over $75.",
-            "link_label": "More on shipping",
-            "link_url": "/pages/faq"
+            "link_prefix": "More on",
+            "link_label": "shipping policy",
+            "link_url": "/policies/shipping-policy"
           }
         },
         "description": {

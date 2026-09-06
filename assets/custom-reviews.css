@@ -154,3 +154,22 @@
 .apps--no-reviews .jm-action-buttons__button:focus {
   color: rgb(var(--color-foreground)) !important;
 }
+
+/* ---- Star colour, without touching Judge.me settings ----
+   One variable to change. Covers the old widget (.jdgm-star), the badge under
+   the title, the write-a-review pop-up, and the new widget, which reads its
+   colour from an inline CSS variable on its container (hence !important). */
+:root {
+  --reviews-star-color: #e07aa8;
+}
+.jdgm-star,
+.jdgm-prev-badge .jdgm-star,
+.jdgm-write-review-modal .jdgm-star,
+.jdgm-rev-widg .jdgm-star,
+.jm-star-rating__font-icon {
+  color: var(--reviews-star-color) !important;
+}
+.jm-review-widget,
+.jm-review-widget * {
+  --jm-review-widget-star-and-histogram-color: var(--reviews-star-color) !important;
+}

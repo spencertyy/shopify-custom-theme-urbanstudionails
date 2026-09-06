@@ -21,6 +21,19 @@
   }
 }
 
+/* ---- 1b. mobile main image: a card at ~85% width so the next photo peeks
+   in from the right (the Pearlmano layout), with soft corners ---- */
+@media screen and (max-width: 749px) {
+  .product__media-wrapper .product__media-list .product__media-item {
+    width: calc(85% - var(--grid-mobile-horizontal-spacing));
+  }
+  .product__media-wrapper .product__media-list .product__media,
+  .product__media-wrapper .product__media-list .product__media img {
+    border-radius: 1.2rem;
+    overflow: hidden;
+  }
+}
+
 /* ---- 2. zoom icon ---- */
 @media (hover: hover) {
   .product__media-list .product__modal-opener .product__media-icon {

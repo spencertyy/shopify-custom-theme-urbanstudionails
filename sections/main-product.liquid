@@ -536,6 +536,7 @@
                     {%- endif -%}
                     {%- if block.settings.link_label != blank and block.settings.link_url != blank -%}
                       <p class="product__shipping-note-link">
+                        {%- if block.settings.link_prefix != blank -%}{{ block.settings.link_prefix | escape }} {% endif -%}
                         <a href="{{ block.settings.link_url }}" class="link">{{ block.settings.link_label | escape }}</a>
                       </p>
                     {%- endif -%}
@@ -1272,6 +1273,12 @@
           "id": "cost_text",
           "label": "Shipping cost",
           "info": "Rate and free-shipping threshold, on its own line. Leave empty to hide."
+        },
+        {
+          "type": "text",
+          "id": "link_prefix",
+          "label": "Text before the link",
+          "info": "Plain words in front of the link, e.g. \"More on\" + link \"shipping policy\"."
         },
         {
           "type": "text",
