@@ -25,18 +25,31 @@
   padding: 0;
   text-align: left;
 }
-.apps--no-reviews .jdgm-rev-widg .jdgm-write-rev-link {
-  display: inline;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: none;
-  box-shadow: none;
-  font-size: 1.3rem;
-  font-weight: var(--font-body-weight);
-  letter-spacing: 0.01em;
-  color: rgba(var(--color-foreground), 0.75);
-  text-decoration: underline;
+.apps--no-reviews .jdgm-rev-widg .jdgm-write-rev-link,
+.apps--no-reviews .jdgm-rev-widg .jdgm-write-rev-link:hover,
+.apps--no-reviews .jdgm-rev-widg .jdgm-write-rev-link:focus,
+.apps--no-reviews .jdgm-rev-widg .jdgm-write-rev-link:active {
+  /* Judge.me styles this as a block button with a solid hover fill; every
+     state is overridden so it reads as one line of text that hugs its words. */
+  display: inline !important;
+  width: auto !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  font-size: 1.3rem !important;
+  font-weight: var(--font-body-weight) !important;
+  letter-spacing: 0.01em !important;
+  line-height: 1.6 !important;
+  color: rgba(var(--color-foreground), 0.75) !important;
+  text-decoration: underline !important;
   text-underline-offset: 0.3rem;
-  text-transform: none;
+  text-transform: none !important;
+}
+.apps--no-reviews .jdgm-rev-widg .jdgm-write-rev-link:hover,
+.apps--no-reviews .jdgm-rev-widg .jdgm-write-rev-link:focus {
+  color: rgb(var(--color-foreground)) !important;
 }
