@@ -110,10 +110,15 @@
   justify-content: center !important;
   text-align: center !important;
 }
+.apps--no-reviews .jm-no-reviews-state__action-buttons > * {
+  flex: 0 0 auto !important;
+  width: auto !important;
+}
 .apps--no-reviews .jm-no-reviews-state__action-buttons {
+  width: auto !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  display: flex;
+  display: inline-flex !important;
   flex-direction: row !important;
   flex-wrap: nowrap !important;
   justify-content: center !important;
