@@ -6,10 +6,8 @@
      "thumbnails", the way YIJIU / Pearlmano lay theirs out.
   2. Zoom icon: only on hover where a pointer exists, and translucent; on touch
      screens (no hover) it stays, lighter, so people know the image opens.
-  3. Lightbox: Dawn's modal drops the image in at full resolution and lets the
-     page scroll around it. Here every media item is one full-screen slide,
-     fitted to the viewport, with horizontal scroll-snap for swiping; the
-     counter and arrows are added by custom-lightbox.js.
+  3. Lightbox: images and the size chart open in PhotoSwipe (see
+     custom-photoswipe.js); the rules here only recolour its default skin.
 */
 
 /* ---- 1. thumbnails ---- */
@@ -50,143 +48,26 @@
   }
 }
 
-/* ---- 3. lightbox as full-screen swipeable slides ---- */
-.product-media-modal .product-media-modal__dialog {
-  height: 100dvh;
-  /* backdrop alpha is driven by the drag-to-dismiss gesture */
-  background: rgba(var(--color-background), var(--lightbox-bg-alpha, 1)) !important;
+/* ---- 3. PhotoSwipe skin: white lightbox, dark controls (Pipeline-style).
+   photoswipe.css loads later (inside the product section), so the doubled
+   class wins on specificity. ---- */
+.pswp.pswp {
+  --pswp-bg: #ffffff;
+  --pswp-icon-color: #222222;
+  --pswp-icon-color-secondary: #ffffff;
+  --pswp-icon-stroke-color: #ffffff;
+  --pswp-icon-stroke-width: 1px;
+  --pswp-preloader-color: rgba(0, 0, 0, 0.3);
+  --pswp-preloader-color-secondary: rgba(0, 0, 0, 0.8);
 }
-.product-media-modal {
-  background-color: transparent !important;
-}
-/* the slide strip carries Dawn's colour-scheme "gradient" class, which paints
-   it white; it must be see-through too, or a white band shows during a drag */
-.product-media-modal .product-media-modal__content.gradient,
-.product-media-modal .product-media-modal__content {
-  background: transparent !important;
-}
-.product-media-modal .product-media-modal__content {
-  display: flex !important;
-  flex-wrap: nowrap;
-  align-items: center;
-  width: 100%;
-  height: 100dvh;
-  max-height: 100dvh;
-  padding: 0 !important;
-  overflow-x: auto;
-  overflow-y: hidden;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  /* horizontal pans stay native (scroll-snap); vertical ones go to the
-     drag-to-dismiss handler instead of the page behind */
-  touch-action: pan-x pinch-zoom;
-  overscroll-behavior: contain;
-  will-change: transform;
-}
-.product-media-modal__content::-webkit-scrollbar {
-  display: none;
-}
-.product-media-modal .product-media-modal__content > * {
-  display: block !important;
-  flex: 0 0 100%;
-  box-sizing: border-box;
-  width: 100% !important;
-  max-width: 100% !important;
-  height: 100dvh;
-  margin: 0 !important;
-  padding: 4rem 1.5rem 6rem;
-  object-fit: contain;
-  scroll-snap-align: center;
-  scroll-snap-stop: always;
-  background: transparent !important;
-}
-@media screen and (min-width: 750px) {
-  .product-media-modal .product-media-modal__content > * {
-    padding: 4rem 8rem 6rem;
-  }
-}
-/* videos / 3D keep their own box, just centred in the slide */
-.product-media-modal .product-media-modal__content > deferred-media,
-.product-media-modal .product-media-modal__content > .product-media-modal__model {
-  display: flex !important;
-  align-items: center;
-  height: 100dvh;
-}
-
-.custom-lightbox__counter {
-  position: fixed;
-  left: 50%;
-  bottom: 2.4rem;
-  transform: translateX(-50%);
-  z-index: 3;
+.pswp.pswp .pswp__counter {
+  color: #222222;
+  text-shadow: none;
   font-size: 1.3rem;
   letter-spacing: 0.08em;
-  color: rgba(var(--color-foreground), 0.7);
-  pointer-events: none;
 }
-.custom-lightbox__arrow {
-  display: none;
-  position: fixed;
-  top: 50%;
-  z-index: 3;
-  width: 4.4rem;
-  height: 4.4rem;
-  transform: translateY(-50%);
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  border: 0.1rem solid rgba(var(--color-foreground), 0.1);
-  border-radius: 50%;
-  background: rgb(var(--color-background));
-  color: rgba(var(--color-foreground), 0.7);
-  font-size: 2.4rem;
-  line-height: 1;
-  cursor: pointer;
-}
-.custom-lightbox__arrow:hover {
-  color: rgb(var(--color-foreground));
-}
-.custom-lightbox__arrow--prev { left: 2rem; }
-.custom-lightbox__arrow--next { right: 2rem; }
-.custom-lightbox__arrow[hidden] { display: none !important; }
-@media (hover: hover) and (min-width: 750px) {
-  .custom-lightbox__arrow {
-    display: flex;
-  }
-}
-
-/* ---- 4. size-chart / other pop-ups: keep the scroll inside the box ---- */
-.product-popup-modal .product-popup-modal__content {
-  overscroll-behavior: contain;
-}
-
-/* ---- 5. size-chart pop-up sized to its image, not to 80% of the screen ---- */
-.product-popup-modal .product-popup-modal__content {
-  height: auto !important;
-  max-height: calc(100dvh - 4rem) !important;
-  margin-top: 2rem !important;
-  padding: 2rem !important;
-}
-.product-popup-modal .product-popup-modal__content-info {
-  padding: 0 !important;
-}
-.product-popup-modal .product-popup-modal__content-info .rte > p {
-  margin: 0;
-}
-.product-popup-modal .product-popup-modal__content-info img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-/* ---- 6. Shape · Length line under the description copy ---- */
-.product__specs {
-  margin: 1.6rem 0 0;
-  font-size: 1.4rem;
-  letter-spacing: 0.04em;
-  color: rgba(var(--color-foreground), 0.75);
+.pswp.pswp .pswp__img {
+  background: #ffffff;
 }
 
 /* ---- 7. selected size shown next to the label ---- */

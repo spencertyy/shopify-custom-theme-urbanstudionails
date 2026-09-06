@@ -236,27 +236,6 @@
                       </summary>
                       <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
                         {{ product.description }}
-                        {%- liquid
-                          # Shape comes from the product's shape tag, length from Product type.
-                          # Renders nothing when both are empty (gift card, mystery box).
-                          assign spec_shape = ''
-                          for tag in product.tags
-                            if 'Almond,Square,Coffin,Stiletto' contains tag
-                              assign spec_shape = tag
-                            endif
-                          endfor
-                          assign spec_length = product.type
-                          if spec_length == 'Gift Card'
-                            assign spec_length = ''
-                          endif
-                        -%}
-                        {%- if spec_shape != '' or spec_length != '' -%}
-                          <p class="product__specs">
-                            {%- if spec_shape != '' -%}Shape: {{ spec_shape }}{%- endif -%}
-                            {%- if spec_shape != '' and spec_length != '' -%}<span aria-hidden="true"> · </span>{%- endif -%}
-                            {%- if spec_length != '' -%}Length: {{ spec_length }}{%- endif -%}
-                          </p>
-                        {%- endif -%}
                       </div>
                     </details>
                   </div>
@@ -759,6 +738,49 @@
     </div>
 
     {% render 'product-media-modal', variant_images: variant_images %}
+
+    {%- comment -%}
+      PhotoSwipe lightbox (the library Pipeline / YIJIU use). Replaces Dawn's
+      media modal for images: fitted slides, swipe to change, pinch to zoom
+      inside the lightbox, vertical drag to close, counter, arrows, and its own
+      scroll lock. custom-photoswipe.js reads this JSON and intercepts the zoom
+      buttons; the size-chart link opens the chart image in the same lightbox.
+    {%- endcomment -%}
+    {%- liquid
+      assign lightbox_images = product.media | where: 'media_type', 'image'
+      assign size_chart_src = ''
+      for block in section.blocks
+        if block.type == 'popup' and block.settings.page.content contains '<img'
+          assign size_chart_src = block.settings.page.content | split: 'src="' | last | split: '"' | first
+          break
+        endif
+      endfor
+    -%}
+    {{ 'photoswipe.css' | asset_url | stylesheet_tag }}
+    <script
+      type="application/json"
+      data-product-lightbox
+      data-core-module="{{ 'photoswipe.esm.min.js' | asset_url }}"
+      data-lightbox-module="{{ 'photoswipe-lightbox.esm.min.js' | asset_url }}"
+    >
+      {
+        "media": [
+          {%- for media in lightbox_images -%}
+            {%- assign w = media.preview_image.width | at_most: 2048 -%}
+            {%- assign h = w | divided_by: media.preview_image.aspect_ratio | round -%}
+            {
+              "id": {{ media.id | json }},
+              "src": {{ media.preview_image | image_url: width: 2048 | json }},
+              "width": {{ w }},
+              "height": {{ h }},
+              "alt": {{ media.alt | json }}
+            }{% unless forloop.last %},{% endunless %}
+          {%- endfor -%}
+        ],
+        "sizeChart": {{ size_chart_src | json }}
+      }
+    </script>
+    <script src="{{ 'custom-photoswipe.js' | asset_url }}" type="module"></script>
     {% render 'sticky-atc', product: product, section: section %}
     {% render 'product-jsonld', product: product %}
 
