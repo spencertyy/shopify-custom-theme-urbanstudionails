@@ -270,6 +270,10 @@
     {{ 'custom-shipping-note.css' | asset_url | stylesheet_tag }}
     {{ 'custom-reviews.css' | asset_url | stylesheet_tag }}
     {{ 'custom-product-media.css' | asset_url | stylesheet_tag }}
+    {%- if template.name == 'collection' or template.name == 'search' -%}
+      {{ 'custom-collection.css' | asset_url | stylesheet_tag }}
+      <script src="{{ 'custom-collection.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
 
     {% comment %}
       defer so it runs after the header markup exists, without blocking render.

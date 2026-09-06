@@ -448,6 +448,38 @@
       </form>
     </facet-filters-form>
   {%- endif -%}
+  {%- comment -%}
+    Sort sits next to the filter trigger instead of inside the drawer: its
+    options open in a panel under the word, and picking one writes to the
+    drawer's own <select> and fires an input event, so Dawn's facets.js does
+    the fetching exactly as it would have.
+  {%- endcomment -%}
+  {%- if enable_sorting -%}
+    {%- assign toolbar_sort_by = results.sort_by | default: results.default_sort_by -%}
+    <details class="collection-sort" data-collection-sort>
+      <summary class="collection-sort__toggle">
+        <span>{{ 'products.facets.sort_button' | t }}</span>
+        {% render 'icon-caret' %}
+      </summary>
+      <ul class="collection-sort__list list-unstyled" role="list">
+        {%- for option in results.sort_options -%}
+          <li>
+            <button
+              type="button"
+              class="collection-sort__option"
+              data-value="{{ option.value | escape }}"
+              {% if option.value == toolbar_sort_by %}
+                aria-current="true"
+              {% endif %}
+            >
+              {{ option.name | escape }}
+            </button>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </details>
+  {%- endif -%}
+
   {% comment %}  Drawer and mobile filter {% endcomment %}
   <menu-drawer
     class="mobile-facets__wrapper{% if filter_type == 'horizontal' or filter_type == 'vertical' %} medium-hide large-up-hide{% endif %}"
@@ -457,12 +489,14 @@
       <summary class="mobile-facets__open-wrapper focus-offset">
         <span class="mobile-facets__open{% if filter_type == 'drawer' and enable_filtering == false %} medium-hide large-up-hide{% endif %}">
           {% render 'icon-filter' %}
+          {%- comment -%}
+            Sorting has its own control beside this one now, so the trigger
+            reads "Filter" whether or not sorting is enabled.
+          {%- endcomment -%}
           <span class="mobile-facets__open-label button-label medium-hide large-up-hide">
-            {%- if enable_filtering and enable_sorting -%}
-              {{ 'products.facets.filter_and_sort' | t }}
-            {%- elsif enable_filtering -%}
+            {%- if enable_filtering -%}
               {{ 'products.facets.filter_button' | t }}
-            {%- elsif enable_sorting -%}
+            {%- else -%}
               {{ 'products.facets.sort_button' | t }}
             {%- endif -%}
           </span>
