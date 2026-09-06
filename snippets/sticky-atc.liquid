@@ -121,6 +121,11 @@
       requestAnimationFrame(function () {
         ticking = false;
         var y = window.scrollY;
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        // iOS keeps reporting scroll while the page rubber-bands past either
+        // end; those readings run backwards and would flash the bar open at
+        // the very bottom, so ignore anything outside the real range.
+        if (y < 0 || y > max) return;
         var delta = y - lastY;
         if (Math.abs(delta) < THRESHOLD) return;
         lastY = y;
