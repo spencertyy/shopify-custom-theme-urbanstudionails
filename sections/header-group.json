@@ -68,6 +68,14 @@
             "collection": "best-sellers"
           }
         },
+        "mega_tile_5": {
+          "type": "mega_tile",
+          "settings": {
+            "collection": "all-products",
+            "title": "",
+            "link": ""
+          }
+        },
         "mega_tile_1": {
           "type": "mega_tile",
           "settings": {
@@ -99,25 +107,17 @@
             "title": "",
             "link": ""
           }
-        },
-        "mega_tile_5": {
-          "type": "mega_tile",
-          "settings": {
-            "collection": "all-products",
-            "title": "",
-            "link": ""
-          }
         }
       },
       "block_order": [
         "drawer_image_shop",
         "drawer_image_faq",
         "drawer_image_about",
+        "mega_tile_5",
         "mega_tile_1",
         "mega_tile_2",
         "mega_tile_3",
-        "mega_tile_4",
-        "mega_tile_5"
+        "mega_tile_4"
       ],
       "settings": {
         "gift_nav_enable": false,
