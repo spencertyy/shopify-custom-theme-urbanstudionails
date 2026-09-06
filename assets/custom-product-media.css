@@ -122,18 +122,24 @@
    is what showed the box's white behind the image ---- */
 .product-popup-modal .product-popup-modal__content {
   overscroll-behavior: none !important;
-  /* Dawn centres this box with translateX(-50%), and a transform makes the box
-     the containing block for any fixed child - which is why the close button
-     drifted with the scroll. Centre it with left instead (the box is 92% wide,
-     so 4% each side) and the button can be pinned to the viewport. */
-  left: 4% !important;
-  transform: none !important;
 }
-.product-popup-modal .product-popup-modal__toggle {
-  position: fixed !important;
-  top: 6.5rem !important;
-  right: calc(4% + 1rem) !important;
-  margin: 0 !important;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
+/* Phones only. Dawn centres this box with translateX(-50%), and a transform
+   makes the box the containing block for any fixed child - which is why the
+   close button drifted with the scroll. Centre it with left instead (the box
+   is 92% wide, so 4% each side) and pin the button to the viewport. On
+   desktop the box is 70% wide and Dawn's own centring and button placement
+   are the right ones. */
+@media screen and (max-width: 749px) {
+  .product-popup-modal .product-popup-modal__content {
+    left: 4% !important;
+    transform: none !important;
+  }
+  .product-popup-modal .product-popup-modal__toggle {
+    position: fixed !important;
+    top: 6.5rem !important;
+    right: calc(4% + 1rem) !important;
+    margin: 0 !important;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
 }

@@ -36,12 +36,6 @@
   flex: 0 0 auto;
 }
 
-/* Dawn prints the label twice (one for each breakpoint); only one shows, but
-   the hidden one still widens the trigger on some screens */
-.facets-container .mobile-facets__open-label:not(.medium-hide) {
-  display: none;
-}
-
 /* the count is gone from the bar; the drawer keeps its own header, which is
    what gives the panel its top padding */
 .facets-container .product-count {
@@ -131,3 +125,29 @@
   background: rgba(var(--color-foreground), 0.04);
 }
 
+
+/* ---- desktop: Dawn's own "Sort by" select does the sorting, sitting on the
+   same row as the Filter trigger; the mobile-only dropdown steps aside ---- */
+@media screen and (min-width: 750px) {
+  .collection-sort {
+    display: none;
+  }
+  .facets-container.facets-container-drawer .mobile-facets__wrapper,
+  .facets-container .mobile-facets__wrapper {
+    flex: 0 0 auto;
+    margin: 0;
+  }
+  /* Dawn wraps the desktop select in a <facet-filters-form class="facets">;
+     that wrapper is the direct child of the bar, so it is what gets placed. */
+  .facets-container > facet-filters-form.facets.small-hide:not(.facets-pill) {
+    order: 2;
+    flex: 0 0 auto;
+    width: auto;
+    margin: 0 0 0 auto; /* hug the right edge even if a zero-width sibling shares the row */
+  }
+  .facets-container .facet-filters.sorting {
+    align-items: center;
+    padding-left: 0;
+    margin: 0;
+  }
+}
