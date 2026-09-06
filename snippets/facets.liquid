@@ -455,10 +455,18 @@
     the fetching exactly as it would have.
   {%- endcomment -%}
   {%- if enable_sorting -%}
-    {%- assign toolbar_sort_by = results.sort_by | default: results.default_sort_by -%}
+    {%- liquid
+      assign toolbar_sort_by = results.sort_by | default: results.default_sort_by
+      assign toolbar_sort_name = 'products.facets.sort_button' | t
+      for option in results.sort_options
+        if option.value == toolbar_sort_by
+          assign toolbar_sort_name = option.name
+        endif
+      endfor
+    -%}
     <details class="collection-sort" data-collection-sort>
       <summary class="collection-sort__toggle">
-        <span>{{ 'products.facets.sort_button' | t }}</span>
+        <span data-sort-label>{{ toolbar_sort_name | escape }}</span>
         {% render 'icon-caret' %}
       </summary>
       <ul class="collection-sort__list list-unstyled" role="list">
@@ -558,10 +566,16 @@
 
                   {% case filter.type %}
                     {% when 'boolean', 'list' %}
+                      {%- comment -%}
+                        Open by default: with the sliding sub-menus already
+                        flattened into an accordion, a collapsed group is one
+                        tap between the shopper and the values they came for.
+                      {%- endcomment -%}
                       <details
                         id="Details-Mobile-{{ filter.param_name | escape }}-{{ section.id }}"
                         class="mobile-facets__details js-filter"
                         data-index="mobile-{{ forloop.index }}"
+                        open
                       >
                         <summary class="mobile-facets__summary focus-inset">
                           <div>
@@ -718,10 +732,16 @@
                         </div>
                       </details>
                     {% when 'price_range' %}
+                      {%- comment -%}
+                        Open by default: with the sliding sub-menus already
+                        flattened into an accordion, a collapsed group is one
+                        tap between the shopper and the values they came for.
+                      {%- endcomment -%}
                       <details
                         id="Details-Mobile-{{ filter.param_name | escape }}-{{ section.id }}"
                         class="mobile-facets__details js-filter"
                         data-index="mobile-{{ forloop.index }}"
+                        open
                       >
                         <summary class="mobile-facets__summary focus-inset">
                           <div>

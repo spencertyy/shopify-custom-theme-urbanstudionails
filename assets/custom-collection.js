@@ -30,9 +30,12 @@
           select.value = option.dataset.value;
           select.dispatchEvent(new Event('input', { bubbles: true }));
         }
-        sortDetails
-          .querySelectorAll('.collection-sort__option')
-          .forEach((el) => el.toggleAttribute('aria-current', el === option));
+        sortDetails.querySelectorAll('.collection-sort__option').forEach((el) => {
+          if (el === option) el.setAttribute('aria-current', 'true');
+          else el.removeAttribute('aria-current');
+        });
+        const label = sortDetails.querySelector('[data-sort-label]');
+        if (label) label.textContent = option.textContent.trim();
         sortDetails.open = false;
         return;
       }

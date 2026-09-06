@@ -1,11 +1,9 @@
 /*
-  Collection toolbar: "Filter" on the left, "Sort" on the right, each opening
-  a panel underneath instead of a full-screen drawer.
+  Collection toolbar: "Filter" on the left, "Sort" on the right.
 
-  Dawn ships one "Filter and sort" button that slides a drawer in from the
-  edge. The markup inside that drawer is left exactly as Dawn renders it —
-  same ids, same .js-filter hooks — because facets.js swaps those elements in
-  place when a filter changes. Only the presentation is rewritten here.
+  Dawn ships one "Filter and sort" button. Filtering keeps that button and its
+  drawer untouched; sorting is pulled out into its own control on the right,
+  whose options open in a panel under the word. The product count is hidden.
 */
 
 .facets-container {
@@ -37,21 +35,16 @@
   margin: 0;
   flex: 0 0 auto;
 }
-/* Dawn marks the <details> position:relative, which would make the panel
-   below measure itself against the 73px-wide trigger instead of the whole
-   bar. Neutralising it hands that job to .facets-container. */
-.facets-container .mobile-facets__wrapper .disclosure-has-popup {
-  position: static;
-}
+
 /* Dawn prints the label twice (one for each breakpoint); only one shows, but
    the hidden one still widens the trigger on some screens */
 .facets-container .mobile-facets__open-label:not(.medium-hide) {
   display: none;
 }
 
-/* product count is gone from the bar */
-.facets-container .product-count,
-.facets-container .mobile-facets__header {
+/* the count is gone from the bar; the drawer keeps its own header, which is
+   what gives the panel its top padding */
+.facets-container .product-count {
   display: none !important;
 }
 
@@ -60,12 +53,20 @@
 .collection-sort__toggle {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.7em;
   padding: 0.4rem 0;
   font-size: 1.4rem;
   letter-spacing: 0.02em;
   cursor: pointer;
   list-style: none;
+}
+/* Dawn pins carets to the right edge of a summary; here it belongs right
+   after the words instead. */
+.collection-sort__toggle .icon-caret {
+  position: static;
+  right: auto;
+  top: auto;
+  flex: 0 0 auto;
 }
 .collection-sort__toggle::-webkit-details-marker {
   display: none;
@@ -74,13 +75,24 @@
   width: 1.6rem;
 }
 
-/* panel: sits under the bar, full width, no overlay */
-.facets-container .mobile-facets,
+/* The filter panel keeps Dawn's own drawer exactly as it was — only the
+   sort block inside it is hidden, because sorting has its own control now. */
+.facets-container [id^='Details-Mobile-SortBy'] {
+  display: none !important;
+}
+
+/* sort panel: positioned against the bar, so it spans the full width */
+.collection-sort {
+  position: static;
+  flex: 0 0 auto;
+}
 .collection-sort__list {
   position: absolute;
   top: 100%;
-  left: 0;
   right: 0;
+  left: auto;
+  width: max-content;
+  max-width: calc(100vw - 3rem);
   z-index: 5;
   margin-top: 0.8rem;
   background: rgb(var(--color-background));
@@ -88,44 +100,16 @@
   border-radius: 0.6rem;
   box-shadow: 0 0.6rem 2.4rem rgba(var(--color-shadow), 0.12);
 }
-.facets-container .mobile-facets {
-  inset: auto 0 auto 0;
-  background-color: rgb(var(--color-background));
-  pointer-events: auto;
-}
-.facets-container .mobile-facets__inner {
-  width: 100%;
-  max-width: none;
-  height: auto;
-  max-height: 70dvh;
-  margin: 0;
-  border: 0;
-  filter: none;
-  transform: none !important;
-}
-/* no dimming layer behind an inline panel */
-.facets-container .disclosure-has-popup[open] > summary::before {
-  display: none;
-}
-/* the drawer's close X and its sort block are redundant here */
-.facets-container .mobile-facets__close,
-.facets-container .mobile-facets__close-button,
-.facets-container [id^='Details-Mobile-SortBy'] {
-  display: none !important;
-}
-
-/* sort panel */
-.collection-sort {
-  position: static;
-  flex: 0 0 auto;
-}
 .collection-sort__list {
   padding: 0.6rem 0;
   max-height: 70dvh;
   overflow-y: auto;
 }
 .collection-sort__option {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.4rem;
   width: 100%;
   padding: 1rem 1.6rem;
   border: 0;
@@ -137,16 +121,13 @@
 }
 .collection-sort__option[aria-current='true'] {
   font-weight: 500;
-  text-decoration: underline;
-  text-underline-offset: 0.3rem;
+}
+.collection-sort__option[aria-current='true']::after {
+  content: '✓';
+  font-size: 1.3rem;
+  line-height: 1;
 }
 .collection-sort__option:hover {
   background: rgba(var(--color-foreground), 0.04);
-}
-
-/* Dawn's drawer locks the page while it is open; an inline panel must not. */
-body.overflow-hidden-mobile,
-body.overflow-hidden-tablet {
-  overflow: auto;
 }
 
