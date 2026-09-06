@@ -12,6 +12,20 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  /* First and last name stay side by side on a phone too; Dawn's own rule
+     only pairs them from 750px up, which left two half-empty rows. */
+  .contact__fields {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 1.2rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .contact__fields {
+      grid-column-gap: 2rem;
+    }
+  }
 {%- endstyle -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
@@ -51,58 +65,80 @@
           </li>
         </ul>
       {%- endif -%}
+      {%- comment -%}
+        First and last name sit side by side and stay optional: an email
+        address is the only thing we need to answer someone. Shopify labels
+        each line of the notification with the field name, so these read as
+        "First name: …" / "Last name: …" in the inbox.
+      {%- endcomment -%}
       <div class="contact__fields">
         <div class="field">
           <input
             class="field__input"
-            autocomplete="name"
+            autocomplete="given-name"
             type="text"
-            id="ContactForm-name"
-            name="contact[{{ 'templates.contact.form.name' | t }}]"
-            value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
-            placeholder="{{ 'templates.contact.form.name' | t }}"
+            id="ContactForm-first-name"
+            name="contact[{{ 'templates.contact.form.first_name' | t }}]"
+            value="{% if customer %}{{ customer.first_name }}{% endif %}"
+            placeholder="{{ 'templates.contact.form.first_name' | t }}"
           >
-          <label class="field__label" for="ContactForm-name">{{ 'templates.contact.form.name' | t }}</label>
+          <label class="field__label" for="ContactForm-first-name">
+            {{- 'templates.contact.form.first_name' | t -}}
+          </label>
         </div>
-        <div class="field field--with-error">
+        <div class="field">
           <input
-            autocomplete="email"
-            type="email"
-            id="ContactForm-email"
             class="field__input"
-            name="contact[email]"
-            spellcheck="false"
-            autocapitalize="off"
-            value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
-            {% comment %}
-              aria-required only tells a screen reader the field matters; it does
-              not stop the form being sent. Without the real attribute the
-              asterisk on the label was decoration, and a message could arrive
-              with no address to answer it.
-            {% endcomment %}
-            required
-            aria-required="true"
-            {% if form.errors contains 'email' %}
-              aria-invalid="true"
-              aria-describedby="ContactForm-email-error"
-            {% endif %}
-            placeholder="{{ 'templates.contact.form.email' | t }}"
+            autocomplete="family-name"
+            type="text"
+            id="ContactForm-last-name"
+            name="contact[{{ 'templates.contact.form.last_name' | t }}]"
+            value="{% if customer %}{{ customer.last_name }}{% endif %}"
+            placeholder="{{ 'templates.contact.form.last_name' | t }}"
           >
-          <label class="field__label" for="ContactForm-email">
-            {{- 'templates.contact.form.email' | t }}
-            <span aria-hidden="true">*</span></label
-          >
-          {%- if form.errors contains 'email' -%}
-            <small class="contact__field-error" id="ContactForm-email-error">
-              <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
-              <span class="form__message">
-                {%- render 'icon-error' -%}
-                {{- form.errors.translated_fields.email | capitalize }}
-                {{ form.errors.messages.email -}}
-              </span>
-            </small>
-          {%- endif -%}
+          <label class="field__label" for="ContactForm-last-name">
+            {{- 'templates.contact.form.last_name' | t -}}
+          </label>
         </div>
+      </div>
+      <div class="field field--with-error">
+        <input
+          autocomplete="email"
+          type="email"
+          id="ContactForm-email"
+          class="field__input"
+          name="contact[email]"
+          spellcheck="false"
+          autocapitalize="off"
+          value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+          {% comment %}
+            aria-required only tells a screen reader the field matters; it does
+            not stop the form being sent. Without the real attribute the
+            asterisk on the label was decoration, and a message could arrive
+            with no address to answer it.
+          {% endcomment %}
+          required
+          aria-required="true"
+          {% if form.errors contains 'email' %}
+            aria-invalid="true"
+            aria-describedby="ContactForm-email-error"
+          {% endif %}
+          placeholder="{{ 'templates.contact.form.email' | t }}"
+        >
+        <label class="field__label" for="ContactForm-email">
+          {{- 'templates.contact.form.email' | t }}
+          <span aria-hidden="true">*</span></label
+        >
+        {%- if form.errors contains 'email' -%}
+          <small class="contact__field-error" id="ContactForm-email-error">
+            <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
+            <span class="form__message">
+              {%- render 'icon-error' -%}
+              {{- form.errors.translated_fields.email | capitalize }}
+              {{ form.errors.messages.email -}}
+            </span>
+          </small>
+        {%- endif -%}
       </div>
       {% comment %}
         The phone field is deliberately removed. We answer by email, so a phone
