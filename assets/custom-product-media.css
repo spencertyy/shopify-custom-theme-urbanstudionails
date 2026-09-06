@@ -53,6 +53,11 @@
 /* ---- 3. lightbox as full-screen swipeable slides ---- */
 .product-media-modal .product-media-modal__dialog {
   height: 100dvh;
+  /* backdrop alpha is driven by the drag-to-dismiss gesture */
+  background: rgba(var(--color-background), var(--lightbox-bg-alpha, 1)) !important;
+}
+.product-media-modal {
+  background-color: transparent !important;
 }
 .product-media-modal .product-media-modal__content {
   display: flex !important;
@@ -68,6 +73,11 @@
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+  /* horizontal pans stay native (scroll-snap); vertical ones go to the
+     drag-to-dismiss handler instead of the page behind */
+  touch-action: pan-x pinch-zoom;
+  overscroll-behavior: contain;
+  will-change: transform;
 }
 .product-media-modal__content::-webkit-scrollbar {
   display: none;
@@ -84,7 +94,7 @@
   object-fit: contain;
   scroll-snap-align: center;
   scroll-snap-stop: always;
-  background: rgb(var(--color-background));
+  background: transparent !important;
 }
 @media screen and (min-width: 750px) {
   .product-media-modal .product-media-modal__content > * {
@@ -139,4 +149,9 @@
   .custom-lightbox__arrow {
     display: flex;
   }
+}
+
+/* ---- 4. size-chart / other pop-ups: keep the scroll inside the box ---- */
+.product-popup-modal .product-popup-modal__content {
+  overscroll-behavior: contain;
 }

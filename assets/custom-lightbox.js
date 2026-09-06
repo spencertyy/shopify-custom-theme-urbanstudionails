@@ -9,8 +9,85 @@
  *
  * It hooks in by watching the modal's `open` attribute, so Dawn's own
  * show()/hide() and the opener buttons stay untouched.
+ *
+ * Two more things live here because they need the same hook:
+ *  - a body scroll lock that iOS Safari actually respects (Dawn only sets
+ *    overflow:hidden on <body>, which iOS ignores for touch scrolling, so the
+ *    page behind a modal rubber-bands and the modal drifts with it);
+ *  - drag-to-dismiss on the lightbox: a vertical swipe moves the image and
+ *    fades the backdrop; past a threshold it closes, otherwise it snaps back.
  */
 (function () {
+  /* ---- body scroll lock ---- */
+  const lock = { on: false, y: 0 };
+  function lockBody() {
+    if (lock.on) return;
+    lock.on = true;
+    lock.y = window.scrollY;
+    const b = document.body.style;
+    b.position = 'fixed';
+    b.top = -lock.y + 'px';
+    b.left = '0';
+    b.right = '0';
+    b.width = '100%';
+  }
+  function unlockBody() {
+    if (!lock.on) return;
+    lock.on = false;
+    const b = document.body.style;
+    b.position = b.top = b.left = b.right = b.width = '';
+    window.scrollTo(0, lock.y);
+  }
+
+  /* ---- drag to dismiss (touch only) ---- */
+  function enableDrag(modal) {
+    const { content } = modal._lightbox;
+    const dialog = modal.querySelector('.product-media-modal__dialog');
+    let startX = 0, startY = 0, dy = 0, axis = null, active = false;
+    const setAlpha = (a) => dialog.style.setProperty('--lightbox-bg-alpha', String(a));
+    const reset = () => {
+      content.style.transition = 'transform 0.25s ease';
+      content.style.transform = '';
+      setAlpha(1);
+    };
+    content.addEventListener('touchstart', (e) => {
+      if (e.touches.length !== 1) return;
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      axis = null; dy = 0; active = true;
+      content.style.transition = 'none';
+    }, { passive: true });
+    content.addEventListener('touchmove', (e) => {
+      if (!active) return;
+      const dx = e.touches[0].clientX - startX;
+      const ddy = e.touches[0].clientY - startY;
+      if (!axis) {
+        if (Math.abs(dx) < 6 && Math.abs(ddy) < 6) return;
+        axis = Math.abs(dx) > Math.abs(ddy) ? 'x' : 'y';
+      }
+      if (axis !== 'y') return;
+      e.preventDefault();
+      dy = ddy;
+      content.style.transform = 'translateY(' + dy + 'px)';
+      setAlpha(1 - Math.min(1, Math.abs(dy) / 260) * 0.85);
+    }, { passive: false });
+    const end = () => {
+      if (!active) return;
+      active = false;
+      if (axis === 'y' && Math.abs(dy) > 110) {
+        content.style.transition = 'transform 0.2s ease';
+        content.style.transform = 'translateY(' + (dy > 0 ? '100vh' : '-100vh') + ')';
+        setAlpha(0);
+        setTimeout(() => { modal.hide(); reset(); }, 200);
+      } else {
+        reset();
+      }
+    };
+    content.addEventListener('touchend', end);
+    content.addEventListener('touchcancel', end);
+    modal._lightbox.reset = reset;
+  }
+
   function enhance(modal) {
     if (modal.dataset.lightboxReady) return;
     modal.dataset.lightboxReady = '1';
@@ -69,6 +146,7 @@
     });
 
     modal._lightbox = { content, slides, update };
+    enableDrag(modal);
   }
 
   function onOpen(modal) {
@@ -89,12 +167,18 @@
 
   const observer = new MutationObserver((records) => {
     records.forEach((record) => {
-      if (record.target.hasAttribute('open')) onOpen(record.target);
+      const el = record.target;
+      const isOpen = el.hasAttribute('open');
+      if (isOpen) lockBody(); else if (!document.querySelector('product-modal[open], modal-dialog[open]')) unlockBody();
+      if (el.tagName === 'PRODUCT-MODAL') {
+        if (isOpen) onOpen(el);
+        else if (el._lightbox && el._lightbox.reset) el._lightbox.reset();
+      }
     });
   });
 
   const watch = () => {
-    document.querySelectorAll('product-modal').forEach((modal) => {
+    document.querySelectorAll('product-modal, modal-dialog').forEach((modal) => {
       if (modal.dataset.lightboxWatched) return;
       modal.dataset.lightboxWatched = '1';
       observer.observe(modal, { attributes: true, attributeFilter: ['open'] });
