@@ -1906,3 +1906,22 @@ html:root {
   font-size: 1.7rem;
   font-weight: var(--font-body-weight);
 }
+
+/* ---- "Details" and "Frequently Asked Questions" on the product page ----
+   Same weight (a touch heavier than body copy) and the same 1.6rem gap to the
+   first row. Dawn's collapsible section stacks a 2rem heading margin on a
+   2.5rem accordion margin (45px on mobile) while the FAQ section uses 3rem;
+   both come from stylesheets that load after this one, hence !important. */
+.collapsible-content .collapsible-content__heading,
+[class*="faq-"] .faq__heading {
+  font-weight: 500 !important;
+}
+.collapsible-content .collapsible-content__heading {
+  margin-bottom: 1.6rem !important;
+}
+.collapsible-content .accordion {
+  margin-top: 0 !important;
+}
+[class*="faq-"] .faq__heading {
+  margin-bottom: 1.6rem !important;
+}

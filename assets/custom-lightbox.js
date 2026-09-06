@@ -45,6 +45,7 @@
     const dialog = modal.querySelector('.product-media-modal__dialog');
     let startX = 0, startY = 0, dy = 0, axis = null, active = false;
     const setAlpha = (a) => dialog.style.setProperty('--lightbox-bg-alpha', String(a));
+    dialog.style.transition = 'background-color 0.18s ease';
     const reset = () => {
       content.style.transition = 'transform 0.25s ease';
       content.style.transform = '';
@@ -69,7 +70,9 @@
       e.preventDefault();
       dy = ddy;
       content.style.transform = 'translateY(' + dy + 'px)';
-      setAlpha(1 - Math.min(1, Math.abs(dy) / 260) * 0.85);
+      // Backdrop steps aside as soon as the drag is vertical, so only the
+      // photo moves and the page shows right up to its edges - no white band.
+      setAlpha(0);
     }, { passive: false });
     const end = () => {
       if (!active) return;
