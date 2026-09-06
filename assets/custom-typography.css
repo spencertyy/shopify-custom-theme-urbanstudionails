@@ -1931,3 +1931,32 @@ html:root {
 .collapsible-content .accordion:first-of-type {
   border-top: 0 !important;
 }
+
+/* ---- Product cards: bolder title, calmer price ----
+   The cards carry a sale badge on the image already, so the price line only
+   needs the old price struck through and the new one after it — the same
+   two-part line the reference stores use, minus their third element. */
+.card__heading,
+.card__heading a {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.card-information .price {
+  margin-top: 0.4rem;
+}
+.card-information .price--on-sale .price__sale {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem;
+  justify-content: var(--text-alignment, flex-start);
+}
+.card-information .price--on-sale .price-item--regular {
+  order: 1;
+  font-size: 1.3rem;
+  color: rgba(var(--color-foreground), 0.55);
+}
+.card-information .price--on-sale .price-item--sale {
+  order: 2;
+  font-weight: 500;
+}

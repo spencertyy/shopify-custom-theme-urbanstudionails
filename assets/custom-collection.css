@@ -9,17 +9,44 @@
 */
 
 .facets-container {
-  display: flex;
+  display: flex !important;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 1.6rem;
   position: relative;
 }
 
+/* Filter first, sort second, whatever order the markup happens to be in.
+   Everything else Dawn puts in this container (the active-filter pills, the
+   desktop form, the count) drops to a second line: the pills row is 228px
+   wide even when empty, which pushed both triggers to the right. */
+.facets-container .mobile-facets__wrapper {
+  order: 1;
+}
+.collection-sort {
+  order: 2;
+}
+.facets-container > *:not(.mobile-facets__wrapper):not(.collection-sort) {
+  order: 3;
+  flex: 0 0 100%;
+}
+
 /* the drawer's own wrapper must not stretch across the bar */
 .facets-container .mobile-facets__wrapper {
   margin: 0;
   flex: 0 0 auto;
+}
+/* Dawn marks the <details> position:relative, which would make the panel
+   below measure itself against the 73px-wide trigger instead of the whole
+   bar. Neutralising it hands that job to .facets-container. */
+.facets-container .mobile-facets__wrapper .disclosure-has-popup {
+  position: static;
+}
+/* Dawn prints the label twice (one for each breakpoint); only one shows, but
+   the hidden one still widens the trigger on some screens */
+.facets-container .mobile-facets__open-label:not(.medium-hide) {
+  display: none;
 }
 
 /* product count is gone from the bar */
@@ -122,3 +149,4 @@ body.overflow-hidden-mobile,
 body.overflow-hidden-tablet {
   overflow: auto;
 }
+
