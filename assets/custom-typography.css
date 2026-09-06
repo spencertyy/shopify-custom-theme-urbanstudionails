@@ -2008,3 +2008,16 @@ html:root {
   border-radius: var(--inputs-radius);
   overflow: hidden;
 }
+
+/* --- iOS Safari: the drawer is sized to window.innerHeight, which stops at
+   the top of Safari's translucent bottom toolbar, so page content showed
+   through the toolbar below the drawer. A skirt of the drawer's own colour
+   hangs below it; it costs no layout and is invisible on every other
+   browser. --- */
+@media screen and (max-width: 989px) {
+  /* A box-shadow is painted outside the box, so the drawer's own
+     overflow-x:hidden cannot clip it: zero blur, pushed straight down. */
+  .js .menu-drawer.menu-drawer {
+    box-shadow: 0 60vh 0 0 rgb(var(--color-background));
+  }
+}
