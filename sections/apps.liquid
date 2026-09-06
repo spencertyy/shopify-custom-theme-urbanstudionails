@@ -26,6 +26,26 @@
     }
   {%- endstyle -%}
 {%- endif -%}
+{%- if template.name == 'product' and product.featured_image != blank -%}
+  {%- comment -%}
+    Judge.me's in-store review pop-up shows the product name but (on this
+    plan / form theme) no product image. The pop-up is rendered in this
+    document, so page CSS reaches it: draw the current product's featured
+    image above the name. The :has() guard steps aside if Judge.me ever
+    renders its own <img> in the modal.
+  {%- endcomment -%}
+  {%- style -%}
+    .jdgm-write-review-modal:not(:has(img)) .jdgm-write-review-modal__product-title::before {
+      content: "";
+      display: block;
+      width: 16rem;
+      height: 16rem;
+      margin: 0 auto 1.6rem;
+      background: url("{{ product.featured_image | image_url: width: 480 }}") center / cover no-repeat;
+      border-radius: 0.4rem;
+    }
+  {%- endstyle -%}
+{%- endif -%}
 <div class="{% if section.settings.include_margins %}page-width{% endif %}{% if hide_section %} apps--no-reviews{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
   {%- for block in section.blocks -%}
     {% render block %}
