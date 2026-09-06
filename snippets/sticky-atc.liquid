@@ -86,14 +86,48 @@
   if (!bar) return;
   var mainBtn = document.getElementById('ProductSubmitButton-{{ section.id }}');
   if (!mainBtn) return;
-  var observer = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      var show = !e.isIntersecting;
-      bar.classList.toggle('is-visible', show);
-      bar.setAttribute('aria-hidden', !show);
-      document.body.classList.toggle('sticky-atc-visible', show);
-    });
-  }, { rootMargin: '0px 0px -80px 0px' });
-  observer.observe(mainBtn);
+
+  // The bar is a way back to a buy button the reader has scrolled past, so it
+  // follows the direction of travel: scrolling down (still browsing) hides it,
+  // scrolling up (looking for something) brings it back. It never shows while
+  // the real button is on screen — that test is read synchronously in the same
+  // frame as the scroll, since an IntersectionObserver callback can land a
+  // frame late and leave the bar up at the top of the page. It also stays away
+  // from the first screenful, where the hero image is what the reader wants.
+  var lastY = window.scrollY;
+  var shown = false;
+  var THRESHOLD = 8; // ignore the jitter of a finger resting on the screen
+  var MIN_SCROLL = 300; // near the top the bar would just cover the hero image
+
+  function setShown(next) {
+    if (next === shown) return;
+    shown = next;
+    bar.classList.toggle('is-visible', next);
+    bar.setAttribute('aria-hidden', String(!next));
+    document.body.classList.toggle('sticky-atc-visible', next);
+  }
+
+  function buttonOnScreen() {
+    var r = mainBtn.getBoundingClientRect();
+    return r.bottom > 0 && r.top < window.innerHeight - 80;
+  }
+
+  var ticking = false;
+  window.addEventListener(
+    'scroll',
+    function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        ticking = false;
+        var y = window.scrollY;
+        var delta = y - lastY;
+        if (Math.abs(delta) < THRESHOLD) return;
+        lastY = y;
+        setShown(y > MIN_SCROLL && !buttonOnScreen() && delta < 0);
+      });
+    },
+    { passive: true }
+  );
 })();
 </script>

@@ -69,8 +69,15 @@
 .pswp.pswp .pswp__img {
   background: #ffffff;
 }
-/* solid white always: no fade-in on open and no fading while dragging to close */
+/* Solid white always: no fade-in on open, no fading while dragging to close.
+   display is forced because Dawn's base.css hides every empty element
+   ("div:empty { display: none }") and PhotoSwipe's backdrop is an empty div;
+   .pswp itself is painted too, as a belt-and-braces backstop. */
+.pswp.pswp {
+  background: #ffffff !important;
+}
 .pswp.pswp .pswp__bg {
+  display: block !important;
   opacity: 1 !important;
   background: #ffffff !important;
 }
