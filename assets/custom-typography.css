@@ -1872,3 +1872,37 @@ quick-add-modal .product__media-list .product__media-item.product__media-item {
     min-width: 0;
   }
 }
+
+/* ---- Site-wide type scale ----
+   Contact and Brand Story carry their own page CSS at 1.45rem body / lighter
+   headings; the rest of the site sat at Dawn's 1.6rem / 4rem h1 and read as
+   noticeably bigger. Dawn's body_scale setting can't go below 100, and it also
+   scales the root font-size (so every rem on the site would shrink, those two
+   pages included) - so body copy is set directly here instead, and only the
+   heading scale variable is lowered. Buttons, labels and form fields keep their
+   own rem sizes and are unaffected. */
+body {
+  font-size: 1.4rem;
+}
+@media screen and (min-width: 750px) {
+  body {
+    font-size: 1.45rem;
+  }
+}
+html:root {
+  --font-heading-scale: 0.85;
+}
+
+/* ---- Details rows match the FAQ rows ----
+   The product page stacks Dawn's collapsible-content ("Details") directly
+   above the store's own faq section. Dawn sizes its row titles from body copy
+   with a 1.5rem vertical padding; faq.liquid sets 1.7rem titles on 1.8rem
+   padding. Same numbers here so the two blocks read as one list. */
+.collapsible-content .accordion summary {
+  padding: 1.8rem 0;
+  line-height: 1.4;
+}
+.collapsible-content .accordion__title {
+  font-size: 1.7rem;
+  font-weight: var(--font-body-weight);
+}

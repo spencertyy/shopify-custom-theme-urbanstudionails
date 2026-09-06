@@ -531,6 +531,14 @@
                     {%- if block.settings.delivery_text != blank -%}
                       <p class="product__shipping-note-sub">{{ block.settings.delivery_text | escape }}</p>
                     {%- endif -%}
+                    {%- if block.settings.cost_text != blank -%}
+                      <p class="product__shipping-note-sub">{{ block.settings.cost_text | escape }}</p>
+                    {%- endif -%}
+                    {%- if block.settings.link_label != blank and block.settings.link_url != blank -%}
+                      <p class="product__shipping-note-link">
+                        <a href="{{ block.settings.link_url }}" class="link">{{ block.settings.link_label | escape }}</a>
+                      </p>
+                    {%- endif -%}
                   </div>
                 </div>
               {%- when 'rating' -%}
@@ -1258,6 +1266,23 @@
           "id": "delivery_text",
           "label": "Delivery time",
           "info": "How long it spends in transit after dispatch. Leave empty to hide this line."
+        },
+        {
+          "type": "text",
+          "id": "cost_text",
+          "label": "Shipping cost",
+          "info": "Rate and free-shipping threshold, on its own line. Leave empty to hide."
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link text",
+          "info": "Optional third line linking to the full shipping details. Shown only when both text and URL are set."
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
         }
       ]
     },

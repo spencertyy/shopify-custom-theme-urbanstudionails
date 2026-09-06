@@ -60,13 +60,22 @@
           "type": "shipping_note",
           "settings": {
             "show_icon": true,
-            "processing_text": "Most orders ship within 1–3 business days",
-            "delivery_text": "Delivery 3–6 business days after dispatch (U.S.)"
+            "processing_text": "Ships within 24 hours, Monday to Friday.",
+            "delivery_text": "U.S. delivery 3–6 business days after dispatch, with tracking.",
+            "cost_text": "Flat $7.99 shipping, free on orders over $75.",
+            "link_label": "More on shipping",
+            "link_url": "/pages/faq"
           }
         },
         "description": {
           "type": "description",
           "settings": {}
+        },
+        "specs_shape_length": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{%- comment -%} Shape comes from the product's shape tag, length from Product type. Renders nothing when both are empty (gift card, mystery box). {%- endcomment -%}{%- assign shape = '' -%}{%- for tag in product.tags -%}{%- if 'Almond,Square,Coffin,Stiletto' contains tag -%}{%- assign shape = tag -%}{%- endif -%}{%- endfor -%}{%- assign len = product.type -%}{%- if len == 'Gift Card' -%}{%- assign len = '' -%}{%- endif -%}{%- if shape != '' or len != '' -%}<p class='product__specs'>{%- if shape != '' -%}Shape: {{ shape }}{%- endif -%}{%- if shape != '' and len != '' -%}<span aria-hidden='true'> · </span>{%- endif -%}{%- if len != '' -%}Length: {{ len }}{%- endif -%}</p><style>.product__specs{margin:0 0 1.6rem;font-size:1.4rem;letter-spacing:.04em;color:rgba(var(--color-foreground),.75)}</style>{%- endif -%}"
+          }
         }
       },
       "block_order": [
@@ -79,6 +88,7 @@
         "quantity_selector",
         "buy_buttons",
         "description",
+        "specs_shape_length",
         "shipping_note_usn"
       ],
       "settings": {
@@ -103,8 +113,8 @@
         "collapsible_row_Q8V9NM": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "SIZING",
-            "icon": "ruler",
+            "heading": "Sizing",
+            "icon": "none",
             "row_content": "<p>Finding your correct size ensures the most natural fit and long-lasting wear.</p><p><strong>Before placing your order</strong></p><p>Please review our Size Guide. Measure the widest point of each natural nail bed and match it to the closest width on the chart. If a nail falls between two sizes, size up — a slightly wide nail can be filed down, a narrow one can’t be stretched.</p><p><strong>Please choose carefully</strong></p><p>Because our nails are handmade and worn directly on the body, we’re not able to accept returns or exchanges for sizing — the same rule that applies to most beauty and personal care products.</p><p>Which is exactly why we’d rather you spent two minutes measuring now. Still unsure? Message us before you order — we genuinely don’t mind.</p>",
             "page": "size"
           }
@@ -112,7 +122,7 @@
         "row_included": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "📦 What’s Included",
+            "heading": "What’s Included",
             "icon": "none",
             "row_content": "<p>• 10 handmade press-on nails</p><p>• Nail glue</p><p>• Adhesive nail tabs</p><p>• Nail file</p><p>• Wooden cuticle pusher</p><p>• Alcohol wipes</p><p>Everything you need is in the box — no follow-up order, no trip to the shop.</p>",
             "page": ""
@@ -121,9 +131,18 @@
         "row_wear": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "⏱ Wear Time",
+            "heading": "Wear Time",
             "icon": "none",
             "row_content": "<p>• <strong>With glue</strong> — 1–2 weeks, and often longer with careful wear</p><p>• <strong>With adhesive tabs</strong> — up to 5 days, and the set stays reusable</p><p>Hot showers, gym sessions and washing up without gloves are all quietly working against you.</p>",
+            "page": ""
+          }
+        },
+        "row_returns": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Returns",
+            "icon": "none",
+            "row_content": "<p>If your set arrives damaged, faulty, or isn’t what you ordered, email hello@urbanstudionails.com within 7 days of delivery with your order number and a couple of clear photos. We’ll make it right — a replacement, a partial refund, or a full refund, whichever genuinely fits. In most cases you won’t need to send anything back.</p><p>Because every set is handmade and worn directly on the body, we can’t accept returns for sizing, fit, or change of mind — the same rule that applies to most beauty and personal care products. Please measure before you order; we’re happy to help you choose.</p><p>Full details in our <a href=\"/policies/refund-policy\">Refund Policy</a>.</p>",
             "page": ""
           }
         }
@@ -131,13 +150,15 @@
       "block_order": [
         "row_included",
         "row_wear",
-        "collapsible_row_Q8V9NM"
+        "collapsible_row_Q8V9NM",
+        "row_returns"
       ],
       "settings": {
         "caption": "",
         "heading": "Details",
-        "heading_size": "h1",
-        "heading_alignment": "center",
+        "heading_size": "h2",
+        "heading_alignment": "left",
+        "content_max_width": 1100,
         "layout": "none",
         "color_scheme": "",
         "container_color_scheme": "",
@@ -284,7 +305,9 @@
       ],
       "settings": {
         "heading": "Frequently Asked Questions",
-        "heading_size": "h1",
+        "heading_size": "h2",
+        "heading_alignment": "left",
+        "content_max_width": 1100,
         "color_scheme": "scheme-1",
         "footer_link_label": "See all questions →",
         "footer_link_url": "/pages/faq",

@@ -27,13 +27,18 @@
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
   .faq-{{ section.id }} .faq__list {
-    /* matches Dawn's .page-width--narrow so the list lines up with the page H1 */
-    max-width: 72.6rem;
+    /* matches Dawn's .page-width--narrow so the list lines up with the page H1;
+       full_width drops the cap so the list spans the page (product page) */
+    max-width: {% if section.settings.content_max_width > 0 %}{{ section.settings.content_max_width }}px{% else %}72.6rem{% endif %};
     margin: 0 auto;
   }
   .faq-{{ section.id }} .faq__heading {
-    text-align: center;
-    margin: 0 0 3rem;
+    text-align: {{ section.settings.heading_alignment | default: 'center' }};
+    margin: 0 auto 3rem;
+    {%- if section.settings.content_max_width > 0 %}
+    /* same column as the list, so a left-aligned heading lines up with the rows */
+    max-width: {{ section.settings.content_max_width }}px;
+    {%- endif %}
   }
   .faq-{{ section.id }} .faq__item {
     border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.12);
@@ -167,6 +172,27 @@
         { "value": "h0", "label": "Large" }
       ],
       "default": "h1"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "label": "Content max width",
+      "info": "0 keeps the narrow reading column used on the FAQ page.",
+      "min": 0,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "default": 0
     },
     {
       "type": "color_scheme",

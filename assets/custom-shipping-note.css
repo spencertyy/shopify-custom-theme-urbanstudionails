@@ -42,3 +42,10 @@
   font-size: 1.3rem;
   color: rgba(var(--color-foreground), 0.7);
 }
+
+/* Optional third line: a quiet link to the full shipping details, so the
+   note itself can stay at two short lines. */
+.product__shipping-note-text .product__shipping-note-link {
+  margin-top: 0.4rem;
+  font-size: 1.3rem;
+}

@@ -18,7 +18,7 @@
 <div class="color-{{ section.settings.color_scheme }} gradient">
   <div class="collapsible-content collapsible-{{ section.settings.layout }}-layout isolate{% if section.settings.layout == 'section' %} page-width{% elsif section.settings.layout == 'none' %} content-container content-container--full-width{% endif %}">
     <div class="collapsible-content__wrapper section-{{ section.id }}-padding{% if section.settings.layout == 'section' %} content-container color-{{ section.settings.container_color_scheme }} gradient{% endif %}">
-      <div class="{% if section.settings.image == blank %}collapsible-content-wrapper-narrow{% else %}page-width{% endif %}">
+      <div class="{% if section.settings.image == blank and section.settings.content_max_width == 0 %}collapsible-content-wrapper-narrow{% else %}page-width{% endif %}"{% if section.settings.content_max_width > 0 %} style="max-width: {{ section.settings.content_max_width }}px; box-sizing: content-box;"{% endif %}>
         <div
           class="collapsible-content__header{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           style="text-align: {{ section.settings.heading_alignment }};"
@@ -193,6 +193,17 @@
         }
       ],
       "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "label": "Content max width",
+      "info": "0 keeps Dawn's default narrow column. Any other value centres the rows in a column of that width.",
+      "min": 0,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "default": 0
     },
     {
       "type": "color_scheme",
