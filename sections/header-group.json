@@ -46,25 +46,6 @@
     },
     "header": {
       "type": "header",
-      "settings": {
-        "gift_nav_enable": false,
-        "gift_nav_label": "",
-        "gift_nav_url": "",
-        "logo_position": "middle-center",
-        "menu": "main-menu",
-        "menu_type_desktop": "mega",
-        "sticky_header_type": "on-scroll-up",
-        "show_line_separator": true,
-        "color_scheme": "scheme-b9c66f51-810b-4af2-921f-078d264a5997",
-        "menu_color_scheme": "scheme-1",
-        "enable_country_selector": false,
-        "enable_language_selector": true,
-        "enable_customer_avatar": true,
-        "mobile_logo_position": "center",
-        "margin_bottom": 0,
-        "padding_top": 0,
-        "padding_bottom": 0
-      },
       "blocks": {
         "drawer_image_shop": {
           "type": "drawer_image",
@@ -90,31 +71,41 @@
         "mega_tile_1": {
           "type": "mega_tile",
           "settings": {
-            "collection": "new-arrival"
+            "collection": "new-arrival",
+            "title": "",
+            "link": ""
           }
         },
         "mega_tile_2": {
           "type": "mega_tile",
           "settings": {
-            "collection": "best-sellers"
+            "collection": "best-sellers",
+            "title": "",
+            "link": ""
           }
         },
         "mega_tile_3": {
           "type": "mega_tile",
           "settings": {
-            "collection": "christmas"
+            "collection": "clean-girl",
+            "title": "",
+            "link": ""
           }
         },
         "mega_tile_4": {
           "type": "mega_tile",
           "settings": {
-            "collection": "halloween-collection"
+            "collection": "frontpage",
+            "title": "",
+            "link": ""
           }
         },
         "mega_tile_5": {
           "type": "mega_tile",
           "settings": {
-            "collection": "all-products"
+            "collection": "all-products",
+            "title": "",
+            "link": ""
           }
         }
       },
@@ -127,7 +118,31 @@
         "mega_tile_3",
         "mega_tile_4",
         "mega_tile_5"
-      ]
+      ],
+      "settings": {
+        "gift_nav_enable": false,
+        "gift_nav_label": "",
+        "gift_nav_url": "",
+        "logo_position": "middle-center",
+        "menu": "main-menu",
+        "menu_type_desktop": "mega",
+        "sticky_header_type": "on-scroll-up",
+        "show_line_separator": true,
+        "color_scheme": "scheme-b9c66f51-810b-4af2-921f-078d264a5997",
+        "menu_color_scheme": "scheme-1",
+        "enable_country_selector": false,
+        "enable_language_selector": true,
+        "enable_customer_avatar": true,
+        "mobile_logo_position": "center",
+        "margin_bottom": 0,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "search_popular_label": "Popular searches",
+        "search_popular_terms": "New Arrival | /collections/new-arrival\nBest Sellers | /collections/best-sellers\nFrench\nPink\nCoffin | /collections/coffin\nChristmas | /collections/christmas",
+        "search_products_label": "Trending now",
+        "search_products_collection": "",
+        "search_products_count": 4
+      }
     }
   },
   "order": [
