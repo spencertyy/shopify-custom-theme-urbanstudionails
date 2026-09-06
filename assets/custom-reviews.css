@@ -35,8 +35,8 @@
 .apps--no-reviews .jdgm-row-stars {
   padding: 0 !important;
   margin: 0 !important;
-  justify-content: flex-start !important;
-  text-align: left;
+  justify-content: center !important;
+  text-align: center;
 }
 .apps--no-reviews .jdgm-widget-actions-wrapper {
   display: flex;
@@ -47,7 +47,7 @@
   margin: 0 !important;
   padding: 0 !important;
   border: 0 !important;
-  justify-content: flex-start !important;
+  justify-content: center !important;
 }
 .apps--no-reviews .jdgm-rev-widg .jdgm-write-rev-link,
 .apps--no-reviews .jdgm-rev-widg .jdgm-write-rev-link:hover,
