@@ -351,6 +351,8 @@
         "judge_me_reviews_review_widget_kVE7K4"
       ],
       "settings": {
+        "hide_without_reviews": true,
+        "write_review_label": "Own this set?",
         "include_margins": true
       }
     }

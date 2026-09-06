@@ -1,0 +1,42 @@
+/*
+  Judge.me on product pages.
+
+  A product with no reviews used to show "No reviews" under the title and a
+  "Be the first to write a review" box at the bottom - both are negative social
+  proof for a small store. The section itself is skipped in sections/apps.liquid
+  when the review count is zero; these rules are the belt-and-braces for the
+  badge, which is rendered inside the product info column.
+*/
+.jdgm-prev-badge[data-average-rating='0.00'] {
+  display: none !important;
+}
+/* No reviews yet: keep the widget (its own button is the only thing that opens
+   the form), hide the title, the empty stars and the empty list, and turn the
+   button into one quiet line of text. */
+.apps--no-reviews .jdgm-rev-widg__title,
+.apps--no-reviews .jdgm-rev-widg__summary,
+.apps--no-reviews .jdgm-histogram,
+.apps--no-reviews .jdgm-rev-widg__sort-select-wrapper,
+.apps--no-reviews .jdgm-rev-widg__body,
+.apps--no-reviews .jdgm-paginate {
+  display: none !important;
+}
+.apps--no-reviews .jdgm-rev-widg__header {
+  padding: 0;
+  text-align: left;
+}
+.apps--no-reviews .jdgm-rev-widg .jdgm-write-rev-link {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  font-size: 1.3rem;
+  font-weight: var(--font-body-weight);
+  letter-spacing: 0.01em;
+  color: rgba(var(--color-foreground), 0.75);
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+  text-transform: none;
+}

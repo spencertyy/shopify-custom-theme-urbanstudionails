@@ -1,4 +1,24 @@
-<div class="{% if section.settings.include_margins %}page-width{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+{%- liquid
+  # Judge.me keeps the review count in product.metafields.reviews.rating_count.
+  # With hide_without_reviews on, a product page that has no reviews yet keeps
+  # the widget (Judge.me's own "Write a review" button is the only thing that
+  # opens its form) but the apps--no-reviews class hides the title, the empty
+  # stars and the empty list, and restyles that button as one quiet line of
+  # text. Other templates (home, pages) are never affected.
+  assign review_count = product.metafields.reviews.rating_count | default: 0
+  assign hide_section = false
+  if section.settings.hide_without_reviews and template.name == 'product' and review_count == 0
+    assign hide_section = true
+  endif
+-%}
+{%- if hide_section and section.settings.write_review_label != blank -%}
+  {%- style -%}
+    .apps--no-reviews .jdgm-write-rev-link[aria-expanded="false"]::before {
+      content: "{{ section.settings.write_review_label | escape }} ";
+    }
+  {%- endstyle -%}
+{%- endif -%}
+<div class="{% if section.settings.include_margins %}page-width{% endif %}{% if hide_section %} apps--no-reviews{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
   {%- for block in section.blocks -%}
     {% render block %}
   {%- endfor -%}
@@ -15,6 +35,24 @@
       "id": "include_margins",
       "default": true,
       "label": "t:sections.apps.settings.include_margins.label"
+    },
+    {
+      "type": "header",
+      "content": "Product pages without reviews"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_without_reviews",
+      "default": false,
+      "label": "Hide this section when the product has no reviews",
+      "info": "Uses the review count Judge.me stores on the product. Only applies on product pages."
+    },
+    {
+      "type": "text",
+      "id": "write_review_label",
+      "default": "Own this set?",
+      "label": "Text before the button",
+      "info": "Shown in front of Judge.me's own \"Write a review\" button, e.g. \"Own this set? Write a review\". Leave empty for just the button."
     }
   ],
   "blocks": [

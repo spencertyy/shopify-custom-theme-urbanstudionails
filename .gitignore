@@ -25,3 +25,6 @@ config/settings_data.json
 
 # Spreadsheets and other working docs
 *.xlsx
+
+# Product CSV workbench (exports, import files, Shopify template) — local only
+product-data/
