@@ -1,0 +1,241 @@
+/*
+  Header extras: the search panel and the mobile menu thumbnails.
+  Loaded in <head> after custom-typography.css; base.css and the section
+  stylesheets come later, so anything that must beat Dawn is written with
+  one extra class of specificity.
+*/
+
+/* ==========================================================================
+   1. Search panel
+   A full-width panel that drops from the header: a rounded pill input with
+   the magnifier inside it, then a row of "popular search" chips and a row
+   of product cards. Dawn's predictive results replace the chips and cards
+   while the shopper is typing (the panel lives inside <predictive-search>,
+   which carries `open` / `loading` while results are up).
+   ========================================================================== */
+.header__search .search-modal.modal__content {
+  bottom: auto;
+  height: auto;
+  min-height: 0;
+  padding: 2rem 0 2.8rem;
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.06);
+}
+.header__search .search-modal__content {
+  display: block;
+  height: auto;
+  top: auto;
+  bottom: auto;
+  max-width: 128rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.header__search .search-modal__form {
+  max-width: none;
+  width: 100%;
+}
+.search-panel__row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.search-panel__row form {
+  flex: 1 1 auto;
+  position: relative;
+  min-width: 0;
+}
+
+/* the pill: Dawn paints the frame on .field::after and the shadow on
+   .field::before, so all three layers take the radius */
+.search-modal .field .field__input.search__input {
+  border-radius: 4rem;
+  height: 5rem;
+  min-height: 5rem;
+  padding: 0 4.8rem 0 5rem;
+  font-size: 1.5rem;
+}
+.search-modal .field::before,
+.search-modal .field::after {
+  border-radius: 4rem;
+}
+/* the label doubles as the placeholder: it stays put and readable while the
+   box is empty (even focused — the modal focuses the box as it opens) and
+   only leaves once something is typed */
+.search-modal .field .field__label,
+.search-modal .field .field__input:focus ~ .field__label {
+  left: 5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: inherit;
+  letter-spacing: 0.04em;
+  opacity: 0.55;
+}
+.search-modal .field .field__input:not(:placeholder-shown) ~ .field__label {
+  opacity: 0;
+}
+/* magnifier moves to the left end of the pill; the clear (x) stays right */
+.search-modal .field .search__button {
+  left: 0.6rem;
+  right: auto;
+}
+.search-modal .field .reset__button {
+  right: 0.6rem;
+}
+.search-modal .field .reset__button::after {
+  display: none;
+}
+/* close button sits beside the pill instead of floating at the far edge */
+.header__search .search-modal__close-button {
+  position: static;
+  flex: none;
+  width: 4.4rem;
+  height: 4.4rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* popular searches + products */
+.search-panel__popular {
+  margin-top: 2rem;
+}
+predictive-search[open] .search-panel__popular,
+predictive-search[loading] .search-panel__popular {
+  display: none;
+}
+.search-panel__label {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.6);
+}
+.search-panel__col + .search-panel__col {
+  margin-top: 2.4rem;
+}
+.search-panel__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.search-panel__chip {
+  display: inline-block;
+  padding: 0.9rem 1.4rem;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.15);
+  border-radius: 4rem;
+  font-size: 1.2rem;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgb(var(--color-foreground));
+  transition: border-color 0.15s ease;
+}
+.search-panel__chip:hover {
+  border-color: rgb(var(--color-foreground));
+}
+.search-panel__products {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.search-panel__products li:nth-child(n + 4) {
+  display: none;
+}
+.search-panel__products .card__heading {
+  font-size: 1.25rem;
+}
+.search-panel__products .card__information .price,
+.search-panel__products .card__information .price .price-item {
+  font-size: 1.25rem;
+}
+
+@media screen and (min-width: 750px) {
+  .header__search .search-modal.modal__content {
+    padding: 2.8rem 0 3.6rem;
+  }
+  .header__search .search-modal__content {
+    padding: 0 5rem;
+  }
+  .search-panel__row {
+    gap: 1.2rem;
+  }
+  .search-modal .field .field__input.search__input {
+    height: 5.4rem;
+    min-height: 5.4rem;
+    font-size: 1.6rem;
+  }
+  .search-panel__popular {
+    margin-top: 2.8rem;
+    display: grid;
+    grid-template-columns: 26rem minmax(0, 1fr);
+    gap: 4.8rem;
+    align-items: start;
+  }
+  .search-panel__col + .search-panel__col {
+    margin-top: 0;
+  }
+  .search-panel__chips {
+    gap: 1rem;
+  }
+  .search-panel__products {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.6rem;
+  }
+  .search-panel__products li:nth-child(n + 4) {
+    display: block;
+  }
+  .search-panel__products .card__heading,
+  .search-panel__products .card__information .price,
+  .search-panel__products .card__information .price .price-item {
+    font-size: 1.4rem;
+  }
+}
+
+/* ==========================================================================
+   2. Mobile menu: square thumbnail on the left of a top-level row, and the
+   first-level sub-items grouped in a rounded card under it.
+   ========================================================================== */
+.menu-drawer__menu-item--thumb {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+.menu-drawer__thumb {
+  flex: none;
+  width: 6.4rem;
+  height: 6.4rem;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  background: rgba(var(--color-foreground), 0.04);
+}
+.menu-drawer__thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.js .menu-drawer__navigation > .menu-drawer__menu > li > details > .menu-drawer__submenu > .menu-drawer__inner-submenu {
+  margin: 0.2rem 2rem 1.4rem;
+  padding: 0.2rem 0;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.1);
+  border-radius: 1.2rem;
+}
+.js .menu-drawer__navigation > .menu-drawer__menu > li > details > .menu-drawer__submenu .menu-drawer__menu-item {
+  padding-left: 2rem;
+}
+.js .menu-drawer__navigation > .menu-drawer__menu > li > details > .menu-drawer__submenu .menu-drawer__submenu .menu-drawer__menu-item {
+  padding-left: 3.4rem;
+}
+.js .menu-drawer__navigation > .menu-drawer__menu > li > details > .menu-drawer__submenu summary.menu-drawer__menu-item.menu-drawer__menu-item::after {
+  right: 2rem;
+}

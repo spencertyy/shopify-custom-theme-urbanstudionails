@@ -64,7 +64,35 @@
         "margin_bottom": 0,
         "padding_top": 0,
         "padding_bottom": 0
-      }
+      },
+      "blocks": {
+        "drawer_image_shop": {
+          "type": "drawer_image",
+          "settings": {
+            "menu_item": "SHOP",
+            "collection": "all-products"
+          }
+        },
+        "drawer_image_faq": {
+          "type": "drawer_image",
+          "settings": {
+            "menu_item": "FAQ",
+            "collection": "new-arrival"
+          }
+        },
+        "drawer_image_about": {
+          "type": "drawer_image",
+          "settings": {
+            "menu_item": "ABOUT US",
+            "collection": "best-sellers"
+          }
+        }
+      },
+      "block_order": [
+        "drawer_image_shop",
+        "drawer_image_faq",
+        "drawer_image_about"
+      ]
     }
   },
   "order": [

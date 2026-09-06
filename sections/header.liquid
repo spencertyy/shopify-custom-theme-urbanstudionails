@@ -676,11 +676,73 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Search panel"
+    },
+    {
+      "type": "text",
+      "id": "search_popular_label",
+      "label": "Popular searches heading",
+      "default": "Popular searches"
+    },
+    {
+      "type": "textarea",
+      "id": "search_popular_terms",
+      "label": "Popular searches",
+      "info": "One per line. Add a link after a | to send the shopper somewhere specific; without one the term is searched.",
+      "default": "New Arrival | /collections/new-arrival\nBest Sellers | /collections/best-sellers\nFrench\nPink\nCoffin | /collections/coffin\nChristmas | /collections/christmas"
+    },
+    {
+      "type": "text",
+      "id": "search_products_label",
+      "label": "Products heading",
+      "default": "Trending now"
+    },
+    {
+      "type": "collection",
+      "id": "search_products_collection",
+      "label": "Products from",
+      "info": "Falls back to Best Sellers"
+    },
+    {
+      "type": "range",
+      "id": "search_products_count",
+      "label": "Number of products",
+      "min": 3,
+      "max": 5,
+      "step": 1,
+      "default": 4
     }
   ],
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "drawer_image",
+      "name": "Menu image",
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_item",
+          "label": "Menu item",
+          "info": "Type the top-level item exactly as it reads in the mobile menu, e.g. SHOP"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Square works best; it is shown at 64 × 64"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "…or a collection",
+          "info": "Its cover image is used when no image is picked"
+        }
+      ]
     }
   ]
 }

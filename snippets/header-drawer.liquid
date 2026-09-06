@@ -22,14 +22,41 @@
           <nav class="menu-drawer__navigation">
             <ul class="menu-drawer__menu has-submenu list-menu" role="list">
               {%- for link in section.settings.menu.links -%}
+                {%- liquid
+                  comment
+                    Square thumbnail for this top-level row: a "Menu image" block
+                    whose name matches the item, else the cover of the collection
+                    the item links to, else nothing.
+                  endcomment
+                  assign drawer_thumb = blank
+                  assign link_key = link.title | strip | downcase
+                  for block in section.blocks
+                    if block.type == 'drawer_image'
+                      assign block_key = block.settings.menu_item | strip | downcase
+                      if block_key == link_key
+                        if block.settings.image != blank
+                          assign drawer_thumb = block.settings.image
+                        elsif block.settings.collection != blank and block.settings.collection.image != blank
+                          assign drawer_thumb = block.settings.collection.image
+                        endif
+                      endif
+                    endif
+                  endfor
+                  if drawer_thumb == blank and link.type == 'collection_link' and link.object.image != blank
+                    assign drawer_thumb = link.object.image
+                  endif
+                -%}
                 <li>
                   {%- if link.links != blank -%}
                     {%- comment -%} Top-level groups start expanded (accordion) {%- endcomment -%}
                     <details id="Details-menu-drawer-menu-item-{{ forloop.index }}" class="drawer-accordion" open>
                       <summary
                         id="HeaderDrawer-{{ link.handle }}"
-                        class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}"
+                        class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}{% if drawer_thumb != blank %} menu-drawer__menu-item--thumb{% endif %}"
                       >
+                        {%- if drawer_thumb != blank -%}
+                          <span class="menu-drawer__thumb">{{ drawer_thumb | image_url: width: 160, height: 160, crop: 'center' | image_tag: loading: 'lazy', alt: '' }}</span>
+                        {%- endif -%}
                         {{ link.title | escape }}
                         {% render 'icon-arrow' %}
                         {% render 'icon-caret' %}
@@ -112,11 +139,14 @@
                     <a
                       id="HeaderDrawer-{{ link.handle }}"
                       href="{{ link.url }}"
-                      class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
+                      class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}{% if drawer_thumb != blank %} menu-drawer__menu-item--thumb{% endif %}"
                       {% if link.current %}
                         aria-current="page"
                       {% endif %}
                     >
+                      {%- if drawer_thumb != blank -%}
+                        <span class="menu-drawer__thumb">{{ drawer_thumb | image_url: width: 160, height: 160, crop: 'center' | image_tag: loading: 'lazy', alt: '' }}</span>
+                      {%- endif -%}
                       {{ link.title | escape }}
                     </a>
                   {%- endif -%}
