@@ -15,10 +15,12 @@
   {%- style -%}
     /* Prefix sits on the button's wrapper, not the button: Judge.me swaps the
        button's own text and attributes as the form opens and closes. */
-    .apps--no-reviews .jdgm-widget-actions-wrapper::before {
+    .apps--no-reviews .jdgm-widget-actions-wrapper::before,
+    .apps--no-reviews .jm-no-reviews-state__action-buttons::before {
       content: "{{ section.settings.write_review_label | escape }}";
       margin-right: 0.35em;
       font-size: 1.3rem;
+      line-height: 1.6;
       letter-spacing: 0.01em;
       color: rgba(var(--color-foreground), 0.75);
     }

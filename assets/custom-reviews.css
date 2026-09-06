@@ -78,3 +78,74 @@
   color: rgb(var(--color-foreground)) !important;
 }
 
+
+/* ---- Same treatment for Judge.me's NEW Review Widget (jm-* classes) ----
+   Enabled in Judge.me on 2026-09-06. Keep the "Write a review" button (it is
+   the only thing that opens the form), hide the title, tabs, sort menu, the
+   "Be the first" line and the "Reviews for other products" filler. */
+/* The empty state (and its button) lives INSIDE the header, so hide the
+   header's own rows rather than the header itself. */
+.apps--no-reviews .jm-review-widget__header > .jm-cluster,
+.apps--no-reviews .jm-review-widget-minimal-header__tabs,
+.apps--no-reviews .jm-review-widget-minimal-header__filters,
+.apps--no-reviews .jm-no-reviews-state__text,
+.apps--no-reviews .jm-review-widget__body,
+.apps--no-reviews .jm-other-products-reviews-text {
+  display: none !important;
+}
+.apps--no-reviews .jm-review-widget,
+.apps--no-reviews .jm-review-widget__header-and-body,
+.apps--no-reviews .jm-no-reviews-state {
+  padding: 0 !important;
+  margin: 0 !important;
+  gap: 0 !important;
+  min-height: 0 !important;
+}
+.apps--no-reviews .jm-review-widget__header,
+.apps--no-reviews .jm-no-reviews-state,
+.apps--no-reviews .jm-no-reviews-state > .jm-stack {
+  width: 100% !important;
+  max-width: none !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+.apps--no-reviews .jm-no-reviews-state__action-buttons {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: flex;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: center !important;
+  align-items: baseline;
+  gap: 0.35em !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.apps--no-reviews .jm-action-buttons__button,
+.apps--no-reviews .jm-action-buttons__button:hover,
+.apps--no-reviews .jm-action-buttons__button:focus,
+.apps--no-reviews .jm-action-buttons__button:active {
+  display: inline !important;
+  width: auto !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  font-size: 1.3rem !important;
+  font-weight: var(--font-body-weight) !important;
+  letter-spacing: 0.01em !important;
+  line-height: 1.6 !important;
+  color: rgba(var(--color-foreground), 0.75) !important;
+  text-decoration: underline !important;
+  text-underline-offset: 0.3rem;
+  text-transform: none !important;
+}
+.apps--no-reviews .jm-action-buttons__button:hover,
+.apps--no-reviews .jm-action-buttons__button:focus {
+  color: rgb(var(--color-foreground)) !important;
+}
