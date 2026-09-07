@@ -7,19 +7,21 @@ class CollectionTabs extends HTMLElement {
 
   connectedCallback() {
     this.tabs.forEach((tab, index) => {
-      tab.addEventListener('click', () => this.select(index));
+      // Pointer/touch: switch without moving focus, so iOS Safari never draws
+      // a focus ring around the tapped tab. Keyboard (below) still moves focus.
+      tab.addEventListener('click', () => this.select(index, false));
       tab.addEventListener('keydown', (event) => this.onKeydown(event, index));
     });
   }
 
-  select(index) {
+  select(index, moveFocus = true) {
     this.tabs.forEach((tab, i) => {
       const selected = i === index;
       tab.setAttribute('aria-selected', selected);
       tab.tabIndex = selected ? 0 : -1;
       if (this.panels[i]) this.panels[i].hidden = !selected;
     });
-    this.tabs[index].focus({ preventScroll: true });
+    if (moveFocus) this.tabs[index].focus({ preventScroll: true });
   }
 
   onKeydown(event, index) {
