@@ -2022,6 +2022,31 @@ html:root {
   }
 }
 
+/* ---- iOS Safari tints the strip above the page from the page's own colour,
+   and it samples through the drawers' full-screen scrim: Dawn veils the whole
+   viewport in rgba(--color-foreground, .5) from top 0, and 50% of near-black
+   over white reads as mid grey, so the status bar above the cart and filter
+   drawers turned grey while the drawer itself was white.
+
+   On phones both drawers already cover the screen, so that veil is never
+   actually seen — dropping it costs nothing on screen and leaves the strip the
+   drawer's own white. The component stylesheets load per-section, after this
+   file, so each selector is doubled to win the specificity tie. ---- */
+@media screen and (max-width: 749px) {
+  .drawer.drawer,
+  .mobile-facets.mobile-facets {
+    background-color: transparent;
+  }
+
+  /* The filter panel stops 5rem short of the right edge; with the veil gone
+     that gap would show the page undimmed, so it takes the full width the way
+     the cart drawer already does. */
+  .mobile-facets__inner.mobile-facets__inner {
+    width: 100%;
+    max-width: none;
+  }
+}
+
 /* Home "Shop by aesthetic" tabs: the script moves focus to the tapped tab
    for keyboard users, and iOS Safari then draws the :focus-visible ring
    around it — a faint rounded box on top of the underline. On touch devices
