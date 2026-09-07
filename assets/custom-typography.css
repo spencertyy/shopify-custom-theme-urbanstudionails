@@ -2028,7 +2028,9 @@ html:root {
    around it — a faint rounded box on top of the underline. On touch devices
    the underline alone marks the active tab; keyboards keep the ring. */
 @media (hover: none) and (pointer: coarse) {
-  .collection-tabs__tab:focus-visible {
+  .collection-tabs__tab:focus-visible,
+  .collection-tabs__tab:focus {
     outline: 0;
+    box-shadow: none; /* Dawn's *:focus-visible halo is what drew the faint box */
   }
 }
