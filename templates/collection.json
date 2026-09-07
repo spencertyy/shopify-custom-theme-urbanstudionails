@@ -31,7 +31,7 @@
     "collection_css": {
       "type": "custom-liquid",
       "settings": {
-        "custom_liquid": "<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=Karla:wght@300&display=swap\" rel=\"stylesheet\"><style>@media screen and (min-width:990px){#MainContent .page-width{max-width:160rem;padding:0 4rem;}}</style>",
+        "custom_liquid": "<style>{{ settings.type_body_font | font_modify: 'weight', '300' | font_face: font_display: 'swap' }}</style>\n<style>@media screen and (min-width:990px){#MainContent .page-width{max-width:160rem;padding:0 4rem;}}</style>",
         "color_scheme": "",
         "padding_top": 0,
         "padding_bottom": 0

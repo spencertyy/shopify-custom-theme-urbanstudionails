@@ -795,7 +795,8 @@
             {% render 'icon-close' %}
           </button>
           <div class="product-popup-modal__content-info">
-            <h1 class="h2">{{ block.settings.page.title | escape }}</h1>
+            {%- comment -%} h2, not h1: the product title is the page's one h1 {%- endcomment -%}
+            <h2 class="h2">{{ block.settings.page.title | escape }}</h2>
             {{ block.settings.page.content }}
           </div>
         </div>
