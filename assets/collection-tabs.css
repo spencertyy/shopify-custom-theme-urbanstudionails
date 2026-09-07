@@ -54,17 +54,45 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(var(--color-foreground), 0.6);
-  border-bottom: 1px solid transparent;
-  transition: color var(--duration-short) ease, border-color var(--duration-short) ease;
+  position: relative;
+  transition: color var(--duration-short) ease;
 }
 
-.collection-tabs__tab:hover {
-  color: rgb(var(--color-foreground));
+/* The underline is a pseudo-element, not a border-bottom: a border cannot be
+   animated on its own, and a border-radius on the button bends its ends into
+   hooks. It opens from the centre and closes the same way; the selected tab
+   keeps it open. */
+.collection-tabs__tab::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--duration-short) ease;
 }
 
 .collection-tabs__tab[aria-selected='true'] {
   color: rgb(var(--color-foreground));
-  border-bottom-color: rgb(var(--color-foreground));
+}
+
+.collection-tabs__tab[aria-selected='true']::after {
+  transform: scaleX(1);
+}
+
+/* Touch devices keep :hover latched on the last tap, which would leave a line
+   under a tab the shopper only brushed past. */
+@media (hover: hover) {
+  .collection-tabs__tab:hover {
+    color: rgb(var(--color-foreground));
+  }
+
+  .collection-tabs__tab:hover::after {
+    transform: scaleX(1);
+  }
 }
 
 .collection-tabs__tab:focus-visible {
