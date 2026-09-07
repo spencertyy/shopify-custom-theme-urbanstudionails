@@ -2022,3 +2022,13 @@ html:root {
     box-shadow: 0 60vh 0 0 rgb(var(--color-background));
   }
 }
+
+/* Home "Shop by aesthetic" tabs: the script moves focus to the tapped tab
+   for keyboard users, and iOS Safari then draws the :focus-visible ring
+   around it — a faint rounded box on top of the underline. On touch devices
+   the underline alone marks the active tab; keyboards keep the ring. */
+@media (hover: none) and (pointer: coarse) {
+  .collection-tabs__tab:focus-visible {
+    outline: 0;
+  }
+}
