@@ -118,7 +118,7 @@
           "settings": {
             "heading": "What’s Included",
             "icon": "none",
-            "row_content": "<p>• 10 handmade press-on nails</p><p>• Nail glue</p><p>• Adhesive nail tabs</p><p>• Nail file</p><p>• Wooden cuticle pusher</p><p>• Alcohol wipes</p><p>Everything you need is in the box — no follow-up order, no trip to the shop.</p>",
+            "row_content": "<p>• 10 handmade press-on nails</p><p>• Nail glue</p><p>• Sticky tabs</p><p>• Nail file</p><p>• Wooden cuticle pusher</p><p>• Alcohol wipes</p><p>Everything you need is in the box — no follow-up order, no trip to the shop.</p>",
             "page": ""
           }
         },
@@ -130,22 +130,12 @@
             "row_content": "<p>• <strong>With glue</strong> — 1–2 weeks, and often longer with careful wear</p><p>• <strong>With sticky tabs</strong> — up to 5 days, and the set stays reusable</p><p>Hot showers, gym sessions and washing up without gloves are all quietly working against you.</p>",
             "page": ""
           }
-        },
-        "row_returns": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "Returns",
-            "icon": "none",
-            "row_content": "<p>If your set arrives damaged, faulty, or isn’t what you ordered, email hello@urbanstudionails.com within 7 days of delivery with your order number and a couple of clear photos. We’ll make it right — a replacement, a partial refund, or a full refund, whichever genuinely fits. In most cases you won’t need to send anything back.</p><p>Because every set is handmade and worn directly on the body, we can’t accept returns for sizing, fit, or change of mind — the same rule that applies to most beauty and personal care products. Please measure before you order; we’re happy to help you choose.</p><p>Full details in our <a href=\"/policies/refund-policy\">Refund Policy</a>.</p>",
-            "page": ""
-          }
         }
       },
       "block_order": [
         "row_included",
         "row_wear",
-        "collapsible_row_Q8V9NM",
-        "row_returns"
+        "collapsible_row_Q8V9NM"
       ],
       "settings": {
         "caption": "",
