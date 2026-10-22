@@ -114,7 +114,7 @@
           "settings": {
             "heading": "📦 What’s Included",
             "icon": "none",
-            "row_content": "<p>• 10 handmade press-on nails</p><p>• Nail glue</p><p>• Sticky tabs</p><p>• Nail file</p><p>• Wooden cuticle pusher</p><p>• Alcohol wipes</p><p>Everything you need is in the box — no follow-up order, no trip to the shop.</p>",
+            "row_content": "<p>• 10 handmade press-on nails</p><p>• 1 nail glue</p><p>• 2 sheets of sticky tabs</p><p>• 1 nail file</p><p>• 1 cuticle tool</p><p>• 1 alcohol pad</p><p>Everything you need is in the box — no follow-up order, no trip to the shop.</p>",
             "page": ""
           }
         },
@@ -219,7 +219,7 @@
           "type": "question",
           "settings": {
             "question": "How do I apply them?",
-            "answer": "<p><strong>1. Prep properly.</strong> Push back your cuticles with the stick, lightly buff the surface with the file, and wipe each nail with the alcohol pad. This step is boring and it is also the whole ballgame — 90% of “they fell off in two days” traces straight back to skipping it.</p><p><strong>2. Size them out first.</strong> Lay all ten nails against your fingers and match each one before any adhesive comes out. Once glue is involved, there’s no rearranging.</p><p><strong>3. Apply.</strong> Tabs for a gentler, reusable wear; glue for the long haul. Press from the cuticle down and hold firmly for 30 seconds.</p><p><strong>4. Give it an hour</strong> before water.</p>"
+            "answer": "<p><strong>1. Prep properly.</strong> Push back your cuticles with the cuticle tool, lightly buff the surface with the file, and wipe each nail with the alcohol pad. This step is boring and it is also the whole ballgame — 90% of “they fell off in two days” traces straight back to skipping it.</p><p><strong>2. Size them out first.</strong> Lay all ten nails against your fingers and match each one before any adhesive comes out. Once glue is involved, there’s no rearranging.</p><p><strong>3. Apply.</strong> Tabs for a gentler, reusable wear; glue for the long haul. Press from the cuticle down and hold firmly for 30 seconds.</p><p><strong>4. Give it an hour</strong> before water.</p>"
           }
         },
         "q_reuse": {
@@ -240,7 +240,7 @@
           "type": "question",
           "settings": {
             "question": "How do I take them off without wrecking my nails?",
-            "answer": "<p>Soak your fingertips in warm soapy water with a few drops of oil for 10–15 minutes, then ease each nail up gently from the side with the cuticle stick. If it resists, it isn’t ready — soak longer. Never pull. The nail will come off either way; the only question is whether it takes a layer of you with it.</p>"
+            "answer": "<p>Soak your fingertips in warm soapy water with a few drops of oil for 10–15 minutes, then ease each nail up gently from the side with the cuticle tool. If it resists, it isn’t ready — soak longer. Never pull. The nail will come off either way; the only question is whether it takes a layer of you with it.</p>"
           }
         },
         "q_popped": {
