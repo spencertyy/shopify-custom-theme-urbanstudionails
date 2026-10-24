@@ -259,7 +259,7 @@
           "type": "question",
           "settings": {
             "question": "My set has slight variations from the photo. Is it faulty?",
-            "answer": "<p>Almost certainly not. Hand-painted work carries small differences in tone, placement and finish from set to set — that’s the signature of something made by a person rather than a machine. Genuine defects (lifting embellishments, cracks, rough edges) are a different matter, and we’ll always make those right.</p>"
+            "answer": "<p>Almost certainly not. Handmade work carries small differences in tone, placement and finish from set to set — that’s the signature of something made by a person rather than a machine. Genuine defects (lifting embellishments, cracks, rough edges) are a different matter, and we’ll always make those right.</p>"
           }
         },
         "q_wrong": {

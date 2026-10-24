@@ -47,7 +47,7 @@
         "text_story": {
           "type": "text",
           "settings": {
-            "text": "<p>It began with a simple thought: in a city that never slows down, beauty shouldn't ask you to.</p><p>We make wearable art — nails shaped, painted and finished by hand, one set at a time. Each is a small original: the depth of the colour, the way the light catches, the quiet signature of the hand that made it.</p><p>Think of them as you think of your makeup, your dress, your perfume — the finishing touch before you step out. Ten minutes at the mirror, and your nails are dressed for tonight. Tomorrow, back at your desk, they come off as easily as they went on.</p><p>As for trends — consider them watched. We follow what's current, and care even more that every set is beautiful and well made: each one passes our own eye before it reaches you. All that's left for you is the best part: picking the one you love.</p>",
+            "text": "<p>It began with a simple thought: in a city that never slows down, beauty shouldn't ask you to.</p><p>We make handmade 3D press-on nails — shaped, built and finished by hand in small batches, and checked by our own team before they ship. A salon look in ten minutes, reusable, no appointment.</p><p>Think of them as you think of your makeup, your dress, your perfume — the finishing touch before you step out. Ten minutes at the mirror, and your nails are dressed for tonight. Tomorrow, back at your desk, they come off as easily as they went on.</p><p>As for trends — consider them watched. We follow what's current, and care even more that every set is beautiful and well made: each one passes our own eye before it reaches you. All that's left for you is the best part: picking the one you love.</p>",
             "text_style": "body"
           }
         }
@@ -81,8 +81,8 @@
           "settings": {
             "short_title": "Original",
             "caption": "001",
-            "heading": "An original, not a print",
-            "text": "<p>Painted by hand, one set at a time. Look closely and you'll find the artist's hand in the details — quiet proof you're wearing an original, not a print.</p>",
+            "heading": "Handmade, not machine-made",
+            "text": "<p>Built and finished by hand in small batches. Look closely and you'll see what a printed nail can't give you: the 3D charms, the depth of colour, the detail.</p>",
             "image": "shopify://shop_images/IMG_0765.jpg"
           }
         },
@@ -122,7 +122,7 @@
     "outro_values": {
       "type": "outro-values",
       "settings": {
-        "tagline": "<p>Wearable art, at the speed of your city.</p>",
+        "tagline": "<p>Wearable art, at your own pace.</p>",
         "button_label": "Shop all sets",
         "button_link": "shopify://collections/all-products",
         "caption": "",

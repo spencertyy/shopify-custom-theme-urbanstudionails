@@ -58,7 +58,7 @@
         "text_JcwMbK": {
           "type": "text",
           "settings": {
-            "text": "<p>Each set of our press-on nails is hand-painted in small batches — a quiet act of devotion to the women who wear them. Wearable art for the moments that matter, and the ones in between.</p>"
+            "text": "<p>Handmade 3D press-on nails, made in small batches. A salon look in ten minutes, reusable, and made to be noticed — for the moments that matter, and the ones in between.</p>"
           }
         }
       },
@@ -217,7 +217,7 @@
           "settings": {
             "image": "shopify://shop_images/IMG_0804.jpg",
             "heading": "<em>Custom</em> Couture",
-            "text": "Your design, made one set at a time.",
+            "text": "Your design, made to order.",
             "link_label": "EXPLORE",
             "link": "shopify://products/custom-couture-nails"
           }
