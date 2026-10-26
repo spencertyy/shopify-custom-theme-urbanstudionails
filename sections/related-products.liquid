@@ -23,14 +23,45 @@
   }
 {%- endstyle -%}
 
+{%- comment -%}
+  On a product page the row is Shopify's recommendations for that product,
+  fetched by <product-recommendations>. Pages without a product (e.g. the Fit
+  & Wear Guide) have nothing to recommend from, so they render the chosen
+  collection straight away in a plain element with the same classes.
+  The recommendations fetch re-renders this section with no `product` but
+  with `recommendations.performed`, so that request must stay on the
+  product path.
+{%- endcomment -%}
+{%- liquid
+  assign use_collection = false
+  if product == blank and recommendations.performed != true
+    assign use_collection = true
+  endif
+
+  if use_collection
+    assign row_tag = 'div'
+    assign row_products = section.settings.collection.products
+    assign row_count = section.settings.collection.products_count | default: 0
+  else
+    assign row_tag = 'product-recommendations'
+    assign row_products = recommendations.products
+    assign row_count = 0
+    if recommendations.performed
+      assign row_count = recommendations.products_count
+    endif
+  endif
+-%}
+
 <div class="color-{{ section.settings.color_scheme }} gradient">
-  <product-recommendations
+  <{{ row_tag }}
     class="related-products page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-    data-url="{{ routes.product_recommendations_url }}?limit={{ section.settings.products_to_show }}"
-    data-section-id="{{ section.id }}"
-    data-product-id="{{ product.id }}"
+    {%- unless use_collection %}
+      data-url="{{ routes.product_recommendations_url }}?limit={{ section.settings.products_to_show }}"
+      data-section-id="{{ section.id }}"
+      data-product-id="{{ product.id }}"
+    {%- endunless %}
   >
-    {% if recommendations.performed and recommendations.products_count > 0 %}
+    {% if row_count > 0 %}
       <div class="related-products__header">
         <h2 class="related-products__heading inline-richtext {{ section.settings.heading_size }}">
           {{ section.settings.heading }}
@@ -50,7 +81,7 @@
           role="list"
         >
           {% assign skip_card_product_styles = false %}
-          {% for recommendation in recommendations.products %}
+          {% for recommendation in row_products limit: section.settings.products_to_show %}
             <li class="grid__item">
               {% render 'card-product',
                 card_product: recommendation,
@@ -69,7 +100,7 @@
         </ul>
       </div>
     {% endif %}
-  </product-recommendations>
+  </{{ row_tag }}>
   {%- comment -%}
     The recommendations markup above is re-injected via innerHTML by the
     product-recommendations element, and injected <script> tags never
@@ -104,6 +135,12 @@
     {
       "type": "paragraph",
       "content": "t:sections.related-products.settings.paragraph__1.content"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection",
+      "info": "Only used on pages without a product, such as the Fit & Wear Guide."
     },
     {
       "type": "inline_richtext",

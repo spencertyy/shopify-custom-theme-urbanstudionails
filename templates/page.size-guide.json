@@ -3,7 +3,7 @@
     "size_css": {
       "type": "custom-liquid",
       "settings": {
-        "custom_liquid": "<style>#MainContent .main-page-title{font-size:1.4rem;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:#8a8880;}</style>",
+        "custom_liquid": "<style>#MainContent .main-page-title{font-size:1.4rem;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:#8a8880;}#MainContent .outro-values__tagline{font-size:2.1rem;font-weight:300;line-height:1.4;color:#2f2f2f;}#MainContent .outro-values__tagline p{font-weight:300;}#MainContent .outro-values__outro .button{text-transform:uppercase;letter-spacing:0.16em;font-size:1.2rem;background:#ffffff;color:#2f2f2f;border:1px solid #424242;border-radius:0;box-shadow:none;}#MainContent .outro-values__outro .button::after{box-shadow:none;}@media screen and (max-width:749px){#MainContent .outro-values__tagline{font-size:1.9rem;}}</style>",
         "color_scheme": "",
         "padding_top": 0,
         "padding_bottom": 0
@@ -67,10 +67,85 @@
         "padding_top": 28,
         "padding_bottom": 40
       }
+    },
+    "also_like": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 28,
+        "collection": "best-sellers"
+      }
+    },
+    "outro_values": {
+      "type": "outro-values",
+      "settings": {
+        "tagline": "<p>Wearable art, at your own pace.</p>",
+        "button_label": "Shop all sets",
+        "button_link": "shopify://collections/all-products",
+        "caption": "",
+        "color_scheme": "scheme-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "insta_collage": {
+      "type": "insta-collage",
+      "settings": {
+        "eyebrow": "Follow us",
+        "handle": "@URBANSTUDIO.NAILS",
+        "ig_url": "https://www.instagram.com/urbanstudio.nails/",
+        "color_scheme": "scheme-1",
+        "padding_top": 52,
+        "padding_bottom": 24
+      }
+    },
+    "instafeed_app": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_dXeWUd": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 55,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": false,
+            "link_alignment": "left",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_dXeWUd"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
     "size_css",
-    "main"
+    "main",
+    "also_like",
+    "outro_values",
+    "insta_collage",
+    "instafeed_app"
   ]
 }

@@ -127,4 +127,19 @@
     /* centred across the two cells after the last step, as in the Figma */
     grid-column: span 2;
   }
+
+  /* product page accordion: the row titles are 1.7rem, so keep the steps a
+     notch closer to them than on the guide page */
+  .accordion .fwg-steps .fwg__title {
+    font-size: 1.8rem;
+  }
+  .accordion .fwg-steps .fwg__text {
+    font-size: 1.4rem;
+  }
+  .accordion .fwg-steps .fwg__group {
+    font-size: 1.5rem;
+  }
+  .accordion .fwg-steps .fwg__aside {
+    font-size: 1.6rem;
+  }
 }
