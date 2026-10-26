@@ -95,6 +95,9 @@
                   >
                     {{ block.settings.row_content }}
                     {{ block.settings.page.content }}
+                    {%- if block.settings.guide != blank and block.settings.guide != 'none' -%}
+                      {%- render 'fit-guide-steps', part: block.settings.guide -%}
+                    {%- endif -%}
                   </div>
                 </details>
               </div>
@@ -500,6 +503,18 @@
           "type": "page",
           "id": "page",
           "label": "t:sections.collapsible_content.blocks.collapsible_row.settings.page.label"
+        },
+        {
+          "type": "select",
+          "id": "guide",
+          "label": "Illustrated steps",
+          "info": "Shows the Fit & Wear Guide steps (snippets/fit-guide-steps.liquid) in this row.",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "apply", "label": "How to apply" },
+            { "value": "remove", "label": "How to remove" }
+          ],
+          "default": "none"
         }
       ]
     }

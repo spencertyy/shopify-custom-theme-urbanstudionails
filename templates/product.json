@@ -130,11 +130,33 @@
             "row_content": "<p>• <strong>With glue</strong> — 1–2 weeks, and often longer with careful wear</p><p>• <strong>With sticky tabs</strong> — up to 5 days, and the set stays reusable</p><p>Hot showers, gym sessions and washing up without gloves are all quietly working against you.</p>",
             "page": ""
           }
+        },
+        "row_apply": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How to Apply",
+            "icon": "none",
+            "row_content": "",
+            "page": "",
+            "guide": "apply"
+          }
+        },
+        "row_remove": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How to Remove",
+            "icon": "none",
+            "row_content": "",
+            "page": "",
+            "guide": "remove"
+          }
         }
       },
       "block_order": [
         "row_included",
         "row_wear",
+        "row_apply",
+        "row_remove",
         "collapsible_row_Q8V9NM"
       ],
       "settings": {

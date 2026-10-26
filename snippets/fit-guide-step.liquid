@@ -1,0 +1,17 @@
+{%- comment -%}
+  One illustrated step inside snippets/fit-guide-steps.liquid.
+
+  Accepts:
+  - number: step number, e.g. '01'
+  - title: step name
+  - text: one-line instruction
+  - svg: drawing file in /assets
+  - h: the drawing's height in px (keeps every drawing at one scale)
+{%- endcomment -%}
+<li class="fwg__step">
+  <div class="fwg__media" style="--fwg-h: {{ h }};">
+    <img src="{{ svg | asset_url }}" alt="" loading="lazy">
+  </div>
+  <h4 class="fwg__title"><span class="fwg__num">{{ number }}</span>{{ title | escape }}</h4>
+  <p class="fwg__text">{{ text | escape }}</p>
+</li>

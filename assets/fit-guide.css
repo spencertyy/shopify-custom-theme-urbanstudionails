@@ -1,0 +1,130 @@
+/* Illustrated apply / remove steps (snippets/fit-guide-steps.liquid).
+   Shared by the Fit & Wear Guide page and the product page accordion, so both
+   show the same drawings at the same scale. */
+
+.fwg-steps {
+  --fwg-scale: 0.5;
+}
+@media screen and (min-width: 750px) {
+  .fwg-steps {
+    --fwg-scale: 0.6;
+  }
+}
+
+/* group labels run from the container edge; the step grid sits inset and
+   centred under them, as in the Figma layout */
+.fwg-steps .fwg__group {
+  margin: 4.8rem 0 2.4rem;
+  font-size: 1.5rem;
+  font-weight: var(--font-body-weight);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.6);
+}
+.fwg-steps > .fwg__group:first-child {
+  margin-top: 1.6rem;
+}
+
+.fwg-steps .fwg__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3.2rem 1.6rem;
+}
+.fwg-steps .fwg__step {
+  text-align: center;
+}
+.fwg-steps .fwg__media {
+  /* tallest drawing (≈365px) at the current scale; drawings sit on one baseline */
+  height: calc(365px * var(--fwg-scale));
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-bottom: 2.4rem;
+}
+.fwg-steps .fwg__media > img {
+  /* line art is drawn at one pixel scale: --fwg-h is the drawing's height in
+     px, so every finger renders the same size */
+  height: calc(var(--fwg-h, 300) * 1px * var(--fwg-scale));
+  width: auto;
+  /* canvases are padded to centre the finger, so the extra width is blank —
+     let it overflow the cell rather than shrink the drawing off-scale */
+  max-width: none;
+  border: 0;
+}
+.fwg-steps .fwg__title {
+  margin: 0 0 1rem;
+  /* phones: two steps per row, so "07 PRESS & PEEL" has to fit half the width */
+  font-size: 1.5rem;
+  font-weight: var(--font-body-weight);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.fwg-steps .fwg__num {
+  margin-right: 0.6em;
+}
+.fwg-steps .fwg__text {
+  margin: 0 auto;
+  max-width: 26rem;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+/* a note right after a step sits in the next grid cell, level with the middle
+   of that step's drawing: drawings sit on the media baseline, so the middle is
+   (box height − drawing height / 2) from the top, and the text is pulled up by
+   half its own height */
+.fwg-steps .fwg__aside {
+  padding-top: calc((365px - var(--fwg-h, 300) * 0.5px) * var(--fwg-scale));
+  text-align: center;
+  font-size: 1.8rem;
+  line-height: 1.4;
+}
+.fwg-steps .fwg__aside > * {
+  margin: 0;
+  line-height: inherit;
+  transform: translateY(-50%);
+}
+
+/* phones (2-up): after an even-numbered step the note starts a new row on its
+   own — let it span the row at text height instead of a drawing-tall cell */
+@media screen and (max-width: 749px) {
+  .fwg-steps .fwg__step:nth-child(even) + .fwg__aside {
+    grid-column: 1 / -1;
+    padding-top: 0;
+  }
+  .fwg-steps .fwg__step:nth-child(even) + .fwg__aside > * {
+    transform: none;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .fwg-steps .fwg__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 4rem 2.4rem;
+    padding: 0 6%;
+  }
+  .fwg-steps .fwg__media {
+    margin-bottom: 3.2rem;
+  }
+  .fwg-steps .fwg__title {
+    font-size: 2.2rem;
+    letter-spacing: 0.1em;
+  }
+  .fwg-steps .fwg__text {
+    font-size: 1.6rem;
+    max-width: 30rem;
+  }
+  .fwg-steps .fwg__group {
+    font-size: 1.9rem;
+    margin: 6.4rem 0 3.2rem;
+  }
+  .fwg-steps .fwg__aside {
+    font-size: 2rem;
+    /* centred across the two cells after the last step, as in the Figma */
+    grid-column: span 2;
+  }
+}

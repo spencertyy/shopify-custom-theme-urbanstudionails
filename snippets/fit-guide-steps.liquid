@@ -1,0 +1,54 @@
+{%- comment -%}
+  Illustrated apply / remove steps. One copy of the steps, rendered by the
+  Fit & Wear Guide page (sections/fit-wear-guide.liquid) and by the product
+  page accordion (sections/collapsible-content.liquid), so the two can't drift.
+
+  Accepts:
+  - part: 'apply' or 'remove'
+
+  Drawings live in /assets (exported from the Figma line art, text outlined).
+  h is each drawing's height in px so every finger renders at the same scale;
+  an aside note carries the height of the step before it so it can sit level
+  with that drawing's middle.
+{%- endcomment -%}
+{{ 'fit-guide.css' | asset_url | stylesheet_tag }}
+<div class="fwg-steps">
+  {%- if part == 'apply' -%}
+    <h3 class="fwg__group">Prep</h3>
+    <ol class="fwg__grid" role="list">
+      {% render 'fit-guide-step', number: '01', title: 'Trim', text: 'Trim and file your nails short.', svg: 'guide-prep-01.svg', h: 320 %}
+      {% render 'fit-guide-step', number: '02', title: 'Push back', text: 'Gently push back cuticles with the cuticle tool.', svg: 'guide-prep-02.svg', h: 270 %}
+      {% render 'fit-guide-step', number: '03', title: 'Buff', text: 'Lightly buff to remove shine.', svg: 'guide-prep-03.svg', h: 230 %}
+      {% render 'fit-guide-step', number: '04', title: 'Clean', text: 'Wipe with the alcohol pad. Let dry.', svg: 'guide-prep-04.svg', h: 225 %}
+    </ol>
+    <h3 class="fwg__group">Option A · Sticky tabs</h3>
+    <ol class="fwg__grid" role="list">
+      {% render 'fit-guide-step', number: '05', title: 'Pick', text: 'Pick a sticky tab that fits your nail.', svg: 'guide-a-05.svg', h: 210 %}
+      {% render 'fit-guide-step', number: '06', title: 'Place', text: 'Place it 1–2 mm from the cuticle.', svg: 'guide-a-06.svg', h: 205 %}
+      {% render 'fit-guide-step', number: '07', title: 'Press & peel', text: 'Press from the center out for 10s, then peel off the film.', svg: 'guide-a-07.svg', h: 275 %}
+      {% render 'fit-guide-step', number: '08', title: 'Apply', text: 'At about 45°, lay it on from cuticle to tip. Slide it snug to the cuticle and hold 30s. Give it an hour before water.', svg: 'guide-a-08.svg', h: 215 %}
+    </ol>
+    <h3 class="fwg__group">Option B · Glue</h3>
+    <ol class="fwg__grid" role="list">
+      {% render 'fit-guide-step', number: '05', title: 'Glue', text: 'Add a small drop to the back of the press‑on.', svg: 'guide-b-05.svg', h: 320 %}
+      {% render 'fit-guide-step', number: '06', title: 'Apply', text: 'At about 45°, lay it on from cuticle to tip. Slide it snug to the cuticle and hold 30s.', svg: 'guide-b-06.svg', h: 215 %}
+      <li class="fwg__aside" style="--fwg-h: 215;"><p>Give it an hour before water.</p></li>
+    </ol>
+    <h3 class="fwg__group">Option C · Sticky tabs + glue</h3>
+    <ol class="fwg__grid" role="list">
+      {% render 'fit-guide-step', number: '05', title: 'Pick', text: 'Pick a sticky tab that fits your nail.', svg: 'guide-c-05.svg', h: 185 %}
+      {% render 'fit-guide-step', number: '06', title: 'Place', text: 'Place it 1–2 mm from the cuticle.', svg: 'guide-c-06.svg', h: 170 %}
+      {% render 'fit-guide-step', number: '07', title: 'Press & peel', text: 'Press from the center out for 10s, then peel off the film.', svg: 'guide-c-07.svg', h: 250 %}
+      {% render 'fit-guide-step', number: '08', title: 'Glue', text: 'Add a small drop of glue to the back of the press‑on, then press it on over the tab.', svg: 'guide-c-08.svg', h: 320 %}
+      {% render 'fit-guide-step', number: '09', title: 'Apply', text: 'At about 45°, lay it on from cuticle to tip. Slide it snug to the cuticle and hold 30s.', svg: 'guide-c-09.svg', h: 215 %}
+      <li class="fwg__aside" style="--fwg-h: 215;"><p>Give it an hour before water.</p></li>
+    </ol>
+  {%- elsif part == 'remove' -%}
+    <ol class="fwg__grid" role="list">
+      {% render 'fit-guide-step', number: '01', title: 'Soak', text: 'Soak in warm soapy water with a few drops of oil, 10–15 min.', svg: 'guide-remove-01.svg', h: 270 %}
+      {% render 'fit-guide-step', number: '02', title: 'Lift', text: 'Ease each nail up from the side with the cuticle tool.', svg: 'guide-remove-02.svg', h: 225 %}
+      {% render 'fit-guide-step', number: '03', title: 'Don’t pull', text: 'If it resists, soak longer. Never pull.', svg: 'guide-remove-03.svg', h: 305 %}
+      {% render 'fit-guide-step', number: '04', title: 'Clean', text: 'Buff off any leftover adhesive, then wipe with the alcohol pad.', svg: 'guide-remove-04.svg', h: 360 %}
+    </ol>
+  {%- endif -%}
+</div>
