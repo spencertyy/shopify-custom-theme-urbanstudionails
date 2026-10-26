@@ -1,0 +1,335 @@
+{%- comment -%}
+  Fit & Wear Guide — the page behind "Fit & Wear Guide" in the footer.
+  Collapsible panels (native <details>, no JS), each holding illustrated
+  how-to steps, notes and images. Everything is a block, so copy and
+  illustrations can be changed in the theme editor.
+
+  Block order drives the layout:
+    panel   — starts a new collapsible panel; every block after it belongs to
+              it until the next panel
+    heading — a small group label inside a panel ("PREP", "OPTION A · …")
+    step    — one illustrated step; consecutive steps share a 4-up grid
+              (2-up on phones)
+    note    — a line of rich text; right after a step it takes the next grid
+              cell instead of a full-width row
+    image   — a full-width image (the size chart)
+
+  Step illustrations: an uploaded image wins; otherwise svg_asset names an SVG
+  in /assets (labels inside it should be outlined — an <img> can't use the
+  store font; inline_asset_content rendered empty for these files). Line art
+  is drawn at one pixel scale, so media_height (the drawing's height in px)
+  keeps every finger the same size instead of scaling each picture to fit.
+{%- endcomment -%}
+
+{% style %}
+  .fwg-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    --fwg-scale: 0.5;
+  }
+  @media screen and (min-width: 750px) {
+    .fwg-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+      --fwg-scale: 0.6;
+    }
+  }
+  .fwg-{{ section.id }} .fwg__inner { max-width: 110rem; margin: 0 auto; }
+  .fwg-{{ section.id }} .fwg__panel { border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.12); }
+  .fwg-{{ section.id }} .fwg__panel:first-of-type { border-top: 0.1rem solid rgba(var(--color-foreground), 0.12); }
+  .fwg-{{ section.id }} .fwg__panel > summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.6rem;
+    padding: 2.2rem 0;
+    font-size: 1.8rem;
+    font-weight: var(--font-body-weight);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .fwg-{{ section.id }} .fwg__panel > summary::-webkit-details-marker { display: none; }
+  .fwg-{{ section.id }} .fwg__icon { flex-shrink: 0; width: 1.4rem; height: 1.4rem; transition: transform 0.2s ease; }
+  .fwg-{{ section.id }} .fwg__panel[open] .fwg__icon { transform: rotate(45deg); }
+  .fwg-{{ section.id }} .fwg__body { padding: 0.8rem 0 4rem; }
+  /* group labels run from the panel edge; the step grid sits inset and
+     centred under them, as in the Figma layout */
+  .fwg-{{ section.id }} .fwg__group {
+    margin: 4.8rem 0 2.4rem;
+    font-size: 1.5rem;
+    font-weight: var(--font-body-weight);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(var(--color-foreground), 0.6);
+  }
+  .fwg-{{ section.id }} .fwg__body > .fwg__group:first-child { margin-top: 1.6rem; }
+  .fwg-{{ section.id }} .fwg__grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3.2rem 1.6rem;
+  }
+  @media screen and (min-width: 750px) {
+    .fwg-{{ section.id }} .fwg__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4rem 2.4rem; }
+  }
+  .fwg-{{ section.id }} .fwg__step { text-align: center; }
+  .fwg-{{ section.id }} .fwg__media {
+    /* tallest drawing (≈365px) at the current scale; drawings sit on one baseline */
+    height: calc(365px * var(--fwg-scale));
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-bottom: 2.4rem;
+  }
+  .fwg-{{ section.id }} .fwg__media > svg,
+  .fwg-{{ section.id }} .fwg__media > img {
+    height: calc(var(--fwg-h, 300) * 1px * var(--fwg-scale));
+    width: auto;
+    max-width: 100%;
+  }
+  .fwg-{{ section.id }} .fwg__ph {
+    width: 60%;
+    height: 70%;
+    border: 0.1rem dashed rgba(var(--color-foreground), 0.25);
+    border-radius: 0.6rem;
+  }
+  .fwg-{{ section.id }} .fwg__title {
+    margin: 0 0 1rem;
+    /* phones: two steps per row, so "07 PRESS & PEEL" has to fit half the width */
+    font-size: 1.5rem;
+    font-weight: var(--font-body-weight);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .fwg-{{ section.id }} .fwg__num { margin-right: 0.6em; }
+  .fwg-{{ section.id }} .fwg__text {
+    margin: 0 auto;
+    max-width: 26rem;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    color: rgba(var(--color-foreground), 0.75);
+  }
+  .fwg-{{ section.id }} .fwg__note { margin: 4rem 0 0; font-size: 1.8rem; }
+  .fwg-{{ section.id }} .fwg__note > * { margin: 0; }
+  /* a note that directly follows a step sits in the next grid cell, level with
+     the middle of the drawings (the Figma layout puts it beside the last step) */
+  /* drawings sit on the media baseline, so the middle of the previous drawing
+     is (box height − drawing height / 2) from the top; --fwg-h carries that
+     drawing's height and the text is pulled up by half its own height */
+  .fwg-{{ section.id }} .fwg__aside {
+    padding-top: calc((365px - var(--fwg-h, 300) * 0.5px) * var(--fwg-scale));
+    text-align: center;
+    font-size: 1.8rem;
+    line-height: 1.4;
+  }
+  .fwg-{{ section.id }} .fwg__aside > * { margin: 0; line-height: inherit; transform: translateY(-50%); }
+  /* phones (2-up): after an even-numbered step the note starts a new row on
+     its own — let it span the row at text height instead of a drawing-tall cell */
+  @media screen and (max-width: 749px) {
+    .fwg-{{ section.id }} .fwg__step:nth-child(even) + .fwg__aside { grid-column: 1 / -1; padding-top: 0; }
+    .fwg-{{ section.id }} .fwg__step:nth-child(even) + .fwg__aside > * { transform: none; }
+  }
+  @media screen and (min-width: 750px) {
+    .fwg-{{ section.id }} .fwg__media { margin-bottom: 3.2rem; }
+    .fwg-{{ section.id }} .fwg__title { font-size: 2.2rem; letter-spacing: 0.1em; }
+    .fwg-{{ section.id }} .fwg__text { font-size: 1.6rem; max-width: 30rem; }
+    .fwg-{{ section.id }} .fwg__group { font-size: 1.9rem; margin: 6.4rem 0 3.2rem; }
+    .fwg-{{ section.id }} .fwg__grid { padding: 0 6%; }
+    .fwg-{{ section.id }} .fwg__aside,
+    .fwg-{{ section.id }} .fwg__note { font-size: 2rem; }
+    /* centred across the two cells after the last step, as in the Figma */
+    .fwg-{{ section.id }} .fwg__aside { grid-column: span 2; }
+  }
+  .fwg-{{ section.id }} .fwg__image { margin: 1.6rem auto 0; }
+  .fwg-{{ section.id }} .fwg__image img { display: block; width: 100%; height: auto; }
+{% endstyle %}
+
+{%- liquid
+  assign heading = section.settings.heading | default: page.title
+  assign in_panel = false
+  assign in_grid = false
+-%}
+
+<div class="fwg-{{ section.id }}">
+  <div class="page-width">
+    <div class="fwg__inner">
+      <h1 class="main-page-title page-title h0">{{ heading | escape }}</h1>
+
+      {%- for block in section.blocks -%}
+        {%- if block.type != 'step' and block.type != 'note' and in_grid -%}
+          </ol>
+          {%- assign in_grid = false -%}
+        {%- endif -%}
+
+        {%- case block.type -%}
+          {%- when 'panel' -%}
+            {%- if in_panel -%}</div></details>{%- endif -%}
+            <details class="fwg__panel"{% if block.settings.open %} open{% endif %} {{ block.shopify_attributes }}>
+              <summary>
+                <span>{{ block.settings.title | escape }}</span>
+                <svg class="fwg__icon" viewBox="0 0 14 14" fill="none" aria-hidden="true" focusable="false">
+                  <path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </summary>
+              <div class="fwg__body">
+            {%- assign in_panel = true -%}
+
+          {%- when 'heading' -%}
+            <h2 class="fwg__group" {{ block.shopify_attributes }}>{{ block.settings.title | escape }}</h2>
+
+          {%- when 'step' -%}
+            {%- unless in_grid -%}
+              <ol class="fwg__grid" role="list">
+              {%- assign in_grid = true -%}
+            {%- endunless -%}
+            {%- assign last_media_height = block.settings.media_height -%}
+            <li class="fwg__step" {{ block.shopify_attributes }}>
+              <div class="fwg__media" style="--fwg-h: {{ block.settings.media_height }};">
+                {%- if block.settings.image != blank -%}
+                  {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: '', widths: '300, 450, 600' }}
+                {%- elsif block.settings.svg_asset != blank -%}
+                  <img src="{{ block.settings.svg_asset | asset_url }}" alt="" loading="lazy">
+
+                {%- else -%}
+                  <div class="fwg__ph" aria-hidden="true"></div>
+                {%- endif -%}
+              </div>
+              <h3 class="fwg__title">
+                {%- if block.settings.number != blank -%}<span class="fwg__num">{{ block.settings.number | escape }}</span>{%- endif -%}
+                {{- block.settings.title | escape -}}
+              </h3>
+              <p class="fwg__text">{{ block.settings.text | escape }}</p>
+            </li>
+
+          {%- when 'note' -%}
+            {%- if in_grid -%}
+              <li class="fwg__aside rte" style="--fwg-h: {{ last_media_height }};" {{ block.shopify_attributes }}>{{ block.settings.text }}</li>
+            {%- else -%}
+              <div class="fwg__note rte" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+            {%- endif -%}
+
+          {%- when 'image' -%}
+            {%- if block.settings.image != blank -%}
+              <div class="fwg__image" style="max-width: {{ block.settings.max_width }}px;" {{ block.shopify_attributes }}>
+                {{ block.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', alt: block.settings.alt, widths: '600, 900, 1200, 1600' }}
+              </div>
+            {%- endif -%}
+        {%- endcase -%}
+      {%- endfor -%}
+
+      {%- if in_grid -%}</ol>{%- endif -%}
+      {%- if in_panel -%}</div></details>{%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Fit & wear guide",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "info": "Leave empty to use the page title.",
+      "default": "Fit & Wear Guide"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "panel",
+      "name": "Collapsible panel",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "How to apply & remove" },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "Group label",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Label", "default": "Prep" }
+      ]
+    },
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Illustration" },
+        {
+          "type": "text",
+          "id": "svg_asset",
+          "label": "Illustration file in theme assets",
+          "info": "Used when no image is picked, e.g. guide-remove-01.svg"
+        },
+        {
+          "type": "range",
+          "id": "media_height",
+          "label": "Drawing height",
+          "info": "The drawing's original height in px, so every step is drawn at the same scale.",
+          "min": 60,
+          "max": 360,
+          "step": 5,
+          "unit": "px",
+          "default": 300
+        },
+        { "type": "text", "id": "number", "label": "Number", "default": "01" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Trim" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Trim and file your nails short." }
+      ]
+    },
+    {
+      "type": "note",
+      "name": "Note",
+      "settings": [
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Give it an hour before water.</p>" }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "alt", "label": "Alt text" },
+        {
+          "type": "range",
+          "id": "max_width",
+          "label": "Max width",
+          "min": 400,
+          "max": 1200,
+          "step": 50,
+          "unit": "px",
+          "default": 800
+        }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Fit & wear guide" }]
+}
+{% endschema %}

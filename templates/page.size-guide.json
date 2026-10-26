@@ -10,10 +10,299 @@
       }
     },
     "main": {
-      "type": "main-page",
+      "type": "fit-wear-guide",
+      "blocks": {
+        "panel_01": {
+          "type": "panel",
+          "settings": {
+            "title": "How to apply",
+            "open": true
+          }
+        },
+        "heading_02": {
+          "type": "heading",
+          "settings": {
+            "title": "Prep"
+          }
+        },
+        "step_03": {
+          "type": "step",
+          "settings": {
+            "number": "01",
+            "title": "Trim",
+            "text": "Trim and file your nails short.",
+            "svg_asset": "guide-prep-01.svg",
+            "media_height": 320
+          }
+        },
+        "step_04": {
+          "type": "step",
+          "settings": {
+            "number": "02",
+            "title": "Push back",
+            "text": "Gently push back cuticles with the cuticle tool.",
+            "svg_asset": "guide-prep-02.svg",
+            "media_height": 270
+          }
+        },
+        "step_05": {
+          "type": "step",
+          "settings": {
+            "number": "03",
+            "title": "Buff",
+            "text": "Lightly buff to remove shine.",
+            "svg_asset": "guide-prep-03.svg",
+            "media_height": 230
+          }
+        },
+        "step_06": {
+          "type": "step",
+          "settings": {
+            "number": "04",
+            "title": "Clean",
+            "text": "Wipe with the alcohol pad. Let dry.",
+            "svg_asset": "guide-prep-04.svg",
+            "media_height": 225
+          }
+        },
+        "heading_07": {
+          "type": "heading",
+          "settings": {
+            "title": "Option A · Sticky tabs"
+          }
+        },
+        "step_08": {
+          "type": "step",
+          "settings": {
+            "number": "05",
+            "title": "Pick",
+            "text": "Pick a sticky tab that fits your nail.",
+            "svg_asset": "guide-a-05.svg",
+            "media_height": 210
+          }
+        },
+        "step_09": {
+          "type": "step",
+          "settings": {
+            "number": "06",
+            "title": "Place",
+            "text": "Place it 1–2 mm from the cuticle.",
+            "svg_asset": "guide-a-06.svg",
+            "media_height": 205
+          }
+        },
+        "step_10": {
+          "type": "step",
+          "settings": {
+            "number": "07",
+            "title": "Press & peel",
+            "text": "Press from the center out for 10s, then peel off the film.",
+            "svg_asset": "guide-a-07.svg",
+            "media_height": 275
+          }
+        },
+        "step_11": {
+          "type": "step",
+          "settings": {
+            "number": "08",
+            "title": "Apply",
+            "text": "At about 45°, lay it on from cuticle to tip. Slide it snug to the cuticle and hold 30s. Give it an hour before water.",
+            "svg_asset": "guide-a-08.svg",
+            "media_height": 215
+          }
+        },
+        "heading_12": {
+          "type": "heading",
+          "settings": {
+            "title": "Option B · Glue"
+          }
+        },
+        "step_13": {
+          "type": "step",
+          "settings": {
+            "number": "05",
+            "title": "Glue",
+            "text": "Add a small drop to the back of the press‑on.",
+            "svg_asset": "guide-b-05.svg",
+            "media_height": 320
+          }
+        },
+        "step_14": {
+          "type": "step",
+          "settings": {
+            "number": "06",
+            "title": "Apply",
+            "text": "At about 45°, lay it on from cuticle to tip. Slide it snug to the cuticle and hold 30s.",
+            "svg_asset": "guide-b-06.svg",
+            "media_height": 215
+          }
+        },
+        "heading_15": {
+          "type": "heading",
+          "settings": {
+            "title": "Option C · Sticky tabs + glue"
+          }
+        },
+        "step_16": {
+          "type": "step",
+          "settings": {
+            "number": "05",
+            "title": "Pick",
+            "text": "Pick a sticky tab that fits your nail.",
+            "svg_asset": "guide-c-05.svg",
+            "media_height": 185
+          }
+        },
+        "step_17": {
+          "type": "step",
+          "settings": {
+            "number": "06",
+            "title": "Place",
+            "text": "Place it 1–2 mm from the cuticle.",
+            "svg_asset": "guide-c-06.svg",
+            "media_height": 170
+          }
+        },
+        "step_18": {
+          "type": "step",
+          "settings": {
+            "number": "07",
+            "title": "Press & peel",
+            "text": "Press from the center out for 10s, then peel off the film.",
+            "svg_asset": "guide-c-07.svg",
+            "media_height": 250
+          }
+        },
+        "step_19": {
+          "type": "step",
+          "settings": {
+            "number": "08",
+            "title": "Glue",
+            "text": "Add a small drop of glue to the back of the press‑on.",
+            "svg_asset": "guide-c-08.svg",
+            "media_height": 320
+          }
+        },
+        "step_20": {
+          "type": "step",
+          "settings": {
+            "number": "09",
+            "title": "Apply",
+            "text": "At about 45°, lay it on from cuticle to tip. Slide it snug to the cuticle and hold 30s.",
+            "svg_asset": "guide-c-09.svg",
+            "media_height": 215
+          }
+        },
+        "note_21": {
+          "type": "note",
+          "settings": {
+            "text": "<p>Give it an hour before water.</p>"
+          }
+        },
+        "heading_22": {
+          "type": "panel",
+          "settings": {
+            "title": "How to remove",
+            "open": false
+          }
+        },
+        "step_23": {
+          "type": "step",
+          "settings": {
+            "number": "01",
+            "title": "Soak",
+            "text": "Soak in warm soapy water with a few drops of oil, 10–15 min.",
+            "svg_asset": "guide-remove-01.svg",
+            "media_height": 270
+          }
+        },
+        "step_24": {
+          "type": "step",
+          "settings": {
+            "number": "02",
+            "title": "Lift",
+            "text": "Ease each nail up from the side with the cuticle tool.",
+            "svg_asset": "guide-remove-02.svg",
+            "media_height": 225
+          }
+        },
+        "step_25": {
+          "type": "step",
+          "settings": {
+            "number": "03",
+            "title": "Don’t pull",
+            "text": "If it resists, soak longer. Never pull.",
+            "svg_asset": "guide-remove-03.svg",
+            "media_height": 305
+          }
+        },
+        "step_26": {
+          "type": "step",
+          "settings": {
+            "number": "04",
+            "title": "Clean",
+            "text": "Buff off any leftover adhesive, then wipe with the alcohol pad.",
+            "svg_asset": "guide-remove-04.svg",
+            "media_height": 360
+          }
+        },
+        "panel_27": {
+          "type": "panel",
+          "settings": {
+            "title": "Size guide",
+            "open": false
+          }
+        },
+        "image_28": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/3.png",
+            "max_width": 800,
+            "alt": "Urban Studio press-on nail size guide: measure the widest part of each nail in millimetres, then match it to the XS, S, M and L size chart for thumb, index, middle, ring and pinky."
+          }
+        },
+        "note_b": {
+          "type": "note",
+          "settings": {
+            "text": "<p>Give it an hour before water.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "panel_01",
+        "heading_02",
+        "step_03",
+        "step_04",
+        "step_05",
+        "step_06",
+        "heading_07",
+        "step_08",
+        "step_09",
+        "step_10",
+        "step_11",
+        "heading_12",
+        "step_13",
+        "step_14",
+        "note_b",
+        "heading_15",
+        "step_16",
+        "step_17",
+        "step_18",
+        "step_19",
+        "step_20",
+        "note_21",
+        "heading_22",
+        "step_23",
+        "step_24",
+        "step_25",
+        "step_26",
+        "panel_27",
+        "image_28"
+      ],
       "settings": {
+        "heading": "Fit & Wear Guide",
         "padding_top": 28,
-        "padding_bottom": 28
+        "padding_bottom": 40
       }
     }
   },
