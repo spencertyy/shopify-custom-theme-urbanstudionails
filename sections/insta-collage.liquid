@@ -100,6 +100,9 @@
     width: {{ section.settings.tile_width_mobile }}vw;
     aspect-ratio: 1;
     overflow: hidden;
+    border-radius: 1rem;
+    /* keeps the rounded clip during the hover zoom in Safari */
+    isolation: isolate;
     background: rgba(var(--color-foreground), 0.04);
   }
 

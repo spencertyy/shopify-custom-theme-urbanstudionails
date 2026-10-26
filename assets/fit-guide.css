@@ -111,35 +111,20 @@
     margin-bottom: 3.2rem;
   }
   .fwg-steps .fwg__title {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     letter-spacing: 0.1em;
   }
   .fwg-steps .fwg__text {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     max-width: 30rem;
   }
   .fwg-steps .fwg__group {
-    font-size: 1.9rem;
+    font-size: 1.5rem;
     margin: 6.4rem 0 3.2rem;
   }
   .fwg-steps .fwg__aside {
-    font-size: 2rem;
+    font-size: 1.6rem;
     /* centred across the two cells after the last step, as in the Figma */
     grid-column: span 2;
-  }
-
-  /* product page accordion: the row titles are 1.7rem, so keep the steps a
-     notch closer to them than on the guide page */
-  .accordion .fwg-steps .fwg__title {
-    font-size: 1.8rem;
-  }
-  .accordion .fwg-steps .fwg__text {
-    font-size: 1.4rem;
-  }
-  .accordion .fwg-steps .fwg__group {
-    font-size: 1.5rem;
-  }
-  .accordion .fwg-steps .fwg__aside {
-    font-size: 1.6rem;
   }
 }
