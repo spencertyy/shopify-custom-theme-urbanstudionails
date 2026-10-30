@@ -89,7 +89,8 @@
         "columns_desktop": 4,
         "full_width": true,
         "show_view_all": true,
-        "view_all_style": "solid",
+        "view_all_style": "outline",
+        "view_all_in_heading": true,
         "enable_desktop_slider": true,
         "color_scheme": "",
         "image_ratio": "adapt",
@@ -101,6 +102,35 @@
         "columns_mobile": "2",
         "swipe_on_mobile": true,
         "padding_top": 40,
+        "padding_bottom": 24
+      }
+    },
+    "featured_collection_new_arrivals": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "NEW ARRIVALS",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "new-arrival",
+        "products_to_show": 10,
+        "columns_desktop": 4,
+        "full_width": true,
+        "show_view_all": true,
+        "view_all_style": "outline",
+        "view_all_in_heading": true,
+        "enable_desktop_slider": true,
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "standard",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 0,
         "padding_bottom": 24
       }
     },
@@ -212,20 +242,20 @@
             "link": "shopify://products/nail-mystery-box-✨"
           }
         },
-        "tile_custom": {
+        "tile_christmas": {
           "type": "tile",
           "settings": {
-            "image": "shopify://shop_images/IMG_0804.jpg",
-            "heading": "<em>Custom</em> Couture",
-            "text": "Your design, made to order.",
+            "image": "shopify://shop_images/IMG_7835.jpg",
+            "heading": "<em>Christmas</em> Edit",
+            "text": "Festive sets for the holidays.",
             "link_label": "EXPLORE",
-            "link": "shopify://products/custom-couture-nails"
+            "link": "shopify://collections/christmas"
           }
         }
       },
       "block_order": [
         "tile_mystery",
-        "tile_custom"
+        "tile_christmas"
       ],
       "settings": {
         "height": "medium",
@@ -333,6 +363,7 @@
     "slideshow_LQBTNn",
     "rich_text_LgFHkD",
     "featured_collection_yWJRKA",
+    "featured_collection_new_arrivals",
     "image_banner_HwgpbG",
     "collection_tabs_aesthetic",
     "split_banner_specials",

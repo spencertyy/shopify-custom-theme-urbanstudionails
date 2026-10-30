@@ -295,7 +295,7 @@
           "type": "question",
           "settings": {
             "question": "When will my order ship?",
-            "answer": "<p>Every set on our site is in stock and ready to ship. Most orders leave us within 24 hours, Monday to Friday. During launches, holidays or exceptionally busy weeks, please allow up to 3–5 business days. Either way, you’ll get a tracking number the moment yours is on its way.</p><p>The one exception is Custom Couture — those are made from scratch to your design, so allow 5–20 business days before dispatch.</p>"
+            "answer": "<p>Every set on our site is in stock and ready to ship. Most orders leave us within 24 hours, Monday to Friday. During launches, holidays or exceptionally busy weeks, please allow up to 3–5 business days. Either way, you’ll get a tracking number the moment yours is on its way.</p><p>The one exception is custom sets — they’re made from scratch to your design, so allow 5–20 business days before dispatch.</p>"
           }
         }
       },
