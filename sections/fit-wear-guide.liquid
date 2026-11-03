@@ -81,6 +81,11 @@
               {%- render 'fit-guide-steps', part: block.settings.part -%}
             </div>
 
+          {%- when 'size' -%}
+            <div {{ block.shopify_attributes }}>
+              {%- render 'fit-guide-size' -%}
+            </div>
+
           {%- when 'note' -%}
             <div class="fwg__note rte" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
 
@@ -155,6 +160,17 @@
           ],
           "default": "apply",
           "info": "Copy and drawings are edited in snippets/fit-guide-steps.liquid."
+        }
+      ]
+    },
+    {
+      "type": "size",
+      "name": "Size guide",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "How to measure + the size chart. Copy, drawings and sizes are edited in snippets/fit-guide-size.liquid."
         }
       ]
     },

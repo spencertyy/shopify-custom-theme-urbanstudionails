@@ -1,0 +1,62 @@
+{%- comment -%}
+  Size guide: how to measure (left) + the size chart (right). Rendered by the
+  Fit & Wear Guide page (sections/fit-wear-guide.liquid, block type "size").
+  Same look as the apply / remove steps in snippets/fit-guide-steps.liquid.
+
+  Drawings live in /assets (exported from the Figma line art, text outlined).
+  --fwg-h is each drawing's height in px so the fingers render at the same
+  scale as the step drawings.
+{%- endcomment -%}
+{{ 'fit-guide.css' | asset_url | stylesheet_tag }}
+<div class="fwg-steps fwg-size">
+  <div class="fwg-size__cols">
+
+    <div class="fwg-size__col">
+      <h3 class="fwg__group">How to find your size</h3>
+      <p class="fwg-size__lead">Measure the widest part of each nail, in millimetres.</p>
+      <ol class="fwg__grid fwg-size__methods" role="list">
+        <li class="fwg__step">
+          <div class="fwg__media fwg-size__media">
+            <img src="{{ 'guide-size-01.svg' | asset_url }}" alt="" loading="lazy" style="--fwg-h: 222;">
+            <img src="{{ 'guide-size-02.svg' | asset_url }}" alt="" loading="lazy" style="--fwg-h: 222;">
+          </div>
+          <h4 class="fwg__title">Method 1</h4>
+          <p class="fwg__text">Wrap a soft measuring tape around the nail and read it at the widest part.</p>
+        </li>
+        <li class="fwg__step">
+          <div class="fwg__media fwg-size__media">
+            <img src="{{ 'guide-size-03.svg' | asset_url }}" alt="" loading="lazy" style="--fwg-h: 286;">
+          </div>
+          <h4 class="fwg__title">Method 2</h4>
+          <p class="fwg__text">Mark the widest point on a strip of paper, then measure the mark with a ruler.</p>
+        </li>
+      </ol>
+    </div>
+
+    <div class="fwg-size__col">
+      <h3 class="fwg__group">Size chart</h3>
+      <p class="fwg-size__lead">All measurements in millimetres.</p>
+      <table class="fwg-size__table">
+        <thead>
+          <tr>
+            <th scope="col">Size</th>
+            <th scope="col">Thumb</th>
+            <th scope="col">Index</th>
+            <th scope="col">Middle</th>
+            <th scope="col">Ring</th>
+            <th scope="col">Pinky</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">XS</th><td>14</td><td>10</td><td>11</td><td>10</td><td>8</td></tr>
+          <tr><th scope="row">S</th><td>15</td><td>11</td><td>12</td><td>11</td><td>9</td></tr>
+          <tr><th scope="row">M</th><td>16</td><td>12</td><td>13</td><td>12</td><td>10</td></tr>
+          <tr><th scope="row">L</th><td>17</td><td>13</td><td>14</td><td>13</td><td>11</td></tr>
+        </tbody>
+      </table>
+      <p class="fwg-size__note">Between two sizes? Size up. A nail that sits slightly wide can be filed down. A narrow one can&rsquo;t be stretched.</p>
+      <p class="fwg-size__note fwg-size__note--muted">Each set has 10 nails, sized for both hands. Still unsure? Message us before you order.</p>
+    </div>
+
+  </div>
+</div>

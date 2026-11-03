@@ -95,7 +95,9 @@
                   >
                     {{ block.settings.row_content }}
                     {{ block.settings.page.content }}
-                    {%- if block.settings.guide != blank and block.settings.guide != 'none' -%}
+                    {%- if block.settings.guide == 'size' -%}
+                      {%- render 'fit-guide-size' -%}
+                    {%- elsif block.settings.guide != blank and block.settings.guide != 'none' -%}
                       {%- render 'fit-guide-steps', part: block.settings.guide -%}
                     {%- endif -%}
                   </div>
@@ -512,7 +514,8 @@
           "options": [
             { "value": "none", "label": "None" },
             { "value": "apply", "label": "How to apply" },
-            { "value": "remove", "label": "How to remove" }
+            { "value": "remove", "label": "How to remove" },
+            { "value": "size", "label": "Size guide (drawings + chart)" }
           ],
           "default": "none"
         }

@@ -45,13 +45,9 @@
             "open": false
           }
         },
-        "image_28": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/3.png",
-            "max_width": 800,
-            "alt": "Urban Studio press-on nail size guide: measure the widest part of each nail in millimetres, then match it to the XS, S, M and L size chart for thumb, index, middle, ring and pinky."
-          }
+        "size_28": {
+          "type": "size",
+          "settings": {}
         }
       },
       "block_order": [
@@ -60,7 +56,7 @@
         "heading_22",
         "steps_remove",
         "panel_27",
-        "image_28"
+        "size_28"
       ],
       "settings": {
         "heading": "Fit & Wear Guide",

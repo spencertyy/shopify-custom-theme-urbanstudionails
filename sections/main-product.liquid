@@ -795,9 +795,19 @@
             {% render 'icon-close' %}
           </button>
           <div class="product-popup-modal__content-info">
-            {%- comment -%} h2, not h1: the product title is the page's one h1 {%- endcomment -%}
-            <h2 class="h2">{{ block.settings.page.title | escape }}</h2>
-            {{ block.settings.page.content }}
+            {%- comment -%}
+              h2, not h1: the product title is the page's one h1.
+              Visually hidden: the size-guide page is a single image that
+              carries its own title, so a second "Size Guide" only duplicates it.
+              Screen readers still get the heading.
+            {%- endcomment -%}
+            <h2 class="h2 visually-hidden">{{ block.settings.page.title | escape }}</h2>
+            {%- if block.settings.size_guide -%}
+              {%- comment -%} Same drawings + chart as the Fit & Wear Guide page. {%- endcomment -%}
+              {%- render 'fit-guide-size' -%}
+            {%- else -%}
+              {{ block.settings.page.content }}
+            {%- endif -%}
           </div>
         </div>
       </modal-dialog>
@@ -1273,6 +1283,13 @@
           "id": "page",
           "type": "page",
           "label": "t:sections.main-product.blocks.popup.settings.page.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "size_guide",
+          "label": "Show the size guide instead of the page content",
+          "info": "Drawings + size chart from snippets/fit-guide-size.liquid, the same as the Fit & Wear Guide page.",
+          "default": false
         }
       ]
     },

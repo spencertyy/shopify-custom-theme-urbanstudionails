@@ -56,10 +56,10 @@
 }
 .fwg-steps .fwg__title {
   margin: 0 0 1rem;
-  /* phones: two steps per row, so "07 PRESS & PEEL" has to fit half the width */
+  /* one title size for the whole guide (same as the group labels) */
   font-size: 1.5rem;
   font-weight: var(--font-body-weight);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 .fwg-steps .fwg__num {
@@ -68,7 +68,7 @@
 .fwg-steps .fwg__text {
   margin: 0 auto;
   max-width: 26rem;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   line-height: 1.5;
   color: rgba(var(--color-foreground), 0.75);
 }
@@ -80,7 +80,7 @@
 .fwg-steps .fwg__aside {
   padding-top: calc((365px - var(--fwg-h, 300) * 0.5px) * var(--fwg-scale));
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   line-height: 1.4;
 }
 .fwg-steps .fwg__aside > * {
@@ -110,12 +110,7 @@
   .fwg-steps .fwg__media {
     margin-bottom: 3.2rem;
   }
-  .fwg-steps .fwg__title {
-    font-size: 1.8rem;
-    letter-spacing: 0.1em;
-  }
   .fwg-steps .fwg__text {
-    font-size: 1.4rem;
     max-width: 30rem;
   }
   .fwg-steps .fwg__group {
@@ -123,8 +118,165 @@
     margin: 6.4rem 0 3.2rem;
   }
   .fwg-steps .fwg__aside {
-    font-size: 1.6rem;
     /* centred across the two cells after the last step, as in the Figma */
     grid-column: span 2;
+  }
+  /* after a full row of four steps the note starts a row of its own:
+     let it run the full width on one line, text height only */
+  .fwg-steps .fwg__step:nth-child(4n) + .fwg__aside {
+    grid-column: 1 / -1;
+    padding-top: 0;
+  }
+  .fwg-steps .fwg__step:nth-child(4n) + .fwg__aside > * {
+    transform: none;
+  }
+}
+
+/* Size guide (snippets/fit-guide-size.liquid): how to measure on the left,
+   the size chart on the right (stacked on phones). One type size for every
+   title and one for every line of copy, so the block reads as one piece. */
+.fwg-size {
+  --fwg-size-type: 1.5rem;
+}
+.fwg-size .fwg-size__cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 5.6rem;
+  text-align: center;
+}
+.fwg-size .fwg__group {
+  margin: 1.6rem 0 1.2rem;
+  font-size: var(--fwg-size-type);
+}
+.fwg-size .fwg-size__lead {
+  margin: 0 auto 2.8rem;
+  max-width: 48rem;
+  font-size: var(--fwg-size-type);
+  line-height: 1.5;
+  color: rgba(var(--color-foreground), 0.75);
+}
+.fwg-size .fwg-size__methods {
+  /* phones: one method per row so the two tape drawings get room */
+  grid-template-columns: minmax(0, 1fr);
+  gap: 3.2rem 2.4rem;
+  padding: 0;
+}
+.fwg-size .fwg-size__media {
+  /* the size drawings are drawn slimmer than the step drawings, so they run
+     1.35× the step scale to read as the same hand; tallest is 286px */
+  --fwg-scale: 0.675;
+  height: calc(286px * var(--fwg-scale));
+  gap: 4.8rem;
+}
+.fwg-size .fwg__title {
+  font-size: var(--fwg-size-type);
+  letter-spacing: 0.14em;
+}
+.fwg-size .fwg__text {
+  font-size: var(--fwg-size-type);
+}
+.fwg-size .fwg-size__table {
+  width: 100%;
+  max-width: 56rem;
+  margin: 0 auto;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: var(--fwg-size-type);
+}
+.fwg-size .fwg-size__table th,
+.fwg-size .fwg-size__table td {
+  padding: 0.9rem 0.2rem;
+  font-weight: var(--font-body-weight);
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
+}
+.fwg-size .fwg-size__table thead th {
+  padding-bottom: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.6);
+  border-bottom-color: rgba(var(--color-foreground), 0.3);
+}
+.fwg-size .fwg-size__table tbody th {
+  letter-spacing: 0.08em;
+}
+.fwg-size .fwg-size__table tbody tr:last-child th,
+.fwg-size .fwg-size__table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.fwg-size .fwg-size__note {
+  max-width: 48rem;
+  margin: 2.8rem auto 0;
+  font-size: var(--fwg-size-type);
+  line-height: 1.5;
+  color: rgba(var(--color-foreground), 0.75);
+}
+.fwg-size .fwg-size__note--muted {
+  margin-top: 1.2rem;
+  color: rgba(var(--color-foreground), 0.6);
+}
+@media screen and (min-width: 750px) {
+  .fwg-size .fwg-size__cols {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6.4rem;
+    align-items: start;
+    padding: 0 2%;
+  }
+  .fwg-size .fwg__group {
+    margin: 2.4rem 0 1.2rem;
+  }
+  .fwg-size .fwg-size__methods {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3.2rem 1.6rem;
+  }
+  .fwg-size .fwg-size__media {
+    --fwg-scale: 0.81;
+    gap: 4rem;
+  }
+  .fwg-size .fwg-size__table {
+    max-width: none;
+  }
+  .fwg-size .fwg-size__table th,
+  .fwg-size .fwg-size__table td {
+    padding: 1.3rem 0.6rem;
+  }
+}
+
+/* inside the product page's size-chart pop-up the box is too narrow for two
+   columns: stack them, and clear the close button at the top */
+.product-popup-modal .fwg-size {
+  padding: 4rem 1.5rem 3.2rem 0;
+}
+.product-popup-modal .fwg-size .fwg-size__cols {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 4.8rem;
+  padding: 0;
+}
+.product-popup-modal .fwg-size .fwg-size__methods {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media screen and (max-width: 749px) {
+  .product-popup-modal .fwg-size .fwg-size__methods {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* product page accordion: the container is wider than the guide page's, so
+   the same block reads smaller. Scale the drawings and the chart up ~15%. */
+.accordion__content .fwg-size {
+  /* breathing room between the row's own text and the guide */
+  margin-top: 4rem;
+}
+@media screen and (min-width: 750px) {
+  .accordion__content .fwg-size {
+    --fwg-size-type: 1.7rem;
+    margin-top: 6.4rem;
+  }
+  .accordion__content .fwg-size .fwg-size__media {
+    --fwg-scale: 0.93;
+    gap: 4.8rem;
+  }
+  .accordion__content .fwg-size .fwg-size__table th,
+  .accordion__content .fwg-size .fwg-size__table td {
+    padding: 1.5rem 0.6rem;
   }
 }
