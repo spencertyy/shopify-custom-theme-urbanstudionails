@@ -215,12 +215,6 @@
   color: rgba(var(--color-foreground), 0.6);
 }
 @media screen and (min-width: 750px) {
-  .fwg-size .fwg-size__cols {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 6.4rem;
-    align-items: start;
-    padding: 0 2%;
-  }
   .fwg-size .fwg__group {
     margin: 2.4rem 0 1.2rem;
   }
@@ -238,6 +232,18 @@
   .fwg-size .fwg-size__table th,
   .fwg-size .fwg-size__table td {
     padding: 1.3rem 0.6rem;
+  }
+}
+
+/* the two outer columns only fit from 990px up: below that each measuring
+   method would get ~130px while its drawings need ~190px, so tablets keep
+   the methods and the chart stacked */
+@media screen and (min-width: 990px) {
+  .fwg-size .fwg-size__cols {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6.4rem;
+    align-items: start;
+    padding: 0 2%;
   }
 }
 
